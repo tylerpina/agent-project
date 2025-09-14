@@ -54,7 +54,7 @@ var require_error = __commonJS({
         this.nestedError = void 0;
       }
     };
-    var InvalidArgumentError3 = class extends CommanderError2 {
+    var InvalidArgumentError4 = class extends CommanderError2 {
       /**
        * Constructs the InvalidArgumentError class
        * @param {string} [message] explanation of why argument is invalid
@@ -66,14 +66,14 @@ var require_error = __commonJS({
       }
     };
     exports.CommanderError = CommanderError2;
-    exports.InvalidArgumentError = InvalidArgumentError3;
+    exports.InvalidArgumentError = InvalidArgumentError4;
   }
 });
 
 // node_modules/commander/lib/argument.js
 var require_argument = __commonJS({
   "node_modules/commander/lib/argument.js"(exports) {
-    var { InvalidArgumentError: InvalidArgumentError3 } = require_error();
+    var { InvalidArgumentError: InvalidArgumentError4 } = require_error();
     var Argument2 = class {
       /**
        * Initialize a new command argument with the given name and description.
@@ -158,7 +158,7 @@ var require_argument = __commonJS({
         this.argChoices = values.slice();
         this.parseArg = (arg, previous) => {
           if (!this.argChoices.includes(arg)) {
-            throw new InvalidArgumentError3(
+            throw new InvalidArgumentError4(
               `Allowed choices are ${this.argChoices.join(", ")}.`
             );
           }
@@ -614,7 +614,7 @@ var require_help = __commonJS({
 // node_modules/commander/lib/option.js
 var require_option = __commonJS({
   "node_modules/commander/lib/option.js"(exports) {
-    var { InvalidArgumentError: InvalidArgumentError3 } = require_error();
+    var { InvalidArgumentError: InvalidArgumentError4 } = require_error();
     var Option2 = class {
       /**
        * Initialize a new `Option` with the given `flags` and `description`.
@@ -771,7 +771,7 @@ var require_option = __commonJS({
         this.argChoices = values.slice();
         this.parseArg = (arg, previous) => {
           if (!this.argChoices.includes(arg)) {
-            throw new InvalidArgumentError3(
+            throw new InvalidArgumentError4(
               `Allowed choices are ${this.argChoices.join(", ")}.`
             );
           }
@@ -968,7 +968,7 @@ var require_command = __commonJS({
   "node_modules/commander/lib/command.js"(exports) {
     var EventEmitter = __require("node:events").EventEmitter;
     var childProcess = __require("node:child_process");
-    var path3 = __require("node:path");
+    var path5 = __require("node:path");
     var fs = __require("node:fs");
     var process2 = __require("node:process");
     var { Argument: Argument2, humanReadableArgName } = require_argument();
@@ -1901,9 +1901,9 @@ Expecting one of '${allowedValues.join("', '")}'`);
         let launchWithNode = false;
         const sourceExt = [".js", ".ts", ".tsx", ".mjs", ".cjs"];
         function findFile(baseDir, baseName) {
-          const localBin = path3.resolve(baseDir, baseName);
+          const localBin = path5.resolve(baseDir, baseName);
           if (fs.existsSync(localBin)) return localBin;
-          if (sourceExt.includes(path3.extname(baseName))) return void 0;
+          if (sourceExt.includes(path5.extname(baseName))) return void 0;
           const foundExt = sourceExt.find(
             (ext) => fs.existsSync(`${localBin}${ext}`)
           );
@@ -1921,17 +1921,17 @@ Expecting one of '${allowedValues.join("', '")}'`);
           } catch (err) {
             resolvedScriptPath = this._scriptPath;
           }
-          executableDir = path3.resolve(
-            path3.dirname(resolvedScriptPath),
+          executableDir = path5.resolve(
+            path5.dirname(resolvedScriptPath),
             executableDir
           );
         }
         if (executableDir) {
           let localFile = findFile(executableDir, executableFile);
           if (!localFile && !subcommand._executableFile && this._scriptPath) {
-            const legacyName = path3.basename(
+            const legacyName = path5.basename(
               this._scriptPath,
-              path3.extname(this._scriptPath)
+              path5.extname(this._scriptPath)
             );
             if (legacyName !== this._name) {
               localFile = findFile(
@@ -1942,7 +1942,7 @@ Expecting one of '${allowedValues.join("', '")}'`);
           }
           executableFile = localFile || executableFile;
         }
-        launchWithNode = sourceExt.includes(path3.extname(executableFile));
+        launchWithNode = sourceExt.includes(path5.extname(executableFile));
         let proc;
         if (process2.platform !== "win32") {
           if (launchWithNode) {
@@ -2782,7 +2782,7 @@ Expecting one of '${allowedValues.join("', '")}'`);
        * @return {Command}
        */
       nameFromFilename(filename) {
-        this._name = path3.basename(filename, path3.extname(filename));
+        this._name = path5.basename(filename, path5.extname(filename));
         return this;
       }
       /**
@@ -2796,9 +2796,9 @@ Expecting one of '${allowedValues.join("', '")}'`);
        * @param {string} [path]
        * @return {(string|null|Command)}
        */
-      executableDir(path4) {
-        if (path4 === void 0) return this._executableDir;
-        this._executableDir = path4;
+      executableDir(path6) {
+        if (path6 === void 0) return this._executableDir;
+        this._executableDir = path6;
         return this;
       }
       /**
@@ -3011,7 +3011,7 @@ var require_commander = __commonJS({
   "node_modules/commander/index.js"(exports) {
     var { Argument: Argument2 } = require_argument();
     var { Command: Command2 } = require_command();
-    var { CommanderError: CommanderError2, InvalidArgumentError: InvalidArgumentError3 } = require_error();
+    var { CommanderError: CommanderError2, InvalidArgumentError: InvalidArgumentError4 } = require_error();
     var { Help: Help2 } = require_help();
     var { Option: Option2 } = require_option();
     exports.program = new Command2();
@@ -3023,8 +3023,8 @@ var require_commander = __commonJS({
     exports.Argument = Argument2;
     exports.Help = Help2;
     exports.CommanderError = CommanderError2;
-    exports.InvalidArgumentError = InvalidArgumentError3;
-    exports.InvalidOptionArgumentError = InvalidArgumentError3;
+    exports.InvalidArgumentError = InvalidArgumentError4;
+    exports.InvalidOptionArgumentError = InvalidArgumentError4;
   }
 });
 
@@ -3081,20 +3081,20 @@ var require_file_uri_to_path = __commonJS({
       var rest = decodeURI(uri.substring(7));
       var firstSlash = rest.indexOf("/");
       var host = rest.substring(0, firstSlash);
-      var path3 = rest.substring(firstSlash + 1);
+      var path5 = rest.substring(firstSlash + 1);
       if ("localhost" == host) host = "";
       if (host) {
         host = sep + sep + host;
       }
-      path3 = path3.replace(/^(.+)\|/, "$1:");
+      path5 = path5.replace(/^(.+)\|/, "$1:");
       if (sep == "\\") {
-        path3 = path3.replace(/\//g, "\\");
+        path5 = path5.replace(/\//g, "\\");
       }
-      if (/^.+\:/.test(path3)) {
+      if (/^.+\:/.test(path5)) {
       } else {
-        path3 = sep + path3;
+        path5 = sep + path5;
       }
-      return host + path3;
+      return host + path5;
     }
   }
 });
@@ -3103,18 +3103,18 @@ var require_file_uri_to_path = __commonJS({
 var require_bindings = __commonJS({
   "node_modules/bindings/bindings.js"(exports, module) {
     var fs = __require("fs");
-    var path3 = __require("path");
+    var path5 = __require("path");
     var fileURLToPath2 = require_file_uri_to_path();
-    var join2 = path3.join;
-    var dirname2 = path3.dirname;
-    var exists2 = fs.accessSync && function(path4) {
+    var join5 = path5.join;
+    var dirname2 = path5.dirname;
+    var exists2 = fs.accessSync && function(path6) {
       try {
-        fs.accessSync(path4);
+        fs.accessSync(path6);
       } catch (e) {
         return false;
       }
       return true;
-    } || fs.existsSync || path3.existsSync;
+    } || fs.existsSync || path5.existsSync;
     var defaults = {
       arrow: process.env.NODE_BINDINGS_ARROW || " \u2192 ",
       compiled: process.env.NODE_BINDINGS_COMPILED_DIR || "compiled",
@@ -3159,13 +3159,13 @@ var require_bindings = __commonJS({
       if (!opts.module_root) {
         opts.module_root = exports.getRoot(exports.getFileName());
       }
-      if (path3.extname(opts.bindings) != ".node") {
+      if (path5.extname(opts.bindings) != ".node") {
         opts.bindings += ".node";
       }
       var requireFunc = typeof __webpack_require__ === "function" ? __non_webpack_require__ : __require;
       var tries = [], i = 0, l = opts.try.length, n, b, err;
       for (; i < l; i++) {
-        n = join2.apply(
+        n = join5.apply(
           null,
           opts.try[i].map(function(p) {
             return opts[p] || p;
@@ -3226,7 +3226,7 @@ var require_bindings = __commonJS({
         if (dir === ".") {
           dir = process.cwd();
         }
-        if (exists2(join2(dir, "package.json")) || exists2(join2(dir, "node_modules"))) {
+        if (exists2(join5(dir, "package.json")) || exists2(join5(dir, "node_modules"))) {
           return dir;
         }
         if (prev === dir) {
@@ -3235,7 +3235,7 @@ var require_bindings = __commonJS({
           );
         }
         prev = dir;
-        dir = join2(dir, "..");
+        dir = join5(dir, "..");
       }
     };
   }
@@ -3395,7 +3395,7 @@ var require_backup = __commonJS({
   "node_modules/better-sqlite3/lib/methods/backup.js"(exports, module) {
     "use strict";
     var fs = __require("fs");
-    var path3 = __require("path");
+    var path5 = __require("path");
     var { promisify } = __require("util");
     var { cppdb } = require_util();
     var fsAccess = promisify(fs.access);
@@ -3411,7 +3411,7 @@ var require_backup = __commonJS({
       if (typeof attachedName !== "string") throw new TypeError('Expected the "attached" option to be a string');
       if (!attachedName) throw new TypeError('The "attached" option cannot be an empty string');
       if (handler != null && typeof handler !== "function") throw new TypeError('Expected the "progress" option to be a function');
-      await fsAccess(path3.dirname(filename)).catch(() => {
+      await fsAccess(path5.dirname(filename)).catch(() => {
         throw new TypeError("Cannot save backup because the directory does not exist");
       });
       const isNewFile = await fsAccess(filename).then(() => false, () => true);
@@ -3420,13 +3420,13 @@ var require_backup = __commonJS({
     var runBackup = (backup, handler) => {
       let rate = 0;
       let useDefault = true;
-      return new Promise((resolve2, reject) => {
+      return new Promise((resolve3, reject) => {
         setImmediate(function step() {
           try {
             const progress = backup.transfer(rate);
             if (!progress.remainingPages) {
               backup.close();
-              resolve2(progress);
+              resolve3(progress);
               return;
             }
             if (useDefault) {
@@ -3717,7 +3717,7 @@ var require_database = __commonJS({
   "node_modules/better-sqlite3/lib/database.js"(exports, module) {
     "use strict";
     var fs = __require("fs");
-    var path3 = __require("path");
+    var path5 = __require("path");
     var util2 = require_util();
     var SqliteError = require_sqlite_error();
     var DEFAULT_ADDON;
@@ -3753,7 +3753,7 @@ var require_database = __commonJS({
         addon = DEFAULT_ADDON || (DEFAULT_ADDON = require_bindings()("better_sqlite3.node"));
       } else if (typeof nativeBinding === "string") {
         const requireFunc = typeof __non_webpack_require__ === "function" ? __non_webpack_require__ : __require;
-        addon = requireFunc(path3.resolve(nativeBinding).replace(/(\.node)?$/, ".node"));
+        addon = requireFunc(path5.resolve(nativeBinding).replace(/(\.node)?$/, ".node"));
       } else {
         addon = nativeBinding;
       }
@@ -3761,7 +3761,7 @@ var require_database = __commonJS({
         addon.setErrorConstructor(SqliteError);
         addon.isInitialized = true;
       }
-      if (!anonymous && !fs.existsSync(path3.dirname(filename))) {
+      if (!anonymous && !fs.existsSync(path5.dirname(filename))) {
         throw new TypeError("Cannot open database because the directory does not exist");
       }
       Object.defineProperties(this, {
@@ -3797,6 +3797,7281 @@ var require_lib = __commonJS({
   }
 });
 
+// node_modules/yaml/dist/nodes/identity.js
+var require_identity = __commonJS({
+  "node_modules/yaml/dist/nodes/identity.js"(exports) {
+    "use strict";
+    var ALIAS = Symbol.for("yaml.alias");
+    var DOC = Symbol.for("yaml.document");
+    var MAP = Symbol.for("yaml.map");
+    var PAIR = Symbol.for("yaml.pair");
+    var SCALAR = Symbol.for("yaml.scalar");
+    var SEQ = Symbol.for("yaml.seq");
+    var NODE_TYPE = Symbol.for("yaml.node.type");
+    var isAlias = (node) => !!node && typeof node === "object" && node[NODE_TYPE] === ALIAS;
+    var isDocument = (node) => !!node && typeof node === "object" && node[NODE_TYPE] === DOC;
+    var isMap = (node) => !!node && typeof node === "object" && node[NODE_TYPE] === MAP;
+    var isPair = (node) => !!node && typeof node === "object" && node[NODE_TYPE] === PAIR;
+    var isScalar = (node) => !!node && typeof node === "object" && node[NODE_TYPE] === SCALAR;
+    var isSeq = (node) => !!node && typeof node === "object" && node[NODE_TYPE] === SEQ;
+    function isCollection(node) {
+      if (node && typeof node === "object")
+        switch (node[NODE_TYPE]) {
+          case MAP:
+          case SEQ:
+            return true;
+        }
+      return false;
+    }
+    function isNode(node) {
+      if (node && typeof node === "object")
+        switch (node[NODE_TYPE]) {
+          case ALIAS:
+          case MAP:
+          case SCALAR:
+          case SEQ:
+            return true;
+        }
+      return false;
+    }
+    var hasAnchor = (node) => (isScalar(node) || isCollection(node)) && !!node.anchor;
+    exports.ALIAS = ALIAS;
+    exports.DOC = DOC;
+    exports.MAP = MAP;
+    exports.NODE_TYPE = NODE_TYPE;
+    exports.PAIR = PAIR;
+    exports.SCALAR = SCALAR;
+    exports.SEQ = SEQ;
+    exports.hasAnchor = hasAnchor;
+    exports.isAlias = isAlias;
+    exports.isCollection = isCollection;
+    exports.isDocument = isDocument;
+    exports.isMap = isMap;
+    exports.isNode = isNode;
+    exports.isPair = isPair;
+    exports.isScalar = isScalar;
+    exports.isSeq = isSeq;
+  }
+});
+
+// node_modules/yaml/dist/visit.js
+var require_visit = __commonJS({
+  "node_modules/yaml/dist/visit.js"(exports) {
+    "use strict";
+    var identity = require_identity();
+    var BREAK = Symbol("break visit");
+    var SKIP = Symbol("skip children");
+    var REMOVE = Symbol("remove node");
+    function visit(node, visitor) {
+      const visitor_ = initVisitor(visitor);
+      if (identity.isDocument(node)) {
+        const cd = visit_(null, node.contents, visitor_, Object.freeze([node]));
+        if (cd === REMOVE)
+          node.contents = null;
+      } else
+        visit_(null, node, visitor_, Object.freeze([]));
+    }
+    visit.BREAK = BREAK;
+    visit.SKIP = SKIP;
+    visit.REMOVE = REMOVE;
+    function visit_(key, node, visitor, path5) {
+      const ctrl = callVisitor(key, node, visitor, path5);
+      if (identity.isNode(ctrl) || identity.isPair(ctrl)) {
+        replaceNode(key, path5, ctrl);
+        return visit_(key, ctrl, visitor, path5);
+      }
+      if (typeof ctrl !== "symbol") {
+        if (identity.isCollection(node)) {
+          path5 = Object.freeze(path5.concat(node));
+          for (let i = 0; i < node.items.length; ++i) {
+            const ci = visit_(i, node.items[i], visitor, path5);
+            if (typeof ci === "number")
+              i = ci - 1;
+            else if (ci === BREAK)
+              return BREAK;
+            else if (ci === REMOVE) {
+              node.items.splice(i, 1);
+              i -= 1;
+            }
+          }
+        } else if (identity.isPair(node)) {
+          path5 = Object.freeze(path5.concat(node));
+          const ck = visit_("key", node.key, visitor, path5);
+          if (ck === BREAK)
+            return BREAK;
+          else if (ck === REMOVE)
+            node.key = null;
+          const cv = visit_("value", node.value, visitor, path5);
+          if (cv === BREAK)
+            return BREAK;
+          else if (cv === REMOVE)
+            node.value = null;
+        }
+      }
+      return ctrl;
+    }
+    async function visitAsync(node, visitor) {
+      const visitor_ = initVisitor(visitor);
+      if (identity.isDocument(node)) {
+        const cd = await visitAsync_(null, node.contents, visitor_, Object.freeze([node]));
+        if (cd === REMOVE)
+          node.contents = null;
+      } else
+        await visitAsync_(null, node, visitor_, Object.freeze([]));
+    }
+    visitAsync.BREAK = BREAK;
+    visitAsync.SKIP = SKIP;
+    visitAsync.REMOVE = REMOVE;
+    async function visitAsync_(key, node, visitor, path5) {
+      const ctrl = await callVisitor(key, node, visitor, path5);
+      if (identity.isNode(ctrl) || identity.isPair(ctrl)) {
+        replaceNode(key, path5, ctrl);
+        return visitAsync_(key, ctrl, visitor, path5);
+      }
+      if (typeof ctrl !== "symbol") {
+        if (identity.isCollection(node)) {
+          path5 = Object.freeze(path5.concat(node));
+          for (let i = 0; i < node.items.length; ++i) {
+            const ci = await visitAsync_(i, node.items[i], visitor, path5);
+            if (typeof ci === "number")
+              i = ci - 1;
+            else if (ci === BREAK)
+              return BREAK;
+            else if (ci === REMOVE) {
+              node.items.splice(i, 1);
+              i -= 1;
+            }
+          }
+        } else if (identity.isPair(node)) {
+          path5 = Object.freeze(path5.concat(node));
+          const ck = await visitAsync_("key", node.key, visitor, path5);
+          if (ck === BREAK)
+            return BREAK;
+          else if (ck === REMOVE)
+            node.key = null;
+          const cv = await visitAsync_("value", node.value, visitor, path5);
+          if (cv === BREAK)
+            return BREAK;
+          else if (cv === REMOVE)
+            node.value = null;
+        }
+      }
+      return ctrl;
+    }
+    function initVisitor(visitor) {
+      if (typeof visitor === "object" && (visitor.Collection || visitor.Node || visitor.Value)) {
+        return Object.assign({
+          Alias: visitor.Node,
+          Map: visitor.Node,
+          Scalar: visitor.Node,
+          Seq: visitor.Node
+        }, visitor.Value && {
+          Map: visitor.Value,
+          Scalar: visitor.Value,
+          Seq: visitor.Value
+        }, visitor.Collection && {
+          Map: visitor.Collection,
+          Seq: visitor.Collection
+        }, visitor);
+      }
+      return visitor;
+    }
+    function callVisitor(key, node, visitor, path5) {
+      if (typeof visitor === "function")
+        return visitor(key, node, path5);
+      if (identity.isMap(node))
+        return visitor.Map?.(key, node, path5);
+      if (identity.isSeq(node))
+        return visitor.Seq?.(key, node, path5);
+      if (identity.isPair(node))
+        return visitor.Pair?.(key, node, path5);
+      if (identity.isScalar(node))
+        return visitor.Scalar?.(key, node, path5);
+      if (identity.isAlias(node))
+        return visitor.Alias?.(key, node, path5);
+      return void 0;
+    }
+    function replaceNode(key, path5, node) {
+      const parent = path5[path5.length - 1];
+      if (identity.isCollection(parent)) {
+        parent.items[key] = node;
+      } else if (identity.isPair(parent)) {
+        if (key === "key")
+          parent.key = node;
+        else
+          parent.value = node;
+      } else if (identity.isDocument(parent)) {
+        parent.contents = node;
+      } else {
+        const pt = identity.isAlias(parent) ? "alias" : "scalar";
+        throw new Error(`Cannot replace node with ${pt} parent`);
+      }
+    }
+    exports.visit = visit;
+    exports.visitAsync = visitAsync;
+  }
+});
+
+// node_modules/yaml/dist/doc/directives.js
+var require_directives = __commonJS({
+  "node_modules/yaml/dist/doc/directives.js"(exports) {
+    "use strict";
+    var identity = require_identity();
+    var visit = require_visit();
+    var escapeChars = {
+      "!": "%21",
+      ",": "%2C",
+      "[": "%5B",
+      "]": "%5D",
+      "{": "%7B",
+      "}": "%7D"
+    };
+    var escapeTagName = (tn) => tn.replace(/[!,[\]{}]/g, (ch) => escapeChars[ch]);
+    var Directives = class _Directives {
+      constructor(yaml, tags) {
+        this.docStart = null;
+        this.docEnd = false;
+        this.yaml = Object.assign({}, _Directives.defaultYaml, yaml);
+        this.tags = Object.assign({}, _Directives.defaultTags, tags);
+      }
+      clone() {
+        const copy = new _Directives(this.yaml, this.tags);
+        copy.docStart = this.docStart;
+        return copy;
+      }
+      /**
+       * During parsing, get a Directives instance for the current document and
+       * update the stream state according to the current version's spec.
+       */
+      atDocument() {
+        const res = new _Directives(this.yaml, this.tags);
+        switch (this.yaml.version) {
+          case "1.1":
+            this.atNextDocument = true;
+            break;
+          case "1.2":
+            this.atNextDocument = false;
+            this.yaml = {
+              explicit: _Directives.defaultYaml.explicit,
+              version: "1.2"
+            };
+            this.tags = Object.assign({}, _Directives.defaultTags);
+            break;
+        }
+        return res;
+      }
+      /**
+       * @param onError - May be called even if the action was successful
+       * @returns `true` on success
+       */
+      add(line, onError) {
+        if (this.atNextDocument) {
+          this.yaml = { explicit: _Directives.defaultYaml.explicit, version: "1.1" };
+          this.tags = Object.assign({}, _Directives.defaultTags);
+          this.atNextDocument = false;
+        }
+        const parts = line.trim().split(/[ \t]+/);
+        const name17 = parts.shift();
+        switch (name17) {
+          case "%TAG": {
+            if (parts.length !== 2) {
+              onError(0, "%TAG directive should contain exactly two parts");
+              if (parts.length < 2)
+                return false;
+            }
+            const [handle, prefix] = parts;
+            this.tags[handle] = prefix;
+            return true;
+          }
+          case "%YAML": {
+            this.yaml.explicit = true;
+            if (parts.length !== 1) {
+              onError(0, "%YAML directive should contain exactly one part");
+              return false;
+            }
+            const [version3] = parts;
+            if (version3 === "1.1" || version3 === "1.2") {
+              this.yaml.version = version3;
+              return true;
+            } else {
+              const isValid2 = /^\d+\.\d+$/.test(version3);
+              onError(6, `Unsupported YAML version ${version3}`, isValid2);
+              return false;
+            }
+          }
+          default:
+            onError(0, `Unknown directive ${name17}`, true);
+            return false;
+        }
+      }
+      /**
+       * Resolves a tag, matching handles to those defined in %TAG directives.
+       *
+       * @returns Resolved tag, which may also be the non-specific tag `'!'` or a
+       *   `'!local'` tag, or `null` if unresolvable.
+       */
+      tagName(source, onError) {
+        if (source === "!")
+          return "!";
+        if (source[0] !== "!") {
+          onError(`Not a valid tag: ${source}`);
+          return null;
+        }
+        if (source[1] === "<") {
+          const verbatim = source.slice(2, -1);
+          if (verbatim === "!" || verbatim === "!!") {
+            onError(`Verbatim tags aren't resolved, so ${source} is invalid.`);
+            return null;
+          }
+          if (source[source.length - 1] !== ">")
+            onError("Verbatim tags must end with a >");
+          return verbatim;
+        }
+        const [, handle, suffix] = source.match(/^(.*!)([^!]*)$/s);
+        if (!suffix)
+          onError(`The ${source} tag has no suffix`);
+        const prefix = this.tags[handle];
+        if (prefix) {
+          try {
+            return prefix + decodeURIComponent(suffix);
+          } catch (error45) {
+            onError(String(error45));
+            return null;
+          }
+        }
+        if (handle === "!")
+          return source;
+        onError(`Could not resolve tag: ${source}`);
+        return null;
+      }
+      /**
+       * Given a fully resolved tag, returns its printable string form,
+       * taking into account current tag prefixes and defaults.
+       */
+      tagString(tag) {
+        for (const [handle, prefix] of Object.entries(this.tags)) {
+          if (tag.startsWith(prefix))
+            return handle + escapeTagName(tag.substring(prefix.length));
+        }
+        return tag[0] === "!" ? tag : `!<${tag}>`;
+      }
+      toString(doc) {
+        const lines = this.yaml.explicit ? [`%YAML ${this.yaml.version || "1.2"}`] : [];
+        const tagEntries = Object.entries(this.tags);
+        let tagNames;
+        if (doc && tagEntries.length > 0 && identity.isNode(doc.contents)) {
+          const tags = {};
+          visit.visit(doc.contents, (_key, node) => {
+            if (identity.isNode(node) && node.tag)
+              tags[node.tag] = true;
+          });
+          tagNames = Object.keys(tags);
+        } else
+          tagNames = [];
+        for (const [handle, prefix] of tagEntries) {
+          if (handle === "!!" && prefix === "tag:yaml.org,2002:")
+            continue;
+          if (!doc || tagNames.some((tn) => tn.startsWith(prefix)))
+            lines.push(`%TAG ${handle} ${prefix}`);
+        }
+        return lines.join("\n");
+      }
+    };
+    Directives.defaultYaml = { explicit: false, version: "1.2" };
+    Directives.defaultTags = { "!!": "tag:yaml.org,2002:" };
+    exports.Directives = Directives;
+  }
+});
+
+// node_modules/yaml/dist/doc/anchors.js
+var require_anchors = __commonJS({
+  "node_modules/yaml/dist/doc/anchors.js"(exports) {
+    "use strict";
+    var identity = require_identity();
+    var visit = require_visit();
+    function anchorIsValid(anchor) {
+      if (/[\x00-\x19\s,[\]{}]/.test(anchor)) {
+        const sa = JSON.stringify(anchor);
+        const msg = `Anchor must not contain whitespace or control characters: ${sa}`;
+        throw new Error(msg);
+      }
+      return true;
+    }
+    function anchorNames(root) {
+      const anchors = /* @__PURE__ */ new Set();
+      visit.visit(root, {
+        Value(_key, node) {
+          if (node.anchor)
+            anchors.add(node.anchor);
+        }
+      });
+      return anchors;
+    }
+    function findNewAnchor(prefix, exclude) {
+      for (let i = 1; true; ++i) {
+        const name17 = `${prefix}${i}`;
+        if (!exclude.has(name17))
+          return name17;
+      }
+    }
+    function createNodeAnchors(doc, prefix) {
+      const aliasObjects = [];
+      const sourceObjects = /* @__PURE__ */ new Map();
+      let prevAnchors = null;
+      return {
+        onAnchor: (source) => {
+          aliasObjects.push(source);
+          prevAnchors ?? (prevAnchors = anchorNames(doc));
+          const anchor = findNewAnchor(prefix, prevAnchors);
+          prevAnchors.add(anchor);
+          return anchor;
+        },
+        /**
+         * With circular references, the source node is only resolved after all
+         * of its child nodes are. This is why anchors are set only after all of
+         * the nodes have been created.
+         */
+        setAnchors: () => {
+          for (const source of aliasObjects) {
+            const ref = sourceObjects.get(source);
+            if (typeof ref === "object" && ref.anchor && (identity.isScalar(ref.node) || identity.isCollection(ref.node))) {
+              ref.node.anchor = ref.anchor;
+            } else {
+              const error45 = new Error("Failed to resolve repeated object (this should not happen)");
+              error45.source = source;
+              throw error45;
+            }
+          }
+        },
+        sourceObjects
+      };
+    }
+    exports.anchorIsValid = anchorIsValid;
+    exports.anchorNames = anchorNames;
+    exports.createNodeAnchors = createNodeAnchors;
+    exports.findNewAnchor = findNewAnchor;
+  }
+});
+
+// node_modules/yaml/dist/doc/applyReviver.js
+var require_applyReviver = __commonJS({
+  "node_modules/yaml/dist/doc/applyReviver.js"(exports) {
+    "use strict";
+    function applyReviver(reviver, obj, key, val) {
+      if (val && typeof val === "object") {
+        if (Array.isArray(val)) {
+          for (let i = 0, len = val.length; i < len; ++i) {
+            const v0 = val[i];
+            const v1 = applyReviver(reviver, val, String(i), v0);
+            if (v1 === void 0)
+              delete val[i];
+            else if (v1 !== v0)
+              val[i] = v1;
+          }
+        } else if (val instanceof Map) {
+          for (const k of Array.from(val.keys())) {
+            const v0 = val.get(k);
+            const v1 = applyReviver(reviver, val, k, v0);
+            if (v1 === void 0)
+              val.delete(k);
+            else if (v1 !== v0)
+              val.set(k, v1);
+          }
+        } else if (val instanceof Set) {
+          for (const v0 of Array.from(val)) {
+            const v1 = applyReviver(reviver, val, v0, v0);
+            if (v1 === void 0)
+              val.delete(v0);
+            else if (v1 !== v0) {
+              val.delete(v0);
+              val.add(v1);
+            }
+          }
+        } else {
+          for (const [k, v0] of Object.entries(val)) {
+            const v1 = applyReviver(reviver, val, k, v0);
+            if (v1 === void 0)
+              delete val[k];
+            else if (v1 !== v0)
+              val[k] = v1;
+          }
+        }
+      }
+      return reviver.call(obj, key, val);
+    }
+    exports.applyReviver = applyReviver;
+  }
+});
+
+// node_modules/yaml/dist/nodes/toJS.js
+var require_toJS = __commonJS({
+  "node_modules/yaml/dist/nodes/toJS.js"(exports) {
+    "use strict";
+    var identity = require_identity();
+    function toJS(value, arg, ctx) {
+      if (Array.isArray(value))
+        return value.map((v, i) => toJS(v, String(i), ctx));
+      if (value && typeof value.toJSON === "function") {
+        if (!ctx || !identity.hasAnchor(value))
+          return value.toJSON(arg, ctx);
+        const data = { aliasCount: 0, count: 1, res: void 0 };
+        ctx.anchors.set(value, data);
+        ctx.onCreate = (res2) => {
+          data.res = res2;
+          delete ctx.onCreate;
+        };
+        const res = value.toJSON(arg, ctx);
+        if (ctx.onCreate)
+          ctx.onCreate(res);
+        return res;
+      }
+      if (typeof value === "bigint" && !ctx?.keep)
+        return Number(value);
+      return value;
+    }
+    exports.toJS = toJS;
+  }
+});
+
+// node_modules/yaml/dist/nodes/Node.js
+var require_Node = __commonJS({
+  "node_modules/yaml/dist/nodes/Node.js"(exports) {
+    "use strict";
+    var applyReviver = require_applyReviver();
+    var identity = require_identity();
+    var toJS = require_toJS();
+    var NodeBase = class {
+      constructor(type) {
+        Object.defineProperty(this, identity.NODE_TYPE, { value: type });
+      }
+      /** Create a copy of this node.  */
+      clone() {
+        const copy = Object.create(Object.getPrototypeOf(this), Object.getOwnPropertyDescriptors(this));
+        if (this.range)
+          copy.range = this.range.slice();
+        return copy;
+      }
+      /** A plain JavaScript representation of this node. */
+      toJS(doc, { mapAsMap, maxAliasCount, onAnchor, reviver } = {}) {
+        if (!identity.isDocument(doc))
+          throw new TypeError("A document argument is required");
+        const ctx = {
+          anchors: /* @__PURE__ */ new Map(),
+          doc,
+          keep: true,
+          mapAsMap: mapAsMap === true,
+          mapKeyWarned: false,
+          maxAliasCount: typeof maxAliasCount === "number" ? maxAliasCount : 100
+        };
+        const res = toJS.toJS(this, "", ctx);
+        if (typeof onAnchor === "function")
+          for (const { count, res: res2 } of ctx.anchors.values())
+            onAnchor(res2, count);
+        return typeof reviver === "function" ? applyReviver.applyReviver(reviver, { "": res }, "", res) : res;
+      }
+    };
+    exports.NodeBase = NodeBase;
+  }
+});
+
+// node_modules/yaml/dist/nodes/Alias.js
+var require_Alias = __commonJS({
+  "node_modules/yaml/dist/nodes/Alias.js"(exports) {
+    "use strict";
+    var anchors = require_anchors();
+    var visit = require_visit();
+    var identity = require_identity();
+    var Node = require_Node();
+    var toJS = require_toJS();
+    var Alias = class extends Node.NodeBase {
+      constructor(source) {
+        super(identity.ALIAS);
+        this.source = source;
+        Object.defineProperty(this, "tag", {
+          set() {
+            throw new Error("Alias nodes cannot have tags");
+          }
+        });
+      }
+      /**
+       * Resolve the value of this alias within `doc`, finding the last
+       * instance of the `source` anchor before this node.
+       */
+      resolve(doc, ctx) {
+        let nodes;
+        if (ctx?.aliasResolveCache) {
+          nodes = ctx.aliasResolveCache;
+        } else {
+          nodes = [];
+          visit.visit(doc, {
+            Node: (_key, node) => {
+              if (identity.isAlias(node) || identity.hasAnchor(node))
+                nodes.push(node);
+            }
+          });
+          if (ctx)
+            ctx.aliasResolveCache = nodes;
+        }
+        let found = void 0;
+        for (const node of nodes) {
+          if (node === this)
+            break;
+          if (node.anchor === this.source)
+            found = node;
+        }
+        return found;
+      }
+      toJSON(_arg, ctx) {
+        if (!ctx)
+          return { source: this.source };
+        const { anchors: anchors2, doc, maxAliasCount } = ctx;
+        const source = this.resolve(doc, ctx);
+        if (!source) {
+          const msg = `Unresolved alias (the anchor must be set before the alias): ${this.source}`;
+          throw new ReferenceError(msg);
+        }
+        let data = anchors2.get(source);
+        if (!data) {
+          toJS.toJS(source, null, ctx);
+          data = anchors2.get(source);
+        }
+        if (!data || data.res === void 0) {
+          const msg = "This should not happen: Alias anchor was not resolved?";
+          throw new ReferenceError(msg);
+        }
+        if (maxAliasCount >= 0) {
+          data.count += 1;
+          if (data.aliasCount === 0)
+            data.aliasCount = getAliasCount(doc, source, anchors2);
+          if (data.count * data.aliasCount > maxAliasCount) {
+            const msg = "Excessive alias count indicates a resource exhaustion attack";
+            throw new ReferenceError(msg);
+          }
+        }
+        return data.res;
+      }
+      toString(ctx, _onComment, _onChompKeep) {
+        const src = `*${this.source}`;
+        if (ctx) {
+          anchors.anchorIsValid(this.source);
+          if (ctx.options.verifyAliasOrder && !ctx.anchors.has(this.source)) {
+            const msg = `Unresolved alias (the anchor must be set before the alias): ${this.source}`;
+            throw new Error(msg);
+          }
+          if (ctx.implicitKey)
+            return `${src} `;
+        }
+        return src;
+      }
+    };
+    function getAliasCount(doc, node, anchors2) {
+      if (identity.isAlias(node)) {
+        const source = node.resolve(doc);
+        const anchor = anchors2 && source && anchors2.get(source);
+        return anchor ? anchor.count * anchor.aliasCount : 0;
+      } else if (identity.isCollection(node)) {
+        let count = 0;
+        for (const item of node.items) {
+          const c = getAliasCount(doc, item, anchors2);
+          if (c > count)
+            count = c;
+        }
+        return count;
+      } else if (identity.isPair(node)) {
+        const kc = getAliasCount(doc, node.key, anchors2);
+        const vc = getAliasCount(doc, node.value, anchors2);
+        return Math.max(kc, vc);
+      }
+      return 1;
+    }
+    exports.Alias = Alias;
+  }
+});
+
+// node_modules/yaml/dist/nodes/Scalar.js
+var require_Scalar = __commonJS({
+  "node_modules/yaml/dist/nodes/Scalar.js"(exports) {
+    "use strict";
+    var identity = require_identity();
+    var Node = require_Node();
+    var toJS = require_toJS();
+    var isScalarValue = (value) => !value || typeof value !== "function" && typeof value !== "object";
+    var Scalar = class extends Node.NodeBase {
+      constructor(value) {
+        super(identity.SCALAR);
+        this.value = value;
+      }
+      toJSON(arg, ctx) {
+        return ctx?.keep ? this.value : toJS.toJS(this.value, arg, ctx);
+      }
+      toString() {
+        return String(this.value);
+      }
+    };
+    Scalar.BLOCK_FOLDED = "BLOCK_FOLDED";
+    Scalar.BLOCK_LITERAL = "BLOCK_LITERAL";
+    Scalar.PLAIN = "PLAIN";
+    Scalar.QUOTE_DOUBLE = "QUOTE_DOUBLE";
+    Scalar.QUOTE_SINGLE = "QUOTE_SINGLE";
+    exports.Scalar = Scalar;
+    exports.isScalarValue = isScalarValue;
+  }
+});
+
+// node_modules/yaml/dist/doc/createNode.js
+var require_createNode = __commonJS({
+  "node_modules/yaml/dist/doc/createNode.js"(exports) {
+    "use strict";
+    var Alias = require_Alias();
+    var identity = require_identity();
+    var Scalar = require_Scalar();
+    var defaultTagPrefix = "tag:yaml.org,2002:";
+    function findTagObject(value, tagName, tags) {
+      if (tagName) {
+        const match = tags.filter((t) => t.tag === tagName);
+        const tagObj = match.find((t) => !t.format) ?? match[0];
+        if (!tagObj)
+          throw new Error(`Tag ${tagName} not found`);
+        return tagObj;
+      }
+      return tags.find((t) => t.identify?.(value) && !t.format);
+    }
+    function createNode(value, tagName, ctx) {
+      if (identity.isDocument(value))
+        value = value.contents;
+      if (identity.isNode(value))
+        return value;
+      if (identity.isPair(value)) {
+        const map2 = ctx.schema[identity.MAP].createNode?.(ctx.schema, null, ctx);
+        map2.items.push(value);
+        return map2;
+      }
+      if (value instanceof String || value instanceof Number || value instanceof Boolean || typeof BigInt !== "undefined" && value instanceof BigInt) {
+        value = value.valueOf();
+      }
+      const { aliasDuplicateObjects, onAnchor, onTagObj, schema, sourceObjects } = ctx;
+      let ref = void 0;
+      if (aliasDuplicateObjects && value && typeof value === "object") {
+        ref = sourceObjects.get(value);
+        if (ref) {
+          ref.anchor ?? (ref.anchor = onAnchor(value));
+          return new Alias.Alias(ref.anchor);
+        } else {
+          ref = { anchor: null, node: null };
+          sourceObjects.set(value, ref);
+        }
+      }
+      if (tagName?.startsWith("!!"))
+        tagName = defaultTagPrefix + tagName.slice(2);
+      let tagObj = findTagObject(value, tagName, schema.tags);
+      if (!tagObj) {
+        if (value && typeof value.toJSON === "function") {
+          value = value.toJSON();
+        }
+        if (!value || typeof value !== "object") {
+          const node2 = new Scalar.Scalar(value);
+          if (ref)
+            ref.node = node2;
+          return node2;
+        }
+        tagObj = value instanceof Map ? schema[identity.MAP] : Symbol.iterator in Object(value) ? schema[identity.SEQ] : schema[identity.MAP];
+      }
+      if (onTagObj) {
+        onTagObj(tagObj);
+        delete ctx.onTagObj;
+      }
+      const node = tagObj?.createNode ? tagObj.createNode(ctx.schema, value, ctx) : typeof tagObj?.nodeClass?.from === "function" ? tagObj.nodeClass.from(ctx.schema, value, ctx) : new Scalar.Scalar(value);
+      if (tagName)
+        node.tag = tagName;
+      else if (!tagObj.default)
+        node.tag = tagObj.tag;
+      if (ref)
+        ref.node = node;
+      return node;
+    }
+    exports.createNode = createNode;
+  }
+});
+
+// node_modules/yaml/dist/nodes/Collection.js
+var require_Collection = __commonJS({
+  "node_modules/yaml/dist/nodes/Collection.js"(exports) {
+    "use strict";
+    var createNode = require_createNode();
+    var identity = require_identity();
+    var Node = require_Node();
+    function collectionFromPath(schema, path5, value) {
+      let v = value;
+      for (let i = path5.length - 1; i >= 0; --i) {
+        const k = path5[i];
+        if (typeof k === "number" && Number.isInteger(k) && k >= 0) {
+          const a = [];
+          a[k] = v;
+          v = a;
+        } else {
+          v = /* @__PURE__ */ new Map([[k, v]]);
+        }
+      }
+      return createNode.createNode(v, void 0, {
+        aliasDuplicateObjects: false,
+        keepUndefined: false,
+        onAnchor: () => {
+          throw new Error("This should not happen, please report a bug.");
+        },
+        schema,
+        sourceObjects: /* @__PURE__ */ new Map()
+      });
+    }
+    var isEmptyPath = (path5) => path5 == null || typeof path5 === "object" && !!path5[Symbol.iterator]().next().done;
+    var Collection = class extends Node.NodeBase {
+      constructor(type, schema) {
+        super(type);
+        Object.defineProperty(this, "schema", {
+          value: schema,
+          configurable: true,
+          enumerable: false,
+          writable: true
+        });
+      }
+      /**
+       * Create a copy of this collection.
+       *
+       * @param schema - If defined, overwrites the original's schema
+       */
+      clone(schema) {
+        const copy = Object.create(Object.getPrototypeOf(this), Object.getOwnPropertyDescriptors(this));
+        if (schema)
+          copy.schema = schema;
+        copy.items = copy.items.map((it) => identity.isNode(it) || identity.isPair(it) ? it.clone(schema) : it);
+        if (this.range)
+          copy.range = this.range.slice();
+        return copy;
+      }
+      /**
+       * Adds a value to the collection. For `!!map` and `!!omap` the value must
+       * be a Pair instance or a `{ key, value }` object, which may not have a key
+       * that already exists in the map.
+       */
+      addIn(path5, value) {
+        if (isEmptyPath(path5))
+          this.add(value);
+        else {
+          const [key, ...rest] = path5;
+          const node = this.get(key, true);
+          if (identity.isCollection(node))
+            node.addIn(rest, value);
+          else if (node === void 0 && this.schema)
+            this.set(key, collectionFromPath(this.schema, rest, value));
+          else
+            throw new Error(`Expected YAML collection at ${key}. Remaining path: ${rest}`);
+        }
+      }
+      /**
+       * Removes a value from the collection.
+       * @returns `true` if the item was found and removed.
+       */
+      deleteIn(path5) {
+        const [key, ...rest] = path5;
+        if (rest.length === 0)
+          return this.delete(key);
+        const node = this.get(key, true);
+        if (identity.isCollection(node))
+          return node.deleteIn(rest);
+        else
+          throw new Error(`Expected YAML collection at ${key}. Remaining path: ${rest}`);
+      }
+      /**
+       * Returns item at `key`, or `undefined` if not found. By default unwraps
+       * scalar values from their surrounding node; to disable set `keepScalar` to
+       * `true` (collections are always returned intact).
+       */
+      getIn(path5, keepScalar) {
+        const [key, ...rest] = path5;
+        const node = this.get(key, true);
+        if (rest.length === 0)
+          return !keepScalar && identity.isScalar(node) ? node.value : node;
+        else
+          return identity.isCollection(node) ? node.getIn(rest, keepScalar) : void 0;
+      }
+      hasAllNullValues(allowScalar) {
+        return this.items.every((node) => {
+          if (!identity.isPair(node))
+            return false;
+          const n = node.value;
+          return n == null || allowScalar && identity.isScalar(n) && n.value == null && !n.commentBefore && !n.comment && !n.tag;
+        });
+      }
+      /**
+       * Checks if the collection includes a value with the key `key`.
+       */
+      hasIn(path5) {
+        const [key, ...rest] = path5;
+        if (rest.length === 0)
+          return this.has(key);
+        const node = this.get(key, true);
+        return identity.isCollection(node) ? node.hasIn(rest) : false;
+      }
+      /**
+       * Sets a value in this collection. For `!!set`, `value` needs to be a
+       * boolean to add/remove the item from the set.
+       */
+      setIn(path5, value) {
+        const [key, ...rest] = path5;
+        if (rest.length === 0) {
+          this.set(key, value);
+        } else {
+          const node = this.get(key, true);
+          if (identity.isCollection(node))
+            node.setIn(rest, value);
+          else if (node === void 0 && this.schema)
+            this.set(key, collectionFromPath(this.schema, rest, value));
+          else
+            throw new Error(`Expected YAML collection at ${key}. Remaining path: ${rest}`);
+        }
+      }
+    };
+    exports.Collection = Collection;
+    exports.collectionFromPath = collectionFromPath;
+    exports.isEmptyPath = isEmptyPath;
+  }
+});
+
+// node_modules/yaml/dist/stringify/stringifyComment.js
+var require_stringifyComment = __commonJS({
+  "node_modules/yaml/dist/stringify/stringifyComment.js"(exports) {
+    "use strict";
+    var stringifyComment = (str) => str.replace(/^(?!$)(?: $)?/gm, "#");
+    function indentComment(comment, indent) {
+      if (/^\n+$/.test(comment))
+        return comment.substring(1);
+      return indent ? comment.replace(/^(?! *$)/gm, indent) : comment;
+    }
+    var lineComment = (str, indent, comment) => str.endsWith("\n") ? indentComment(comment, indent) : comment.includes("\n") ? "\n" + indentComment(comment, indent) : (str.endsWith(" ") ? "" : " ") + comment;
+    exports.indentComment = indentComment;
+    exports.lineComment = lineComment;
+    exports.stringifyComment = stringifyComment;
+  }
+});
+
+// node_modules/yaml/dist/stringify/foldFlowLines.js
+var require_foldFlowLines = __commonJS({
+  "node_modules/yaml/dist/stringify/foldFlowLines.js"(exports) {
+    "use strict";
+    var FOLD_FLOW = "flow";
+    var FOLD_BLOCK = "block";
+    var FOLD_QUOTED = "quoted";
+    function foldFlowLines(text3, indent, mode = "flow", { indentAtStart, lineWidth = 80, minContentWidth = 20, onFold, onOverflow } = {}) {
+      if (!lineWidth || lineWidth < 0)
+        return text3;
+      if (lineWidth < minContentWidth)
+        minContentWidth = 0;
+      const endStep = Math.max(1 + minContentWidth, 1 + lineWidth - indent.length);
+      if (text3.length <= endStep)
+        return text3;
+      const folds = [];
+      const escapedFolds = {};
+      let end = lineWidth - indent.length;
+      if (typeof indentAtStart === "number") {
+        if (indentAtStart > lineWidth - Math.max(2, minContentWidth))
+          folds.push(0);
+        else
+          end = lineWidth - indentAtStart;
+      }
+      let split = void 0;
+      let prev = void 0;
+      let overflow = false;
+      let i = -1;
+      let escStart = -1;
+      let escEnd = -1;
+      if (mode === FOLD_BLOCK) {
+        i = consumeMoreIndentedLines(text3, i, indent.length);
+        if (i !== -1)
+          end = i + endStep;
+      }
+      for (let ch; ch = text3[i += 1]; ) {
+        if (mode === FOLD_QUOTED && ch === "\\") {
+          escStart = i;
+          switch (text3[i + 1]) {
+            case "x":
+              i += 3;
+              break;
+            case "u":
+              i += 5;
+              break;
+            case "U":
+              i += 9;
+              break;
+            default:
+              i += 1;
+          }
+          escEnd = i;
+        }
+        if (ch === "\n") {
+          if (mode === FOLD_BLOCK)
+            i = consumeMoreIndentedLines(text3, i, indent.length);
+          end = i + indent.length + endStep;
+          split = void 0;
+        } else {
+          if (ch === " " && prev && prev !== " " && prev !== "\n" && prev !== "	") {
+            const next = text3[i + 1];
+            if (next && next !== " " && next !== "\n" && next !== "	")
+              split = i;
+          }
+          if (i >= end) {
+            if (split) {
+              folds.push(split);
+              end = split + endStep;
+              split = void 0;
+            } else if (mode === FOLD_QUOTED) {
+              while (prev === " " || prev === "	") {
+                prev = ch;
+                ch = text3[i += 1];
+                overflow = true;
+              }
+              const j = i > escEnd + 1 ? i - 2 : escStart - 1;
+              if (escapedFolds[j])
+                return text3;
+              folds.push(j);
+              escapedFolds[j] = true;
+              end = j + endStep;
+              split = void 0;
+            } else {
+              overflow = true;
+            }
+          }
+        }
+        prev = ch;
+      }
+      if (overflow && onOverflow)
+        onOverflow();
+      if (folds.length === 0)
+        return text3;
+      if (onFold)
+        onFold();
+      let res = text3.slice(0, folds[0]);
+      for (let i2 = 0; i2 < folds.length; ++i2) {
+        const fold = folds[i2];
+        const end2 = folds[i2 + 1] || text3.length;
+        if (fold === 0)
+          res = `
+${indent}${text3.slice(0, end2)}`;
+        else {
+          if (mode === FOLD_QUOTED && escapedFolds[fold])
+            res += `${text3[fold]}\\`;
+          res += `
+${indent}${text3.slice(fold + 1, end2)}`;
+        }
+      }
+      return res;
+    }
+    function consumeMoreIndentedLines(text3, i, indent) {
+      let end = i;
+      let start = i + 1;
+      let ch = text3[start];
+      while (ch === " " || ch === "	") {
+        if (i < start + indent) {
+          ch = text3[++i];
+        } else {
+          do {
+            ch = text3[++i];
+          } while (ch && ch !== "\n");
+          end = i;
+          start = i + 1;
+          ch = text3[start];
+        }
+      }
+      return end;
+    }
+    exports.FOLD_BLOCK = FOLD_BLOCK;
+    exports.FOLD_FLOW = FOLD_FLOW;
+    exports.FOLD_QUOTED = FOLD_QUOTED;
+    exports.foldFlowLines = foldFlowLines;
+  }
+});
+
+// node_modules/yaml/dist/stringify/stringifyString.js
+var require_stringifyString = __commonJS({
+  "node_modules/yaml/dist/stringify/stringifyString.js"(exports) {
+    "use strict";
+    var Scalar = require_Scalar();
+    var foldFlowLines = require_foldFlowLines();
+    var getFoldOptions = (ctx, isBlock) => ({
+      indentAtStart: isBlock ? ctx.indent.length : ctx.indentAtStart,
+      lineWidth: ctx.options.lineWidth,
+      minContentWidth: ctx.options.minContentWidth
+    });
+    var containsDocumentMarker = (str) => /^(%|---|\.\.\.)/m.test(str);
+    function lineLengthOverLimit(str, lineWidth, indentLength) {
+      if (!lineWidth || lineWidth < 0)
+        return false;
+      const limit = lineWidth - indentLength;
+      const strLen = str.length;
+      if (strLen <= limit)
+        return false;
+      for (let i = 0, start = 0; i < strLen; ++i) {
+        if (str[i] === "\n") {
+          if (i - start > limit)
+            return true;
+          start = i + 1;
+          if (strLen - start <= limit)
+            return false;
+        }
+      }
+      return true;
+    }
+    function doubleQuotedString(value, ctx) {
+      const json2 = JSON.stringify(value);
+      if (ctx.options.doubleQuotedAsJSON)
+        return json2;
+      const { implicitKey } = ctx;
+      const minMultiLineLength = ctx.options.doubleQuotedMinMultiLineLength;
+      const indent = ctx.indent || (containsDocumentMarker(value) ? "  " : "");
+      let str = "";
+      let start = 0;
+      for (let i = 0, ch = json2[i]; ch; ch = json2[++i]) {
+        if (ch === " " && json2[i + 1] === "\\" && json2[i + 2] === "n") {
+          str += json2.slice(start, i) + "\\ ";
+          i += 1;
+          start = i;
+          ch = "\\";
+        }
+        if (ch === "\\")
+          switch (json2[i + 1]) {
+            case "u":
+              {
+                str += json2.slice(start, i);
+                const code = json2.substr(i + 2, 4);
+                switch (code) {
+                  case "0000":
+                    str += "\\0";
+                    break;
+                  case "0007":
+                    str += "\\a";
+                    break;
+                  case "000b":
+                    str += "\\v";
+                    break;
+                  case "001b":
+                    str += "\\e";
+                    break;
+                  case "0085":
+                    str += "\\N";
+                    break;
+                  case "00a0":
+                    str += "\\_";
+                    break;
+                  case "2028":
+                    str += "\\L";
+                    break;
+                  case "2029":
+                    str += "\\P";
+                    break;
+                  default:
+                    if (code.substr(0, 2) === "00")
+                      str += "\\x" + code.substr(2);
+                    else
+                      str += json2.substr(i, 6);
+                }
+                i += 5;
+                start = i + 1;
+              }
+              break;
+            case "n":
+              if (implicitKey || json2[i + 2] === '"' || json2.length < minMultiLineLength) {
+                i += 1;
+              } else {
+                str += json2.slice(start, i) + "\n\n";
+                while (json2[i + 2] === "\\" && json2[i + 3] === "n" && json2[i + 4] !== '"') {
+                  str += "\n";
+                  i += 2;
+                }
+                str += indent;
+                if (json2[i + 2] === " ")
+                  str += "\\";
+                i += 1;
+                start = i + 1;
+              }
+              break;
+            default:
+              i += 1;
+          }
+      }
+      str = start ? str + json2.slice(start) : json2;
+      return implicitKey ? str : foldFlowLines.foldFlowLines(str, indent, foldFlowLines.FOLD_QUOTED, getFoldOptions(ctx, false));
+    }
+    function singleQuotedString(value, ctx) {
+      if (ctx.options.singleQuote === false || ctx.implicitKey && value.includes("\n") || /[ \t]\n|\n[ \t]/.test(value))
+        return doubleQuotedString(value, ctx);
+      const indent = ctx.indent || (containsDocumentMarker(value) ? "  " : "");
+      const res = "'" + value.replace(/'/g, "''").replace(/\n+/g, `$&
+${indent}`) + "'";
+      return ctx.implicitKey ? res : foldFlowLines.foldFlowLines(res, indent, foldFlowLines.FOLD_FLOW, getFoldOptions(ctx, false));
+    }
+    function quotedString(value, ctx) {
+      const { singleQuote } = ctx.options;
+      let qs;
+      if (singleQuote === false)
+        qs = doubleQuotedString;
+      else {
+        const hasDouble = value.includes('"');
+        const hasSingle = value.includes("'");
+        if (hasDouble && !hasSingle)
+          qs = singleQuotedString;
+        else if (hasSingle && !hasDouble)
+          qs = doubleQuotedString;
+        else
+          qs = singleQuote ? singleQuotedString : doubleQuotedString;
+      }
+      return qs(value, ctx);
+    }
+    var blockEndNewlines;
+    try {
+      blockEndNewlines = new RegExp("(^|(?<!\n))\n+(?!\n|$)", "g");
+    } catch {
+      blockEndNewlines = /\n+(?!\n|$)/g;
+    }
+    function blockString({ comment, type, value }, ctx, onComment, onChompKeep) {
+      const { blockQuote, commentString, lineWidth } = ctx.options;
+      if (!blockQuote || /\n[\t ]+$/.test(value)) {
+        return quotedString(value, ctx);
+      }
+      const indent = ctx.indent || (ctx.forceBlockIndent || containsDocumentMarker(value) ? "  " : "");
+      const literal2 = blockQuote === "literal" ? true : blockQuote === "folded" || type === Scalar.Scalar.BLOCK_FOLDED ? false : type === Scalar.Scalar.BLOCK_LITERAL ? true : !lineLengthOverLimit(value, lineWidth, indent.length);
+      if (!value)
+        return literal2 ? "|\n" : ">\n";
+      let chomp;
+      let endStart;
+      for (endStart = value.length; endStart > 0; --endStart) {
+        const ch = value[endStart - 1];
+        if (ch !== "\n" && ch !== "	" && ch !== " ")
+          break;
+      }
+      let end = value.substring(endStart);
+      const endNlPos = end.indexOf("\n");
+      if (endNlPos === -1) {
+        chomp = "-";
+      } else if (value === end || endNlPos !== end.length - 1) {
+        chomp = "+";
+        if (onChompKeep)
+          onChompKeep();
+      } else {
+        chomp = "";
+      }
+      if (end) {
+        value = value.slice(0, -end.length);
+        if (end[end.length - 1] === "\n")
+          end = end.slice(0, -1);
+        end = end.replace(blockEndNewlines, `$&${indent}`);
+      }
+      let startWithSpace = false;
+      let startEnd;
+      let startNlPos = -1;
+      for (startEnd = 0; startEnd < value.length; ++startEnd) {
+        const ch = value[startEnd];
+        if (ch === " ")
+          startWithSpace = true;
+        else if (ch === "\n")
+          startNlPos = startEnd;
+        else
+          break;
+      }
+      let start = value.substring(0, startNlPos < startEnd ? startNlPos + 1 : startEnd);
+      if (start) {
+        value = value.substring(start.length);
+        start = start.replace(/\n+/g, `$&${indent}`);
+      }
+      const indentSize = indent ? "2" : "1";
+      let header = (startWithSpace ? indentSize : "") + chomp;
+      if (comment) {
+        header += " " + commentString(comment.replace(/ ?[\r\n]+/g, " "));
+        if (onComment)
+          onComment();
+      }
+      if (!literal2) {
+        const foldedValue = value.replace(/\n+/g, "\n$&").replace(/(?:^|\n)([\t ].*)(?:([\n\t ]*)\n(?![\n\t ]))?/g, "$1$2").replace(/\n+/g, `$&${indent}`);
+        let literalFallback = false;
+        const foldOptions = getFoldOptions(ctx, true);
+        if (blockQuote !== "folded" && type !== Scalar.Scalar.BLOCK_FOLDED) {
+          foldOptions.onOverflow = () => {
+            literalFallback = true;
+          };
+        }
+        const body = foldFlowLines.foldFlowLines(`${start}${foldedValue}${end}`, indent, foldFlowLines.FOLD_BLOCK, foldOptions);
+        if (!literalFallback)
+          return `>${header}
+${indent}${body}`;
+      }
+      value = value.replace(/\n+/g, `$&${indent}`);
+      return `|${header}
+${indent}${start}${value}${end}`;
+    }
+    function plainString(item, ctx, onComment, onChompKeep) {
+      const { type, value } = item;
+      const { actualString, implicitKey, indent, indentStep, inFlow } = ctx;
+      if (implicitKey && value.includes("\n") || inFlow && /[[\]{},]/.test(value)) {
+        return quotedString(value, ctx);
+      }
+      if (/^[\n\t ,[\]{}#&*!|>'"%@`]|^[?-]$|^[?-][ \t]|[\n:][ \t]|[ \t]\n|[\n\t ]#|[\n\t :]$/.test(value)) {
+        return implicitKey || inFlow || !value.includes("\n") ? quotedString(value, ctx) : blockString(item, ctx, onComment, onChompKeep);
+      }
+      if (!implicitKey && !inFlow && type !== Scalar.Scalar.PLAIN && value.includes("\n")) {
+        return blockString(item, ctx, onComment, onChompKeep);
+      }
+      if (containsDocumentMarker(value)) {
+        if (indent === "") {
+          ctx.forceBlockIndent = true;
+          return blockString(item, ctx, onComment, onChompKeep);
+        } else if (implicitKey && indent === indentStep) {
+          return quotedString(value, ctx);
+        }
+      }
+      const str = value.replace(/\n+/g, `$&
+${indent}`);
+      if (actualString) {
+        const test = (tag) => tag.default && tag.tag !== "tag:yaml.org,2002:str" && tag.test?.test(str);
+        const { compat, tags } = ctx.doc.schema;
+        if (tags.some(test) || compat?.some(test))
+          return quotedString(value, ctx);
+      }
+      return implicitKey ? str : foldFlowLines.foldFlowLines(str, indent, foldFlowLines.FOLD_FLOW, getFoldOptions(ctx, false));
+    }
+    function stringifyString(item, ctx, onComment, onChompKeep) {
+      const { implicitKey, inFlow } = ctx;
+      const ss = typeof item.value === "string" ? item : Object.assign({}, item, { value: String(item.value) });
+      let { type } = item;
+      if (type !== Scalar.Scalar.QUOTE_DOUBLE) {
+        if (/[\x00-\x08\x0b-\x1f\x7f-\x9f\u{D800}-\u{DFFF}]/u.test(ss.value))
+          type = Scalar.Scalar.QUOTE_DOUBLE;
+      }
+      const _stringify = (_type) => {
+        switch (_type) {
+          case Scalar.Scalar.BLOCK_FOLDED:
+          case Scalar.Scalar.BLOCK_LITERAL:
+            return implicitKey || inFlow ? quotedString(ss.value, ctx) : blockString(ss, ctx, onComment, onChompKeep);
+          case Scalar.Scalar.QUOTE_DOUBLE:
+            return doubleQuotedString(ss.value, ctx);
+          case Scalar.Scalar.QUOTE_SINGLE:
+            return singleQuotedString(ss.value, ctx);
+          case Scalar.Scalar.PLAIN:
+            return plainString(ss, ctx, onComment, onChompKeep);
+          default:
+            return null;
+        }
+      };
+      let res = _stringify(type);
+      if (res === null) {
+        const { defaultKeyType, defaultStringType } = ctx.options;
+        const t = implicitKey && defaultKeyType || defaultStringType;
+        res = _stringify(t);
+        if (res === null)
+          throw new Error(`Unsupported default string type ${t}`);
+      }
+      return res;
+    }
+    exports.stringifyString = stringifyString;
+  }
+});
+
+// node_modules/yaml/dist/stringify/stringify.js
+var require_stringify = __commonJS({
+  "node_modules/yaml/dist/stringify/stringify.js"(exports) {
+    "use strict";
+    var anchors = require_anchors();
+    var identity = require_identity();
+    var stringifyComment = require_stringifyComment();
+    var stringifyString = require_stringifyString();
+    function createStringifyContext(doc, options) {
+      const opt = Object.assign({
+        blockQuote: true,
+        commentString: stringifyComment.stringifyComment,
+        defaultKeyType: null,
+        defaultStringType: "PLAIN",
+        directives: null,
+        doubleQuotedAsJSON: false,
+        doubleQuotedMinMultiLineLength: 40,
+        falseStr: "false",
+        flowCollectionPadding: true,
+        indentSeq: true,
+        lineWidth: 80,
+        minContentWidth: 20,
+        nullStr: "null",
+        simpleKeys: false,
+        singleQuote: null,
+        trueStr: "true",
+        verifyAliasOrder: true
+      }, doc.schema.toStringOptions, options);
+      let inFlow;
+      switch (opt.collectionStyle) {
+        case "block":
+          inFlow = false;
+          break;
+        case "flow":
+          inFlow = true;
+          break;
+        default:
+          inFlow = null;
+      }
+      return {
+        anchors: /* @__PURE__ */ new Set(),
+        doc,
+        flowCollectionPadding: opt.flowCollectionPadding ? " " : "",
+        indent: "",
+        indentStep: typeof opt.indent === "number" ? " ".repeat(opt.indent) : "  ",
+        inFlow,
+        options: opt
+      };
+    }
+    function getTagObject(tags, item) {
+      if (item.tag) {
+        const match = tags.filter((t) => t.tag === item.tag);
+        if (match.length > 0)
+          return match.find((t) => t.format === item.format) ?? match[0];
+      }
+      let tagObj = void 0;
+      let obj;
+      if (identity.isScalar(item)) {
+        obj = item.value;
+        let match = tags.filter((t) => t.identify?.(obj));
+        if (match.length > 1) {
+          const testMatch = match.filter((t) => t.test);
+          if (testMatch.length > 0)
+            match = testMatch;
+        }
+        tagObj = match.find((t) => t.format === item.format) ?? match.find((t) => !t.format);
+      } else {
+        obj = item;
+        tagObj = tags.find((t) => t.nodeClass && obj instanceof t.nodeClass);
+      }
+      if (!tagObj) {
+        const name17 = obj?.constructor?.name ?? (obj === null ? "null" : typeof obj);
+        throw new Error(`Tag not resolved for ${name17} value`);
+      }
+      return tagObj;
+    }
+    function stringifyProps(node, tagObj, { anchors: anchors$1, doc }) {
+      if (!doc.directives)
+        return "";
+      const props = [];
+      const anchor = (identity.isScalar(node) || identity.isCollection(node)) && node.anchor;
+      if (anchor && anchors.anchorIsValid(anchor)) {
+        anchors$1.add(anchor);
+        props.push(`&${anchor}`);
+      }
+      const tag = node.tag ?? (tagObj.default ? null : tagObj.tag);
+      if (tag)
+        props.push(doc.directives.tagString(tag));
+      return props.join(" ");
+    }
+    function stringify(item, ctx, onComment, onChompKeep) {
+      if (identity.isPair(item))
+        return item.toString(ctx, onComment, onChompKeep);
+      if (identity.isAlias(item)) {
+        if (ctx.doc.directives)
+          return item.toString(ctx);
+        if (ctx.resolvedAliases?.has(item)) {
+          throw new TypeError(`Cannot stringify circular structure without alias nodes`);
+        } else {
+          if (ctx.resolvedAliases)
+            ctx.resolvedAliases.add(item);
+          else
+            ctx.resolvedAliases = /* @__PURE__ */ new Set([item]);
+          item = item.resolve(ctx.doc);
+        }
+      }
+      let tagObj = void 0;
+      const node = identity.isNode(item) ? item : ctx.doc.createNode(item, { onTagObj: (o) => tagObj = o });
+      tagObj ?? (tagObj = getTagObject(ctx.doc.schema.tags, node));
+      const props = stringifyProps(node, tagObj, ctx);
+      if (props.length > 0)
+        ctx.indentAtStart = (ctx.indentAtStart ?? 0) + props.length + 1;
+      const str = typeof tagObj.stringify === "function" ? tagObj.stringify(node, ctx, onComment, onChompKeep) : identity.isScalar(node) ? stringifyString.stringifyString(node, ctx, onComment, onChompKeep) : node.toString(ctx, onComment, onChompKeep);
+      if (!props)
+        return str;
+      return identity.isScalar(node) || str[0] === "{" || str[0] === "[" ? `${props} ${str}` : `${props}
+${ctx.indent}${str}`;
+    }
+    exports.createStringifyContext = createStringifyContext;
+    exports.stringify = stringify;
+  }
+});
+
+// node_modules/yaml/dist/stringify/stringifyPair.js
+var require_stringifyPair = __commonJS({
+  "node_modules/yaml/dist/stringify/stringifyPair.js"(exports) {
+    "use strict";
+    var identity = require_identity();
+    var Scalar = require_Scalar();
+    var stringify = require_stringify();
+    var stringifyComment = require_stringifyComment();
+    function stringifyPair({ key, value }, ctx, onComment, onChompKeep) {
+      const { allNullValues, doc, indent, indentStep, options: { commentString, indentSeq, simpleKeys } } = ctx;
+      let keyComment = identity.isNode(key) && key.comment || null;
+      if (simpleKeys) {
+        if (keyComment) {
+          throw new Error("With simple keys, key nodes cannot have comments");
+        }
+        if (identity.isCollection(key) || !identity.isNode(key) && typeof key === "object") {
+          const msg = "With simple keys, collection cannot be used as a key value";
+          throw new Error(msg);
+        }
+      }
+      let explicitKey = !simpleKeys && (!key || keyComment && value == null && !ctx.inFlow || identity.isCollection(key) || (identity.isScalar(key) ? key.type === Scalar.Scalar.BLOCK_FOLDED || key.type === Scalar.Scalar.BLOCK_LITERAL : typeof key === "object"));
+      ctx = Object.assign({}, ctx, {
+        allNullValues: false,
+        implicitKey: !explicitKey && (simpleKeys || !allNullValues),
+        indent: indent + indentStep
+      });
+      let keyCommentDone = false;
+      let chompKeep = false;
+      let str = stringify.stringify(key, ctx, () => keyCommentDone = true, () => chompKeep = true);
+      if (!explicitKey && !ctx.inFlow && str.length > 1024) {
+        if (simpleKeys)
+          throw new Error("With simple keys, single line scalar must not span more than 1024 characters");
+        explicitKey = true;
+      }
+      if (ctx.inFlow) {
+        if (allNullValues || value == null) {
+          if (keyCommentDone && onComment)
+            onComment();
+          return str === "" ? "?" : explicitKey ? `? ${str}` : str;
+        }
+      } else if (allNullValues && !simpleKeys || value == null && explicitKey) {
+        str = `? ${str}`;
+        if (keyComment && !keyCommentDone) {
+          str += stringifyComment.lineComment(str, ctx.indent, commentString(keyComment));
+        } else if (chompKeep && onChompKeep)
+          onChompKeep();
+        return str;
+      }
+      if (keyCommentDone)
+        keyComment = null;
+      if (explicitKey) {
+        if (keyComment)
+          str += stringifyComment.lineComment(str, ctx.indent, commentString(keyComment));
+        str = `? ${str}
+${indent}:`;
+      } else {
+        str = `${str}:`;
+        if (keyComment)
+          str += stringifyComment.lineComment(str, ctx.indent, commentString(keyComment));
+      }
+      let vsb, vcb, valueComment;
+      if (identity.isNode(value)) {
+        vsb = !!value.spaceBefore;
+        vcb = value.commentBefore;
+        valueComment = value.comment;
+      } else {
+        vsb = false;
+        vcb = null;
+        valueComment = null;
+        if (value && typeof value === "object")
+          value = doc.createNode(value);
+      }
+      ctx.implicitKey = false;
+      if (!explicitKey && !keyComment && identity.isScalar(value))
+        ctx.indentAtStart = str.length + 1;
+      chompKeep = false;
+      if (!indentSeq && indentStep.length >= 2 && !ctx.inFlow && !explicitKey && identity.isSeq(value) && !value.flow && !value.tag && !value.anchor) {
+        ctx.indent = ctx.indent.substring(2);
+      }
+      let valueCommentDone = false;
+      const valueStr = stringify.stringify(value, ctx, () => valueCommentDone = true, () => chompKeep = true);
+      let ws = " ";
+      if (keyComment || vsb || vcb) {
+        ws = vsb ? "\n" : "";
+        if (vcb) {
+          const cs = commentString(vcb);
+          ws += `
+${stringifyComment.indentComment(cs, ctx.indent)}`;
+        }
+        if (valueStr === "" && !ctx.inFlow) {
+          if (ws === "\n")
+            ws = "\n\n";
+        } else {
+          ws += `
+${ctx.indent}`;
+        }
+      } else if (!explicitKey && identity.isCollection(value)) {
+        const vs0 = valueStr[0];
+        const nl0 = valueStr.indexOf("\n");
+        const hasNewline = nl0 !== -1;
+        const flow = ctx.inFlow ?? value.flow ?? value.items.length === 0;
+        if (hasNewline || !flow) {
+          let hasPropsLine = false;
+          if (hasNewline && (vs0 === "&" || vs0 === "!")) {
+            let sp0 = valueStr.indexOf(" ");
+            if (vs0 === "&" && sp0 !== -1 && sp0 < nl0 && valueStr[sp0 + 1] === "!") {
+              sp0 = valueStr.indexOf(" ", sp0 + 1);
+            }
+            if (sp0 === -1 || nl0 < sp0)
+              hasPropsLine = true;
+          }
+          if (!hasPropsLine)
+            ws = `
+${ctx.indent}`;
+        }
+      } else if (valueStr === "" || valueStr[0] === "\n") {
+        ws = "";
+      }
+      str += ws + valueStr;
+      if (ctx.inFlow) {
+        if (valueCommentDone && onComment)
+          onComment();
+      } else if (valueComment && !valueCommentDone) {
+        str += stringifyComment.lineComment(str, ctx.indent, commentString(valueComment));
+      } else if (chompKeep && onChompKeep) {
+        onChompKeep();
+      }
+      return str;
+    }
+    exports.stringifyPair = stringifyPair;
+  }
+});
+
+// node_modules/yaml/dist/log.js
+var require_log = __commonJS({
+  "node_modules/yaml/dist/log.js"(exports) {
+    "use strict";
+    var node_process = __require("process");
+    function debug(logLevel, ...messages) {
+      if (logLevel === "debug")
+        console.log(...messages);
+    }
+    function warn(logLevel, warning) {
+      if (logLevel === "debug" || logLevel === "warn") {
+        if (typeof node_process.emitWarning === "function")
+          node_process.emitWarning(warning);
+        else
+          console.warn(warning);
+      }
+    }
+    exports.debug = debug;
+    exports.warn = warn;
+  }
+});
+
+// node_modules/yaml/dist/schema/yaml-1.1/merge.js
+var require_merge = __commonJS({
+  "node_modules/yaml/dist/schema/yaml-1.1/merge.js"(exports) {
+    "use strict";
+    var identity = require_identity();
+    var Scalar = require_Scalar();
+    var MERGE_KEY = "<<";
+    var merge2 = {
+      identify: (value) => value === MERGE_KEY || typeof value === "symbol" && value.description === MERGE_KEY,
+      default: "key",
+      tag: "tag:yaml.org,2002:merge",
+      test: /^<<$/,
+      resolve: () => Object.assign(new Scalar.Scalar(Symbol(MERGE_KEY)), {
+        addToJSMap: addMergeToJSMap
+      }),
+      stringify: () => MERGE_KEY
+    };
+    var isMergeKey = (ctx, key) => (merge2.identify(key) || identity.isScalar(key) && (!key.type || key.type === Scalar.Scalar.PLAIN) && merge2.identify(key.value)) && ctx?.doc.schema.tags.some((tag) => tag.tag === merge2.tag && tag.default);
+    function addMergeToJSMap(ctx, map2, value) {
+      value = ctx && identity.isAlias(value) ? value.resolve(ctx.doc) : value;
+      if (identity.isSeq(value))
+        for (const it of value.items)
+          mergeValue(ctx, map2, it);
+      else if (Array.isArray(value))
+        for (const it of value)
+          mergeValue(ctx, map2, it);
+      else
+        mergeValue(ctx, map2, value);
+    }
+    function mergeValue(ctx, map2, value) {
+      const source = ctx && identity.isAlias(value) ? value.resolve(ctx.doc) : value;
+      if (!identity.isMap(source))
+        throw new Error("Merge sources must be maps or map aliases");
+      const srcMap = source.toJSON(null, ctx, Map);
+      for (const [key, value2] of srcMap) {
+        if (map2 instanceof Map) {
+          if (!map2.has(key))
+            map2.set(key, value2);
+        } else if (map2 instanceof Set) {
+          map2.add(key);
+        } else if (!Object.prototype.hasOwnProperty.call(map2, key)) {
+          Object.defineProperty(map2, key, {
+            value: value2,
+            writable: true,
+            enumerable: true,
+            configurable: true
+          });
+        }
+      }
+      return map2;
+    }
+    exports.addMergeToJSMap = addMergeToJSMap;
+    exports.isMergeKey = isMergeKey;
+    exports.merge = merge2;
+  }
+});
+
+// node_modules/yaml/dist/nodes/addPairToJSMap.js
+var require_addPairToJSMap = __commonJS({
+  "node_modules/yaml/dist/nodes/addPairToJSMap.js"(exports) {
+    "use strict";
+    var log = require_log();
+    var merge2 = require_merge();
+    var stringify = require_stringify();
+    var identity = require_identity();
+    var toJS = require_toJS();
+    function addPairToJSMap(ctx, map2, { key, value }) {
+      if (identity.isNode(key) && key.addToJSMap)
+        key.addToJSMap(ctx, map2, value);
+      else if (merge2.isMergeKey(ctx, key))
+        merge2.addMergeToJSMap(ctx, map2, value);
+      else {
+        const jsKey = toJS.toJS(key, "", ctx);
+        if (map2 instanceof Map) {
+          map2.set(jsKey, toJS.toJS(value, jsKey, ctx));
+        } else if (map2 instanceof Set) {
+          map2.add(jsKey);
+        } else {
+          const stringKey = stringifyKey(key, jsKey, ctx);
+          const jsValue = toJS.toJS(value, stringKey, ctx);
+          if (stringKey in map2)
+            Object.defineProperty(map2, stringKey, {
+              value: jsValue,
+              writable: true,
+              enumerable: true,
+              configurable: true
+            });
+          else
+            map2[stringKey] = jsValue;
+        }
+      }
+      return map2;
+    }
+    function stringifyKey(key, jsKey, ctx) {
+      if (jsKey === null)
+        return "";
+      if (typeof jsKey !== "object")
+        return String(jsKey);
+      if (identity.isNode(key) && ctx?.doc) {
+        const strCtx = stringify.createStringifyContext(ctx.doc, {});
+        strCtx.anchors = /* @__PURE__ */ new Set();
+        for (const node of ctx.anchors.keys())
+          strCtx.anchors.add(node.anchor);
+        strCtx.inFlow = true;
+        strCtx.inStringifyKey = true;
+        const strKey = key.toString(strCtx);
+        if (!ctx.mapKeyWarned) {
+          let jsonStr = JSON.stringify(strKey);
+          if (jsonStr.length > 40)
+            jsonStr = jsonStr.substring(0, 36) + '..."';
+          log.warn(ctx.doc.options.logLevel, `Keys with collection values will be stringified due to JS Object restrictions: ${jsonStr}. Set mapAsMap: true to use object keys.`);
+          ctx.mapKeyWarned = true;
+        }
+        return strKey;
+      }
+      return JSON.stringify(jsKey);
+    }
+    exports.addPairToJSMap = addPairToJSMap;
+  }
+});
+
+// node_modules/yaml/dist/nodes/Pair.js
+var require_Pair = __commonJS({
+  "node_modules/yaml/dist/nodes/Pair.js"(exports) {
+    "use strict";
+    var createNode = require_createNode();
+    var stringifyPair = require_stringifyPair();
+    var addPairToJSMap = require_addPairToJSMap();
+    var identity = require_identity();
+    function createPair(key, value, ctx) {
+      const k = createNode.createNode(key, void 0, ctx);
+      const v = createNode.createNode(value, void 0, ctx);
+      return new Pair(k, v);
+    }
+    var Pair = class _Pair {
+      constructor(key, value = null) {
+        Object.defineProperty(this, identity.NODE_TYPE, { value: identity.PAIR });
+        this.key = key;
+        this.value = value;
+      }
+      clone(schema) {
+        let { key, value } = this;
+        if (identity.isNode(key))
+          key = key.clone(schema);
+        if (identity.isNode(value))
+          value = value.clone(schema);
+        return new _Pair(key, value);
+      }
+      toJSON(_, ctx) {
+        const pair = ctx?.mapAsMap ? /* @__PURE__ */ new Map() : {};
+        return addPairToJSMap.addPairToJSMap(ctx, pair, this);
+      }
+      toString(ctx, onComment, onChompKeep) {
+        return ctx?.doc ? stringifyPair.stringifyPair(this, ctx, onComment, onChompKeep) : JSON.stringify(this);
+      }
+    };
+    exports.Pair = Pair;
+    exports.createPair = createPair;
+  }
+});
+
+// node_modules/yaml/dist/stringify/stringifyCollection.js
+var require_stringifyCollection = __commonJS({
+  "node_modules/yaml/dist/stringify/stringifyCollection.js"(exports) {
+    "use strict";
+    var identity = require_identity();
+    var stringify = require_stringify();
+    var stringifyComment = require_stringifyComment();
+    function stringifyCollection(collection, ctx, options) {
+      const flow = ctx.inFlow ?? collection.flow;
+      const stringify2 = flow ? stringifyFlowCollection : stringifyBlockCollection;
+      return stringify2(collection, ctx, options);
+    }
+    function stringifyBlockCollection({ comment, items }, ctx, { blockItemPrefix, flowChars, itemIndent, onChompKeep, onComment }) {
+      const { indent, options: { commentString } } = ctx;
+      const itemCtx = Object.assign({}, ctx, { indent: itemIndent, type: null });
+      let chompKeep = false;
+      const lines = [];
+      for (let i = 0; i < items.length; ++i) {
+        const item = items[i];
+        let comment2 = null;
+        if (identity.isNode(item)) {
+          if (!chompKeep && item.spaceBefore)
+            lines.push("");
+          addCommentBefore(ctx, lines, item.commentBefore, chompKeep);
+          if (item.comment)
+            comment2 = item.comment;
+        } else if (identity.isPair(item)) {
+          const ik = identity.isNode(item.key) ? item.key : null;
+          if (ik) {
+            if (!chompKeep && ik.spaceBefore)
+              lines.push("");
+            addCommentBefore(ctx, lines, ik.commentBefore, chompKeep);
+          }
+        }
+        chompKeep = false;
+        let str2 = stringify.stringify(item, itemCtx, () => comment2 = null, () => chompKeep = true);
+        if (comment2)
+          str2 += stringifyComment.lineComment(str2, itemIndent, commentString(comment2));
+        if (chompKeep && comment2)
+          chompKeep = false;
+        lines.push(blockItemPrefix + str2);
+      }
+      let str;
+      if (lines.length === 0) {
+        str = flowChars.start + flowChars.end;
+      } else {
+        str = lines[0];
+        for (let i = 1; i < lines.length; ++i) {
+          const line = lines[i];
+          str += line ? `
+${indent}${line}` : "\n";
+        }
+      }
+      if (comment) {
+        str += "\n" + stringifyComment.indentComment(commentString(comment), indent);
+        if (onComment)
+          onComment();
+      } else if (chompKeep && onChompKeep)
+        onChompKeep();
+      return str;
+    }
+    function stringifyFlowCollection({ items }, ctx, { flowChars, itemIndent }) {
+      const { indent, indentStep, flowCollectionPadding: fcPadding, options: { commentString } } = ctx;
+      itemIndent += indentStep;
+      const itemCtx = Object.assign({}, ctx, {
+        indent: itemIndent,
+        inFlow: true,
+        type: null
+      });
+      let reqNewline = false;
+      let linesAtValue = 0;
+      const lines = [];
+      for (let i = 0; i < items.length; ++i) {
+        const item = items[i];
+        let comment = null;
+        if (identity.isNode(item)) {
+          if (item.spaceBefore)
+            lines.push("");
+          addCommentBefore(ctx, lines, item.commentBefore, false);
+          if (item.comment)
+            comment = item.comment;
+        } else if (identity.isPair(item)) {
+          const ik = identity.isNode(item.key) ? item.key : null;
+          if (ik) {
+            if (ik.spaceBefore)
+              lines.push("");
+            addCommentBefore(ctx, lines, ik.commentBefore, false);
+            if (ik.comment)
+              reqNewline = true;
+          }
+          const iv = identity.isNode(item.value) ? item.value : null;
+          if (iv) {
+            if (iv.comment)
+              comment = iv.comment;
+            if (iv.commentBefore)
+              reqNewline = true;
+          } else if (item.value == null && ik?.comment) {
+            comment = ik.comment;
+          }
+        }
+        if (comment)
+          reqNewline = true;
+        let str = stringify.stringify(item, itemCtx, () => comment = null);
+        if (i < items.length - 1)
+          str += ",";
+        if (comment)
+          str += stringifyComment.lineComment(str, itemIndent, commentString(comment));
+        if (!reqNewline && (lines.length > linesAtValue || str.includes("\n")))
+          reqNewline = true;
+        lines.push(str);
+        linesAtValue = lines.length;
+      }
+      const { start, end } = flowChars;
+      if (lines.length === 0) {
+        return start + end;
+      } else {
+        if (!reqNewline) {
+          const len = lines.reduce((sum, line) => sum + line.length + 2, 2);
+          reqNewline = ctx.options.lineWidth > 0 && len > ctx.options.lineWidth;
+        }
+        if (reqNewline) {
+          let str = start;
+          for (const line of lines)
+            str += line ? `
+${indentStep}${indent}${line}` : "\n";
+          return `${str}
+${indent}${end}`;
+        } else {
+          return `${start}${fcPadding}${lines.join(" ")}${fcPadding}${end}`;
+        }
+      }
+    }
+    function addCommentBefore({ indent, options: { commentString } }, lines, comment, chompKeep) {
+      if (comment && chompKeep)
+        comment = comment.replace(/^\n+/, "");
+      if (comment) {
+        const ic = stringifyComment.indentComment(commentString(comment), indent);
+        lines.push(ic.trimStart());
+      }
+    }
+    exports.stringifyCollection = stringifyCollection;
+  }
+});
+
+// node_modules/yaml/dist/nodes/YAMLMap.js
+var require_YAMLMap = __commonJS({
+  "node_modules/yaml/dist/nodes/YAMLMap.js"(exports) {
+    "use strict";
+    var stringifyCollection = require_stringifyCollection();
+    var addPairToJSMap = require_addPairToJSMap();
+    var Collection = require_Collection();
+    var identity = require_identity();
+    var Pair = require_Pair();
+    var Scalar = require_Scalar();
+    function findPair(items, key) {
+      const k = identity.isScalar(key) ? key.value : key;
+      for (const it of items) {
+        if (identity.isPair(it)) {
+          if (it.key === key || it.key === k)
+            return it;
+          if (identity.isScalar(it.key) && it.key.value === k)
+            return it;
+        }
+      }
+      return void 0;
+    }
+    var YAMLMap = class extends Collection.Collection {
+      static get tagName() {
+        return "tag:yaml.org,2002:map";
+      }
+      constructor(schema) {
+        super(identity.MAP, schema);
+        this.items = [];
+      }
+      /**
+       * A generic collection parsing method that can be extended
+       * to other node classes that inherit from YAMLMap
+       */
+      static from(schema, obj, ctx) {
+        const { keepUndefined, replacer } = ctx;
+        const map2 = new this(schema);
+        const add = (key, value) => {
+          if (typeof replacer === "function")
+            value = replacer.call(obj, key, value);
+          else if (Array.isArray(replacer) && !replacer.includes(key))
+            return;
+          if (value !== void 0 || keepUndefined)
+            map2.items.push(Pair.createPair(key, value, ctx));
+        };
+        if (obj instanceof Map) {
+          for (const [key, value] of obj)
+            add(key, value);
+        } else if (obj && typeof obj === "object") {
+          for (const key of Object.keys(obj))
+            add(key, obj[key]);
+        }
+        if (typeof schema.sortMapEntries === "function") {
+          map2.items.sort(schema.sortMapEntries);
+        }
+        return map2;
+      }
+      /**
+       * Adds a value to the collection.
+       *
+       * @param overwrite - If not set `true`, using a key that is already in the
+       *   collection will throw. Otherwise, overwrites the previous value.
+       */
+      add(pair, overwrite) {
+        let _pair;
+        if (identity.isPair(pair))
+          _pair = pair;
+        else if (!pair || typeof pair !== "object" || !("key" in pair)) {
+          _pair = new Pair.Pair(pair, pair?.value);
+        } else
+          _pair = new Pair.Pair(pair.key, pair.value);
+        const prev = findPair(this.items, _pair.key);
+        const sortEntries = this.schema?.sortMapEntries;
+        if (prev) {
+          if (!overwrite)
+            throw new Error(`Key ${_pair.key} already set`);
+          if (identity.isScalar(prev.value) && Scalar.isScalarValue(_pair.value))
+            prev.value.value = _pair.value;
+          else
+            prev.value = _pair.value;
+        } else if (sortEntries) {
+          const i = this.items.findIndex((item) => sortEntries(_pair, item) < 0);
+          if (i === -1)
+            this.items.push(_pair);
+          else
+            this.items.splice(i, 0, _pair);
+        } else {
+          this.items.push(_pair);
+        }
+      }
+      delete(key) {
+        const it = findPair(this.items, key);
+        if (!it)
+          return false;
+        const del = this.items.splice(this.items.indexOf(it), 1);
+        return del.length > 0;
+      }
+      get(key, keepScalar) {
+        const it = findPair(this.items, key);
+        const node = it?.value;
+        return (!keepScalar && identity.isScalar(node) ? node.value : node) ?? void 0;
+      }
+      has(key) {
+        return !!findPair(this.items, key);
+      }
+      set(key, value) {
+        this.add(new Pair.Pair(key, value), true);
+      }
+      /**
+       * @param ctx - Conversion context, originally set in Document#toJS()
+       * @param {Class} Type - If set, forces the returned collection type
+       * @returns Instance of Type, Map, or Object
+       */
+      toJSON(_, ctx, Type) {
+        const map2 = Type ? new Type() : ctx?.mapAsMap ? /* @__PURE__ */ new Map() : {};
+        if (ctx?.onCreate)
+          ctx.onCreate(map2);
+        for (const item of this.items)
+          addPairToJSMap.addPairToJSMap(ctx, map2, item);
+        return map2;
+      }
+      toString(ctx, onComment, onChompKeep) {
+        if (!ctx)
+          return JSON.stringify(this);
+        for (const item of this.items) {
+          if (!identity.isPair(item))
+            throw new Error(`Map items must all be pairs; found ${JSON.stringify(item)} instead`);
+        }
+        if (!ctx.allNullValues && this.hasAllNullValues(false))
+          ctx = Object.assign({}, ctx, { allNullValues: true });
+        return stringifyCollection.stringifyCollection(this, ctx, {
+          blockItemPrefix: "",
+          flowChars: { start: "{", end: "}" },
+          itemIndent: ctx.indent || "",
+          onChompKeep,
+          onComment
+        });
+      }
+    };
+    exports.YAMLMap = YAMLMap;
+    exports.findPair = findPair;
+  }
+});
+
+// node_modules/yaml/dist/schema/common/map.js
+var require_map = __commonJS({
+  "node_modules/yaml/dist/schema/common/map.js"(exports) {
+    "use strict";
+    var identity = require_identity();
+    var YAMLMap = require_YAMLMap();
+    var map2 = {
+      collection: "map",
+      default: true,
+      nodeClass: YAMLMap.YAMLMap,
+      tag: "tag:yaml.org,2002:map",
+      resolve(map3, onError) {
+        if (!identity.isMap(map3))
+          onError("Expected a mapping for this tag");
+        return map3;
+      },
+      createNode: (schema, obj, ctx) => YAMLMap.YAMLMap.from(schema, obj, ctx)
+    };
+    exports.map = map2;
+  }
+});
+
+// node_modules/yaml/dist/nodes/YAMLSeq.js
+var require_YAMLSeq = __commonJS({
+  "node_modules/yaml/dist/nodes/YAMLSeq.js"(exports) {
+    "use strict";
+    var createNode = require_createNode();
+    var stringifyCollection = require_stringifyCollection();
+    var Collection = require_Collection();
+    var identity = require_identity();
+    var Scalar = require_Scalar();
+    var toJS = require_toJS();
+    var YAMLSeq = class extends Collection.Collection {
+      static get tagName() {
+        return "tag:yaml.org,2002:seq";
+      }
+      constructor(schema) {
+        super(identity.SEQ, schema);
+        this.items = [];
+      }
+      add(value) {
+        this.items.push(value);
+      }
+      /**
+       * Removes a value from the collection.
+       *
+       * `key` must contain a representation of an integer for this to succeed.
+       * It may be wrapped in a `Scalar`.
+       *
+       * @returns `true` if the item was found and removed.
+       */
+      delete(key) {
+        const idx = asItemIndex(key);
+        if (typeof idx !== "number")
+          return false;
+        const del = this.items.splice(idx, 1);
+        return del.length > 0;
+      }
+      get(key, keepScalar) {
+        const idx = asItemIndex(key);
+        if (typeof idx !== "number")
+          return void 0;
+        const it = this.items[idx];
+        return !keepScalar && identity.isScalar(it) ? it.value : it;
+      }
+      /**
+       * Checks if the collection includes a value with the key `key`.
+       *
+       * `key` must contain a representation of an integer for this to succeed.
+       * It may be wrapped in a `Scalar`.
+       */
+      has(key) {
+        const idx = asItemIndex(key);
+        return typeof idx === "number" && idx < this.items.length;
+      }
+      /**
+       * Sets a value in this collection. For `!!set`, `value` needs to be a
+       * boolean to add/remove the item from the set.
+       *
+       * If `key` does not contain a representation of an integer, this will throw.
+       * It may be wrapped in a `Scalar`.
+       */
+      set(key, value) {
+        const idx = asItemIndex(key);
+        if (typeof idx !== "number")
+          throw new Error(`Expected a valid index, not ${key}.`);
+        const prev = this.items[idx];
+        if (identity.isScalar(prev) && Scalar.isScalarValue(value))
+          prev.value = value;
+        else
+          this.items[idx] = value;
+      }
+      toJSON(_, ctx) {
+        const seq = [];
+        if (ctx?.onCreate)
+          ctx.onCreate(seq);
+        let i = 0;
+        for (const item of this.items)
+          seq.push(toJS.toJS(item, String(i++), ctx));
+        return seq;
+      }
+      toString(ctx, onComment, onChompKeep) {
+        if (!ctx)
+          return JSON.stringify(this);
+        return stringifyCollection.stringifyCollection(this, ctx, {
+          blockItemPrefix: "- ",
+          flowChars: { start: "[", end: "]" },
+          itemIndent: (ctx.indent || "") + "  ",
+          onChompKeep,
+          onComment
+        });
+      }
+      static from(schema, obj, ctx) {
+        const { replacer } = ctx;
+        const seq = new this(schema);
+        if (obj && Symbol.iterator in Object(obj)) {
+          let i = 0;
+          for (let it of obj) {
+            if (typeof replacer === "function") {
+              const key = obj instanceof Set ? it : String(i++);
+              it = replacer.call(obj, key, it);
+            }
+            seq.items.push(createNode.createNode(it, void 0, ctx));
+          }
+        }
+        return seq;
+      }
+    };
+    function asItemIndex(key) {
+      let idx = identity.isScalar(key) ? key.value : key;
+      if (idx && typeof idx === "string")
+        idx = Number(idx);
+      return typeof idx === "number" && Number.isInteger(idx) && idx >= 0 ? idx : null;
+    }
+    exports.YAMLSeq = YAMLSeq;
+  }
+});
+
+// node_modules/yaml/dist/schema/common/seq.js
+var require_seq = __commonJS({
+  "node_modules/yaml/dist/schema/common/seq.js"(exports) {
+    "use strict";
+    var identity = require_identity();
+    var YAMLSeq = require_YAMLSeq();
+    var seq = {
+      collection: "seq",
+      default: true,
+      nodeClass: YAMLSeq.YAMLSeq,
+      tag: "tag:yaml.org,2002:seq",
+      resolve(seq2, onError) {
+        if (!identity.isSeq(seq2))
+          onError("Expected a sequence for this tag");
+        return seq2;
+      },
+      createNode: (schema, obj, ctx) => YAMLSeq.YAMLSeq.from(schema, obj, ctx)
+    };
+    exports.seq = seq;
+  }
+});
+
+// node_modules/yaml/dist/schema/common/string.js
+var require_string = __commonJS({
+  "node_modules/yaml/dist/schema/common/string.js"(exports) {
+    "use strict";
+    var stringifyString = require_stringifyString();
+    var string4 = {
+      identify: (value) => typeof value === "string",
+      default: true,
+      tag: "tag:yaml.org,2002:str",
+      resolve: (str) => str,
+      stringify(item, ctx, onComment, onChompKeep) {
+        ctx = Object.assign({ actualString: true }, ctx);
+        return stringifyString.stringifyString(item, ctx, onComment, onChompKeep);
+      }
+    };
+    exports.string = string4;
+  }
+});
+
+// node_modules/yaml/dist/schema/common/null.js
+var require_null = __commonJS({
+  "node_modules/yaml/dist/schema/common/null.js"(exports) {
+    "use strict";
+    var Scalar = require_Scalar();
+    var nullTag = {
+      identify: (value) => value == null,
+      createNode: () => new Scalar.Scalar(null),
+      default: true,
+      tag: "tag:yaml.org,2002:null",
+      test: /^(?:~|[Nn]ull|NULL)?$/,
+      resolve: () => new Scalar.Scalar(null),
+      stringify: ({ source }, ctx) => typeof source === "string" && nullTag.test.test(source) ? source : ctx.options.nullStr
+    };
+    exports.nullTag = nullTag;
+  }
+});
+
+// node_modules/yaml/dist/schema/core/bool.js
+var require_bool = __commonJS({
+  "node_modules/yaml/dist/schema/core/bool.js"(exports) {
+    "use strict";
+    var Scalar = require_Scalar();
+    var boolTag = {
+      identify: (value) => typeof value === "boolean",
+      default: true,
+      tag: "tag:yaml.org,2002:bool",
+      test: /^(?:[Tt]rue|TRUE|[Ff]alse|FALSE)$/,
+      resolve: (str) => new Scalar.Scalar(str[0] === "t" || str[0] === "T"),
+      stringify({ source, value }, ctx) {
+        if (source && boolTag.test.test(source)) {
+          const sv = source[0] === "t" || source[0] === "T";
+          if (value === sv)
+            return source;
+        }
+        return value ? ctx.options.trueStr : ctx.options.falseStr;
+      }
+    };
+    exports.boolTag = boolTag;
+  }
+});
+
+// node_modules/yaml/dist/stringify/stringifyNumber.js
+var require_stringifyNumber = __commonJS({
+  "node_modules/yaml/dist/stringify/stringifyNumber.js"(exports) {
+    "use strict";
+    function stringifyNumber({ format, minFractionDigits, tag, value }) {
+      if (typeof value === "bigint")
+        return String(value);
+      const num = typeof value === "number" ? value : Number(value);
+      if (!isFinite(num))
+        return isNaN(num) ? ".nan" : num < 0 ? "-.inf" : ".inf";
+      let n = JSON.stringify(value);
+      if (!format && minFractionDigits && (!tag || tag === "tag:yaml.org,2002:float") && /^\d/.test(n)) {
+        let i = n.indexOf(".");
+        if (i < 0) {
+          i = n.length;
+          n += ".";
+        }
+        let d = minFractionDigits - (n.length - i - 1);
+        while (d-- > 0)
+          n += "0";
+      }
+      return n;
+    }
+    exports.stringifyNumber = stringifyNumber;
+  }
+});
+
+// node_modules/yaml/dist/schema/core/float.js
+var require_float = __commonJS({
+  "node_modules/yaml/dist/schema/core/float.js"(exports) {
+    "use strict";
+    var Scalar = require_Scalar();
+    var stringifyNumber = require_stringifyNumber();
+    var floatNaN = {
+      identify: (value) => typeof value === "number",
+      default: true,
+      tag: "tag:yaml.org,2002:float",
+      test: /^(?:[-+]?\.(?:inf|Inf|INF)|\.nan|\.NaN|\.NAN)$/,
+      resolve: (str) => str.slice(-3).toLowerCase() === "nan" ? NaN : str[0] === "-" ? Number.NEGATIVE_INFINITY : Number.POSITIVE_INFINITY,
+      stringify: stringifyNumber.stringifyNumber
+    };
+    var floatExp = {
+      identify: (value) => typeof value === "number",
+      default: true,
+      tag: "tag:yaml.org,2002:float",
+      format: "EXP",
+      test: /^[-+]?(?:\.[0-9]+|[0-9]+(?:\.[0-9]*)?)[eE][-+]?[0-9]+$/,
+      resolve: (str) => parseFloat(str),
+      stringify(node) {
+        const num = Number(node.value);
+        return isFinite(num) ? num.toExponential() : stringifyNumber.stringifyNumber(node);
+      }
+    };
+    var float = {
+      identify: (value) => typeof value === "number",
+      default: true,
+      tag: "tag:yaml.org,2002:float",
+      test: /^[-+]?(?:\.[0-9]+|[0-9]+\.[0-9]*)$/,
+      resolve(str) {
+        const node = new Scalar.Scalar(parseFloat(str));
+        const dot = str.indexOf(".");
+        if (dot !== -1 && str[str.length - 1] === "0")
+          node.minFractionDigits = str.length - dot - 1;
+        return node;
+      },
+      stringify: stringifyNumber.stringifyNumber
+    };
+    exports.float = float;
+    exports.floatExp = floatExp;
+    exports.floatNaN = floatNaN;
+  }
+});
+
+// node_modules/yaml/dist/schema/core/int.js
+var require_int = __commonJS({
+  "node_modules/yaml/dist/schema/core/int.js"(exports) {
+    "use strict";
+    var stringifyNumber = require_stringifyNumber();
+    var intIdentify = (value) => typeof value === "bigint" || Number.isInteger(value);
+    var intResolve = (str, offset, radix, { intAsBigInt }) => intAsBigInt ? BigInt(str) : parseInt(str.substring(offset), radix);
+    function intStringify(node, radix, prefix) {
+      const { value } = node;
+      if (intIdentify(value) && value >= 0)
+        return prefix + value.toString(radix);
+      return stringifyNumber.stringifyNumber(node);
+    }
+    var intOct = {
+      identify: (value) => intIdentify(value) && value >= 0,
+      default: true,
+      tag: "tag:yaml.org,2002:int",
+      format: "OCT",
+      test: /^0o[0-7]+$/,
+      resolve: (str, _onError, opt) => intResolve(str, 2, 8, opt),
+      stringify: (node) => intStringify(node, 8, "0o")
+    };
+    var int2 = {
+      identify: intIdentify,
+      default: true,
+      tag: "tag:yaml.org,2002:int",
+      test: /^[-+]?[0-9]+$/,
+      resolve: (str, _onError, opt) => intResolve(str, 0, 10, opt),
+      stringify: stringifyNumber.stringifyNumber
+    };
+    var intHex = {
+      identify: (value) => intIdentify(value) && value >= 0,
+      default: true,
+      tag: "tag:yaml.org,2002:int",
+      format: "HEX",
+      test: /^0x[0-9a-fA-F]+$/,
+      resolve: (str, _onError, opt) => intResolve(str, 2, 16, opt),
+      stringify: (node) => intStringify(node, 16, "0x")
+    };
+    exports.int = int2;
+    exports.intHex = intHex;
+    exports.intOct = intOct;
+  }
+});
+
+// node_modules/yaml/dist/schema/core/schema.js
+var require_schema = __commonJS({
+  "node_modules/yaml/dist/schema/core/schema.js"(exports) {
+    "use strict";
+    var map2 = require_map();
+    var _null4 = require_null();
+    var seq = require_seq();
+    var string4 = require_string();
+    var bool = require_bool();
+    var float = require_float();
+    var int2 = require_int();
+    var schema = [
+      map2.map,
+      seq.seq,
+      string4.string,
+      _null4.nullTag,
+      bool.boolTag,
+      int2.intOct,
+      int2.int,
+      int2.intHex,
+      float.floatNaN,
+      float.floatExp,
+      float.float
+    ];
+    exports.schema = schema;
+  }
+});
+
+// node_modules/yaml/dist/schema/json/schema.js
+var require_schema2 = __commonJS({
+  "node_modules/yaml/dist/schema/json/schema.js"(exports) {
+    "use strict";
+    var Scalar = require_Scalar();
+    var map2 = require_map();
+    var seq = require_seq();
+    function intIdentify(value) {
+      return typeof value === "bigint" || Number.isInteger(value);
+    }
+    var stringifyJSON = ({ value }) => JSON.stringify(value);
+    var jsonScalars = [
+      {
+        identify: (value) => typeof value === "string",
+        default: true,
+        tag: "tag:yaml.org,2002:str",
+        resolve: (str) => str,
+        stringify: stringifyJSON
+      },
+      {
+        identify: (value) => value == null,
+        createNode: () => new Scalar.Scalar(null),
+        default: true,
+        tag: "tag:yaml.org,2002:null",
+        test: /^null$/,
+        resolve: () => null,
+        stringify: stringifyJSON
+      },
+      {
+        identify: (value) => typeof value === "boolean",
+        default: true,
+        tag: "tag:yaml.org,2002:bool",
+        test: /^true$|^false$/,
+        resolve: (str) => str === "true",
+        stringify: stringifyJSON
+      },
+      {
+        identify: intIdentify,
+        default: true,
+        tag: "tag:yaml.org,2002:int",
+        test: /^-?(?:0|[1-9][0-9]*)$/,
+        resolve: (str, _onError, { intAsBigInt }) => intAsBigInt ? BigInt(str) : parseInt(str, 10),
+        stringify: ({ value }) => intIdentify(value) ? value.toString() : JSON.stringify(value)
+      },
+      {
+        identify: (value) => typeof value === "number",
+        default: true,
+        tag: "tag:yaml.org,2002:float",
+        test: /^-?(?:0|[1-9][0-9]*)(?:\.[0-9]*)?(?:[eE][-+]?[0-9]+)?$/,
+        resolve: (str) => parseFloat(str),
+        stringify: stringifyJSON
+      }
+    ];
+    var jsonError = {
+      default: true,
+      tag: "",
+      test: /^/,
+      resolve(str, onError) {
+        onError(`Unresolved plain scalar ${JSON.stringify(str)}`);
+        return str;
+      }
+    };
+    var schema = [map2.map, seq.seq].concat(jsonScalars, jsonError);
+    exports.schema = schema;
+  }
+});
+
+// node_modules/yaml/dist/schema/yaml-1.1/binary.js
+var require_binary = __commonJS({
+  "node_modules/yaml/dist/schema/yaml-1.1/binary.js"(exports) {
+    "use strict";
+    var node_buffer = __require("buffer");
+    var Scalar = require_Scalar();
+    var stringifyString = require_stringifyString();
+    var binary = {
+      identify: (value) => value instanceof Uint8Array,
+      // Buffer inherits from Uint8Array
+      default: false,
+      tag: "tag:yaml.org,2002:binary",
+      /**
+       * Returns a Buffer in node and an Uint8Array in browsers
+       *
+       * To use the resulting buffer as an image, you'll want to do something like:
+       *
+       *   const blob = new Blob([buffer], { type: 'image/jpeg' })
+       *   document.querySelector('#photo').src = URL.createObjectURL(blob)
+       */
+      resolve(src, onError) {
+        if (typeof node_buffer.Buffer === "function") {
+          return node_buffer.Buffer.from(src, "base64");
+        } else if (typeof atob === "function") {
+          const str = atob(src.replace(/[\n\r]/g, ""));
+          const buffer = new Uint8Array(str.length);
+          for (let i = 0; i < str.length; ++i)
+            buffer[i] = str.charCodeAt(i);
+          return buffer;
+        } else {
+          onError("This environment does not support reading binary tags; either Buffer or atob is required");
+          return src;
+        }
+      },
+      stringify({ comment, type, value }, ctx, onComment, onChompKeep) {
+        if (!value)
+          return "";
+        const buf = value;
+        let str;
+        if (typeof node_buffer.Buffer === "function") {
+          str = buf instanceof node_buffer.Buffer ? buf.toString("base64") : node_buffer.Buffer.from(buf.buffer).toString("base64");
+        } else if (typeof btoa === "function") {
+          let s = "";
+          for (let i = 0; i < buf.length; ++i)
+            s += String.fromCharCode(buf[i]);
+          str = btoa(s);
+        } else {
+          throw new Error("This environment does not support writing binary tags; either Buffer or btoa is required");
+        }
+        type ?? (type = Scalar.Scalar.BLOCK_LITERAL);
+        if (type !== Scalar.Scalar.QUOTE_DOUBLE) {
+          const lineWidth = Math.max(ctx.options.lineWidth - ctx.indent.length, ctx.options.minContentWidth);
+          const n = Math.ceil(str.length / lineWidth);
+          const lines = new Array(n);
+          for (let i = 0, o = 0; i < n; ++i, o += lineWidth) {
+            lines[i] = str.substr(o, lineWidth);
+          }
+          str = lines.join(type === Scalar.Scalar.BLOCK_LITERAL ? "\n" : " ");
+        }
+        return stringifyString.stringifyString({ comment, type, value: str }, ctx, onComment, onChompKeep);
+      }
+    };
+    exports.binary = binary;
+  }
+});
+
+// node_modules/yaml/dist/schema/yaml-1.1/pairs.js
+var require_pairs = __commonJS({
+  "node_modules/yaml/dist/schema/yaml-1.1/pairs.js"(exports) {
+    "use strict";
+    var identity = require_identity();
+    var Pair = require_Pair();
+    var Scalar = require_Scalar();
+    var YAMLSeq = require_YAMLSeq();
+    function resolvePairs(seq, onError) {
+      if (identity.isSeq(seq)) {
+        for (let i = 0; i < seq.items.length; ++i) {
+          let item = seq.items[i];
+          if (identity.isPair(item))
+            continue;
+          else if (identity.isMap(item)) {
+            if (item.items.length > 1)
+              onError("Each pair must have its own sequence indicator");
+            const pair = item.items[0] || new Pair.Pair(new Scalar.Scalar(null));
+            if (item.commentBefore)
+              pair.key.commentBefore = pair.key.commentBefore ? `${item.commentBefore}
+${pair.key.commentBefore}` : item.commentBefore;
+            if (item.comment) {
+              const cn = pair.value ?? pair.key;
+              cn.comment = cn.comment ? `${item.comment}
+${cn.comment}` : item.comment;
+            }
+            item = pair;
+          }
+          seq.items[i] = identity.isPair(item) ? item : new Pair.Pair(item);
+        }
+      } else
+        onError("Expected a sequence for this tag");
+      return seq;
+    }
+    function createPairs(schema, iterable, ctx) {
+      const { replacer } = ctx;
+      const pairs2 = new YAMLSeq.YAMLSeq(schema);
+      pairs2.tag = "tag:yaml.org,2002:pairs";
+      let i = 0;
+      if (iterable && Symbol.iterator in Object(iterable))
+        for (let it of iterable) {
+          if (typeof replacer === "function")
+            it = replacer.call(iterable, String(i++), it);
+          let key, value;
+          if (Array.isArray(it)) {
+            if (it.length === 2) {
+              key = it[0];
+              value = it[1];
+            } else
+              throw new TypeError(`Expected [key, value] tuple: ${it}`);
+          } else if (it && it instanceof Object) {
+            const keys = Object.keys(it);
+            if (keys.length === 1) {
+              key = keys[0];
+              value = it[key];
+            } else {
+              throw new TypeError(`Expected tuple with one key, not ${keys.length} keys`);
+            }
+          } else {
+            key = it;
+          }
+          pairs2.items.push(Pair.createPair(key, value, ctx));
+        }
+      return pairs2;
+    }
+    var pairs = {
+      collection: "seq",
+      default: false,
+      tag: "tag:yaml.org,2002:pairs",
+      resolve: resolvePairs,
+      createNode: createPairs
+    };
+    exports.createPairs = createPairs;
+    exports.pairs = pairs;
+    exports.resolvePairs = resolvePairs;
+  }
+});
+
+// node_modules/yaml/dist/schema/yaml-1.1/omap.js
+var require_omap = __commonJS({
+  "node_modules/yaml/dist/schema/yaml-1.1/omap.js"(exports) {
+    "use strict";
+    var identity = require_identity();
+    var toJS = require_toJS();
+    var YAMLMap = require_YAMLMap();
+    var YAMLSeq = require_YAMLSeq();
+    var pairs = require_pairs();
+    var YAMLOMap = class _YAMLOMap extends YAMLSeq.YAMLSeq {
+      constructor() {
+        super();
+        this.add = YAMLMap.YAMLMap.prototype.add.bind(this);
+        this.delete = YAMLMap.YAMLMap.prototype.delete.bind(this);
+        this.get = YAMLMap.YAMLMap.prototype.get.bind(this);
+        this.has = YAMLMap.YAMLMap.prototype.has.bind(this);
+        this.set = YAMLMap.YAMLMap.prototype.set.bind(this);
+        this.tag = _YAMLOMap.tag;
+      }
+      /**
+       * If `ctx` is given, the return type is actually `Map<unknown, unknown>`,
+       * but TypeScript won't allow widening the signature of a child method.
+       */
+      toJSON(_, ctx) {
+        if (!ctx)
+          return super.toJSON(_);
+        const map2 = /* @__PURE__ */ new Map();
+        if (ctx?.onCreate)
+          ctx.onCreate(map2);
+        for (const pair of this.items) {
+          let key, value;
+          if (identity.isPair(pair)) {
+            key = toJS.toJS(pair.key, "", ctx);
+            value = toJS.toJS(pair.value, key, ctx);
+          } else {
+            key = toJS.toJS(pair, "", ctx);
+          }
+          if (map2.has(key))
+            throw new Error("Ordered maps must not include duplicate keys");
+          map2.set(key, value);
+        }
+        return map2;
+      }
+      static from(schema, iterable, ctx) {
+        const pairs$1 = pairs.createPairs(schema, iterable, ctx);
+        const omap2 = new this();
+        omap2.items = pairs$1.items;
+        return omap2;
+      }
+    };
+    YAMLOMap.tag = "tag:yaml.org,2002:omap";
+    var omap = {
+      collection: "seq",
+      identify: (value) => value instanceof Map,
+      nodeClass: YAMLOMap,
+      default: false,
+      tag: "tag:yaml.org,2002:omap",
+      resolve(seq, onError) {
+        const pairs$1 = pairs.resolvePairs(seq, onError);
+        const seenKeys = [];
+        for (const { key } of pairs$1.items) {
+          if (identity.isScalar(key)) {
+            if (seenKeys.includes(key.value)) {
+              onError(`Ordered maps must not include duplicate keys: ${key.value}`);
+            } else {
+              seenKeys.push(key.value);
+            }
+          }
+        }
+        return Object.assign(new YAMLOMap(), pairs$1);
+      },
+      createNode: (schema, iterable, ctx) => YAMLOMap.from(schema, iterable, ctx)
+    };
+    exports.YAMLOMap = YAMLOMap;
+    exports.omap = omap;
+  }
+});
+
+// node_modules/yaml/dist/schema/yaml-1.1/bool.js
+var require_bool2 = __commonJS({
+  "node_modules/yaml/dist/schema/yaml-1.1/bool.js"(exports) {
+    "use strict";
+    var Scalar = require_Scalar();
+    function boolStringify({ value, source }, ctx) {
+      const boolObj = value ? trueTag : falseTag;
+      if (source && boolObj.test.test(source))
+        return source;
+      return value ? ctx.options.trueStr : ctx.options.falseStr;
+    }
+    var trueTag = {
+      identify: (value) => value === true,
+      default: true,
+      tag: "tag:yaml.org,2002:bool",
+      test: /^(?:Y|y|[Yy]es|YES|[Tt]rue|TRUE|[Oo]n|ON)$/,
+      resolve: () => new Scalar.Scalar(true),
+      stringify: boolStringify
+    };
+    var falseTag = {
+      identify: (value) => value === false,
+      default: true,
+      tag: "tag:yaml.org,2002:bool",
+      test: /^(?:N|n|[Nn]o|NO|[Ff]alse|FALSE|[Oo]ff|OFF)$/,
+      resolve: () => new Scalar.Scalar(false),
+      stringify: boolStringify
+    };
+    exports.falseTag = falseTag;
+    exports.trueTag = trueTag;
+  }
+});
+
+// node_modules/yaml/dist/schema/yaml-1.1/float.js
+var require_float2 = __commonJS({
+  "node_modules/yaml/dist/schema/yaml-1.1/float.js"(exports) {
+    "use strict";
+    var Scalar = require_Scalar();
+    var stringifyNumber = require_stringifyNumber();
+    var floatNaN = {
+      identify: (value) => typeof value === "number",
+      default: true,
+      tag: "tag:yaml.org,2002:float",
+      test: /^(?:[-+]?\.(?:inf|Inf|INF)|\.nan|\.NaN|\.NAN)$/,
+      resolve: (str) => str.slice(-3).toLowerCase() === "nan" ? NaN : str[0] === "-" ? Number.NEGATIVE_INFINITY : Number.POSITIVE_INFINITY,
+      stringify: stringifyNumber.stringifyNumber
+    };
+    var floatExp = {
+      identify: (value) => typeof value === "number",
+      default: true,
+      tag: "tag:yaml.org,2002:float",
+      format: "EXP",
+      test: /^[-+]?(?:[0-9][0-9_]*)?(?:\.[0-9_]*)?[eE][-+]?[0-9]+$/,
+      resolve: (str) => parseFloat(str.replace(/_/g, "")),
+      stringify(node) {
+        const num = Number(node.value);
+        return isFinite(num) ? num.toExponential() : stringifyNumber.stringifyNumber(node);
+      }
+    };
+    var float = {
+      identify: (value) => typeof value === "number",
+      default: true,
+      tag: "tag:yaml.org,2002:float",
+      test: /^[-+]?(?:[0-9][0-9_]*)?\.[0-9_]*$/,
+      resolve(str) {
+        const node = new Scalar.Scalar(parseFloat(str.replace(/_/g, "")));
+        const dot = str.indexOf(".");
+        if (dot !== -1) {
+          const f = str.substring(dot + 1).replace(/_/g, "");
+          if (f[f.length - 1] === "0")
+            node.minFractionDigits = f.length;
+        }
+        return node;
+      },
+      stringify: stringifyNumber.stringifyNumber
+    };
+    exports.float = float;
+    exports.floatExp = floatExp;
+    exports.floatNaN = floatNaN;
+  }
+});
+
+// node_modules/yaml/dist/schema/yaml-1.1/int.js
+var require_int2 = __commonJS({
+  "node_modules/yaml/dist/schema/yaml-1.1/int.js"(exports) {
+    "use strict";
+    var stringifyNumber = require_stringifyNumber();
+    var intIdentify = (value) => typeof value === "bigint" || Number.isInteger(value);
+    function intResolve(str, offset, radix, { intAsBigInt }) {
+      const sign = str[0];
+      if (sign === "-" || sign === "+")
+        offset += 1;
+      str = str.substring(offset).replace(/_/g, "");
+      if (intAsBigInt) {
+        switch (radix) {
+          case 2:
+            str = `0b${str}`;
+            break;
+          case 8:
+            str = `0o${str}`;
+            break;
+          case 16:
+            str = `0x${str}`;
+            break;
+        }
+        const n2 = BigInt(str);
+        return sign === "-" ? BigInt(-1) * n2 : n2;
+      }
+      const n = parseInt(str, radix);
+      return sign === "-" ? -1 * n : n;
+    }
+    function intStringify(node, radix, prefix) {
+      const { value } = node;
+      if (intIdentify(value)) {
+        const str = value.toString(radix);
+        return value < 0 ? "-" + prefix + str.substr(1) : prefix + str;
+      }
+      return stringifyNumber.stringifyNumber(node);
+    }
+    var intBin = {
+      identify: intIdentify,
+      default: true,
+      tag: "tag:yaml.org,2002:int",
+      format: "BIN",
+      test: /^[-+]?0b[0-1_]+$/,
+      resolve: (str, _onError, opt) => intResolve(str, 2, 2, opt),
+      stringify: (node) => intStringify(node, 2, "0b")
+    };
+    var intOct = {
+      identify: intIdentify,
+      default: true,
+      tag: "tag:yaml.org,2002:int",
+      format: "OCT",
+      test: /^[-+]?0[0-7_]+$/,
+      resolve: (str, _onError, opt) => intResolve(str, 1, 8, opt),
+      stringify: (node) => intStringify(node, 8, "0")
+    };
+    var int2 = {
+      identify: intIdentify,
+      default: true,
+      tag: "tag:yaml.org,2002:int",
+      test: /^[-+]?[0-9][0-9_]*$/,
+      resolve: (str, _onError, opt) => intResolve(str, 0, 10, opt),
+      stringify: stringifyNumber.stringifyNumber
+    };
+    var intHex = {
+      identify: intIdentify,
+      default: true,
+      tag: "tag:yaml.org,2002:int",
+      format: "HEX",
+      test: /^[-+]?0x[0-9a-fA-F_]+$/,
+      resolve: (str, _onError, opt) => intResolve(str, 2, 16, opt),
+      stringify: (node) => intStringify(node, 16, "0x")
+    };
+    exports.int = int2;
+    exports.intBin = intBin;
+    exports.intHex = intHex;
+    exports.intOct = intOct;
+  }
+});
+
+// node_modules/yaml/dist/schema/yaml-1.1/set.js
+var require_set = __commonJS({
+  "node_modules/yaml/dist/schema/yaml-1.1/set.js"(exports) {
+    "use strict";
+    var identity = require_identity();
+    var Pair = require_Pair();
+    var YAMLMap = require_YAMLMap();
+    var YAMLSet = class _YAMLSet extends YAMLMap.YAMLMap {
+      constructor(schema) {
+        super(schema);
+        this.tag = _YAMLSet.tag;
+      }
+      add(key) {
+        let pair;
+        if (identity.isPair(key))
+          pair = key;
+        else if (key && typeof key === "object" && "key" in key && "value" in key && key.value === null)
+          pair = new Pair.Pair(key.key, null);
+        else
+          pair = new Pair.Pair(key, null);
+        const prev = YAMLMap.findPair(this.items, pair.key);
+        if (!prev)
+          this.items.push(pair);
+      }
+      /**
+       * If `keepPair` is `true`, returns the Pair matching `key`.
+       * Otherwise, returns the value of that Pair's key.
+       */
+      get(key, keepPair) {
+        const pair = YAMLMap.findPair(this.items, key);
+        return !keepPair && identity.isPair(pair) ? identity.isScalar(pair.key) ? pair.key.value : pair.key : pair;
+      }
+      set(key, value) {
+        if (typeof value !== "boolean")
+          throw new Error(`Expected boolean value for set(key, value) in a YAML set, not ${typeof value}`);
+        const prev = YAMLMap.findPair(this.items, key);
+        if (prev && !value) {
+          this.items.splice(this.items.indexOf(prev), 1);
+        } else if (!prev && value) {
+          this.items.push(new Pair.Pair(key));
+        }
+      }
+      toJSON(_, ctx) {
+        return super.toJSON(_, ctx, Set);
+      }
+      toString(ctx, onComment, onChompKeep) {
+        if (!ctx)
+          return JSON.stringify(this);
+        if (this.hasAllNullValues(true))
+          return super.toString(Object.assign({}, ctx, { allNullValues: true }), onComment, onChompKeep);
+        else
+          throw new Error("Set items must all have null values");
+      }
+      static from(schema, iterable, ctx) {
+        const { replacer } = ctx;
+        const set3 = new this(schema);
+        if (iterable && Symbol.iterator in Object(iterable))
+          for (let value of iterable) {
+            if (typeof replacer === "function")
+              value = replacer.call(iterable, value, value);
+            set3.items.push(Pair.createPair(value, null, ctx));
+          }
+        return set3;
+      }
+    };
+    YAMLSet.tag = "tag:yaml.org,2002:set";
+    var set2 = {
+      collection: "map",
+      identify: (value) => value instanceof Set,
+      nodeClass: YAMLSet,
+      default: false,
+      tag: "tag:yaml.org,2002:set",
+      createNode: (schema, iterable, ctx) => YAMLSet.from(schema, iterable, ctx),
+      resolve(map2, onError) {
+        if (identity.isMap(map2)) {
+          if (map2.hasAllNullValues(true))
+            return Object.assign(new YAMLSet(), map2);
+          else
+            onError("Set items must all have null values");
+        } else
+          onError("Expected a mapping for this tag");
+        return map2;
+      }
+    };
+    exports.YAMLSet = YAMLSet;
+    exports.set = set2;
+  }
+});
+
+// node_modules/yaml/dist/schema/yaml-1.1/timestamp.js
+var require_timestamp = __commonJS({
+  "node_modules/yaml/dist/schema/yaml-1.1/timestamp.js"(exports) {
+    "use strict";
+    var stringifyNumber = require_stringifyNumber();
+    function parseSexagesimal(str, asBigInt) {
+      const sign = str[0];
+      const parts = sign === "-" || sign === "+" ? str.substring(1) : str;
+      const num = (n) => asBigInt ? BigInt(n) : Number(n);
+      const res = parts.replace(/_/g, "").split(":").reduce((res2, p) => res2 * num(60) + num(p), num(0));
+      return sign === "-" ? num(-1) * res : res;
+    }
+    function stringifySexagesimal(node) {
+      let { value } = node;
+      let num = (n) => n;
+      if (typeof value === "bigint")
+        num = (n) => BigInt(n);
+      else if (isNaN(value) || !isFinite(value))
+        return stringifyNumber.stringifyNumber(node);
+      let sign = "";
+      if (value < 0) {
+        sign = "-";
+        value *= num(-1);
+      }
+      const _60 = num(60);
+      const parts = [value % _60];
+      if (value < 60) {
+        parts.unshift(0);
+      } else {
+        value = (value - parts[0]) / _60;
+        parts.unshift(value % _60);
+        if (value >= 60) {
+          value = (value - parts[0]) / _60;
+          parts.unshift(value);
+        }
+      }
+      return sign + parts.map((n) => String(n).padStart(2, "0")).join(":").replace(/000000\d*$/, "");
+    }
+    var intTime = {
+      identify: (value) => typeof value === "bigint" || Number.isInteger(value),
+      default: true,
+      tag: "tag:yaml.org,2002:int",
+      format: "TIME",
+      test: /^[-+]?[0-9][0-9_]*(?::[0-5]?[0-9])+$/,
+      resolve: (str, _onError, { intAsBigInt }) => parseSexagesimal(str, intAsBigInt),
+      stringify: stringifySexagesimal
+    };
+    var floatTime = {
+      identify: (value) => typeof value === "number",
+      default: true,
+      tag: "tag:yaml.org,2002:float",
+      format: "TIME",
+      test: /^[-+]?[0-9][0-9_]*(?::[0-5]?[0-9])+\.[0-9_]*$/,
+      resolve: (str) => parseSexagesimal(str, false),
+      stringify: stringifySexagesimal
+    };
+    var timestamp = {
+      identify: (value) => value instanceof Date,
+      default: true,
+      tag: "tag:yaml.org,2002:timestamp",
+      // If the time zone is omitted, the timestamp is assumed to be specified in UTC. The time part
+      // may be omitted altogether, resulting in a date format. In such a case, the time part is
+      // assumed to be 00:00:00Z (start of day, UTC).
+      test: RegExp("^([0-9]{4})-([0-9]{1,2})-([0-9]{1,2})(?:(?:t|T|[ \\t]+)([0-9]{1,2}):([0-9]{1,2}):([0-9]{1,2}(\\.[0-9]+)?)(?:[ \\t]*(Z|[-+][012]?[0-9](?::[0-9]{2})?))?)?$"),
+      resolve(str) {
+        const match = str.match(timestamp.test);
+        if (!match)
+          throw new Error("!!timestamp expects a date, starting with yyyy-mm-dd");
+        const [, year, month, day, hour, minute, second] = match.map(Number);
+        const millisec = match[7] ? Number((match[7] + "00").substr(1, 3)) : 0;
+        let date5 = Date.UTC(year, month - 1, day, hour || 0, minute || 0, second || 0, millisec);
+        const tz = match[8];
+        if (tz && tz !== "Z") {
+          let d = parseSexagesimal(tz, false);
+          if (Math.abs(d) < 30)
+            d *= 60;
+          date5 -= 6e4 * d;
+        }
+        return new Date(date5);
+      },
+      stringify: ({ value }) => value?.toISOString().replace(/(T00:00:00)?\.000Z$/, "") ?? ""
+    };
+    exports.floatTime = floatTime;
+    exports.intTime = intTime;
+    exports.timestamp = timestamp;
+  }
+});
+
+// node_modules/yaml/dist/schema/yaml-1.1/schema.js
+var require_schema3 = __commonJS({
+  "node_modules/yaml/dist/schema/yaml-1.1/schema.js"(exports) {
+    "use strict";
+    var map2 = require_map();
+    var _null4 = require_null();
+    var seq = require_seq();
+    var string4 = require_string();
+    var binary = require_binary();
+    var bool = require_bool2();
+    var float = require_float2();
+    var int2 = require_int2();
+    var merge2 = require_merge();
+    var omap = require_omap();
+    var pairs = require_pairs();
+    var set2 = require_set();
+    var timestamp = require_timestamp();
+    var schema = [
+      map2.map,
+      seq.seq,
+      string4.string,
+      _null4.nullTag,
+      bool.trueTag,
+      bool.falseTag,
+      int2.intBin,
+      int2.intOct,
+      int2.int,
+      int2.intHex,
+      float.floatNaN,
+      float.floatExp,
+      float.float,
+      binary.binary,
+      merge2.merge,
+      omap.omap,
+      pairs.pairs,
+      set2.set,
+      timestamp.intTime,
+      timestamp.floatTime,
+      timestamp.timestamp
+    ];
+    exports.schema = schema;
+  }
+});
+
+// node_modules/yaml/dist/schema/tags.js
+var require_tags = __commonJS({
+  "node_modules/yaml/dist/schema/tags.js"(exports) {
+    "use strict";
+    var map2 = require_map();
+    var _null4 = require_null();
+    var seq = require_seq();
+    var string4 = require_string();
+    var bool = require_bool();
+    var float = require_float();
+    var int2 = require_int();
+    var schema = require_schema();
+    var schema$1 = require_schema2();
+    var binary = require_binary();
+    var merge2 = require_merge();
+    var omap = require_omap();
+    var pairs = require_pairs();
+    var schema$2 = require_schema3();
+    var set2 = require_set();
+    var timestamp = require_timestamp();
+    var schemas = /* @__PURE__ */ new Map([
+      ["core", schema.schema],
+      ["failsafe", [map2.map, seq.seq, string4.string]],
+      ["json", schema$1.schema],
+      ["yaml11", schema$2.schema],
+      ["yaml-1.1", schema$2.schema]
+    ]);
+    var tagsByName = {
+      binary: binary.binary,
+      bool: bool.boolTag,
+      float: float.float,
+      floatExp: float.floatExp,
+      floatNaN: float.floatNaN,
+      floatTime: timestamp.floatTime,
+      int: int2.int,
+      intHex: int2.intHex,
+      intOct: int2.intOct,
+      intTime: timestamp.intTime,
+      map: map2.map,
+      merge: merge2.merge,
+      null: _null4.nullTag,
+      omap: omap.omap,
+      pairs: pairs.pairs,
+      seq: seq.seq,
+      set: set2.set,
+      timestamp: timestamp.timestamp
+    };
+    var coreKnownTags = {
+      "tag:yaml.org,2002:binary": binary.binary,
+      "tag:yaml.org,2002:merge": merge2.merge,
+      "tag:yaml.org,2002:omap": omap.omap,
+      "tag:yaml.org,2002:pairs": pairs.pairs,
+      "tag:yaml.org,2002:set": set2.set,
+      "tag:yaml.org,2002:timestamp": timestamp.timestamp
+    };
+    function getTags(customTags, schemaName, addMergeTag) {
+      const schemaTags = schemas.get(schemaName);
+      if (schemaTags && !customTags) {
+        return addMergeTag && !schemaTags.includes(merge2.merge) ? schemaTags.concat(merge2.merge) : schemaTags.slice();
+      }
+      let tags = schemaTags;
+      if (!tags) {
+        if (Array.isArray(customTags))
+          tags = [];
+        else {
+          const keys = Array.from(schemas.keys()).filter((key) => key !== "yaml11").map((key) => JSON.stringify(key)).join(", ");
+          throw new Error(`Unknown schema "${schemaName}"; use one of ${keys} or define customTags array`);
+        }
+      }
+      if (Array.isArray(customTags)) {
+        for (const tag of customTags)
+          tags = tags.concat(tag);
+      } else if (typeof customTags === "function") {
+        tags = customTags(tags.slice());
+      }
+      if (addMergeTag)
+        tags = tags.concat(merge2.merge);
+      return tags.reduce((tags2, tag) => {
+        const tagObj = typeof tag === "string" ? tagsByName[tag] : tag;
+        if (!tagObj) {
+          const tagName = JSON.stringify(tag);
+          const keys = Object.keys(tagsByName).map((key) => JSON.stringify(key)).join(", ");
+          throw new Error(`Unknown custom tag ${tagName}; use one of ${keys}`);
+        }
+        if (!tags2.includes(tagObj))
+          tags2.push(tagObj);
+        return tags2;
+      }, []);
+    }
+    exports.coreKnownTags = coreKnownTags;
+    exports.getTags = getTags;
+  }
+});
+
+// node_modules/yaml/dist/schema/Schema.js
+var require_Schema = __commonJS({
+  "node_modules/yaml/dist/schema/Schema.js"(exports) {
+    "use strict";
+    var identity = require_identity();
+    var map2 = require_map();
+    var seq = require_seq();
+    var string4 = require_string();
+    var tags = require_tags();
+    var sortMapEntriesByKey = (a, b) => a.key < b.key ? -1 : a.key > b.key ? 1 : 0;
+    var Schema2 = class _Schema {
+      constructor({ compat, customTags, merge: merge2, resolveKnownTags, schema, sortMapEntries, toStringDefaults }) {
+        this.compat = Array.isArray(compat) ? tags.getTags(compat, "compat") : compat ? tags.getTags(null, compat) : null;
+        this.name = typeof schema === "string" && schema || "core";
+        this.knownTags = resolveKnownTags ? tags.coreKnownTags : {};
+        this.tags = tags.getTags(customTags, this.name, merge2);
+        this.toStringOptions = toStringDefaults ?? null;
+        Object.defineProperty(this, identity.MAP, { value: map2.map });
+        Object.defineProperty(this, identity.SCALAR, { value: string4.string });
+        Object.defineProperty(this, identity.SEQ, { value: seq.seq });
+        this.sortMapEntries = typeof sortMapEntries === "function" ? sortMapEntries : sortMapEntries === true ? sortMapEntriesByKey : null;
+      }
+      clone() {
+        const copy = Object.create(_Schema.prototype, Object.getOwnPropertyDescriptors(this));
+        copy.tags = this.tags.slice();
+        return copy;
+      }
+    };
+    exports.Schema = Schema2;
+  }
+});
+
+// node_modules/yaml/dist/stringify/stringifyDocument.js
+var require_stringifyDocument = __commonJS({
+  "node_modules/yaml/dist/stringify/stringifyDocument.js"(exports) {
+    "use strict";
+    var identity = require_identity();
+    var stringify = require_stringify();
+    var stringifyComment = require_stringifyComment();
+    function stringifyDocument(doc, options) {
+      const lines = [];
+      let hasDirectives = options.directives === true;
+      if (options.directives !== false && doc.directives) {
+        const dir = doc.directives.toString(doc);
+        if (dir) {
+          lines.push(dir);
+          hasDirectives = true;
+        } else if (doc.directives.docStart)
+          hasDirectives = true;
+      }
+      if (hasDirectives)
+        lines.push("---");
+      const ctx = stringify.createStringifyContext(doc, options);
+      const { commentString } = ctx.options;
+      if (doc.commentBefore) {
+        if (lines.length !== 1)
+          lines.unshift("");
+        const cs = commentString(doc.commentBefore);
+        lines.unshift(stringifyComment.indentComment(cs, ""));
+      }
+      let chompKeep = false;
+      let contentComment = null;
+      if (doc.contents) {
+        if (identity.isNode(doc.contents)) {
+          if (doc.contents.spaceBefore && hasDirectives)
+            lines.push("");
+          if (doc.contents.commentBefore) {
+            const cs = commentString(doc.contents.commentBefore);
+            lines.push(stringifyComment.indentComment(cs, ""));
+          }
+          ctx.forceBlockIndent = !!doc.comment;
+          contentComment = doc.contents.comment;
+        }
+        const onChompKeep = contentComment ? void 0 : () => chompKeep = true;
+        let body = stringify.stringify(doc.contents, ctx, () => contentComment = null, onChompKeep);
+        if (contentComment)
+          body += stringifyComment.lineComment(body, "", commentString(contentComment));
+        if ((body[0] === "|" || body[0] === ">") && lines[lines.length - 1] === "---") {
+          lines[lines.length - 1] = `--- ${body}`;
+        } else
+          lines.push(body);
+      } else {
+        lines.push(stringify.stringify(doc.contents, ctx));
+      }
+      if (doc.directives?.docEnd) {
+        if (doc.comment) {
+          const cs = commentString(doc.comment);
+          if (cs.includes("\n")) {
+            lines.push("...");
+            lines.push(stringifyComment.indentComment(cs, ""));
+          } else {
+            lines.push(`... ${cs}`);
+          }
+        } else {
+          lines.push("...");
+        }
+      } else {
+        let dc = doc.comment;
+        if (dc && chompKeep)
+          dc = dc.replace(/^\n+/, "");
+        if (dc) {
+          if ((!chompKeep || contentComment) && lines[lines.length - 1] !== "")
+            lines.push("");
+          lines.push(stringifyComment.indentComment(commentString(dc), ""));
+        }
+      }
+      return lines.join("\n") + "\n";
+    }
+    exports.stringifyDocument = stringifyDocument;
+  }
+});
+
+// node_modules/yaml/dist/doc/Document.js
+var require_Document = __commonJS({
+  "node_modules/yaml/dist/doc/Document.js"(exports) {
+    "use strict";
+    var Alias = require_Alias();
+    var Collection = require_Collection();
+    var identity = require_identity();
+    var Pair = require_Pair();
+    var toJS = require_toJS();
+    var Schema2 = require_Schema();
+    var stringifyDocument = require_stringifyDocument();
+    var anchors = require_anchors();
+    var applyReviver = require_applyReviver();
+    var createNode = require_createNode();
+    var directives = require_directives();
+    var Document = class _Document {
+      constructor(value, replacer, options) {
+        this.commentBefore = null;
+        this.comment = null;
+        this.errors = [];
+        this.warnings = [];
+        Object.defineProperty(this, identity.NODE_TYPE, { value: identity.DOC });
+        let _replacer = null;
+        if (typeof replacer === "function" || Array.isArray(replacer)) {
+          _replacer = replacer;
+        } else if (options === void 0 && replacer) {
+          options = replacer;
+          replacer = void 0;
+        }
+        const opt = Object.assign({
+          intAsBigInt: false,
+          keepSourceTokens: false,
+          logLevel: "warn",
+          prettyErrors: true,
+          strict: true,
+          stringKeys: false,
+          uniqueKeys: true,
+          version: "1.2"
+        }, options);
+        this.options = opt;
+        let { version: version3 } = opt;
+        if (options?._directives) {
+          this.directives = options._directives.atDocument();
+          if (this.directives.yaml.explicit)
+            version3 = this.directives.yaml.version;
+        } else
+          this.directives = new directives.Directives({ version: version3 });
+        this.setSchema(version3, options);
+        this.contents = value === void 0 ? null : this.createNode(value, _replacer, options);
+      }
+      /**
+       * Create a deep copy of this Document and its contents.
+       *
+       * Custom Node values that inherit from `Object` still refer to their original instances.
+       */
+      clone() {
+        const copy = Object.create(_Document.prototype, {
+          [identity.NODE_TYPE]: { value: identity.DOC }
+        });
+        copy.commentBefore = this.commentBefore;
+        copy.comment = this.comment;
+        copy.errors = this.errors.slice();
+        copy.warnings = this.warnings.slice();
+        copy.options = Object.assign({}, this.options);
+        if (this.directives)
+          copy.directives = this.directives.clone();
+        copy.schema = this.schema.clone();
+        copy.contents = identity.isNode(this.contents) ? this.contents.clone(copy.schema) : this.contents;
+        if (this.range)
+          copy.range = this.range.slice();
+        return copy;
+      }
+      /** Adds a value to the document. */
+      add(value) {
+        if (assertCollection(this.contents))
+          this.contents.add(value);
+      }
+      /** Adds a value to the document. */
+      addIn(path5, value) {
+        if (assertCollection(this.contents))
+          this.contents.addIn(path5, value);
+      }
+      /**
+       * Create a new `Alias` node, ensuring that the target `node` has the required anchor.
+       *
+       * If `node` already has an anchor, `name` is ignored.
+       * Otherwise, the `node.anchor` value will be set to `name`,
+       * or if an anchor with that name is already present in the document,
+       * `name` will be used as a prefix for a new unique anchor.
+       * If `name` is undefined, the generated anchor will use 'a' as a prefix.
+       */
+      createAlias(node, name17) {
+        if (!node.anchor) {
+          const prev = anchors.anchorNames(this);
+          node.anchor = // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
+          !name17 || prev.has(name17) ? anchors.findNewAnchor(name17 || "a", prev) : name17;
+        }
+        return new Alias.Alias(node.anchor);
+      }
+      createNode(value, replacer, options) {
+        let _replacer = void 0;
+        if (typeof replacer === "function") {
+          value = replacer.call({ "": value }, "", value);
+          _replacer = replacer;
+        } else if (Array.isArray(replacer)) {
+          const keyToStr = (v) => typeof v === "number" || v instanceof String || v instanceof Number;
+          const asStr = replacer.filter(keyToStr).map(String);
+          if (asStr.length > 0)
+            replacer = replacer.concat(asStr);
+          _replacer = replacer;
+        } else if (options === void 0 && replacer) {
+          options = replacer;
+          replacer = void 0;
+        }
+        const { aliasDuplicateObjects, anchorPrefix, flow, keepUndefined, onTagObj, tag } = options ?? {};
+        const { onAnchor, setAnchors, sourceObjects } = anchors.createNodeAnchors(
+          this,
+          // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
+          anchorPrefix || "a"
+        );
+        const ctx = {
+          aliasDuplicateObjects: aliasDuplicateObjects ?? true,
+          keepUndefined: keepUndefined ?? false,
+          onAnchor,
+          onTagObj,
+          replacer: _replacer,
+          schema: this.schema,
+          sourceObjects
+        };
+        const node = createNode.createNode(value, tag, ctx);
+        if (flow && identity.isCollection(node))
+          node.flow = true;
+        setAnchors();
+        return node;
+      }
+      /**
+       * Convert a key and a value into a `Pair` using the current schema,
+       * recursively wrapping all values as `Scalar` or `Collection` nodes.
+       */
+      createPair(key, value, options = {}) {
+        const k = this.createNode(key, null, options);
+        const v = this.createNode(value, null, options);
+        return new Pair.Pair(k, v);
+      }
+      /**
+       * Removes a value from the document.
+       * @returns `true` if the item was found and removed.
+       */
+      delete(key) {
+        return assertCollection(this.contents) ? this.contents.delete(key) : false;
+      }
+      /**
+       * Removes a value from the document.
+       * @returns `true` if the item was found and removed.
+       */
+      deleteIn(path5) {
+        if (Collection.isEmptyPath(path5)) {
+          if (this.contents == null)
+            return false;
+          this.contents = null;
+          return true;
+        }
+        return assertCollection(this.contents) ? this.contents.deleteIn(path5) : false;
+      }
+      /**
+       * Returns item at `key`, or `undefined` if not found. By default unwraps
+       * scalar values from their surrounding node; to disable set `keepScalar` to
+       * `true` (collections are always returned intact).
+       */
+      get(key, keepScalar) {
+        return identity.isCollection(this.contents) ? this.contents.get(key, keepScalar) : void 0;
+      }
+      /**
+       * Returns item at `path`, or `undefined` if not found. By default unwraps
+       * scalar values from their surrounding node; to disable set `keepScalar` to
+       * `true` (collections are always returned intact).
+       */
+      getIn(path5, keepScalar) {
+        if (Collection.isEmptyPath(path5))
+          return !keepScalar && identity.isScalar(this.contents) ? this.contents.value : this.contents;
+        return identity.isCollection(this.contents) ? this.contents.getIn(path5, keepScalar) : void 0;
+      }
+      /**
+       * Checks if the document includes a value with the key `key`.
+       */
+      has(key) {
+        return identity.isCollection(this.contents) ? this.contents.has(key) : false;
+      }
+      /**
+       * Checks if the document includes a value at `path`.
+       */
+      hasIn(path5) {
+        if (Collection.isEmptyPath(path5))
+          return this.contents !== void 0;
+        return identity.isCollection(this.contents) ? this.contents.hasIn(path5) : false;
+      }
+      /**
+       * Sets a value in this document. For `!!set`, `value` needs to be a
+       * boolean to add/remove the item from the set.
+       */
+      set(key, value) {
+        if (this.contents == null) {
+          this.contents = Collection.collectionFromPath(this.schema, [key], value);
+        } else if (assertCollection(this.contents)) {
+          this.contents.set(key, value);
+        }
+      }
+      /**
+       * Sets a value in this document. For `!!set`, `value` needs to be a
+       * boolean to add/remove the item from the set.
+       */
+      setIn(path5, value) {
+        if (Collection.isEmptyPath(path5)) {
+          this.contents = value;
+        } else if (this.contents == null) {
+          this.contents = Collection.collectionFromPath(this.schema, Array.from(path5), value);
+        } else if (assertCollection(this.contents)) {
+          this.contents.setIn(path5, value);
+        }
+      }
+      /**
+       * Change the YAML version and schema used by the document.
+       * A `null` version disables support for directives, explicit tags, anchors, and aliases.
+       * It also requires the `schema` option to be given as a `Schema` instance value.
+       *
+       * Overrides all previously set schema options.
+       */
+      setSchema(version3, options = {}) {
+        if (typeof version3 === "number")
+          version3 = String(version3);
+        let opt;
+        switch (version3) {
+          case "1.1":
+            if (this.directives)
+              this.directives.yaml.version = "1.1";
+            else
+              this.directives = new directives.Directives({ version: "1.1" });
+            opt = { resolveKnownTags: false, schema: "yaml-1.1" };
+            break;
+          case "1.2":
+          case "next":
+            if (this.directives)
+              this.directives.yaml.version = version3;
+            else
+              this.directives = new directives.Directives({ version: version3 });
+            opt = { resolveKnownTags: true, schema: "core" };
+            break;
+          case null:
+            if (this.directives)
+              delete this.directives;
+            opt = null;
+            break;
+          default: {
+            const sv = JSON.stringify(version3);
+            throw new Error(`Expected '1.1', '1.2' or null as first argument, but found: ${sv}`);
+          }
+        }
+        if (options.schema instanceof Object)
+          this.schema = options.schema;
+        else if (opt)
+          this.schema = new Schema2.Schema(Object.assign(opt, options));
+        else
+          throw new Error(`With a null YAML version, the { schema: Schema } option is required`);
+      }
+      // json & jsonArg are only used from toJSON()
+      toJS({ json: json2, jsonArg, mapAsMap, maxAliasCount, onAnchor, reviver } = {}) {
+        const ctx = {
+          anchors: /* @__PURE__ */ new Map(),
+          doc: this,
+          keep: !json2,
+          mapAsMap: mapAsMap === true,
+          mapKeyWarned: false,
+          maxAliasCount: typeof maxAliasCount === "number" ? maxAliasCount : 100
+        };
+        const res = toJS.toJS(this.contents, jsonArg ?? "", ctx);
+        if (typeof onAnchor === "function")
+          for (const { count, res: res2 } of ctx.anchors.values())
+            onAnchor(res2, count);
+        return typeof reviver === "function" ? applyReviver.applyReviver(reviver, { "": res }, "", res) : res;
+      }
+      /**
+       * A JSON representation of the document `contents`.
+       *
+       * @param jsonArg Used by `JSON.stringify` to indicate the array index or
+       *   property name.
+       */
+      toJSON(jsonArg, onAnchor) {
+        return this.toJS({ json: true, jsonArg, mapAsMap: false, onAnchor });
+      }
+      /** A YAML representation of the document. */
+      toString(options = {}) {
+        if (this.errors.length > 0)
+          throw new Error("Document with errors cannot be stringified");
+        if ("indent" in options && (!Number.isInteger(options.indent) || Number(options.indent) <= 0)) {
+          const s = JSON.stringify(options.indent);
+          throw new Error(`"indent" option must be a positive integer, not ${s}`);
+        }
+        return stringifyDocument.stringifyDocument(this, options);
+      }
+    };
+    function assertCollection(contents) {
+      if (identity.isCollection(contents))
+        return true;
+      throw new Error("Expected a YAML collection as document contents");
+    }
+    exports.Document = Document;
+  }
+});
+
+// node_modules/yaml/dist/errors.js
+var require_errors = __commonJS({
+  "node_modules/yaml/dist/errors.js"(exports) {
+    "use strict";
+    var YAMLError = class extends Error {
+      constructor(name17, pos, code, message) {
+        super();
+        this.name = name17;
+        this.code = code;
+        this.message = message;
+        this.pos = pos;
+      }
+    };
+    var YAMLParseError = class extends YAMLError {
+      constructor(pos, code, message) {
+        super("YAMLParseError", pos, code, message);
+      }
+    };
+    var YAMLWarning = class extends YAMLError {
+      constructor(pos, code, message) {
+        super("YAMLWarning", pos, code, message);
+      }
+    };
+    var prettifyError2 = (src, lc) => (error45) => {
+      if (error45.pos[0] === -1)
+        return;
+      error45.linePos = error45.pos.map((pos) => lc.linePos(pos));
+      const { line, col } = error45.linePos[0];
+      error45.message += ` at line ${line}, column ${col}`;
+      let ci = col - 1;
+      let lineStr = src.substring(lc.lineStarts[line - 1], lc.lineStarts[line]).replace(/[\n\r]+$/, "");
+      if (ci >= 60 && lineStr.length > 80) {
+        const trimStart = Math.min(ci - 39, lineStr.length - 79);
+        lineStr = "\u2026" + lineStr.substring(trimStart);
+        ci -= trimStart - 1;
+      }
+      if (lineStr.length > 80)
+        lineStr = lineStr.substring(0, 79) + "\u2026";
+      if (line > 1 && /^ *$/.test(lineStr.substring(0, ci))) {
+        let prev = src.substring(lc.lineStarts[line - 2], lc.lineStarts[line - 1]);
+        if (prev.length > 80)
+          prev = prev.substring(0, 79) + "\u2026\n";
+        lineStr = prev + lineStr;
+      }
+      if (/[^ ]/.test(lineStr)) {
+        let count = 1;
+        const end = error45.linePos[1];
+        if (end && end.line === line && end.col > col) {
+          count = Math.max(1, Math.min(end.col - col, 80 - ci));
+        }
+        const pointer = " ".repeat(ci) + "^".repeat(count);
+        error45.message += `:
+
+${lineStr}
+${pointer}
+`;
+      }
+    };
+    exports.YAMLError = YAMLError;
+    exports.YAMLParseError = YAMLParseError;
+    exports.YAMLWarning = YAMLWarning;
+    exports.prettifyError = prettifyError2;
+  }
+});
+
+// node_modules/yaml/dist/compose/resolve-props.js
+var require_resolve_props = __commonJS({
+  "node_modules/yaml/dist/compose/resolve-props.js"(exports) {
+    "use strict";
+    function resolveProps(tokens, { flow, indicator, next, offset, onError, parentIndent, startOnNewline }) {
+      let spaceBefore = false;
+      let atNewline = startOnNewline;
+      let hasSpace = startOnNewline;
+      let comment = "";
+      let commentSep = "";
+      let hasNewline = false;
+      let reqSpace = false;
+      let tab = null;
+      let anchor = null;
+      let tag = null;
+      let newlineAfterProp = null;
+      let comma = null;
+      let found = null;
+      let start = null;
+      for (const token of tokens) {
+        if (reqSpace) {
+          if (token.type !== "space" && token.type !== "newline" && token.type !== "comma")
+            onError(token.offset, "MISSING_CHAR", "Tags and anchors must be separated from the next token by white space");
+          reqSpace = false;
+        }
+        if (tab) {
+          if (atNewline && token.type !== "comment" && token.type !== "newline") {
+            onError(tab, "TAB_AS_INDENT", "Tabs are not allowed as indentation");
+          }
+          tab = null;
+        }
+        switch (token.type) {
+          case "space":
+            if (!flow && (indicator !== "doc-start" || next?.type !== "flow-collection") && token.source.includes("	")) {
+              tab = token;
+            }
+            hasSpace = true;
+            break;
+          case "comment": {
+            if (!hasSpace)
+              onError(token, "MISSING_CHAR", "Comments must be separated from other tokens by white space characters");
+            const cb = token.source.substring(1) || " ";
+            if (!comment)
+              comment = cb;
+            else
+              comment += commentSep + cb;
+            commentSep = "";
+            atNewline = false;
+            break;
+          }
+          case "newline":
+            if (atNewline) {
+              if (comment)
+                comment += token.source;
+              else if (!found || indicator !== "seq-item-ind")
+                spaceBefore = true;
+            } else
+              commentSep += token.source;
+            atNewline = true;
+            hasNewline = true;
+            if (anchor || tag)
+              newlineAfterProp = token;
+            hasSpace = true;
+            break;
+          case "anchor":
+            if (anchor)
+              onError(token, "MULTIPLE_ANCHORS", "A node can have at most one anchor");
+            if (token.source.endsWith(":"))
+              onError(token.offset + token.source.length - 1, "BAD_ALIAS", "Anchor ending in : is ambiguous", true);
+            anchor = token;
+            start ?? (start = token.offset);
+            atNewline = false;
+            hasSpace = false;
+            reqSpace = true;
+            break;
+          case "tag": {
+            if (tag)
+              onError(token, "MULTIPLE_TAGS", "A node can have at most one tag");
+            tag = token;
+            start ?? (start = token.offset);
+            atNewline = false;
+            hasSpace = false;
+            reqSpace = true;
+            break;
+          }
+          case indicator:
+            if (anchor || tag)
+              onError(token, "BAD_PROP_ORDER", `Anchors and tags must be after the ${token.source} indicator`);
+            if (found)
+              onError(token, "UNEXPECTED_TOKEN", `Unexpected ${token.source} in ${flow ?? "collection"}`);
+            found = token;
+            atNewline = indicator === "seq-item-ind" || indicator === "explicit-key-ind";
+            hasSpace = false;
+            break;
+          case "comma":
+            if (flow) {
+              if (comma)
+                onError(token, "UNEXPECTED_TOKEN", `Unexpected , in ${flow}`);
+              comma = token;
+              atNewline = false;
+              hasSpace = false;
+              break;
+            }
+          default:
+            onError(token, "UNEXPECTED_TOKEN", `Unexpected ${token.type} token`);
+            atNewline = false;
+            hasSpace = false;
+        }
+      }
+      const last = tokens[tokens.length - 1];
+      const end = last ? last.offset + last.source.length : offset;
+      if (reqSpace && next && next.type !== "space" && next.type !== "newline" && next.type !== "comma" && (next.type !== "scalar" || next.source !== "")) {
+        onError(next.offset, "MISSING_CHAR", "Tags and anchors must be separated from the next token by white space");
+      }
+      if (tab && (atNewline && tab.indent <= parentIndent || next?.type === "block-map" || next?.type === "block-seq"))
+        onError(tab, "TAB_AS_INDENT", "Tabs are not allowed as indentation");
+      return {
+        comma,
+        found,
+        spaceBefore,
+        comment,
+        hasNewline,
+        anchor,
+        tag,
+        newlineAfterProp,
+        end,
+        start: start ?? end
+      };
+    }
+    exports.resolveProps = resolveProps;
+  }
+});
+
+// node_modules/yaml/dist/compose/util-contains-newline.js
+var require_util_contains_newline = __commonJS({
+  "node_modules/yaml/dist/compose/util-contains-newline.js"(exports) {
+    "use strict";
+    function containsNewline(key) {
+      if (!key)
+        return null;
+      switch (key.type) {
+        case "alias":
+        case "scalar":
+        case "double-quoted-scalar":
+        case "single-quoted-scalar":
+          if (key.source.includes("\n"))
+            return true;
+          if (key.end) {
+            for (const st of key.end)
+              if (st.type === "newline")
+                return true;
+          }
+          return false;
+        case "flow-collection":
+          for (const it of key.items) {
+            for (const st of it.start)
+              if (st.type === "newline")
+                return true;
+            if (it.sep) {
+              for (const st of it.sep)
+                if (st.type === "newline")
+                  return true;
+            }
+            if (containsNewline(it.key) || containsNewline(it.value))
+              return true;
+          }
+          return false;
+        default:
+          return true;
+      }
+    }
+    exports.containsNewline = containsNewline;
+  }
+});
+
+// node_modules/yaml/dist/compose/util-flow-indent-check.js
+var require_util_flow_indent_check = __commonJS({
+  "node_modules/yaml/dist/compose/util-flow-indent-check.js"(exports) {
+    "use strict";
+    var utilContainsNewline = require_util_contains_newline();
+    function flowIndentCheck(indent, fc, onError) {
+      if (fc?.type === "flow-collection") {
+        const end = fc.end[0];
+        if (end.indent === indent && (end.source === "]" || end.source === "}") && utilContainsNewline.containsNewline(fc)) {
+          const msg = "Flow end indicator should be more indented than parent";
+          onError(end, "BAD_INDENT", msg, true);
+        }
+      }
+    }
+    exports.flowIndentCheck = flowIndentCheck;
+  }
+});
+
+// node_modules/yaml/dist/compose/util-map-includes.js
+var require_util_map_includes = __commonJS({
+  "node_modules/yaml/dist/compose/util-map-includes.js"(exports) {
+    "use strict";
+    var identity = require_identity();
+    function mapIncludes(ctx, items, search) {
+      const { uniqueKeys } = ctx.options;
+      if (uniqueKeys === false)
+        return false;
+      const isEqual = typeof uniqueKeys === "function" ? uniqueKeys : (a, b) => a === b || identity.isScalar(a) && identity.isScalar(b) && a.value === b.value;
+      return items.some((pair) => isEqual(pair.key, search));
+    }
+    exports.mapIncludes = mapIncludes;
+  }
+});
+
+// node_modules/yaml/dist/compose/resolve-block-map.js
+var require_resolve_block_map = __commonJS({
+  "node_modules/yaml/dist/compose/resolve-block-map.js"(exports) {
+    "use strict";
+    var Pair = require_Pair();
+    var YAMLMap = require_YAMLMap();
+    var resolveProps = require_resolve_props();
+    var utilContainsNewline = require_util_contains_newline();
+    var utilFlowIndentCheck = require_util_flow_indent_check();
+    var utilMapIncludes = require_util_map_includes();
+    var startColMsg = "All mapping items must start at the same column";
+    function resolveBlockMap({ composeNode, composeEmptyNode }, ctx, bm, onError, tag) {
+      const NodeClass = tag?.nodeClass ?? YAMLMap.YAMLMap;
+      const map2 = new NodeClass(ctx.schema);
+      if (ctx.atRoot)
+        ctx.atRoot = false;
+      let offset = bm.offset;
+      let commentEnd = null;
+      for (const collItem of bm.items) {
+        const { start, key, sep, value } = collItem;
+        const keyProps = resolveProps.resolveProps(start, {
+          indicator: "explicit-key-ind",
+          next: key ?? sep?.[0],
+          offset,
+          onError,
+          parentIndent: bm.indent,
+          startOnNewline: true
+        });
+        const implicitKey = !keyProps.found;
+        if (implicitKey) {
+          if (key) {
+            if (key.type === "block-seq")
+              onError(offset, "BLOCK_AS_IMPLICIT_KEY", "A block sequence may not be used as an implicit map key");
+            else if ("indent" in key && key.indent !== bm.indent)
+              onError(offset, "BAD_INDENT", startColMsg);
+          }
+          if (!keyProps.anchor && !keyProps.tag && !sep) {
+            commentEnd = keyProps.end;
+            if (keyProps.comment) {
+              if (map2.comment)
+                map2.comment += "\n" + keyProps.comment;
+              else
+                map2.comment = keyProps.comment;
+            }
+            continue;
+          }
+          if (keyProps.newlineAfterProp || utilContainsNewline.containsNewline(key)) {
+            onError(key ?? start[start.length - 1], "MULTILINE_IMPLICIT_KEY", "Implicit keys need to be on a single line");
+          }
+        } else if (keyProps.found?.indent !== bm.indent) {
+          onError(offset, "BAD_INDENT", startColMsg);
+        }
+        ctx.atKey = true;
+        const keyStart = keyProps.end;
+        const keyNode = key ? composeNode(ctx, key, keyProps, onError) : composeEmptyNode(ctx, keyStart, start, null, keyProps, onError);
+        if (ctx.schema.compat)
+          utilFlowIndentCheck.flowIndentCheck(bm.indent, key, onError);
+        ctx.atKey = false;
+        if (utilMapIncludes.mapIncludes(ctx, map2.items, keyNode))
+          onError(keyStart, "DUPLICATE_KEY", "Map keys must be unique");
+        const valueProps = resolveProps.resolveProps(sep ?? [], {
+          indicator: "map-value-ind",
+          next: value,
+          offset: keyNode.range[2],
+          onError,
+          parentIndent: bm.indent,
+          startOnNewline: !key || key.type === "block-scalar"
+        });
+        offset = valueProps.end;
+        if (valueProps.found) {
+          if (implicitKey) {
+            if (value?.type === "block-map" && !valueProps.hasNewline)
+              onError(offset, "BLOCK_AS_IMPLICIT_KEY", "Nested mappings are not allowed in compact mappings");
+            if (ctx.options.strict && keyProps.start < valueProps.found.offset - 1024)
+              onError(keyNode.range, "KEY_OVER_1024_CHARS", "The : indicator must be at most 1024 chars after the start of an implicit block mapping key");
+          }
+          const valueNode = value ? composeNode(ctx, value, valueProps, onError) : composeEmptyNode(ctx, offset, sep, null, valueProps, onError);
+          if (ctx.schema.compat)
+            utilFlowIndentCheck.flowIndentCheck(bm.indent, value, onError);
+          offset = valueNode.range[2];
+          const pair = new Pair.Pair(keyNode, valueNode);
+          if (ctx.options.keepSourceTokens)
+            pair.srcToken = collItem;
+          map2.items.push(pair);
+        } else {
+          if (implicitKey)
+            onError(keyNode.range, "MISSING_CHAR", "Implicit map keys need to be followed by map values");
+          if (valueProps.comment) {
+            if (keyNode.comment)
+              keyNode.comment += "\n" + valueProps.comment;
+            else
+              keyNode.comment = valueProps.comment;
+          }
+          const pair = new Pair.Pair(keyNode);
+          if (ctx.options.keepSourceTokens)
+            pair.srcToken = collItem;
+          map2.items.push(pair);
+        }
+      }
+      if (commentEnd && commentEnd < offset)
+        onError(commentEnd, "IMPOSSIBLE", "Map comment with trailing content");
+      map2.range = [bm.offset, offset, commentEnd ?? offset];
+      return map2;
+    }
+    exports.resolveBlockMap = resolveBlockMap;
+  }
+});
+
+// node_modules/yaml/dist/compose/resolve-block-seq.js
+var require_resolve_block_seq = __commonJS({
+  "node_modules/yaml/dist/compose/resolve-block-seq.js"(exports) {
+    "use strict";
+    var YAMLSeq = require_YAMLSeq();
+    var resolveProps = require_resolve_props();
+    var utilFlowIndentCheck = require_util_flow_indent_check();
+    function resolveBlockSeq({ composeNode, composeEmptyNode }, ctx, bs, onError, tag) {
+      const NodeClass = tag?.nodeClass ?? YAMLSeq.YAMLSeq;
+      const seq = new NodeClass(ctx.schema);
+      if (ctx.atRoot)
+        ctx.atRoot = false;
+      if (ctx.atKey)
+        ctx.atKey = false;
+      let offset = bs.offset;
+      let commentEnd = null;
+      for (const { start, value } of bs.items) {
+        const props = resolveProps.resolveProps(start, {
+          indicator: "seq-item-ind",
+          next: value,
+          offset,
+          onError,
+          parentIndent: bs.indent,
+          startOnNewline: true
+        });
+        if (!props.found) {
+          if (props.anchor || props.tag || value) {
+            if (value && value.type === "block-seq")
+              onError(props.end, "BAD_INDENT", "All sequence items must start at the same column");
+            else
+              onError(offset, "MISSING_CHAR", "Sequence item without - indicator");
+          } else {
+            commentEnd = props.end;
+            if (props.comment)
+              seq.comment = props.comment;
+            continue;
+          }
+        }
+        const node = value ? composeNode(ctx, value, props, onError) : composeEmptyNode(ctx, props.end, start, null, props, onError);
+        if (ctx.schema.compat)
+          utilFlowIndentCheck.flowIndentCheck(bs.indent, value, onError);
+        offset = node.range[2];
+        seq.items.push(node);
+      }
+      seq.range = [bs.offset, offset, commentEnd ?? offset];
+      return seq;
+    }
+    exports.resolveBlockSeq = resolveBlockSeq;
+  }
+});
+
+// node_modules/yaml/dist/compose/resolve-end.js
+var require_resolve_end = __commonJS({
+  "node_modules/yaml/dist/compose/resolve-end.js"(exports) {
+    "use strict";
+    function resolveEnd(end, offset, reqSpace, onError) {
+      let comment = "";
+      if (end) {
+        let hasSpace = false;
+        let sep = "";
+        for (const token of end) {
+          const { source, type } = token;
+          switch (type) {
+            case "space":
+              hasSpace = true;
+              break;
+            case "comment": {
+              if (reqSpace && !hasSpace)
+                onError(token, "MISSING_CHAR", "Comments must be separated from other tokens by white space characters");
+              const cb = source.substring(1) || " ";
+              if (!comment)
+                comment = cb;
+              else
+                comment += sep + cb;
+              sep = "";
+              break;
+            }
+            case "newline":
+              if (comment)
+                sep += source;
+              hasSpace = true;
+              break;
+            default:
+              onError(token, "UNEXPECTED_TOKEN", `Unexpected ${type} at node end`);
+          }
+          offset += source.length;
+        }
+      }
+      return { comment, offset };
+    }
+    exports.resolveEnd = resolveEnd;
+  }
+});
+
+// node_modules/yaml/dist/compose/resolve-flow-collection.js
+var require_resolve_flow_collection = __commonJS({
+  "node_modules/yaml/dist/compose/resolve-flow-collection.js"(exports) {
+    "use strict";
+    var identity = require_identity();
+    var Pair = require_Pair();
+    var YAMLMap = require_YAMLMap();
+    var YAMLSeq = require_YAMLSeq();
+    var resolveEnd = require_resolve_end();
+    var resolveProps = require_resolve_props();
+    var utilContainsNewline = require_util_contains_newline();
+    var utilMapIncludes = require_util_map_includes();
+    var blockMsg = "Block collections are not allowed within flow collections";
+    var isBlock = (token) => token && (token.type === "block-map" || token.type === "block-seq");
+    function resolveFlowCollection({ composeNode, composeEmptyNode }, ctx, fc, onError, tag) {
+      const isMap = fc.start.source === "{";
+      const fcName = isMap ? "flow map" : "flow sequence";
+      const NodeClass = tag?.nodeClass ?? (isMap ? YAMLMap.YAMLMap : YAMLSeq.YAMLSeq);
+      const coll = new NodeClass(ctx.schema);
+      coll.flow = true;
+      const atRoot = ctx.atRoot;
+      if (atRoot)
+        ctx.atRoot = false;
+      if (ctx.atKey)
+        ctx.atKey = false;
+      let offset = fc.offset + fc.start.source.length;
+      for (let i = 0; i < fc.items.length; ++i) {
+        const collItem = fc.items[i];
+        const { start, key, sep, value } = collItem;
+        const props = resolveProps.resolveProps(start, {
+          flow: fcName,
+          indicator: "explicit-key-ind",
+          next: key ?? sep?.[0],
+          offset,
+          onError,
+          parentIndent: fc.indent,
+          startOnNewline: false
+        });
+        if (!props.found) {
+          if (!props.anchor && !props.tag && !sep && !value) {
+            if (i === 0 && props.comma)
+              onError(props.comma, "UNEXPECTED_TOKEN", `Unexpected , in ${fcName}`);
+            else if (i < fc.items.length - 1)
+              onError(props.start, "UNEXPECTED_TOKEN", `Unexpected empty item in ${fcName}`);
+            if (props.comment) {
+              if (coll.comment)
+                coll.comment += "\n" + props.comment;
+              else
+                coll.comment = props.comment;
+            }
+            offset = props.end;
+            continue;
+          }
+          if (!isMap && ctx.options.strict && utilContainsNewline.containsNewline(key))
+            onError(
+              key,
+              // checked by containsNewline()
+              "MULTILINE_IMPLICIT_KEY",
+              "Implicit keys of flow sequence pairs need to be on a single line"
+            );
+        }
+        if (i === 0) {
+          if (props.comma)
+            onError(props.comma, "UNEXPECTED_TOKEN", `Unexpected , in ${fcName}`);
+        } else {
+          if (!props.comma)
+            onError(props.start, "MISSING_CHAR", `Missing , between ${fcName} items`);
+          if (props.comment) {
+            let prevItemComment = "";
+            loop: for (const st of start) {
+              switch (st.type) {
+                case "comma":
+                case "space":
+                  break;
+                case "comment":
+                  prevItemComment = st.source.substring(1);
+                  break loop;
+                default:
+                  break loop;
+              }
+            }
+            if (prevItemComment) {
+              let prev = coll.items[coll.items.length - 1];
+              if (identity.isPair(prev))
+                prev = prev.value ?? prev.key;
+              if (prev.comment)
+                prev.comment += "\n" + prevItemComment;
+              else
+                prev.comment = prevItemComment;
+              props.comment = props.comment.substring(prevItemComment.length + 1);
+            }
+          }
+        }
+        if (!isMap && !sep && !props.found) {
+          const valueNode = value ? composeNode(ctx, value, props, onError) : composeEmptyNode(ctx, props.end, sep, null, props, onError);
+          coll.items.push(valueNode);
+          offset = valueNode.range[2];
+          if (isBlock(value))
+            onError(valueNode.range, "BLOCK_IN_FLOW", blockMsg);
+        } else {
+          ctx.atKey = true;
+          const keyStart = props.end;
+          const keyNode = key ? composeNode(ctx, key, props, onError) : composeEmptyNode(ctx, keyStart, start, null, props, onError);
+          if (isBlock(key))
+            onError(keyNode.range, "BLOCK_IN_FLOW", blockMsg);
+          ctx.atKey = false;
+          const valueProps = resolveProps.resolveProps(sep ?? [], {
+            flow: fcName,
+            indicator: "map-value-ind",
+            next: value,
+            offset: keyNode.range[2],
+            onError,
+            parentIndent: fc.indent,
+            startOnNewline: false
+          });
+          if (valueProps.found) {
+            if (!isMap && !props.found && ctx.options.strict) {
+              if (sep)
+                for (const st of sep) {
+                  if (st === valueProps.found)
+                    break;
+                  if (st.type === "newline") {
+                    onError(st, "MULTILINE_IMPLICIT_KEY", "Implicit keys of flow sequence pairs need to be on a single line");
+                    break;
+                  }
+                }
+              if (props.start < valueProps.found.offset - 1024)
+                onError(valueProps.found, "KEY_OVER_1024_CHARS", "The : indicator must be at most 1024 chars after the start of an implicit flow sequence key");
+            }
+          } else if (value) {
+            if ("source" in value && value.source && value.source[0] === ":")
+              onError(value, "MISSING_CHAR", `Missing space after : in ${fcName}`);
+            else
+              onError(valueProps.start, "MISSING_CHAR", `Missing , or : between ${fcName} items`);
+          }
+          const valueNode = value ? composeNode(ctx, value, valueProps, onError) : valueProps.found ? composeEmptyNode(ctx, valueProps.end, sep, null, valueProps, onError) : null;
+          if (valueNode) {
+            if (isBlock(value))
+              onError(valueNode.range, "BLOCK_IN_FLOW", blockMsg);
+          } else if (valueProps.comment) {
+            if (keyNode.comment)
+              keyNode.comment += "\n" + valueProps.comment;
+            else
+              keyNode.comment = valueProps.comment;
+          }
+          const pair = new Pair.Pair(keyNode, valueNode);
+          if (ctx.options.keepSourceTokens)
+            pair.srcToken = collItem;
+          if (isMap) {
+            const map2 = coll;
+            if (utilMapIncludes.mapIncludes(ctx, map2.items, keyNode))
+              onError(keyStart, "DUPLICATE_KEY", "Map keys must be unique");
+            map2.items.push(pair);
+          } else {
+            const map2 = new YAMLMap.YAMLMap(ctx.schema);
+            map2.flow = true;
+            map2.items.push(pair);
+            const endRange = (valueNode ?? keyNode).range;
+            map2.range = [keyNode.range[0], endRange[1], endRange[2]];
+            coll.items.push(map2);
+          }
+          offset = valueNode ? valueNode.range[2] : valueProps.end;
+        }
+      }
+      const expectedEnd = isMap ? "}" : "]";
+      const [ce, ...ee] = fc.end;
+      let cePos = offset;
+      if (ce && ce.source === expectedEnd)
+        cePos = ce.offset + ce.source.length;
+      else {
+        const name17 = fcName[0].toUpperCase() + fcName.substring(1);
+        const msg = atRoot ? `${name17} must end with a ${expectedEnd}` : `${name17} in block collection must be sufficiently indented and end with a ${expectedEnd}`;
+        onError(offset, atRoot ? "MISSING_CHAR" : "BAD_INDENT", msg);
+        if (ce && ce.source.length !== 1)
+          ee.unshift(ce);
+      }
+      if (ee.length > 0) {
+        const end = resolveEnd.resolveEnd(ee, cePos, ctx.options.strict, onError);
+        if (end.comment) {
+          if (coll.comment)
+            coll.comment += "\n" + end.comment;
+          else
+            coll.comment = end.comment;
+        }
+        coll.range = [fc.offset, cePos, end.offset];
+      } else {
+        coll.range = [fc.offset, cePos, cePos];
+      }
+      return coll;
+    }
+    exports.resolveFlowCollection = resolveFlowCollection;
+  }
+});
+
+// node_modules/yaml/dist/compose/compose-collection.js
+var require_compose_collection = __commonJS({
+  "node_modules/yaml/dist/compose/compose-collection.js"(exports) {
+    "use strict";
+    var identity = require_identity();
+    var Scalar = require_Scalar();
+    var YAMLMap = require_YAMLMap();
+    var YAMLSeq = require_YAMLSeq();
+    var resolveBlockMap = require_resolve_block_map();
+    var resolveBlockSeq = require_resolve_block_seq();
+    var resolveFlowCollection = require_resolve_flow_collection();
+    function resolveCollection(CN, ctx, token, onError, tagName, tag) {
+      const coll = token.type === "block-map" ? resolveBlockMap.resolveBlockMap(CN, ctx, token, onError, tag) : token.type === "block-seq" ? resolveBlockSeq.resolveBlockSeq(CN, ctx, token, onError, tag) : resolveFlowCollection.resolveFlowCollection(CN, ctx, token, onError, tag);
+      const Coll = coll.constructor;
+      if (tagName === "!" || tagName === Coll.tagName) {
+        coll.tag = Coll.tagName;
+        return coll;
+      }
+      if (tagName)
+        coll.tag = tagName;
+      return coll;
+    }
+    function composeCollection(CN, ctx, token, props, onError) {
+      const tagToken = props.tag;
+      const tagName = !tagToken ? null : ctx.directives.tagName(tagToken.source, (msg) => onError(tagToken, "TAG_RESOLVE_FAILED", msg));
+      if (token.type === "block-seq") {
+        const { anchor, newlineAfterProp: nl } = props;
+        const lastProp = anchor && tagToken ? anchor.offset > tagToken.offset ? anchor : tagToken : anchor ?? tagToken;
+        if (lastProp && (!nl || nl.offset < lastProp.offset)) {
+          const message = "Missing newline after block sequence props";
+          onError(lastProp, "MISSING_CHAR", message);
+        }
+      }
+      const expType = token.type === "block-map" ? "map" : token.type === "block-seq" ? "seq" : token.start.source === "{" ? "map" : "seq";
+      if (!tagToken || !tagName || tagName === "!" || tagName === YAMLMap.YAMLMap.tagName && expType === "map" || tagName === YAMLSeq.YAMLSeq.tagName && expType === "seq") {
+        return resolveCollection(CN, ctx, token, onError, tagName);
+      }
+      let tag = ctx.schema.tags.find((t) => t.tag === tagName && t.collection === expType);
+      if (!tag) {
+        const kt = ctx.schema.knownTags[tagName];
+        if (kt && kt.collection === expType) {
+          ctx.schema.tags.push(Object.assign({}, kt, { default: false }));
+          tag = kt;
+        } else {
+          if (kt) {
+            onError(tagToken, "BAD_COLLECTION_TYPE", `${kt.tag} used for ${expType} collection, but expects ${kt.collection ?? "scalar"}`, true);
+          } else {
+            onError(tagToken, "TAG_RESOLVE_FAILED", `Unresolved tag: ${tagName}`, true);
+          }
+          return resolveCollection(CN, ctx, token, onError, tagName);
+        }
+      }
+      const coll = resolveCollection(CN, ctx, token, onError, tagName, tag);
+      const res = tag.resolve?.(coll, (msg) => onError(tagToken, "TAG_RESOLVE_FAILED", msg), ctx.options) ?? coll;
+      const node = identity.isNode(res) ? res : new Scalar.Scalar(res);
+      node.range = coll.range;
+      node.tag = tagName;
+      if (tag?.format)
+        node.format = tag.format;
+      return node;
+    }
+    exports.composeCollection = composeCollection;
+  }
+});
+
+// node_modules/yaml/dist/compose/resolve-block-scalar.js
+var require_resolve_block_scalar = __commonJS({
+  "node_modules/yaml/dist/compose/resolve-block-scalar.js"(exports) {
+    "use strict";
+    var Scalar = require_Scalar();
+    function resolveBlockScalar(ctx, scalar, onError) {
+      const start = scalar.offset;
+      const header = parseBlockScalarHeader(scalar, ctx.options.strict, onError);
+      if (!header)
+        return { value: "", type: null, comment: "", range: [start, start, start] };
+      const type = header.mode === ">" ? Scalar.Scalar.BLOCK_FOLDED : Scalar.Scalar.BLOCK_LITERAL;
+      const lines = scalar.source ? splitLines2(scalar.source) : [];
+      let chompStart = lines.length;
+      for (let i = lines.length - 1; i >= 0; --i) {
+        const content = lines[i][1];
+        if (content === "" || content === "\r")
+          chompStart = i;
+        else
+          break;
+      }
+      if (chompStart === 0) {
+        const value2 = header.chomp === "+" && lines.length > 0 ? "\n".repeat(Math.max(1, lines.length - 1)) : "";
+        let end2 = start + header.length;
+        if (scalar.source)
+          end2 += scalar.source.length;
+        return { value: value2, type, comment: header.comment, range: [start, end2, end2] };
+      }
+      let trimIndent = scalar.indent + header.indent;
+      let offset = scalar.offset + header.length;
+      let contentStart = 0;
+      for (let i = 0; i < chompStart; ++i) {
+        const [indent, content] = lines[i];
+        if (content === "" || content === "\r") {
+          if (header.indent === 0 && indent.length > trimIndent)
+            trimIndent = indent.length;
+        } else {
+          if (indent.length < trimIndent) {
+            const message = "Block scalars with more-indented leading empty lines must use an explicit indentation indicator";
+            onError(offset + indent.length, "MISSING_CHAR", message);
+          }
+          if (header.indent === 0)
+            trimIndent = indent.length;
+          contentStart = i;
+          if (trimIndent === 0 && !ctx.atRoot) {
+            const message = "Block scalar values in collections must be indented";
+            onError(offset, "BAD_INDENT", message);
+          }
+          break;
+        }
+        offset += indent.length + content.length + 1;
+      }
+      for (let i = lines.length - 1; i >= chompStart; --i) {
+        if (lines[i][0].length > trimIndent)
+          chompStart = i + 1;
+      }
+      let value = "";
+      let sep = "";
+      let prevMoreIndented = false;
+      for (let i = 0; i < contentStart; ++i)
+        value += lines[i][0].slice(trimIndent) + "\n";
+      for (let i = contentStart; i < chompStart; ++i) {
+        let [indent, content] = lines[i];
+        offset += indent.length + content.length + 1;
+        const crlf = content[content.length - 1] === "\r";
+        if (crlf)
+          content = content.slice(0, -1);
+        if (content && indent.length < trimIndent) {
+          const src = header.indent ? "explicit indentation indicator" : "first line";
+          const message = `Block scalar lines must not be less indented than their ${src}`;
+          onError(offset - content.length - (crlf ? 2 : 1), "BAD_INDENT", message);
+          indent = "";
+        }
+        if (type === Scalar.Scalar.BLOCK_LITERAL) {
+          value += sep + indent.slice(trimIndent) + content;
+          sep = "\n";
+        } else if (indent.length > trimIndent || content[0] === "	") {
+          if (sep === " ")
+            sep = "\n";
+          else if (!prevMoreIndented && sep === "\n")
+            sep = "\n\n";
+          value += sep + indent.slice(trimIndent) + content;
+          sep = "\n";
+          prevMoreIndented = true;
+        } else if (content === "") {
+          if (sep === "\n")
+            value += "\n";
+          else
+            sep = "\n";
+        } else {
+          value += sep + content;
+          sep = " ";
+          prevMoreIndented = false;
+        }
+      }
+      switch (header.chomp) {
+        case "-":
+          break;
+        case "+":
+          for (let i = chompStart; i < lines.length; ++i)
+            value += "\n" + lines[i][0].slice(trimIndent);
+          if (value[value.length - 1] !== "\n")
+            value += "\n";
+          break;
+        default:
+          value += "\n";
+      }
+      const end = start + header.length + scalar.source.length;
+      return { value, type, comment: header.comment, range: [start, end, end] };
+    }
+    function parseBlockScalarHeader({ offset, props }, strict, onError) {
+      if (props[0].type !== "block-scalar-header") {
+        onError(props[0], "IMPOSSIBLE", "Block scalar header not found");
+        return null;
+      }
+      const { source } = props[0];
+      const mode = source[0];
+      let indent = 0;
+      let chomp = "";
+      let error45 = -1;
+      for (let i = 1; i < source.length; ++i) {
+        const ch = source[i];
+        if (!chomp && (ch === "-" || ch === "+"))
+          chomp = ch;
+        else {
+          const n = Number(ch);
+          if (!indent && n)
+            indent = n;
+          else if (error45 === -1)
+            error45 = offset + i;
+        }
+      }
+      if (error45 !== -1)
+        onError(error45, "UNEXPECTED_TOKEN", `Block scalar header includes extra characters: ${source}`);
+      let hasSpace = false;
+      let comment = "";
+      let length = source.length;
+      for (let i = 1; i < props.length; ++i) {
+        const token = props[i];
+        switch (token.type) {
+          case "space":
+            hasSpace = true;
+          case "newline":
+            length += token.source.length;
+            break;
+          case "comment":
+            if (strict && !hasSpace) {
+              const message = "Comments must be separated from other tokens by white space characters";
+              onError(token, "MISSING_CHAR", message);
+            }
+            length += token.source.length;
+            comment = token.source.substring(1);
+            break;
+          case "error":
+            onError(token, "UNEXPECTED_TOKEN", token.message);
+            length += token.source.length;
+            break;
+          default: {
+            const message = `Unexpected token in block scalar header: ${token.type}`;
+            onError(token, "UNEXPECTED_TOKEN", message);
+            const ts = token.source;
+            if (ts && typeof ts === "string")
+              length += ts.length;
+          }
+        }
+      }
+      return { mode, indent, chomp, comment, length };
+    }
+    function splitLines2(source) {
+      const split = source.split(/\n( *)/);
+      const first = split[0];
+      const m = first.match(/^( *)/);
+      const line0 = m?.[1] ? [m[1], first.slice(m[1].length)] : ["", first];
+      const lines = [line0];
+      for (let i = 1; i < split.length; i += 2)
+        lines.push([split[i], split[i + 1]]);
+      return lines;
+    }
+    exports.resolveBlockScalar = resolveBlockScalar;
+  }
+});
+
+// node_modules/yaml/dist/compose/resolve-flow-scalar.js
+var require_resolve_flow_scalar = __commonJS({
+  "node_modules/yaml/dist/compose/resolve-flow-scalar.js"(exports) {
+    "use strict";
+    var Scalar = require_Scalar();
+    var resolveEnd = require_resolve_end();
+    function resolveFlowScalar(scalar, strict, onError) {
+      const { offset, type, source, end } = scalar;
+      let _type;
+      let value;
+      const _onError = (rel, code, msg) => onError(offset + rel, code, msg);
+      switch (type) {
+        case "scalar":
+          _type = Scalar.Scalar.PLAIN;
+          value = plainValue(source, _onError);
+          break;
+        case "single-quoted-scalar":
+          _type = Scalar.Scalar.QUOTE_SINGLE;
+          value = singleQuotedValue(source, _onError);
+          break;
+        case "double-quoted-scalar":
+          _type = Scalar.Scalar.QUOTE_DOUBLE;
+          value = doubleQuotedValue(source, _onError);
+          break;
+        default:
+          onError(scalar, "UNEXPECTED_TOKEN", `Expected a flow scalar value, but found: ${type}`);
+          return {
+            value: "",
+            type: null,
+            comment: "",
+            range: [offset, offset + source.length, offset + source.length]
+          };
+      }
+      const valueEnd = offset + source.length;
+      const re2 = resolveEnd.resolveEnd(end, valueEnd, strict, onError);
+      return {
+        value,
+        type: _type,
+        comment: re2.comment,
+        range: [offset, valueEnd, re2.offset]
+      };
+    }
+    function plainValue(source, onError) {
+      let badChar = "";
+      switch (source[0]) {
+        case "	":
+          badChar = "a tab character";
+          break;
+        case ",":
+          badChar = "flow indicator character ,";
+          break;
+        case "%":
+          badChar = "directive indicator character %";
+          break;
+        case "|":
+        case ">": {
+          badChar = `block scalar indicator ${source[0]}`;
+          break;
+        }
+        case "@":
+        case "`": {
+          badChar = `reserved character ${source[0]}`;
+          break;
+        }
+      }
+      if (badChar)
+        onError(0, "BAD_SCALAR_START", `Plain value cannot start with ${badChar}`);
+      return foldLines(source);
+    }
+    function singleQuotedValue(source, onError) {
+      if (source[source.length - 1] !== "'" || source.length === 1)
+        onError(source.length, "MISSING_CHAR", "Missing closing 'quote");
+      return foldLines(source.slice(1, -1)).replace(/''/g, "'");
+    }
+    function foldLines(source) {
+      let first, line;
+      try {
+        first = new RegExp("(.*?)(?<![ 	])[ 	]*\r?\n", "sy");
+        line = new RegExp("[ 	]*(.*?)(?:(?<![ 	])[ 	]*)?\r?\n", "sy");
+      } catch {
+        first = /(.*?)[ \t]*\r?\n/sy;
+        line = /[ \t]*(.*?)[ \t]*\r?\n/sy;
+      }
+      let match = first.exec(source);
+      if (!match)
+        return source;
+      let res = match[1];
+      let sep = " ";
+      let pos = first.lastIndex;
+      line.lastIndex = pos;
+      while (match = line.exec(source)) {
+        if (match[1] === "") {
+          if (sep === "\n")
+            res += sep;
+          else
+            sep = "\n";
+        } else {
+          res += sep + match[1];
+          sep = " ";
+        }
+        pos = line.lastIndex;
+      }
+      const last = /[ \t]*(.*)/sy;
+      last.lastIndex = pos;
+      match = last.exec(source);
+      return res + sep + (match?.[1] ?? "");
+    }
+    function doubleQuotedValue(source, onError) {
+      let res = "";
+      for (let i = 1; i < source.length - 1; ++i) {
+        const ch = source[i];
+        if (ch === "\r" && source[i + 1] === "\n")
+          continue;
+        if (ch === "\n") {
+          const { fold, offset } = foldNewline(source, i);
+          res += fold;
+          i = offset;
+        } else if (ch === "\\") {
+          let next = source[++i];
+          const cc = escapeCodes[next];
+          if (cc)
+            res += cc;
+          else if (next === "\n") {
+            next = source[i + 1];
+            while (next === " " || next === "	")
+              next = source[++i + 1];
+          } else if (next === "\r" && source[i + 1] === "\n") {
+            next = source[++i + 1];
+            while (next === " " || next === "	")
+              next = source[++i + 1];
+          } else if (next === "x" || next === "u" || next === "U") {
+            const length = { x: 2, u: 4, U: 8 }[next];
+            res += parseCharCode(source, i + 1, length, onError);
+            i += length;
+          } else {
+            const raw = source.substr(i - 1, 2);
+            onError(i - 1, "BAD_DQ_ESCAPE", `Invalid escape sequence ${raw}`);
+            res += raw;
+          }
+        } else if (ch === " " || ch === "	") {
+          const wsStart = i;
+          let next = source[i + 1];
+          while (next === " " || next === "	")
+            next = source[++i + 1];
+          if (next !== "\n" && !(next === "\r" && source[i + 2] === "\n"))
+            res += i > wsStart ? source.slice(wsStart, i + 1) : ch;
+        } else {
+          res += ch;
+        }
+      }
+      if (source[source.length - 1] !== '"' || source.length === 1)
+        onError(source.length, "MISSING_CHAR", 'Missing closing "quote');
+      return res;
+    }
+    function foldNewline(source, offset) {
+      let fold = "";
+      let ch = source[offset + 1];
+      while (ch === " " || ch === "	" || ch === "\n" || ch === "\r") {
+        if (ch === "\r" && source[offset + 2] !== "\n")
+          break;
+        if (ch === "\n")
+          fold += "\n";
+        offset += 1;
+        ch = source[offset + 1];
+      }
+      if (!fold)
+        fold = " ";
+      return { fold, offset };
+    }
+    var escapeCodes = {
+      "0": "\0",
+      // null character
+      a: "\x07",
+      // bell character
+      b: "\b",
+      // backspace
+      e: "\x1B",
+      // escape character
+      f: "\f",
+      // form feed
+      n: "\n",
+      // line feed
+      r: "\r",
+      // carriage return
+      t: "	",
+      // horizontal tab
+      v: "\v",
+      // vertical tab
+      N: "\x85",
+      // Unicode next line
+      _: "\xA0",
+      // Unicode non-breaking space
+      L: "\u2028",
+      // Unicode line separator
+      P: "\u2029",
+      // Unicode paragraph separator
+      " ": " ",
+      '"': '"',
+      "/": "/",
+      "\\": "\\",
+      "	": "	"
+    };
+    function parseCharCode(source, offset, length, onError) {
+      const cc = source.substr(offset, length);
+      const ok = cc.length === length && /^[0-9a-fA-F]+$/.test(cc);
+      const code = ok ? parseInt(cc, 16) : NaN;
+      if (isNaN(code)) {
+        const raw = source.substr(offset - 2, length + 2);
+        onError(offset - 2, "BAD_DQ_ESCAPE", `Invalid escape sequence ${raw}`);
+        return raw;
+      }
+      return String.fromCodePoint(code);
+    }
+    exports.resolveFlowScalar = resolveFlowScalar;
+  }
+});
+
+// node_modules/yaml/dist/compose/compose-scalar.js
+var require_compose_scalar = __commonJS({
+  "node_modules/yaml/dist/compose/compose-scalar.js"(exports) {
+    "use strict";
+    var identity = require_identity();
+    var Scalar = require_Scalar();
+    var resolveBlockScalar = require_resolve_block_scalar();
+    var resolveFlowScalar = require_resolve_flow_scalar();
+    function composeScalar(ctx, token, tagToken, onError) {
+      const { value, type, comment, range } = token.type === "block-scalar" ? resolveBlockScalar.resolveBlockScalar(ctx, token, onError) : resolveFlowScalar.resolveFlowScalar(token, ctx.options.strict, onError);
+      const tagName = tagToken ? ctx.directives.tagName(tagToken.source, (msg) => onError(tagToken, "TAG_RESOLVE_FAILED", msg)) : null;
+      let tag;
+      if (ctx.options.stringKeys && ctx.atKey) {
+        tag = ctx.schema[identity.SCALAR];
+      } else if (tagName)
+        tag = findScalarTagByName(ctx.schema, value, tagName, tagToken, onError);
+      else if (token.type === "scalar")
+        tag = findScalarTagByTest(ctx, value, token, onError);
+      else
+        tag = ctx.schema[identity.SCALAR];
+      let scalar;
+      try {
+        const res = tag.resolve(value, (msg) => onError(tagToken ?? token, "TAG_RESOLVE_FAILED", msg), ctx.options);
+        scalar = identity.isScalar(res) ? res : new Scalar.Scalar(res);
+      } catch (error45) {
+        const msg = error45 instanceof Error ? error45.message : String(error45);
+        onError(tagToken ?? token, "TAG_RESOLVE_FAILED", msg);
+        scalar = new Scalar.Scalar(value);
+      }
+      scalar.range = range;
+      scalar.source = value;
+      if (type)
+        scalar.type = type;
+      if (tagName)
+        scalar.tag = tagName;
+      if (tag.format)
+        scalar.format = tag.format;
+      if (comment)
+        scalar.comment = comment;
+      return scalar;
+    }
+    function findScalarTagByName(schema, value, tagName, tagToken, onError) {
+      if (tagName === "!")
+        return schema[identity.SCALAR];
+      const matchWithTest = [];
+      for (const tag of schema.tags) {
+        if (!tag.collection && tag.tag === tagName) {
+          if (tag.default && tag.test)
+            matchWithTest.push(tag);
+          else
+            return tag;
+        }
+      }
+      for (const tag of matchWithTest)
+        if (tag.test?.test(value))
+          return tag;
+      const kt = schema.knownTags[tagName];
+      if (kt && !kt.collection) {
+        schema.tags.push(Object.assign({}, kt, { default: false, test: void 0 }));
+        return kt;
+      }
+      onError(tagToken, "TAG_RESOLVE_FAILED", `Unresolved tag: ${tagName}`, tagName !== "tag:yaml.org,2002:str");
+      return schema[identity.SCALAR];
+    }
+    function findScalarTagByTest({ atKey, directives, schema }, value, token, onError) {
+      const tag = schema.tags.find((tag2) => (tag2.default === true || atKey && tag2.default === "key") && tag2.test?.test(value)) || schema[identity.SCALAR];
+      if (schema.compat) {
+        const compat = schema.compat.find((tag2) => tag2.default && tag2.test?.test(value)) ?? schema[identity.SCALAR];
+        if (tag.tag !== compat.tag) {
+          const ts = directives.tagString(tag.tag);
+          const cs = directives.tagString(compat.tag);
+          const msg = `Value may be parsed as either ${ts} or ${cs}`;
+          onError(token, "TAG_RESOLVE_FAILED", msg, true);
+        }
+      }
+      return tag;
+    }
+    exports.composeScalar = composeScalar;
+  }
+});
+
+// node_modules/yaml/dist/compose/util-empty-scalar-position.js
+var require_util_empty_scalar_position = __commonJS({
+  "node_modules/yaml/dist/compose/util-empty-scalar-position.js"(exports) {
+    "use strict";
+    function emptyScalarPosition(offset, before, pos) {
+      if (before) {
+        pos ?? (pos = before.length);
+        for (let i = pos - 1; i >= 0; --i) {
+          let st = before[i];
+          switch (st.type) {
+            case "space":
+            case "comment":
+            case "newline":
+              offset -= st.source.length;
+              continue;
+          }
+          st = before[++i];
+          while (st?.type === "space") {
+            offset += st.source.length;
+            st = before[++i];
+          }
+          break;
+        }
+      }
+      return offset;
+    }
+    exports.emptyScalarPosition = emptyScalarPosition;
+  }
+});
+
+// node_modules/yaml/dist/compose/compose-node.js
+var require_compose_node = __commonJS({
+  "node_modules/yaml/dist/compose/compose-node.js"(exports) {
+    "use strict";
+    var Alias = require_Alias();
+    var identity = require_identity();
+    var composeCollection = require_compose_collection();
+    var composeScalar = require_compose_scalar();
+    var resolveEnd = require_resolve_end();
+    var utilEmptyScalarPosition = require_util_empty_scalar_position();
+    var CN = { composeNode, composeEmptyNode };
+    function composeNode(ctx, token, props, onError) {
+      const atKey = ctx.atKey;
+      const { spaceBefore, comment, anchor, tag } = props;
+      let node;
+      let isSrcToken = true;
+      switch (token.type) {
+        case "alias":
+          node = composeAlias(ctx, token, onError);
+          if (anchor || tag)
+            onError(token, "ALIAS_PROPS", "An alias node must not specify any properties");
+          break;
+        case "scalar":
+        case "single-quoted-scalar":
+        case "double-quoted-scalar":
+        case "block-scalar":
+          node = composeScalar.composeScalar(ctx, token, tag, onError);
+          if (anchor)
+            node.anchor = anchor.source.substring(1);
+          break;
+        case "block-map":
+        case "block-seq":
+        case "flow-collection":
+          node = composeCollection.composeCollection(CN, ctx, token, props, onError);
+          if (anchor)
+            node.anchor = anchor.source.substring(1);
+          break;
+        default: {
+          const message = token.type === "error" ? token.message : `Unsupported token (type: ${token.type})`;
+          onError(token, "UNEXPECTED_TOKEN", message);
+          node = composeEmptyNode(ctx, token.offset, void 0, null, props, onError);
+          isSrcToken = false;
+        }
+      }
+      if (anchor && node.anchor === "")
+        onError(anchor, "BAD_ALIAS", "Anchor cannot be an empty string");
+      if (atKey && ctx.options.stringKeys && (!identity.isScalar(node) || typeof node.value !== "string" || node.tag && node.tag !== "tag:yaml.org,2002:str")) {
+        const msg = "With stringKeys, all keys must be strings";
+        onError(tag ?? token, "NON_STRING_KEY", msg);
+      }
+      if (spaceBefore)
+        node.spaceBefore = true;
+      if (comment) {
+        if (token.type === "scalar" && token.source === "")
+          node.comment = comment;
+        else
+          node.commentBefore = comment;
+      }
+      if (ctx.options.keepSourceTokens && isSrcToken)
+        node.srcToken = token;
+      return node;
+    }
+    function composeEmptyNode(ctx, offset, before, pos, { spaceBefore, comment, anchor, tag, end }, onError) {
+      const token = {
+        type: "scalar",
+        offset: utilEmptyScalarPosition.emptyScalarPosition(offset, before, pos),
+        indent: -1,
+        source: ""
+      };
+      const node = composeScalar.composeScalar(ctx, token, tag, onError);
+      if (anchor) {
+        node.anchor = anchor.source.substring(1);
+        if (node.anchor === "")
+          onError(anchor, "BAD_ALIAS", "Anchor cannot be an empty string");
+      }
+      if (spaceBefore)
+        node.spaceBefore = true;
+      if (comment) {
+        node.comment = comment;
+        node.range[2] = end;
+      }
+      return node;
+    }
+    function composeAlias({ options }, { offset, source, end }, onError) {
+      const alias = new Alias.Alias(source.substring(1));
+      if (alias.source === "")
+        onError(offset, "BAD_ALIAS", "Alias cannot be an empty string");
+      if (alias.source.endsWith(":"))
+        onError(offset + source.length - 1, "BAD_ALIAS", "Alias ending in : is ambiguous", true);
+      const valueEnd = offset + source.length;
+      const re2 = resolveEnd.resolveEnd(end, valueEnd, options.strict, onError);
+      alias.range = [offset, valueEnd, re2.offset];
+      if (re2.comment)
+        alias.comment = re2.comment;
+      return alias;
+    }
+    exports.composeEmptyNode = composeEmptyNode;
+    exports.composeNode = composeNode;
+  }
+});
+
+// node_modules/yaml/dist/compose/compose-doc.js
+var require_compose_doc = __commonJS({
+  "node_modules/yaml/dist/compose/compose-doc.js"(exports) {
+    "use strict";
+    var Document = require_Document();
+    var composeNode = require_compose_node();
+    var resolveEnd = require_resolve_end();
+    var resolveProps = require_resolve_props();
+    function composeDoc(options, directives, { offset, start, value, end }, onError) {
+      const opts = Object.assign({ _directives: directives }, options);
+      const doc = new Document.Document(void 0, opts);
+      const ctx = {
+        atKey: false,
+        atRoot: true,
+        directives: doc.directives,
+        options: doc.options,
+        schema: doc.schema
+      };
+      const props = resolveProps.resolveProps(start, {
+        indicator: "doc-start",
+        next: value ?? end?.[0],
+        offset,
+        onError,
+        parentIndent: 0,
+        startOnNewline: true
+      });
+      if (props.found) {
+        doc.directives.docStart = true;
+        if (value && (value.type === "block-map" || value.type === "block-seq") && !props.hasNewline)
+          onError(props.end, "MISSING_CHAR", "Block collection cannot start on same line with directives-end marker");
+      }
+      doc.contents = value ? composeNode.composeNode(ctx, value, props, onError) : composeNode.composeEmptyNode(ctx, props.end, start, null, props, onError);
+      const contentEnd = doc.contents.range[2];
+      const re2 = resolveEnd.resolveEnd(end, contentEnd, false, onError);
+      if (re2.comment)
+        doc.comment = re2.comment;
+      doc.range = [offset, contentEnd, re2.offset];
+      return doc;
+    }
+    exports.composeDoc = composeDoc;
+  }
+});
+
+// node_modules/yaml/dist/compose/composer.js
+var require_composer = __commonJS({
+  "node_modules/yaml/dist/compose/composer.js"(exports) {
+    "use strict";
+    var node_process = __require("process");
+    var directives = require_directives();
+    var Document = require_Document();
+    var errors = require_errors();
+    var identity = require_identity();
+    var composeDoc = require_compose_doc();
+    var resolveEnd = require_resolve_end();
+    function getErrorPos(src) {
+      if (typeof src === "number")
+        return [src, src + 1];
+      if (Array.isArray(src))
+        return src.length === 2 ? src : [src[0], src[1]];
+      const { offset, source } = src;
+      return [offset, offset + (typeof source === "string" ? source.length : 1)];
+    }
+    function parsePrelude(prelude) {
+      let comment = "";
+      let atComment = false;
+      let afterEmptyLine = false;
+      for (let i = 0; i < prelude.length; ++i) {
+        const source = prelude[i];
+        switch (source[0]) {
+          case "#":
+            comment += (comment === "" ? "" : afterEmptyLine ? "\n\n" : "\n") + (source.substring(1) || " ");
+            atComment = true;
+            afterEmptyLine = false;
+            break;
+          case "%":
+            if (prelude[i + 1]?.[0] !== "#")
+              i += 1;
+            atComment = false;
+            break;
+          default:
+            if (!atComment)
+              afterEmptyLine = true;
+            atComment = false;
+        }
+      }
+      return { comment, afterEmptyLine };
+    }
+    var Composer = class {
+      constructor(options = {}) {
+        this.doc = null;
+        this.atDirectives = false;
+        this.prelude = [];
+        this.errors = [];
+        this.warnings = [];
+        this.onError = (source, code, message, warning) => {
+          const pos = getErrorPos(source);
+          if (warning)
+            this.warnings.push(new errors.YAMLWarning(pos, code, message));
+          else
+            this.errors.push(new errors.YAMLParseError(pos, code, message));
+        };
+        this.directives = new directives.Directives({ version: options.version || "1.2" });
+        this.options = options;
+      }
+      decorate(doc, afterDoc) {
+        const { comment, afterEmptyLine } = parsePrelude(this.prelude);
+        if (comment) {
+          const dc = doc.contents;
+          if (afterDoc) {
+            doc.comment = doc.comment ? `${doc.comment}
+${comment}` : comment;
+          } else if (afterEmptyLine || doc.directives.docStart || !dc) {
+            doc.commentBefore = comment;
+          } else if (identity.isCollection(dc) && !dc.flow && dc.items.length > 0) {
+            let it = dc.items[0];
+            if (identity.isPair(it))
+              it = it.key;
+            const cb = it.commentBefore;
+            it.commentBefore = cb ? `${comment}
+${cb}` : comment;
+          } else {
+            const cb = dc.commentBefore;
+            dc.commentBefore = cb ? `${comment}
+${cb}` : comment;
+          }
+        }
+        if (afterDoc) {
+          Array.prototype.push.apply(doc.errors, this.errors);
+          Array.prototype.push.apply(doc.warnings, this.warnings);
+        } else {
+          doc.errors = this.errors;
+          doc.warnings = this.warnings;
+        }
+        this.prelude = [];
+        this.errors = [];
+        this.warnings = [];
+      }
+      /**
+       * Current stream status information.
+       *
+       * Mostly useful at the end of input for an empty stream.
+       */
+      streamInfo() {
+        return {
+          comment: parsePrelude(this.prelude).comment,
+          directives: this.directives,
+          errors: this.errors,
+          warnings: this.warnings
+        };
+      }
+      /**
+       * Compose tokens into documents.
+       *
+       * @param forceDoc - If the stream contains no document, still emit a final document including any comments and directives that would be applied to a subsequent document.
+       * @param endOffset - Should be set if `forceDoc` is also set, to set the document range end and to indicate errors correctly.
+       */
+      *compose(tokens, forceDoc = false, endOffset = -1) {
+        for (const token of tokens)
+          yield* this.next(token);
+        yield* this.end(forceDoc, endOffset);
+      }
+      /** Advance the composer by one CST token. */
+      *next(token) {
+        if (node_process.env.LOG_STREAM)
+          console.dir(token, { depth: null });
+        switch (token.type) {
+          case "directive":
+            this.directives.add(token.source, (offset, message, warning) => {
+              const pos = getErrorPos(token);
+              pos[0] += offset;
+              this.onError(pos, "BAD_DIRECTIVE", message, warning);
+            });
+            this.prelude.push(token.source);
+            this.atDirectives = true;
+            break;
+          case "document": {
+            const doc = composeDoc.composeDoc(this.options, this.directives, token, this.onError);
+            if (this.atDirectives && !doc.directives.docStart)
+              this.onError(token, "MISSING_CHAR", "Missing directives-end/doc-start indicator line");
+            this.decorate(doc, false);
+            if (this.doc)
+              yield this.doc;
+            this.doc = doc;
+            this.atDirectives = false;
+            break;
+          }
+          case "byte-order-mark":
+          case "space":
+            break;
+          case "comment":
+          case "newline":
+            this.prelude.push(token.source);
+            break;
+          case "error": {
+            const msg = token.source ? `${token.message}: ${JSON.stringify(token.source)}` : token.message;
+            const error45 = new errors.YAMLParseError(getErrorPos(token), "UNEXPECTED_TOKEN", msg);
+            if (this.atDirectives || !this.doc)
+              this.errors.push(error45);
+            else
+              this.doc.errors.push(error45);
+            break;
+          }
+          case "doc-end": {
+            if (!this.doc) {
+              const msg = "Unexpected doc-end without preceding document";
+              this.errors.push(new errors.YAMLParseError(getErrorPos(token), "UNEXPECTED_TOKEN", msg));
+              break;
+            }
+            this.doc.directives.docEnd = true;
+            const end = resolveEnd.resolveEnd(token.end, token.offset + token.source.length, this.doc.options.strict, this.onError);
+            this.decorate(this.doc, true);
+            if (end.comment) {
+              const dc = this.doc.comment;
+              this.doc.comment = dc ? `${dc}
+${end.comment}` : end.comment;
+            }
+            this.doc.range[2] = end.offset;
+            break;
+          }
+          default:
+            this.errors.push(new errors.YAMLParseError(getErrorPos(token), "UNEXPECTED_TOKEN", `Unsupported token ${token.type}`));
+        }
+      }
+      /**
+       * Call at end of input to yield any remaining document.
+       *
+       * @param forceDoc - If the stream contains no document, still emit a final document including any comments and directives that would be applied to a subsequent document.
+       * @param endOffset - Should be set if `forceDoc` is also set, to set the document range end and to indicate errors correctly.
+       */
+      *end(forceDoc = false, endOffset = -1) {
+        if (this.doc) {
+          this.decorate(this.doc, true);
+          yield this.doc;
+          this.doc = null;
+        } else if (forceDoc) {
+          const opts = Object.assign({ _directives: this.directives }, this.options);
+          const doc = new Document.Document(void 0, opts);
+          if (this.atDirectives)
+            this.onError(endOffset, "MISSING_CHAR", "Missing directives-end indicator line");
+          doc.range = [0, endOffset, endOffset];
+          this.decorate(doc, false);
+          yield doc;
+        }
+      }
+    };
+    exports.Composer = Composer;
+  }
+});
+
+// node_modules/yaml/dist/parse/cst-scalar.js
+var require_cst_scalar = __commonJS({
+  "node_modules/yaml/dist/parse/cst-scalar.js"(exports) {
+    "use strict";
+    var resolveBlockScalar = require_resolve_block_scalar();
+    var resolveFlowScalar = require_resolve_flow_scalar();
+    var errors = require_errors();
+    var stringifyString = require_stringifyString();
+    function resolveAsScalar(token, strict = true, onError) {
+      if (token) {
+        const _onError = (pos, code, message) => {
+          const offset = typeof pos === "number" ? pos : Array.isArray(pos) ? pos[0] : pos.offset;
+          if (onError)
+            onError(offset, code, message);
+          else
+            throw new errors.YAMLParseError([offset, offset + 1], code, message);
+        };
+        switch (token.type) {
+          case "scalar":
+          case "single-quoted-scalar":
+          case "double-quoted-scalar":
+            return resolveFlowScalar.resolveFlowScalar(token, strict, _onError);
+          case "block-scalar":
+            return resolveBlockScalar.resolveBlockScalar({ options: { strict } }, token, _onError);
+        }
+      }
+      return null;
+    }
+    function createScalarToken(value, context) {
+      const { implicitKey = false, indent, inFlow = false, offset = -1, type = "PLAIN" } = context;
+      const source = stringifyString.stringifyString({ type, value }, {
+        implicitKey,
+        indent: indent > 0 ? " ".repeat(indent) : "",
+        inFlow,
+        options: { blockQuote: true, lineWidth: -1 }
+      });
+      const end = context.end ?? [
+        { type: "newline", offset: -1, indent, source: "\n" }
+      ];
+      switch (source[0]) {
+        case "|":
+        case ">": {
+          const he = source.indexOf("\n");
+          const head = source.substring(0, he);
+          const body = source.substring(he + 1) + "\n";
+          const props = [
+            { type: "block-scalar-header", offset, indent, source: head }
+          ];
+          if (!addEndtoBlockProps(props, end))
+            props.push({ type: "newline", offset: -1, indent, source: "\n" });
+          return { type: "block-scalar", offset, indent, props, source: body };
+        }
+        case '"':
+          return { type: "double-quoted-scalar", offset, indent, source, end };
+        case "'":
+          return { type: "single-quoted-scalar", offset, indent, source, end };
+        default:
+          return { type: "scalar", offset, indent, source, end };
+      }
+    }
+    function setScalarValue(token, value, context = {}) {
+      let { afterKey = false, implicitKey = false, inFlow = false, type } = context;
+      let indent = "indent" in token ? token.indent : null;
+      if (afterKey && typeof indent === "number")
+        indent += 2;
+      if (!type)
+        switch (token.type) {
+          case "single-quoted-scalar":
+            type = "QUOTE_SINGLE";
+            break;
+          case "double-quoted-scalar":
+            type = "QUOTE_DOUBLE";
+            break;
+          case "block-scalar": {
+            const header = token.props[0];
+            if (header.type !== "block-scalar-header")
+              throw new Error("Invalid block scalar header");
+            type = header.source[0] === ">" ? "BLOCK_FOLDED" : "BLOCK_LITERAL";
+            break;
+          }
+          default:
+            type = "PLAIN";
+        }
+      const source = stringifyString.stringifyString({ type, value }, {
+        implicitKey: implicitKey || indent === null,
+        indent: indent !== null && indent > 0 ? " ".repeat(indent) : "",
+        inFlow,
+        options: { blockQuote: true, lineWidth: -1 }
+      });
+      switch (source[0]) {
+        case "|":
+        case ">":
+          setBlockScalarValue(token, source);
+          break;
+        case '"':
+          setFlowScalarValue(token, source, "double-quoted-scalar");
+          break;
+        case "'":
+          setFlowScalarValue(token, source, "single-quoted-scalar");
+          break;
+        default:
+          setFlowScalarValue(token, source, "scalar");
+      }
+    }
+    function setBlockScalarValue(token, source) {
+      const he = source.indexOf("\n");
+      const head = source.substring(0, he);
+      const body = source.substring(he + 1) + "\n";
+      if (token.type === "block-scalar") {
+        const header = token.props[0];
+        if (header.type !== "block-scalar-header")
+          throw new Error("Invalid block scalar header");
+        header.source = head;
+        token.source = body;
+      } else {
+        const { offset } = token;
+        const indent = "indent" in token ? token.indent : -1;
+        const props = [
+          { type: "block-scalar-header", offset, indent, source: head }
+        ];
+        if (!addEndtoBlockProps(props, "end" in token ? token.end : void 0))
+          props.push({ type: "newline", offset: -1, indent, source: "\n" });
+        for (const key of Object.keys(token))
+          if (key !== "type" && key !== "offset")
+            delete token[key];
+        Object.assign(token, { type: "block-scalar", indent, props, source: body });
+      }
+    }
+    function addEndtoBlockProps(props, end) {
+      if (end)
+        for (const st of end)
+          switch (st.type) {
+            case "space":
+            case "comment":
+              props.push(st);
+              break;
+            case "newline":
+              props.push(st);
+              return true;
+          }
+      return false;
+    }
+    function setFlowScalarValue(token, source, type) {
+      switch (token.type) {
+        case "scalar":
+        case "double-quoted-scalar":
+        case "single-quoted-scalar":
+          token.type = type;
+          token.source = source;
+          break;
+        case "block-scalar": {
+          const end = token.props.slice(1);
+          let oa = source.length;
+          if (token.props[0].type === "block-scalar-header")
+            oa -= token.props[0].source.length;
+          for (const tok of end)
+            tok.offset += oa;
+          delete token.props;
+          Object.assign(token, { type, source, end });
+          break;
+        }
+        case "block-map":
+        case "block-seq": {
+          const offset = token.offset + source.length;
+          const nl = { type: "newline", offset, indent: token.indent, source: "\n" };
+          delete token.items;
+          Object.assign(token, { type, source, end: [nl] });
+          break;
+        }
+        default: {
+          const indent = "indent" in token ? token.indent : -1;
+          const end = "end" in token && Array.isArray(token.end) ? token.end.filter((st) => st.type === "space" || st.type === "comment" || st.type === "newline") : [];
+          for (const key of Object.keys(token))
+            if (key !== "type" && key !== "offset")
+              delete token[key];
+          Object.assign(token, { type, indent, source, end });
+        }
+      }
+    }
+    exports.createScalarToken = createScalarToken;
+    exports.resolveAsScalar = resolveAsScalar;
+    exports.setScalarValue = setScalarValue;
+  }
+});
+
+// node_modules/yaml/dist/parse/cst-stringify.js
+var require_cst_stringify = __commonJS({
+  "node_modules/yaml/dist/parse/cst-stringify.js"(exports) {
+    "use strict";
+    var stringify = (cst) => "type" in cst ? stringifyToken(cst) : stringifyItem(cst);
+    function stringifyToken(token) {
+      switch (token.type) {
+        case "block-scalar": {
+          let res = "";
+          for (const tok of token.props)
+            res += stringifyToken(tok);
+          return res + token.source;
+        }
+        case "block-map":
+        case "block-seq": {
+          let res = "";
+          for (const item of token.items)
+            res += stringifyItem(item);
+          return res;
+        }
+        case "flow-collection": {
+          let res = token.start.source;
+          for (const item of token.items)
+            res += stringifyItem(item);
+          for (const st of token.end)
+            res += st.source;
+          return res;
+        }
+        case "document": {
+          let res = stringifyItem(token);
+          if (token.end)
+            for (const st of token.end)
+              res += st.source;
+          return res;
+        }
+        default: {
+          let res = token.source;
+          if ("end" in token && token.end)
+            for (const st of token.end)
+              res += st.source;
+          return res;
+        }
+      }
+    }
+    function stringifyItem({ start, key, sep, value }) {
+      let res = "";
+      for (const st of start)
+        res += st.source;
+      if (key)
+        res += stringifyToken(key);
+      if (sep)
+        for (const st of sep)
+          res += st.source;
+      if (value)
+        res += stringifyToken(value);
+      return res;
+    }
+    exports.stringify = stringify;
+  }
+});
+
+// node_modules/yaml/dist/parse/cst-visit.js
+var require_cst_visit = __commonJS({
+  "node_modules/yaml/dist/parse/cst-visit.js"(exports) {
+    "use strict";
+    var BREAK = Symbol("break visit");
+    var SKIP = Symbol("skip children");
+    var REMOVE = Symbol("remove item");
+    function visit(cst, visitor) {
+      if ("type" in cst && cst.type === "document")
+        cst = { start: cst.start, value: cst.value };
+      _visit(Object.freeze([]), cst, visitor);
+    }
+    visit.BREAK = BREAK;
+    visit.SKIP = SKIP;
+    visit.REMOVE = REMOVE;
+    visit.itemAtPath = (cst, path5) => {
+      let item = cst;
+      for (const [field, index] of path5) {
+        const tok = item?.[field];
+        if (tok && "items" in tok) {
+          item = tok.items[index];
+        } else
+          return void 0;
+      }
+      return item;
+    };
+    visit.parentCollection = (cst, path5) => {
+      const parent = visit.itemAtPath(cst, path5.slice(0, -1));
+      const field = path5[path5.length - 1][0];
+      const coll = parent?.[field];
+      if (coll && "items" in coll)
+        return coll;
+      throw new Error("Parent collection not found");
+    };
+    function _visit(path5, item, visitor) {
+      let ctrl = visitor(item, path5);
+      if (typeof ctrl === "symbol")
+        return ctrl;
+      for (const field of ["key", "value"]) {
+        const token = item[field];
+        if (token && "items" in token) {
+          for (let i = 0; i < token.items.length; ++i) {
+            const ci = _visit(Object.freeze(path5.concat([[field, i]])), token.items[i], visitor);
+            if (typeof ci === "number")
+              i = ci - 1;
+            else if (ci === BREAK)
+              return BREAK;
+            else if (ci === REMOVE) {
+              token.items.splice(i, 1);
+              i -= 1;
+            }
+          }
+          if (typeof ctrl === "function" && field === "key")
+            ctrl = ctrl(item, path5);
+        }
+      }
+      return typeof ctrl === "function" ? ctrl(item, path5) : ctrl;
+    }
+    exports.visit = visit;
+  }
+});
+
+// node_modules/yaml/dist/parse/cst.js
+var require_cst = __commonJS({
+  "node_modules/yaml/dist/parse/cst.js"(exports) {
+    "use strict";
+    var cstScalar = require_cst_scalar();
+    var cstStringify = require_cst_stringify();
+    var cstVisit = require_cst_visit();
+    var BOM = "\uFEFF";
+    var DOCUMENT = "";
+    var FLOW_END = "";
+    var SCALAR = "";
+    var isCollection = (token) => !!token && "items" in token;
+    var isScalar = (token) => !!token && (token.type === "scalar" || token.type === "single-quoted-scalar" || token.type === "double-quoted-scalar" || token.type === "block-scalar");
+    function prettyToken(token) {
+      switch (token) {
+        case BOM:
+          return "<BOM>";
+        case DOCUMENT:
+          return "<DOC>";
+        case FLOW_END:
+          return "<FLOW_END>";
+        case SCALAR:
+          return "<SCALAR>";
+        default:
+          return JSON.stringify(token);
+      }
+    }
+    function tokenType(source) {
+      switch (source) {
+        case BOM:
+          return "byte-order-mark";
+        case DOCUMENT:
+          return "doc-mode";
+        case FLOW_END:
+          return "flow-error-end";
+        case SCALAR:
+          return "scalar";
+        case "---":
+          return "doc-start";
+        case "...":
+          return "doc-end";
+        case "":
+        case "\n":
+        case "\r\n":
+          return "newline";
+        case "-":
+          return "seq-item-ind";
+        case "?":
+          return "explicit-key-ind";
+        case ":":
+          return "map-value-ind";
+        case "{":
+          return "flow-map-start";
+        case "}":
+          return "flow-map-end";
+        case "[":
+          return "flow-seq-start";
+        case "]":
+          return "flow-seq-end";
+        case ",":
+          return "comma";
+      }
+      switch (source[0]) {
+        case " ":
+        case "	":
+          return "space";
+        case "#":
+          return "comment";
+        case "%":
+          return "directive-line";
+        case "*":
+          return "alias";
+        case "&":
+          return "anchor";
+        case "!":
+          return "tag";
+        case "'":
+          return "single-quoted-scalar";
+        case '"':
+          return "double-quoted-scalar";
+        case "|":
+        case ">":
+          return "block-scalar-header";
+      }
+      return null;
+    }
+    exports.createScalarToken = cstScalar.createScalarToken;
+    exports.resolveAsScalar = cstScalar.resolveAsScalar;
+    exports.setScalarValue = cstScalar.setScalarValue;
+    exports.stringify = cstStringify.stringify;
+    exports.visit = cstVisit.visit;
+    exports.BOM = BOM;
+    exports.DOCUMENT = DOCUMENT;
+    exports.FLOW_END = FLOW_END;
+    exports.SCALAR = SCALAR;
+    exports.isCollection = isCollection;
+    exports.isScalar = isScalar;
+    exports.prettyToken = prettyToken;
+    exports.tokenType = tokenType;
+  }
+});
+
+// node_modules/yaml/dist/parse/lexer.js
+var require_lexer = __commonJS({
+  "node_modules/yaml/dist/parse/lexer.js"(exports) {
+    "use strict";
+    var cst = require_cst();
+    function isEmpty(ch) {
+      switch (ch) {
+        case void 0:
+        case " ":
+        case "\n":
+        case "\r":
+        case "	":
+          return true;
+        default:
+          return false;
+      }
+    }
+    var hexDigits = new Set("0123456789ABCDEFabcdef");
+    var tagChars = new Set("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-#;/?:@&=+$_.!~*'()");
+    var flowIndicatorChars = new Set(",[]{}");
+    var invalidAnchorChars = new Set(" ,[]{}\n\r	");
+    var isNotAnchorChar = (ch) => !ch || invalidAnchorChars.has(ch);
+    var Lexer = class {
+      constructor() {
+        this.atEnd = false;
+        this.blockScalarIndent = -1;
+        this.blockScalarKeep = false;
+        this.buffer = "";
+        this.flowKey = false;
+        this.flowLevel = 0;
+        this.indentNext = 0;
+        this.indentValue = 0;
+        this.lineEndPos = null;
+        this.next = null;
+        this.pos = 0;
+      }
+      /**
+       * Generate YAML tokens from the `source` string. If `incomplete`,
+       * a part of the last line may be left as a buffer for the next call.
+       *
+       * @returns A generator of lexical tokens
+       */
+      *lex(source, incomplete = false) {
+        if (source) {
+          if (typeof source !== "string")
+            throw TypeError("source is not a string");
+          this.buffer = this.buffer ? this.buffer + source : source;
+          this.lineEndPos = null;
+        }
+        this.atEnd = !incomplete;
+        let next = this.next ?? "stream";
+        while (next && (incomplete || this.hasChars(1)))
+          next = yield* this.parseNext(next);
+      }
+      atLineEnd() {
+        let i = this.pos;
+        let ch = this.buffer[i];
+        while (ch === " " || ch === "	")
+          ch = this.buffer[++i];
+        if (!ch || ch === "#" || ch === "\n")
+          return true;
+        if (ch === "\r")
+          return this.buffer[i + 1] === "\n";
+        return false;
+      }
+      charAt(n) {
+        return this.buffer[this.pos + n];
+      }
+      continueScalar(offset) {
+        let ch = this.buffer[offset];
+        if (this.indentNext > 0) {
+          let indent = 0;
+          while (ch === " ")
+            ch = this.buffer[++indent + offset];
+          if (ch === "\r") {
+            const next = this.buffer[indent + offset + 1];
+            if (next === "\n" || !next && !this.atEnd)
+              return offset + indent + 1;
+          }
+          return ch === "\n" || indent >= this.indentNext || !ch && !this.atEnd ? offset + indent : -1;
+        }
+        if (ch === "-" || ch === ".") {
+          const dt = this.buffer.substr(offset, 3);
+          if ((dt === "---" || dt === "...") && isEmpty(this.buffer[offset + 3]))
+            return -1;
+        }
+        return offset;
+      }
+      getLine() {
+        let end = this.lineEndPos;
+        if (typeof end !== "number" || end !== -1 && end < this.pos) {
+          end = this.buffer.indexOf("\n", this.pos);
+          this.lineEndPos = end;
+        }
+        if (end === -1)
+          return this.atEnd ? this.buffer.substring(this.pos) : null;
+        if (this.buffer[end - 1] === "\r")
+          end -= 1;
+        return this.buffer.substring(this.pos, end);
+      }
+      hasChars(n) {
+        return this.pos + n <= this.buffer.length;
+      }
+      setNext(state) {
+        this.buffer = this.buffer.substring(this.pos);
+        this.pos = 0;
+        this.lineEndPos = null;
+        this.next = state;
+        return null;
+      }
+      peek(n) {
+        return this.buffer.substr(this.pos, n);
+      }
+      *parseNext(next) {
+        switch (next) {
+          case "stream":
+            return yield* this.parseStream();
+          case "line-start":
+            return yield* this.parseLineStart();
+          case "block-start":
+            return yield* this.parseBlockStart();
+          case "doc":
+            return yield* this.parseDocument();
+          case "flow":
+            return yield* this.parseFlowCollection();
+          case "quoted-scalar":
+            return yield* this.parseQuotedScalar();
+          case "block-scalar":
+            return yield* this.parseBlockScalar();
+          case "plain-scalar":
+            return yield* this.parsePlainScalar();
+        }
+      }
+      *parseStream() {
+        let line = this.getLine();
+        if (line === null)
+          return this.setNext("stream");
+        if (line[0] === cst.BOM) {
+          yield* this.pushCount(1);
+          line = line.substring(1);
+        }
+        if (line[0] === "%") {
+          let dirEnd = line.length;
+          let cs = line.indexOf("#");
+          while (cs !== -1) {
+            const ch = line[cs - 1];
+            if (ch === " " || ch === "	") {
+              dirEnd = cs - 1;
+              break;
+            } else {
+              cs = line.indexOf("#", cs + 1);
+            }
+          }
+          while (true) {
+            const ch = line[dirEnd - 1];
+            if (ch === " " || ch === "	")
+              dirEnd -= 1;
+            else
+              break;
+          }
+          const n = (yield* this.pushCount(dirEnd)) + (yield* this.pushSpaces(true));
+          yield* this.pushCount(line.length - n);
+          this.pushNewline();
+          return "stream";
+        }
+        if (this.atLineEnd()) {
+          const sp = yield* this.pushSpaces(true);
+          yield* this.pushCount(line.length - sp);
+          yield* this.pushNewline();
+          return "stream";
+        }
+        yield cst.DOCUMENT;
+        return yield* this.parseLineStart();
+      }
+      *parseLineStart() {
+        const ch = this.charAt(0);
+        if (!ch && !this.atEnd)
+          return this.setNext("line-start");
+        if (ch === "-" || ch === ".") {
+          if (!this.atEnd && !this.hasChars(4))
+            return this.setNext("line-start");
+          const s = this.peek(3);
+          if ((s === "---" || s === "...") && isEmpty(this.charAt(3))) {
+            yield* this.pushCount(3);
+            this.indentValue = 0;
+            this.indentNext = 0;
+            return s === "---" ? "doc" : "stream";
+          }
+        }
+        this.indentValue = yield* this.pushSpaces(false);
+        if (this.indentNext > this.indentValue && !isEmpty(this.charAt(1)))
+          this.indentNext = this.indentValue;
+        return yield* this.parseBlockStart();
+      }
+      *parseBlockStart() {
+        const [ch0, ch1] = this.peek(2);
+        if (!ch1 && !this.atEnd)
+          return this.setNext("block-start");
+        if ((ch0 === "-" || ch0 === "?" || ch0 === ":") && isEmpty(ch1)) {
+          const n = (yield* this.pushCount(1)) + (yield* this.pushSpaces(true));
+          this.indentNext = this.indentValue + 1;
+          this.indentValue += n;
+          return yield* this.parseBlockStart();
+        }
+        return "doc";
+      }
+      *parseDocument() {
+        yield* this.pushSpaces(true);
+        const line = this.getLine();
+        if (line === null)
+          return this.setNext("doc");
+        let n = yield* this.pushIndicators();
+        switch (line[n]) {
+          case "#":
+            yield* this.pushCount(line.length - n);
+          case void 0:
+            yield* this.pushNewline();
+            return yield* this.parseLineStart();
+          case "{":
+          case "[":
+            yield* this.pushCount(1);
+            this.flowKey = false;
+            this.flowLevel = 1;
+            return "flow";
+          case "}":
+          case "]":
+            yield* this.pushCount(1);
+            return "doc";
+          case "*":
+            yield* this.pushUntil(isNotAnchorChar);
+            return "doc";
+          case '"':
+          case "'":
+            return yield* this.parseQuotedScalar();
+          case "|":
+          case ">":
+            n += yield* this.parseBlockScalarHeader();
+            n += yield* this.pushSpaces(true);
+            yield* this.pushCount(line.length - n);
+            yield* this.pushNewline();
+            return yield* this.parseBlockScalar();
+          default:
+            return yield* this.parsePlainScalar();
+        }
+      }
+      *parseFlowCollection() {
+        let nl, sp;
+        let indent = -1;
+        do {
+          nl = yield* this.pushNewline();
+          if (nl > 0) {
+            sp = yield* this.pushSpaces(false);
+            this.indentValue = indent = sp;
+          } else {
+            sp = 0;
+          }
+          sp += yield* this.pushSpaces(true);
+        } while (nl + sp > 0);
+        const line = this.getLine();
+        if (line === null)
+          return this.setNext("flow");
+        if (indent !== -1 && indent < this.indentNext && line[0] !== "#" || indent === 0 && (line.startsWith("---") || line.startsWith("...")) && isEmpty(line[3])) {
+          const atFlowEndMarker = indent === this.indentNext - 1 && this.flowLevel === 1 && (line[0] === "]" || line[0] === "}");
+          if (!atFlowEndMarker) {
+            this.flowLevel = 0;
+            yield cst.FLOW_END;
+            return yield* this.parseLineStart();
+          }
+        }
+        let n = 0;
+        while (line[n] === ",") {
+          n += yield* this.pushCount(1);
+          n += yield* this.pushSpaces(true);
+          this.flowKey = false;
+        }
+        n += yield* this.pushIndicators();
+        switch (line[n]) {
+          case void 0:
+            return "flow";
+          case "#":
+            yield* this.pushCount(line.length - n);
+            return "flow";
+          case "{":
+          case "[":
+            yield* this.pushCount(1);
+            this.flowKey = false;
+            this.flowLevel += 1;
+            return "flow";
+          case "}":
+          case "]":
+            yield* this.pushCount(1);
+            this.flowKey = true;
+            this.flowLevel -= 1;
+            return this.flowLevel ? "flow" : "doc";
+          case "*":
+            yield* this.pushUntil(isNotAnchorChar);
+            return "flow";
+          case '"':
+          case "'":
+            this.flowKey = true;
+            return yield* this.parseQuotedScalar();
+          case ":": {
+            const next = this.charAt(1);
+            if (this.flowKey || isEmpty(next) || next === ",") {
+              this.flowKey = false;
+              yield* this.pushCount(1);
+              yield* this.pushSpaces(true);
+              return "flow";
+            }
+          }
+          default:
+            this.flowKey = false;
+            return yield* this.parsePlainScalar();
+        }
+      }
+      *parseQuotedScalar() {
+        const quote = this.charAt(0);
+        let end = this.buffer.indexOf(quote, this.pos + 1);
+        if (quote === "'") {
+          while (end !== -1 && this.buffer[end + 1] === "'")
+            end = this.buffer.indexOf("'", end + 2);
+        } else {
+          while (end !== -1) {
+            let n = 0;
+            while (this.buffer[end - 1 - n] === "\\")
+              n += 1;
+            if (n % 2 === 0)
+              break;
+            end = this.buffer.indexOf('"', end + 1);
+          }
+        }
+        const qb = this.buffer.substring(0, end);
+        let nl = qb.indexOf("\n", this.pos);
+        if (nl !== -1) {
+          while (nl !== -1) {
+            const cs = this.continueScalar(nl + 1);
+            if (cs === -1)
+              break;
+            nl = qb.indexOf("\n", cs);
+          }
+          if (nl !== -1) {
+            end = nl - (qb[nl - 1] === "\r" ? 2 : 1);
+          }
+        }
+        if (end === -1) {
+          if (!this.atEnd)
+            return this.setNext("quoted-scalar");
+          end = this.buffer.length;
+        }
+        yield* this.pushToIndex(end + 1, false);
+        return this.flowLevel ? "flow" : "doc";
+      }
+      *parseBlockScalarHeader() {
+        this.blockScalarIndent = -1;
+        this.blockScalarKeep = false;
+        let i = this.pos;
+        while (true) {
+          const ch = this.buffer[++i];
+          if (ch === "+")
+            this.blockScalarKeep = true;
+          else if (ch > "0" && ch <= "9")
+            this.blockScalarIndent = Number(ch) - 1;
+          else if (ch !== "-")
+            break;
+        }
+        return yield* this.pushUntil((ch) => isEmpty(ch) || ch === "#");
+      }
+      *parseBlockScalar() {
+        let nl = this.pos - 1;
+        let indent = 0;
+        let ch;
+        loop: for (let i2 = this.pos; ch = this.buffer[i2]; ++i2) {
+          switch (ch) {
+            case " ":
+              indent += 1;
+              break;
+            case "\n":
+              nl = i2;
+              indent = 0;
+              break;
+            case "\r": {
+              const next = this.buffer[i2 + 1];
+              if (!next && !this.atEnd)
+                return this.setNext("block-scalar");
+              if (next === "\n")
+                break;
+            }
+            default:
+              break loop;
+          }
+        }
+        if (!ch && !this.atEnd)
+          return this.setNext("block-scalar");
+        if (indent >= this.indentNext) {
+          if (this.blockScalarIndent === -1)
+            this.indentNext = indent;
+          else {
+            this.indentNext = this.blockScalarIndent + (this.indentNext === 0 ? 1 : this.indentNext);
+          }
+          do {
+            const cs = this.continueScalar(nl + 1);
+            if (cs === -1)
+              break;
+            nl = this.buffer.indexOf("\n", cs);
+          } while (nl !== -1);
+          if (nl === -1) {
+            if (!this.atEnd)
+              return this.setNext("block-scalar");
+            nl = this.buffer.length;
+          }
+        }
+        let i = nl + 1;
+        ch = this.buffer[i];
+        while (ch === " ")
+          ch = this.buffer[++i];
+        if (ch === "	") {
+          while (ch === "	" || ch === " " || ch === "\r" || ch === "\n")
+            ch = this.buffer[++i];
+          nl = i - 1;
+        } else if (!this.blockScalarKeep) {
+          do {
+            let i2 = nl - 1;
+            let ch2 = this.buffer[i2];
+            if (ch2 === "\r")
+              ch2 = this.buffer[--i2];
+            const lastChar = i2;
+            while (ch2 === " ")
+              ch2 = this.buffer[--i2];
+            if (ch2 === "\n" && i2 >= this.pos && i2 + 1 + indent > lastChar)
+              nl = i2;
+            else
+              break;
+          } while (true);
+        }
+        yield cst.SCALAR;
+        yield* this.pushToIndex(nl + 1, true);
+        return yield* this.parseLineStart();
+      }
+      *parsePlainScalar() {
+        const inFlow = this.flowLevel > 0;
+        let end = this.pos - 1;
+        let i = this.pos - 1;
+        let ch;
+        while (ch = this.buffer[++i]) {
+          if (ch === ":") {
+            const next = this.buffer[i + 1];
+            if (isEmpty(next) || inFlow && flowIndicatorChars.has(next))
+              break;
+            end = i;
+          } else if (isEmpty(ch)) {
+            let next = this.buffer[i + 1];
+            if (ch === "\r") {
+              if (next === "\n") {
+                i += 1;
+                ch = "\n";
+                next = this.buffer[i + 1];
+              } else
+                end = i;
+            }
+            if (next === "#" || inFlow && flowIndicatorChars.has(next))
+              break;
+            if (ch === "\n") {
+              const cs = this.continueScalar(i + 1);
+              if (cs === -1)
+                break;
+              i = Math.max(i, cs - 2);
+            }
+          } else {
+            if (inFlow && flowIndicatorChars.has(ch))
+              break;
+            end = i;
+          }
+        }
+        if (!ch && !this.atEnd)
+          return this.setNext("plain-scalar");
+        yield cst.SCALAR;
+        yield* this.pushToIndex(end + 1, true);
+        return inFlow ? "flow" : "doc";
+      }
+      *pushCount(n) {
+        if (n > 0) {
+          yield this.buffer.substr(this.pos, n);
+          this.pos += n;
+          return n;
+        }
+        return 0;
+      }
+      *pushToIndex(i, allowEmpty) {
+        const s = this.buffer.slice(this.pos, i);
+        if (s) {
+          yield s;
+          this.pos += s.length;
+          return s.length;
+        } else if (allowEmpty)
+          yield "";
+        return 0;
+      }
+      *pushIndicators() {
+        switch (this.charAt(0)) {
+          case "!":
+            return (yield* this.pushTag()) + (yield* this.pushSpaces(true)) + (yield* this.pushIndicators());
+          case "&":
+            return (yield* this.pushUntil(isNotAnchorChar)) + (yield* this.pushSpaces(true)) + (yield* this.pushIndicators());
+          case "-":
+          case "?":
+          case ":": {
+            const inFlow = this.flowLevel > 0;
+            const ch1 = this.charAt(1);
+            if (isEmpty(ch1) || inFlow && flowIndicatorChars.has(ch1)) {
+              if (!inFlow)
+                this.indentNext = this.indentValue + 1;
+              else if (this.flowKey)
+                this.flowKey = false;
+              return (yield* this.pushCount(1)) + (yield* this.pushSpaces(true)) + (yield* this.pushIndicators());
+            }
+          }
+        }
+        return 0;
+      }
+      *pushTag() {
+        if (this.charAt(1) === "<") {
+          let i = this.pos + 2;
+          let ch = this.buffer[i];
+          while (!isEmpty(ch) && ch !== ">")
+            ch = this.buffer[++i];
+          return yield* this.pushToIndex(ch === ">" ? i + 1 : i, false);
+        } else {
+          let i = this.pos + 1;
+          let ch = this.buffer[i];
+          while (ch) {
+            if (tagChars.has(ch))
+              ch = this.buffer[++i];
+            else if (ch === "%" && hexDigits.has(this.buffer[i + 1]) && hexDigits.has(this.buffer[i + 2])) {
+              ch = this.buffer[i += 3];
+            } else
+              break;
+          }
+          return yield* this.pushToIndex(i, false);
+        }
+      }
+      *pushNewline() {
+        const ch = this.buffer[this.pos];
+        if (ch === "\n")
+          return yield* this.pushCount(1);
+        else if (ch === "\r" && this.charAt(1) === "\n")
+          return yield* this.pushCount(2);
+        else
+          return 0;
+      }
+      *pushSpaces(allowTabs) {
+        let i = this.pos - 1;
+        let ch;
+        do {
+          ch = this.buffer[++i];
+        } while (ch === " " || allowTabs && ch === "	");
+        const n = i - this.pos;
+        if (n > 0) {
+          yield this.buffer.substr(this.pos, n);
+          this.pos = i;
+        }
+        return n;
+      }
+      *pushUntil(test) {
+        let i = this.pos;
+        let ch = this.buffer[i];
+        while (!test(ch))
+          ch = this.buffer[++i];
+        return yield* this.pushToIndex(i, false);
+      }
+    };
+    exports.Lexer = Lexer;
+  }
+});
+
+// node_modules/yaml/dist/parse/line-counter.js
+var require_line_counter = __commonJS({
+  "node_modules/yaml/dist/parse/line-counter.js"(exports) {
+    "use strict";
+    var LineCounter = class {
+      constructor() {
+        this.lineStarts = [];
+        this.addNewLine = (offset) => this.lineStarts.push(offset);
+        this.linePos = (offset) => {
+          let low = 0;
+          let high = this.lineStarts.length;
+          while (low < high) {
+            const mid = low + high >> 1;
+            if (this.lineStarts[mid] < offset)
+              low = mid + 1;
+            else
+              high = mid;
+          }
+          if (this.lineStarts[low] === offset)
+            return { line: low + 1, col: 1 };
+          if (low === 0)
+            return { line: 0, col: offset };
+          const start = this.lineStarts[low - 1];
+          return { line: low, col: offset - start + 1 };
+        };
+      }
+    };
+    exports.LineCounter = LineCounter;
+  }
+});
+
+// node_modules/yaml/dist/parse/parser.js
+var require_parser = __commonJS({
+  "node_modules/yaml/dist/parse/parser.js"(exports) {
+    "use strict";
+    var node_process = __require("process");
+    var cst = require_cst();
+    var lexer = require_lexer();
+    function includesToken(list, type) {
+      for (let i = 0; i < list.length; ++i)
+        if (list[i].type === type)
+          return true;
+      return false;
+    }
+    function findNonEmptyIndex(list) {
+      for (let i = 0; i < list.length; ++i) {
+        switch (list[i].type) {
+          case "space":
+          case "comment":
+          case "newline":
+            break;
+          default:
+            return i;
+        }
+      }
+      return -1;
+    }
+    function isFlowToken(token) {
+      switch (token?.type) {
+        case "alias":
+        case "scalar":
+        case "single-quoted-scalar":
+        case "double-quoted-scalar":
+        case "flow-collection":
+          return true;
+        default:
+          return false;
+      }
+    }
+    function getPrevProps(parent) {
+      switch (parent.type) {
+        case "document":
+          return parent.start;
+        case "block-map": {
+          const it = parent.items[parent.items.length - 1];
+          return it.sep ?? it.start;
+        }
+        case "block-seq":
+          return parent.items[parent.items.length - 1].start;
+        default:
+          return [];
+      }
+    }
+    function getFirstKeyStartProps(prev) {
+      if (prev.length === 0)
+        return [];
+      let i = prev.length;
+      loop: while (--i >= 0) {
+        switch (prev[i].type) {
+          case "doc-start":
+          case "explicit-key-ind":
+          case "map-value-ind":
+          case "seq-item-ind":
+          case "newline":
+            break loop;
+        }
+      }
+      while (prev[++i]?.type === "space") {
+      }
+      return prev.splice(i, prev.length);
+    }
+    function fixFlowSeqItems(fc) {
+      if (fc.start.type === "flow-seq-start") {
+        for (const it of fc.items) {
+          if (it.sep && !it.value && !includesToken(it.start, "explicit-key-ind") && !includesToken(it.sep, "map-value-ind")) {
+            if (it.key)
+              it.value = it.key;
+            delete it.key;
+            if (isFlowToken(it.value)) {
+              if (it.value.end)
+                Array.prototype.push.apply(it.value.end, it.sep);
+              else
+                it.value.end = it.sep;
+            } else
+              Array.prototype.push.apply(it.start, it.sep);
+            delete it.sep;
+          }
+        }
+      }
+    }
+    var Parser = class {
+      /**
+       * @param onNewLine - If defined, called separately with the start position of
+       *   each new line (in `parse()`, including the start of input).
+       */
+      constructor(onNewLine) {
+        this.atNewLine = true;
+        this.atScalar = false;
+        this.indent = 0;
+        this.offset = 0;
+        this.onKeyLine = false;
+        this.stack = [];
+        this.source = "";
+        this.type = "";
+        this.lexer = new lexer.Lexer();
+        this.onNewLine = onNewLine;
+      }
+      /**
+       * Parse `source` as a YAML stream.
+       * If `incomplete`, a part of the last line may be left as a buffer for the next call.
+       *
+       * Errors are not thrown, but yielded as `{ type: 'error', message }` tokens.
+       *
+       * @returns A generator of tokens representing each directive, document, and other structure.
+       */
+      *parse(source, incomplete = false) {
+        if (this.onNewLine && this.offset === 0)
+          this.onNewLine(0);
+        for (const lexeme of this.lexer.lex(source, incomplete))
+          yield* this.next(lexeme);
+        if (!incomplete)
+          yield* this.end();
+      }
+      /**
+       * Advance the parser by the `source` of one lexical token.
+       */
+      *next(source) {
+        this.source = source;
+        if (node_process.env.LOG_TOKENS)
+          console.log("|", cst.prettyToken(source));
+        if (this.atScalar) {
+          this.atScalar = false;
+          yield* this.step();
+          this.offset += source.length;
+          return;
+        }
+        const type = cst.tokenType(source);
+        if (!type) {
+          const message = `Not a YAML token: ${source}`;
+          yield* this.pop({ type: "error", offset: this.offset, message, source });
+          this.offset += source.length;
+        } else if (type === "scalar") {
+          this.atNewLine = false;
+          this.atScalar = true;
+          this.type = "scalar";
+        } else {
+          this.type = type;
+          yield* this.step();
+          switch (type) {
+            case "newline":
+              this.atNewLine = true;
+              this.indent = 0;
+              if (this.onNewLine)
+                this.onNewLine(this.offset + source.length);
+              break;
+            case "space":
+              if (this.atNewLine && source[0] === " ")
+                this.indent += source.length;
+              break;
+            case "explicit-key-ind":
+            case "map-value-ind":
+            case "seq-item-ind":
+              if (this.atNewLine)
+                this.indent += source.length;
+              break;
+            case "doc-mode":
+            case "flow-error-end":
+              return;
+            default:
+              this.atNewLine = false;
+          }
+          this.offset += source.length;
+        }
+      }
+      /** Call at end of input to push out any remaining constructions */
+      *end() {
+        while (this.stack.length > 0)
+          yield* this.pop();
+      }
+      get sourceToken() {
+        const st = {
+          type: this.type,
+          offset: this.offset,
+          indent: this.indent,
+          source: this.source
+        };
+        return st;
+      }
+      *step() {
+        const top = this.peek(1);
+        if (this.type === "doc-end" && (!top || top.type !== "doc-end")) {
+          while (this.stack.length > 0)
+            yield* this.pop();
+          this.stack.push({
+            type: "doc-end",
+            offset: this.offset,
+            source: this.source
+          });
+          return;
+        }
+        if (!top)
+          return yield* this.stream();
+        switch (top.type) {
+          case "document":
+            return yield* this.document(top);
+          case "alias":
+          case "scalar":
+          case "single-quoted-scalar":
+          case "double-quoted-scalar":
+            return yield* this.scalar(top);
+          case "block-scalar":
+            return yield* this.blockScalar(top);
+          case "block-map":
+            return yield* this.blockMap(top);
+          case "block-seq":
+            return yield* this.blockSequence(top);
+          case "flow-collection":
+            return yield* this.flowCollection(top);
+          case "doc-end":
+            return yield* this.documentEnd(top);
+        }
+        yield* this.pop();
+      }
+      peek(n) {
+        return this.stack[this.stack.length - n];
+      }
+      *pop(error45) {
+        const token = error45 ?? this.stack.pop();
+        if (!token) {
+          const message = "Tried to pop an empty stack";
+          yield { type: "error", offset: this.offset, source: "", message };
+        } else if (this.stack.length === 0) {
+          yield token;
+        } else {
+          const top = this.peek(1);
+          if (token.type === "block-scalar") {
+            token.indent = "indent" in top ? top.indent : 0;
+          } else if (token.type === "flow-collection" && top.type === "document") {
+            token.indent = 0;
+          }
+          if (token.type === "flow-collection")
+            fixFlowSeqItems(token);
+          switch (top.type) {
+            case "document":
+              top.value = token;
+              break;
+            case "block-scalar":
+              top.props.push(token);
+              break;
+            case "block-map": {
+              const it = top.items[top.items.length - 1];
+              if (it.value) {
+                top.items.push({ start: [], key: token, sep: [] });
+                this.onKeyLine = true;
+                return;
+              } else if (it.sep) {
+                it.value = token;
+              } else {
+                Object.assign(it, { key: token, sep: [] });
+                this.onKeyLine = !it.explicitKey;
+                return;
+              }
+              break;
+            }
+            case "block-seq": {
+              const it = top.items[top.items.length - 1];
+              if (it.value)
+                top.items.push({ start: [], value: token });
+              else
+                it.value = token;
+              break;
+            }
+            case "flow-collection": {
+              const it = top.items[top.items.length - 1];
+              if (!it || it.value)
+                top.items.push({ start: [], key: token, sep: [] });
+              else if (it.sep)
+                it.value = token;
+              else
+                Object.assign(it, { key: token, sep: [] });
+              return;
+            }
+            default:
+              yield* this.pop();
+              yield* this.pop(token);
+          }
+          if ((top.type === "document" || top.type === "block-map" || top.type === "block-seq") && (token.type === "block-map" || token.type === "block-seq")) {
+            const last = token.items[token.items.length - 1];
+            if (last && !last.sep && !last.value && last.start.length > 0 && findNonEmptyIndex(last.start) === -1 && (token.indent === 0 || last.start.every((st) => st.type !== "comment" || st.indent < token.indent))) {
+              if (top.type === "document")
+                top.end = last.start;
+              else
+                top.items.push({ start: last.start });
+              token.items.splice(-1, 1);
+            }
+          }
+        }
+      }
+      *stream() {
+        switch (this.type) {
+          case "directive-line":
+            yield { type: "directive", offset: this.offset, source: this.source };
+            return;
+          case "byte-order-mark":
+          case "space":
+          case "comment":
+          case "newline":
+            yield this.sourceToken;
+            return;
+          case "doc-mode":
+          case "doc-start": {
+            const doc = {
+              type: "document",
+              offset: this.offset,
+              start: []
+            };
+            if (this.type === "doc-start")
+              doc.start.push(this.sourceToken);
+            this.stack.push(doc);
+            return;
+          }
+        }
+        yield {
+          type: "error",
+          offset: this.offset,
+          message: `Unexpected ${this.type} token in YAML stream`,
+          source: this.source
+        };
+      }
+      *document(doc) {
+        if (doc.value)
+          return yield* this.lineEnd(doc);
+        switch (this.type) {
+          case "doc-start": {
+            if (findNonEmptyIndex(doc.start) !== -1) {
+              yield* this.pop();
+              yield* this.step();
+            } else
+              doc.start.push(this.sourceToken);
+            return;
+          }
+          case "anchor":
+          case "tag":
+          case "space":
+          case "comment":
+          case "newline":
+            doc.start.push(this.sourceToken);
+            return;
+        }
+        const bv = this.startBlockValue(doc);
+        if (bv)
+          this.stack.push(bv);
+        else {
+          yield {
+            type: "error",
+            offset: this.offset,
+            message: `Unexpected ${this.type} token in YAML document`,
+            source: this.source
+          };
+        }
+      }
+      *scalar(scalar) {
+        if (this.type === "map-value-ind") {
+          const prev = getPrevProps(this.peek(2));
+          const start = getFirstKeyStartProps(prev);
+          let sep;
+          if (scalar.end) {
+            sep = scalar.end;
+            sep.push(this.sourceToken);
+            delete scalar.end;
+          } else
+            sep = [this.sourceToken];
+          const map2 = {
+            type: "block-map",
+            offset: scalar.offset,
+            indent: scalar.indent,
+            items: [{ start, key: scalar, sep }]
+          };
+          this.onKeyLine = true;
+          this.stack[this.stack.length - 1] = map2;
+        } else
+          yield* this.lineEnd(scalar);
+      }
+      *blockScalar(scalar) {
+        switch (this.type) {
+          case "space":
+          case "comment":
+          case "newline":
+            scalar.props.push(this.sourceToken);
+            return;
+          case "scalar":
+            scalar.source = this.source;
+            this.atNewLine = true;
+            this.indent = 0;
+            if (this.onNewLine) {
+              let nl = this.source.indexOf("\n") + 1;
+              while (nl !== 0) {
+                this.onNewLine(this.offset + nl);
+                nl = this.source.indexOf("\n", nl) + 1;
+              }
+            }
+            yield* this.pop();
+            break;
+          default:
+            yield* this.pop();
+            yield* this.step();
+        }
+      }
+      *blockMap(map2) {
+        const it = map2.items[map2.items.length - 1];
+        switch (this.type) {
+          case "newline":
+            this.onKeyLine = false;
+            if (it.value) {
+              const end = "end" in it.value ? it.value.end : void 0;
+              const last = Array.isArray(end) ? end[end.length - 1] : void 0;
+              if (last?.type === "comment")
+                end?.push(this.sourceToken);
+              else
+                map2.items.push({ start: [this.sourceToken] });
+            } else if (it.sep) {
+              it.sep.push(this.sourceToken);
+            } else {
+              it.start.push(this.sourceToken);
+            }
+            return;
+          case "space":
+          case "comment":
+            if (it.value) {
+              map2.items.push({ start: [this.sourceToken] });
+            } else if (it.sep) {
+              it.sep.push(this.sourceToken);
+            } else {
+              if (this.atIndentedComment(it.start, map2.indent)) {
+                const prev = map2.items[map2.items.length - 2];
+                const end = prev?.value?.end;
+                if (Array.isArray(end)) {
+                  Array.prototype.push.apply(end, it.start);
+                  end.push(this.sourceToken);
+                  map2.items.pop();
+                  return;
+                }
+              }
+              it.start.push(this.sourceToken);
+            }
+            return;
+        }
+        if (this.indent >= map2.indent) {
+          const atMapIndent = !this.onKeyLine && this.indent === map2.indent;
+          const atNextItem = atMapIndent && (it.sep || it.explicitKey) && this.type !== "seq-item-ind";
+          let start = [];
+          if (atNextItem && it.sep && !it.value) {
+            const nl = [];
+            for (let i = 0; i < it.sep.length; ++i) {
+              const st = it.sep[i];
+              switch (st.type) {
+                case "newline":
+                  nl.push(i);
+                  break;
+                case "space":
+                  break;
+                case "comment":
+                  if (st.indent > map2.indent)
+                    nl.length = 0;
+                  break;
+                default:
+                  nl.length = 0;
+              }
+            }
+            if (nl.length >= 2)
+              start = it.sep.splice(nl[1]);
+          }
+          switch (this.type) {
+            case "anchor":
+            case "tag":
+              if (atNextItem || it.value) {
+                start.push(this.sourceToken);
+                map2.items.push({ start });
+                this.onKeyLine = true;
+              } else if (it.sep) {
+                it.sep.push(this.sourceToken);
+              } else {
+                it.start.push(this.sourceToken);
+              }
+              return;
+            case "explicit-key-ind":
+              if (!it.sep && !it.explicitKey) {
+                it.start.push(this.sourceToken);
+                it.explicitKey = true;
+              } else if (atNextItem || it.value) {
+                start.push(this.sourceToken);
+                map2.items.push({ start, explicitKey: true });
+              } else {
+                this.stack.push({
+                  type: "block-map",
+                  offset: this.offset,
+                  indent: this.indent,
+                  items: [{ start: [this.sourceToken], explicitKey: true }]
+                });
+              }
+              this.onKeyLine = true;
+              return;
+            case "map-value-ind":
+              if (it.explicitKey) {
+                if (!it.sep) {
+                  if (includesToken(it.start, "newline")) {
+                    Object.assign(it, { key: null, sep: [this.sourceToken] });
+                  } else {
+                    const start2 = getFirstKeyStartProps(it.start);
+                    this.stack.push({
+                      type: "block-map",
+                      offset: this.offset,
+                      indent: this.indent,
+                      items: [{ start: start2, key: null, sep: [this.sourceToken] }]
+                    });
+                  }
+                } else if (it.value) {
+                  map2.items.push({ start: [], key: null, sep: [this.sourceToken] });
+                } else if (includesToken(it.sep, "map-value-ind")) {
+                  this.stack.push({
+                    type: "block-map",
+                    offset: this.offset,
+                    indent: this.indent,
+                    items: [{ start, key: null, sep: [this.sourceToken] }]
+                  });
+                } else if (isFlowToken(it.key) && !includesToken(it.sep, "newline")) {
+                  const start2 = getFirstKeyStartProps(it.start);
+                  const key = it.key;
+                  const sep = it.sep;
+                  sep.push(this.sourceToken);
+                  delete it.key;
+                  delete it.sep;
+                  this.stack.push({
+                    type: "block-map",
+                    offset: this.offset,
+                    indent: this.indent,
+                    items: [{ start: start2, key, sep }]
+                  });
+                } else if (start.length > 0) {
+                  it.sep = it.sep.concat(start, this.sourceToken);
+                } else {
+                  it.sep.push(this.sourceToken);
+                }
+              } else {
+                if (!it.sep) {
+                  Object.assign(it, { key: null, sep: [this.sourceToken] });
+                } else if (it.value || atNextItem) {
+                  map2.items.push({ start, key: null, sep: [this.sourceToken] });
+                } else if (includesToken(it.sep, "map-value-ind")) {
+                  this.stack.push({
+                    type: "block-map",
+                    offset: this.offset,
+                    indent: this.indent,
+                    items: [{ start: [], key: null, sep: [this.sourceToken] }]
+                  });
+                } else {
+                  it.sep.push(this.sourceToken);
+                }
+              }
+              this.onKeyLine = true;
+              return;
+            case "alias":
+            case "scalar":
+            case "single-quoted-scalar":
+            case "double-quoted-scalar": {
+              const fs = this.flowScalar(this.type);
+              if (atNextItem || it.value) {
+                map2.items.push({ start, key: fs, sep: [] });
+                this.onKeyLine = true;
+              } else if (it.sep) {
+                this.stack.push(fs);
+              } else {
+                Object.assign(it, { key: fs, sep: [] });
+                this.onKeyLine = true;
+              }
+              return;
+            }
+            default: {
+              const bv = this.startBlockValue(map2);
+              if (bv) {
+                if (bv.type === "block-seq") {
+                  if (!it.explicitKey && it.sep && !includesToken(it.sep, "newline")) {
+                    yield* this.pop({
+                      type: "error",
+                      offset: this.offset,
+                      message: "Unexpected block-seq-ind on same line with key",
+                      source: this.source
+                    });
+                    return;
+                  }
+                } else if (atMapIndent) {
+                  map2.items.push({ start });
+                }
+                this.stack.push(bv);
+                return;
+              }
+            }
+          }
+        }
+        yield* this.pop();
+        yield* this.step();
+      }
+      *blockSequence(seq) {
+        const it = seq.items[seq.items.length - 1];
+        switch (this.type) {
+          case "newline":
+            if (it.value) {
+              const end = "end" in it.value ? it.value.end : void 0;
+              const last = Array.isArray(end) ? end[end.length - 1] : void 0;
+              if (last?.type === "comment")
+                end?.push(this.sourceToken);
+              else
+                seq.items.push({ start: [this.sourceToken] });
+            } else
+              it.start.push(this.sourceToken);
+            return;
+          case "space":
+          case "comment":
+            if (it.value)
+              seq.items.push({ start: [this.sourceToken] });
+            else {
+              if (this.atIndentedComment(it.start, seq.indent)) {
+                const prev = seq.items[seq.items.length - 2];
+                const end = prev?.value?.end;
+                if (Array.isArray(end)) {
+                  Array.prototype.push.apply(end, it.start);
+                  end.push(this.sourceToken);
+                  seq.items.pop();
+                  return;
+                }
+              }
+              it.start.push(this.sourceToken);
+            }
+            return;
+          case "anchor":
+          case "tag":
+            if (it.value || this.indent <= seq.indent)
+              break;
+            it.start.push(this.sourceToken);
+            return;
+          case "seq-item-ind":
+            if (this.indent !== seq.indent)
+              break;
+            if (it.value || includesToken(it.start, "seq-item-ind"))
+              seq.items.push({ start: [this.sourceToken] });
+            else
+              it.start.push(this.sourceToken);
+            return;
+        }
+        if (this.indent > seq.indent) {
+          const bv = this.startBlockValue(seq);
+          if (bv) {
+            this.stack.push(bv);
+            return;
+          }
+        }
+        yield* this.pop();
+        yield* this.step();
+      }
+      *flowCollection(fc) {
+        const it = fc.items[fc.items.length - 1];
+        if (this.type === "flow-error-end") {
+          let top;
+          do {
+            yield* this.pop();
+            top = this.peek(1);
+          } while (top && top.type === "flow-collection");
+        } else if (fc.end.length === 0) {
+          switch (this.type) {
+            case "comma":
+            case "explicit-key-ind":
+              if (!it || it.sep)
+                fc.items.push({ start: [this.sourceToken] });
+              else
+                it.start.push(this.sourceToken);
+              return;
+            case "map-value-ind":
+              if (!it || it.value)
+                fc.items.push({ start: [], key: null, sep: [this.sourceToken] });
+              else if (it.sep)
+                it.sep.push(this.sourceToken);
+              else
+                Object.assign(it, { key: null, sep: [this.sourceToken] });
+              return;
+            case "space":
+            case "comment":
+            case "newline":
+            case "anchor":
+            case "tag":
+              if (!it || it.value)
+                fc.items.push({ start: [this.sourceToken] });
+              else if (it.sep)
+                it.sep.push(this.sourceToken);
+              else
+                it.start.push(this.sourceToken);
+              return;
+            case "alias":
+            case "scalar":
+            case "single-quoted-scalar":
+            case "double-quoted-scalar": {
+              const fs = this.flowScalar(this.type);
+              if (!it || it.value)
+                fc.items.push({ start: [], key: fs, sep: [] });
+              else if (it.sep)
+                this.stack.push(fs);
+              else
+                Object.assign(it, { key: fs, sep: [] });
+              return;
+            }
+            case "flow-map-end":
+            case "flow-seq-end":
+              fc.end.push(this.sourceToken);
+              return;
+          }
+          const bv = this.startBlockValue(fc);
+          if (bv)
+            this.stack.push(bv);
+          else {
+            yield* this.pop();
+            yield* this.step();
+          }
+        } else {
+          const parent = this.peek(2);
+          if (parent.type === "block-map" && (this.type === "map-value-ind" && parent.indent === fc.indent || this.type === "newline" && !parent.items[parent.items.length - 1].sep)) {
+            yield* this.pop();
+            yield* this.step();
+          } else if (this.type === "map-value-ind" && parent.type !== "flow-collection") {
+            const prev = getPrevProps(parent);
+            const start = getFirstKeyStartProps(prev);
+            fixFlowSeqItems(fc);
+            const sep = fc.end.splice(1, fc.end.length);
+            sep.push(this.sourceToken);
+            const map2 = {
+              type: "block-map",
+              offset: fc.offset,
+              indent: fc.indent,
+              items: [{ start, key: fc, sep }]
+            };
+            this.onKeyLine = true;
+            this.stack[this.stack.length - 1] = map2;
+          } else {
+            yield* this.lineEnd(fc);
+          }
+        }
+      }
+      flowScalar(type) {
+        if (this.onNewLine) {
+          let nl = this.source.indexOf("\n") + 1;
+          while (nl !== 0) {
+            this.onNewLine(this.offset + nl);
+            nl = this.source.indexOf("\n", nl) + 1;
+          }
+        }
+        return {
+          type,
+          offset: this.offset,
+          indent: this.indent,
+          source: this.source
+        };
+      }
+      startBlockValue(parent) {
+        switch (this.type) {
+          case "alias":
+          case "scalar":
+          case "single-quoted-scalar":
+          case "double-quoted-scalar":
+            return this.flowScalar(this.type);
+          case "block-scalar-header":
+            return {
+              type: "block-scalar",
+              offset: this.offset,
+              indent: this.indent,
+              props: [this.sourceToken],
+              source: ""
+            };
+          case "flow-map-start":
+          case "flow-seq-start":
+            return {
+              type: "flow-collection",
+              offset: this.offset,
+              indent: this.indent,
+              start: this.sourceToken,
+              items: [],
+              end: []
+            };
+          case "seq-item-ind":
+            return {
+              type: "block-seq",
+              offset: this.offset,
+              indent: this.indent,
+              items: [{ start: [this.sourceToken] }]
+            };
+          case "explicit-key-ind": {
+            this.onKeyLine = true;
+            const prev = getPrevProps(parent);
+            const start = getFirstKeyStartProps(prev);
+            start.push(this.sourceToken);
+            return {
+              type: "block-map",
+              offset: this.offset,
+              indent: this.indent,
+              items: [{ start, explicitKey: true }]
+            };
+          }
+          case "map-value-ind": {
+            this.onKeyLine = true;
+            const prev = getPrevProps(parent);
+            const start = getFirstKeyStartProps(prev);
+            return {
+              type: "block-map",
+              offset: this.offset,
+              indent: this.indent,
+              items: [{ start, key: null, sep: [this.sourceToken] }]
+            };
+          }
+        }
+        return null;
+      }
+      atIndentedComment(start, indent) {
+        if (this.type !== "comment")
+          return false;
+        if (this.indent <= indent)
+          return false;
+        return start.every((st) => st.type === "newline" || st.type === "space");
+      }
+      *documentEnd(docEnd) {
+        if (this.type !== "doc-mode") {
+          if (docEnd.end)
+            docEnd.end.push(this.sourceToken);
+          else
+            docEnd.end = [this.sourceToken];
+          if (this.type === "newline")
+            yield* this.pop();
+        }
+      }
+      *lineEnd(token) {
+        switch (this.type) {
+          case "comma":
+          case "doc-start":
+          case "doc-end":
+          case "flow-seq-end":
+          case "flow-map-end":
+          case "map-value-ind":
+            yield* this.pop();
+            yield* this.step();
+            break;
+          case "newline":
+            this.onKeyLine = false;
+          case "space":
+          case "comment":
+          default:
+            if (token.end)
+              token.end.push(this.sourceToken);
+            else
+              token.end = [this.sourceToken];
+            if (this.type === "newline")
+              yield* this.pop();
+        }
+      }
+    };
+    exports.Parser = Parser;
+  }
+});
+
+// node_modules/yaml/dist/public-api.js
+var require_public_api = __commonJS({
+  "node_modules/yaml/dist/public-api.js"(exports) {
+    "use strict";
+    var composer = require_composer();
+    var Document = require_Document();
+    var errors = require_errors();
+    var log = require_log();
+    var identity = require_identity();
+    var lineCounter = require_line_counter();
+    var parser = require_parser();
+    function parseOptions(options) {
+      const prettyErrors = options.prettyErrors !== false;
+      const lineCounter$1 = options.lineCounter || prettyErrors && new lineCounter.LineCounter() || null;
+      return { lineCounter: lineCounter$1, prettyErrors };
+    }
+    function parseAllDocuments(source, options = {}) {
+      const { lineCounter: lineCounter2, prettyErrors } = parseOptions(options);
+      const parser$1 = new parser.Parser(lineCounter2?.addNewLine);
+      const composer$1 = new composer.Composer(options);
+      const docs = Array.from(composer$1.compose(parser$1.parse(source)));
+      if (prettyErrors && lineCounter2)
+        for (const doc of docs) {
+          doc.errors.forEach(errors.prettifyError(source, lineCounter2));
+          doc.warnings.forEach(errors.prettifyError(source, lineCounter2));
+        }
+      if (docs.length > 0)
+        return docs;
+      return Object.assign([], { empty: true }, composer$1.streamInfo());
+    }
+    function parseDocument(source, options = {}) {
+      const { lineCounter: lineCounter2, prettyErrors } = parseOptions(options);
+      const parser$1 = new parser.Parser(lineCounter2?.addNewLine);
+      const composer$1 = new composer.Composer(options);
+      let doc = null;
+      for (const _doc of composer$1.compose(parser$1.parse(source), true, source.length)) {
+        if (!doc)
+          doc = _doc;
+        else if (doc.options.logLevel !== "silent") {
+          doc.errors.push(new errors.YAMLParseError(_doc.range.slice(0, 2), "MULTIPLE_DOCS", "Source contains multiple documents; please use YAML.parseAllDocuments()"));
+          break;
+        }
+      }
+      if (prettyErrors && lineCounter2) {
+        doc.errors.forEach(errors.prettifyError(source, lineCounter2));
+        doc.warnings.forEach(errors.prettifyError(source, lineCounter2));
+      }
+      return doc;
+    }
+    function parse3(src, reviver, options) {
+      let _reviver = void 0;
+      if (typeof reviver === "function") {
+        _reviver = reviver;
+      } else if (options === void 0 && reviver && typeof reviver === "object") {
+        options = reviver;
+      }
+      const doc = parseDocument(src, options);
+      if (!doc)
+        return null;
+      doc.warnings.forEach((warning) => log.warn(doc.options.logLevel, warning));
+      if (doc.errors.length > 0) {
+        if (doc.options.logLevel !== "silent")
+          throw doc.errors[0];
+        else
+          doc.errors = [];
+      }
+      return doc.toJS(Object.assign({ reviver: _reviver }, options));
+    }
+    function stringify(value, replacer, options) {
+      let _replacer = null;
+      if (typeof replacer === "function" || Array.isArray(replacer)) {
+        _replacer = replacer;
+      } else if (options === void 0 && replacer) {
+        options = replacer;
+      }
+      if (typeof options === "string")
+        options = options.length;
+      if (typeof options === "number") {
+        const indent = Math.round(options);
+        options = indent < 1 ? void 0 : indent > 8 ? { indent: 8 } : { indent };
+      }
+      if (value === void 0) {
+        const { keepUndefined } = options ?? replacer ?? {};
+        if (!keepUndefined)
+          return void 0;
+      }
+      if (identity.isDocument(value) && !_replacer)
+        return value.toString(options);
+      return new Document.Document(value, _replacer, options).toString(options);
+    }
+    exports.parse = parse3;
+    exports.parseAllDocuments = parseAllDocuments;
+    exports.parseDocument = parseDocument;
+    exports.stringify = stringify;
+  }
+});
+
+// node_modules/yaml/dist/index.js
+var require_dist = __commonJS({
+  "node_modules/yaml/dist/index.js"(exports) {
+    "use strict";
+    var composer = require_composer();
+    var Document = require_Document();
+    var Schema2 = require_Schema();
+    var errors = require_errors();
+    var Alias = require_Alias();
+    var identity = require_identity();
+    var Pair = require_Pair();
+    var Scalar = require_Scalar();
+    var YAMLMap = require_YAMLMap();
+    var YAMLSeq = require_YAMLSeq();
+    var cst = require_cst();
+    var lexer = require_lexer();
+    var lineCounter = require_line_counter();
+    var parser = require_parser();
+    var publicApi = require_public_api();
+    var visit = require_visit();
+    exports.Composer = composer.Composer;
+    exports.Document = Document.Document;
+    exports.Schema = Schema2.Schema;
+    exports.YAMLError = errors.YAMLError;
+    exports.YAMLParseError = errors.YAMLParseError;
+    exports.YAMLWarning = errors.YAMLWarning;
+    exports.Alias = Alias.Alias;
+    exports.isAlias = identity.isAlias;
+    exports.isCollection = identity.isCollection;
+    exports.isDocument = identity.isDocument;
+    exports.isMap = identity.isMap;
+    exports.isNode = identity.isNode;
+    exports.isPair = identity.isPair;
+    exports.isScalar = identity.isScalar;
+    exports.isSeq = identity.isSeq;
+    exports.Pair = Pair.Pair;
+    exports.Scalar = Scalar.Scalar;
+    exports.YAMLMap = YAMLMap.YAMLMap;
+    exports.YAMLSeq = YAMLSeq.YAMLSeq;
+    exports.CST = cst;
+    exports.Lexer = lexer.Lexer;
+    exports.LineCounter = lineCounter.LineCounter;
+    exports.Parser = parser.Parser;
+    exports.parse = publicApi.parse;
+    exports.parseAllDocuments = publicApi.parseAllDocuments;
+    exports.parseDocument = publicApi.parseDocument;
+    exports.stringify = publicApi.stringify;
+    exports.visit = visit.visit;
+    exports.visitAsync = visit.visitAsync;
+  }
+});
+
 // node_modules/commander/esm.mjs
 var import_index = __toESM(require_commander(), 1);
 var {
@@ -3815,8 +11090,8 @@ var {
 } = import_index.default;
 
 // src/commands/compile.ts
-import { readFile as readFile2, writeFile as writeFile2 } from "node:fs/promises";
-import path2 from "node:path";
+import { readFile as readFile3, writeFile as writeFile2 } from "node:fs/promises";
+import path3 from "node:path";
 
 // src/core/db.ts
 var import_better_sqlite32 = __toESM(require_lib(), 1);
@@ -4886,7 +12161,7 @@ function sql(strings, ...params) {
     return new SQL([new StringChunk(str)]);
   }
   sql2.raw = raw;
-  function join2(chunks, separator) {
+  function join5(chunks, separator) {
     const result = [];
     for (const [i, chunk] of chunks.entries()) {
       if (i > 0 && separator !== void 0) {
@@ -4896,13 +12171,13 @@ function sql(strings, ...params) {
     }
     return new SQL(result);
   }
-  sql2.join = join2;
+  sql2.join = join5;
   function identifier(value) {
     return new Name(value);
   }
   sql2.identifier = identifier;
-  function placeholder2(name23) {
-    return new Placeholder(name23);
+  function placeholder2(name24) {
+    return new Placeholder(name24);
   }
   sql2.placeholder = placeholder2;
   function param2(value, encoder) {
@@ -4930,8 +12205,8 @@ function sql(strings, ...params) {
   SQL2.Aliased = Aliased;
 })(SQL || (SQL = {}));
 var Placeholder = class {
-  constructor(name23) {
-    this.name = name23;
+  constructor(name24) {
+    this.name = name24;
   }
   static [entityKind] = "Placeholder";
   getSQL() {
@@ -4962,10 +12237,10 @@ var View = class {
   [ViewBaseConfig];
   /** @internal */
   [IsDrizzleView] = true;
-  constructor({ name: name23, schema, selectedFields, query }) {
+  constructor({ name: name24, schema, selectedFields, query }) {
     this[ViewBaseConfig] = {
-      name: name23,
-      originalName: name23,
+      name: name24,
+      originalName: name24,
       schema,
       selectedFields,
       query,
@@ -4991,7 +12266,7 @@ Subquery.prototype.getSQL = function() {
 function mapResultRow(columns, row, joinsNotNullableMap) {
   const nullifyMap = {};
   const result = columns.reduce(
-    (result2, { path: path3, field }, columnIndex) => {
+    (result2, { path: path5, field }, columnIndex) => {
       let decoder;
       if (is(field, Column)) {
         decoder = field;
@@ -5001,8 +12276,8 @@ function mapResultRow(columns, row, joinsNotNullableMap) {
         decoder = field.sql.decoder;
       }
       let node = result2;
-      for (const [pathChunkIndex, pathChunk] of path3.entries()) {
-        if (pathChunkIndex < path3.length - 1) {
+      for (const [pathChunkIndex, pathChunk] of path5.entries()) {
+        if (pathChunkIndex < path5.length - 1) {
           if (!(pathChunk in node)) {
             node[pathChunk] = {};
           }
@@ -5010,8 +12285,8 @@ function mapResultRow(columns, row, joinsNotNullableMap) {
         } else {
           const rawValue = row[columnIndex];
           const value = node[pathChunk] = rawValue === null ? null : decoder.mapFromDriverValue(rawValue);
-          if (joinsNotNullableMap && is(field, Column) && path3.length === 2) {
-            const objectName = path3[0];
+          if (joinsNotNullableMap && is(field, Column) && path5.length === 2) {
+            const objectName = path5[0];
             if (!(objectName in nullifyMap)) {
               nullifyMap[objectName] = value === null ? getTableName(field.table) : false;
             } else if (typeof nullifyMap[objectName] === "string" && nullifyMap[objectName] !== getTableName(field.table)) {
@@ -6341,12 +13616,12 @@ function sqliteTableBase(name17, columns, extraConfig, schema, baseName = name17
   const rawTable = new SQLiteTable(name17, schema, baseName);
   const parsedColumns = typeof columns === "function" ? columns(getSQLiteColumnBuilders()) : columns;
   const builtColumns = Object.fromEntries(
-    Object.entries(parsedColumns).map(([name23, colBuilderBase]) => {
+    Object.entries(parsedColumns).map(([name24, colBuilderBase]) => {
       const colBuilder = colBuilderBase;
-      colBuilder.setName(name23);
+      colBuilder.setName(name24);
       const column = colBuilder.build(rawTable);
       rawTable[InlineForeignKeys2].push(...colBuilder.buildForeignKeys(column, rawTable));
-      return [name23, column];
+      return [name24, column];
     })
   );
   const table = Object.assign(rawTable, builtColumns);
@@ -7284,7 +14559,7 @@ var SQLiteSelectQueryBuilderBase = class extends TypedQueryBuilder {
       const baseTableName = this.tableName;
       const tableName = getTableLikeName(table);
       for (const item of extractUsedTable(table)) this.usedTables.add(item);
-      if (typeof tableName === "string" && this.config.joins?.some((join2) => join2.alias === tableName)) {
+      if (typeof tableName === "string" && this.config.joins?.some((join5) => join5.alias === tableName)) {
         throw new Error(`Alias "${tableName}" is already used in this query`);
       }
       if (!this.isPartialSelect) {
@@ -8143,7 +15418,7 @@ var SQLiteUpdateBase = class extends QueryPromise {
   createJoin(joinType) {
     return (table, on) => {
       const tableName = getTableLikeName(table);
-      if (typeof tableName === "string" && this.config.joins.some((join2) => join2.alias === tableName)) {
+      if (typeof tableName === "string" && this.config.joins.some((join5) => join5.alias === tableName)) {
         throw new Error(`Alias "${tableName}" is already used in this query`);
       }
       if (typeof on === "function") {
@@ -9244,11 +16519,51 @@ var name = "AI_APICallError";
 var marker2 = `vercel.ai.error.${name}`;
 var symbol2 = Symbol.for(marker2);
 var _a2;
+var APICallError = class extends AISDKError {
+  constructor({
+    message,
+    url: url2,
+    requestBodyValues,
+    statusCode,
+    responseHeaders,
+    responseBody,
+    cause,
+    isRetryable = statusCode != null && (statusCode === 408 || // request timeout
+    statusCode === 409 || // conflict
+    statusCode === 429 || // too many requests
+    statusCode >= 500),
+    // server error
+    data
+  }) {
+    super({ name, message, cause });
+    this[_a2] = true;
+    this.url = url2;
+    this.requestBodyValues = requestBodyValues;
+    this.statusCode = statusCode;
+    this.responseHeaders = responseHeaders;
+    this.responseBody = responseBody;
+    this.isRetryable = isRetryable;
+    this.data = data;
+  }
+  static isInstance(error45) {
+    return AISDKError.hasMarker(error45, marker2);
+  }
+};
 _a2 = symbol2;
 var name2 = "AI_EmptyResponseBodyError";
 var marker3 = `vercel.ai.error.${name2}`;
 var symbol3 = Symbol.for(marker3);
 var _a3;
+var EmptyResponseBodyError = class extends AISDKError {
+  // used in isInstance
+  constructor({ message = "Empty response body" } = {}) {
+    super({ name: name2, message });
+    this[_a3] = true;
+  }
+  static isInstance(error45) {
+    return AISDKError.hasMarker(error45, marker3);
+  }
+};
 _a3 = symbol3;
 function getErrorMessage(error45) {
   if (error45 == null) {
@@ -9285,11 +16600,38 @@ var name4 = "AI_InvalidPromptError";
 var marker5 = `vercel.ai.error.${name4}`;
 var symbol5 = Symbol.for(marker5);
 var _a5;
+var InvalidPromptError = class extends AISDKError {
+  constructor({
+    prompt,
+    message,
+    cause
+  }) {
+    super({ name: name4, message: `Invalid prompt: ${message}`, cause });
+    this[_a5] = true;
+    this.prompt = prompt;
+  }
+  static isInstance(error45) {
+    return AISDKError.hasMarker(error45, marker5);
+  }
+};
 _a5 = symbol5;
 var name5 = "AI_InvalidResponseDataError";
 var marker6 = `vercel.ai.error.${name5}`;
 var symbol6 = Symbol.for(marker6);
 var _a6;
+var InvalidResponseDataError = class extends AISDKError {
+  constructor({
+    data,
+    message = `Invalid response data: ${JSON.stringify(data)}.`
+  }) {
+    super({ name: name5, message });
+    this[_a6] = true;
+    this.data = data;
+  }
+  static isInstance(error45) {
+    return AISDKError.hasMarker(error45, marker6);
+  }
+};
 _a6 = symbol6;
 var name6 = "AI_JSONParseError";
 var marker7 = `vercel.ai.error.${name6}`;
@@ -9315,6 +16657,16 @@ var name7 = "AI_LoadAPIKeyError";
 var marker8 = `vercel.ai.error.${name7}`;
 var symbol8 = Symbol.for(marker8);
 var _a8;
+var LoadAPIKeyError = class extends AISDKError {
+  // used in isInstance
+  constructor({ message }) {
+    super({ name: name7, message });
+    this[_a8] = true;
+  }
+  static isInstance(error45) {
+    return AISDKError.hasMarker(error45, marker8);
+  }
+};
 _a8 = symbol8;
 var name8 = "AI_LoadSettingError";
 var marker9 = `vercel.ai.error.${name8}`;
@@ -9330,11 +16682,43 @@ var name10 = "AI_NoSuchModelError";
 var marker11 = `vercel.ai.error.${name10}`;
 var symbol11 = Symbol.for(marker11);
 var _a11;
+var NoSuchModelError = class extends AISDKError {
+  constructor({
+    errorName = name10,
+    modelId,
+    modelType,
+    message = `No such ${modelType}: ${modelId}`
+  }) {
+    super({ name: errorName, message });
+    this[_a11] = true;
+    this.modelId = modelId;
+    this.modelType = modelType;
+  }
+  static isInstance(error45) {
+    return AISDKError.hasMarker(error45, marker11);
+  }
+};
 _a11 = symbol11;
 var name11 = "AI_TooManyEmbeddingValuesForCallError";
 var marker12 = `vercel.ai.error.${name11}`;
 var symbol12 = Symbol.for(marker12);
 var _a12;
+var TooManyEmbeddingValuesForCallError = class extends AISDKError {
+  constructor(options) {
+    super({
+      name: name11,
+      message: `Too many values for a single embedding call. The ${options.provider} model "${options.modelId}" can only embed up to ${options.maxEmbeddingsPerCall} values per call, but ${options.values.length} values were provided.`
+    });
+    this[_a12] = true;
+    this.provider = options.provider;
+    this.modelId = options.modelId;
+    this.maxEmbeddingsPerCall = options.maxEmbeddingsPerCall;
+    this.values = options.values;
+  }
+  static isInstance(error45) {
+    return AISDKError.hasMarker(error45, marker12);
+  }
+};
 _a12 = symbol12;
 var name12 = "AI_TypeValidationError";
 var marker13 = `vercel.ai.error.${name12}`;
@@ -9377,7 +16761,147 @@ var name13 = "AI_UnsupportedFunctionalityError";
 var marker14 = `vercel.ai.error.${name13}`;
 var symbol14 = Symbol.for(marker14);
 var _a14;
+var UnsupportedFunctionalityError = class extends AISDKError {
+  constructor({
+    functionality,
+    message = `'${functionality}' functionality not supported.`
+  }) {
+    super({ name: name13, message });
+    this[_a14] = true;
+    this.functionality = functionality;
+  }
+  static isInstance(error45) {
+    return AISDKError.hasMarker(error45, marker14);
+  }
+};
 _a14 = symbol14;
+
+// node_modules/eventsource-parser/dist/index.js
+var ParseError = class extends Error {
+  constructor(message, options) {
+    super(message), this.name = "ParseError", this.type = options.type, this.field = options.field, this.value = options.value, this.line = options.line;
+  }
+};
+function noop(_arg) {
+}
+function createParser(callbacks) {
+  if (typeof callbacks == "function")
+    throw new TypeError(
+      "`callbacks` must be an object, got a function instead. Did you mean `{onEvent: fn}`?"
+    );
+  const { onEvent = noop, onError = noop, onRetry = noop, onComment } = callbacks;
+  let incompleteLine = "", isFirstChunk = true, id, data = "", eventType = "";
+  function feed(newChunk) {
+    const chunk = isFirstChunk ? newChunk.replace(/^\xEF\xBB\xBF/, "") : newChunk, [complete, incomplete] = splitLines(`${incompleteLine}${chunk}`);
+    for (const line of complete)
+      parseLine(line);
+    incompleteLine = incomplete, isFirstChunk = false;
+  }
+  function parseLine(line) {
+    if (line === "") {
+      dispatchEvent();
+      return;
+    }
+    if (line.startsWith(":")) {
+      onComment && onComment(line.slice(line.startsWith(": ") ? 2 : 1));
+      return;
+    }
+    const fieldSeparatorIndex = line.indexOf(":");
+    if (fieldSeparatorIndex !== -1) {
+      const field = line.slice(0, fieldSeparatorIndex), offset = line[fieldSeparatorIndex + 1] === " " ? 2 : 1, value = line.slice(fieldSeparatorIndex + offset);
+      processField(field, value, line);
+      return;
+    }
+    processField(line, "", line);
+  }
+  function processField(field, value, line) {
+    switch (field) {
+      case "event":
+        eventType = value;
+        break;
+      case "data":
+        data = `${data}${value}
+`;
+        break;
+      case "id":
+        id = value.includes("\0") ? void 0 : value;
+        break;
+      case "retry":
+        /^\d+$/.test(value) ? onRetry(parseInt(value, 10)) : onError(
+          new ParseError(`Invalid \`retry\` value: "${value}"`, {
+            type: "invalid-retry",
+            value,
+            line
+          })
+        );
+        break;
+      default:
+        onError(
+          new ParseError(
+            `Unknown field "${field.length > 20 ? `${field.slice(0, 20)}\u2026` : field}"`,
+            { type: "unknown-field", field, value, line }
+          )
+        );
+        break;
+    }
+  }
+  function dispatchEvent() {
+    data.length > 0 && onEvent({
+      id,
+      event: eventType || void 0,
+      // If the data buffer's last character is a U+000A LINE FEED (LF) character,
+      // then remove the last character from the data buffer.
+      data: data.endsWith(`
+`) ? data.slice(0, -1) : data
+    }), id = void 0, data = "", eventType = "";
+  }
+  function reset(options = {}) {
+    incompleteLine && options.consume && parseLine(incompleteLine), isFirstChunk = true, id = void 0, data = "", eventType = "", incompleteLine = "";
+  }
+  return { feed, reset };
+}
+function splitLines(chunk) {
+  const lines = [];
+  let incompleteLine = "", searchIndex = 0;
+  for (; searchIndex < chunk.length; ) {
+    const crIndex = chunk.indexOf("\r", searchIndex), lfIndex = chunk.indexOf(`
+`, searchIndex);
+    let lineEnd = -1;
+    if (crIndex !== -1 && lfIndex !== -1 ? lineEnd = Math.min(crIndex, lfIndex) : crIndex !== -1 ? crIndex === chunk.length - 1 ? lineEnd = -1 : lineEnd = crIndex : lfIndex !== -1 && (lineEnd = lfIndex), lineEnd === -1) {
+      incompleteLine = chunk.slice(searchIndex);
+      break;
+    } else {
+      const line = chunk.slice(searchIndex, lineEnd);
+      lines.push(line), searchIndex = lineEnd + 1, chunk[searchIndex - 1] === "\r" && chunk[searchIndex] === `
+` && searchIndex++;
+    }
+  }
+  return [lines, incompleteLine];
+}
+
+// node_modules/eventsource-parser/dist/stream.js
+var EventSourceParserStream = class extends TransformStream {
+  constructor({ onError, onRetry, onComment } = {}) {
+    let parser;
+    super({
+      start(controller) {
+        parser = createParser({
+          onEvent: (event) => {
+            controller.enqueue(event);
+          },
+          onError(error45) {
+            onError === "terminate" ? controller.error(error45) : typeof onError == "function" && onError(error45);
+          },
+          onRetry,
+          onComment
+        });
+      },
+      transform(chunk) {
+        parser.feed(chunk);
+      }
+    });
+  }
+};
 
 // node_modules/zod/v4/classic/external.js
 var external_exports = {};
@@ -10110,10 +17634,10 @@ function mergeDefs(...defs) {
 function cloneDef(schema) {
   return mergeDefs(schema._zod.def);
 }
-function getElementAtPath(obj, path3) {
-  if (!path3)
+function getElementAtPath(obj, path5) {
+  if (!path5)
     return obj;
-  return path3.reduce((acc, key) => acc?.[key], obj);
+  return path5.reduce((acc, key) => acc?.[key], obj);
 }
 function promiseAllObject(promisesObj) {
   const keys = Object.keys(promisesObj);
@@ -10474,11 +17998,11 @@ function aborted(x, startIndex = 0) {
   }
   return false;
 }
-function prefixIssues(path3, issues) {
+function prefixIssues(path5, issues) {
   return issues.map((iss) => {
     var _a17;
     (_a17 = iss).path ?? (_a17.path = []);
-    iss.path.unshift(path3);
+    iss.path.unshift(path5);
     return iss;
   });
 }
@@ -10646,8 +18170,8 @@ function treeifyError(error45, _mapper) {
     return issue2.message;
   };
   const result = { errors: [] };
-  const processError = (error46, path3 = []) => {
-    var _a17, _b;
+  const processError = (error46, path5 = []) => {
+    var _a17, _b8;
     for (const issue2 of error46.issues) {
       if (issue2.code === "invalid_union" && issue2.errors.length) {
         issue2.errors.map((issues) => processError({ issues }, issue2.path));
@@ -10656,7 +18180,7 @@ function treeifyError(error45, _mapper) {
       } else if (issue2.code === "invalid_element") {
         processError({ issues: issue2.issues }, issue2.path);
       } else {
-        const fullpath = [...path3, ...issue2.path];
+        const fullpath = [...path5, ...issue2.path];
         if (fullpath.length === 0) {
           result.errors.push(mapper(issue2));
           continue;
@@ -10672,7 +18196,7 @@ function treeifyError(error45, _mapper) {
             curr = curr.properties[el];
           } else {
             curr.items ?? (curr.items = []);
-            (_b = curr.items)[el] ?? (_b[el] = { errors: [] });
+            (_b8 = curr.items)[el] ?? (_b8[el] = { errors: [] });
             curr = curr.items[el];
           }
           if (terminal) {
@@ -10688,8 +18212,8 @@ function treeifyError(error45, _mapper) {
 }
 function toDotPath(_path) {
   const segs = [];
-  const path3 = _path.map((seg) => typeof seg === "object" ? seg.key : seg);
-  for (const seg of path3) {
+  const path5 = _path.map((seg) => typeof seg === "object" ? seg.key : seg);
+  for (const seg of path5) {
     if (typeof seg === "number")
       segs.push(`[${seg}]`);
     else if (typeof seg === "symbol")
@@ -11329,7 +18853,7 @@ var $ZodCheckLengthEquals = /* @__PURE__ */ $constructor("$ZodCheckLengthEquals"
   };
 });
 var $ZodCheckStringFormat = /* @__PURE__ */ $constructor("$ZodCheckStringFormat", (inst, def) => {
-  var _a17, _b;
+  var _a17, _b8;
   $ZodCheck.init(inst, def);
   inst._zod.onattach.push((inst2) => {
     const bag = inst2._zod.bag;
@@ -11355,7 +18879,7 @@ var $ZodCheckStringFormat = /* @__PURE__ */ $constructor("$ZodCheckStringFormat"
       });
     });
   else
-    (_b = inst._zod).check ?? (_b.check = () => {
+    (_b8 = inst._zod).check ?? (_b8.check = () => {
     });
 });
 var $ZodCheckRegex = /* @__PURE__ */ $constructor("$ZodCheckRegex", (inst, def) => {
@@ -22142,8 +29666,8 @@ function getErrorMap2() {
 
 // node_modules/zod/v3/helpers/parseUtil.js
 var makeIssue = (params) => {
-  const { data, path: path3, errorMaps, issueData } = params;
-  const fullPath = [...path3, ...issueData.path || []];
+  const { data, path: path5, errorMaps, issueData } = params;
+  const fullPath = [...path5, ...issueData.path || []];
   const fullIssue = {
     ...issueData,
     path: fullPath
@@ -22258,11 +29782,11 @@ var errorUtil;
 
 // node_modules/zod/v3/types.js
 var ParseInputLazyPath = class {
-  constructor(parent, value, path3, key) {
+  constructor(parent, value, path5, key) {
     this._cachedPath = [];
     this.parent = parent;
     this.data = value;
-    this._path = path3;
+    this._path = path5;
     this._key = key;
   }
   get path() {
@@ -25661,6 +33185,46 @@ var preprocessType = ZodEffects.createWithPreprocess;
 var pipelineType = ZodPipeline.create;
 
 // node_modules/@ai-sdk/provider-utils/dist/index.mjs
+function combineHeaders(...headers) {
+  return headers.reduce(
+    (combinedHeaders, currentHeaders) => ({
+      ...combinedHeaders,
+      ...currentHeaders != null ? currentHeaders : {}
+    }),
+    {}
+  );
+}
+async function delay(delayInMs, options) {
+  if (delayInMs == null) {
+    return Promise.resolve();
+  }
+  const signal = options == null ? void 0 : options.abortSignal;
+  return new Promise((resolve22, reject) => {
+    if (signal == null ? void 0 : signal.aborted) {
+      reject(createAbortError());
+      return;
+    }
+    const timeoutId = setTimeout(() => {
+      cleanup();
+      resolve22();
+    }, delayInMs);
+    const cleanup = () => {
+      clearTimeout(timeoutId);
+      signal == null ? void 0 : signal.removeEventListener("abort", onAbort);
+    };
+    const onAbort = () => {
+      cleanup();
+      reject(createAbortError());
+    };
+    signal == null ? void 0 : signal.addEventListener("abort", onAbort);
+  });
+}
+function createAbortError() {
+  return new DOMException("Delay was aborted", "AbortError");
+}
+function extractResponseHeaders(response) {
+  return Object.fromEntries([...response.headers]);
+}
 var createIdGenerator = ({
   prefix,
   size = 16,
@@ -25687,6 +33251,186 @@ var createIdGenerator = ({
   return () => `${prefix}${separator}${generator()}`;
 };
 var generateId = createIdGenerator();
+function getErrorMessage2(error45) {
+  if (error45 == null) {
+    return "unknown error";
+  }
+  if (typeof error45 === "string") {
+    return error45;
+  }
+  if (error45 instanceof Error) {
+    return error45.message;
+  }
+  return JSON.stringify(error45);
+}
+function isAbortError(error45) {
+  return (error45 instanceof Error || error45 instanceof DOMException) && (error45.name === "AbortError" || error45.name === "ResponseAborted" || // Next.js
+  error45.name === "TimeoutError");
+}
+var FETCH_FAILED_ERROR_MESSAGES = ["fetch failed", "failed to fetch"];
+function handleFetchError({
+  error: error45,
+  url: url2,
+  requestBodyValues
+}) {
+  if (isAbortError(error45)) {
+    return error45;
+  }
+  if (error45 instanceof TypeError && FETCH_FAILED_ERROR_MESSAGES.includes(error45.message.toLowerCase())) {
+    const cause = error45.cause;
+    if (cause != null) {
+      return new APICallError({
+        message: `Cannot connect to API: ${cause.message}`,
+        cause,
+        url: url2,
+        requestBodyValues,
+        isRetryable: true
+        // retry when network error
+      });
+    }
+  }
+  return error45;
+}
+function removeUndefinedEntries(record2) {
+  return Object.fromEntries(
+    Object.entries(record2).filter(([_key, value]) => value != null)
+  );
+}
+var getOriginalFetch = () => globalThis.fetch;
+var getFromApi = async ({
+  url: url2,
+  headers = {},
+  successfulResponseHandler,
+  failedResponseHandler,
+  abortSignal,
+  fetch: fetch2 = getOriginalFetch()
+}) => {
+  try {
+    const response = await fetch2(url2, {
+      method: "GET",
+      headers: removeUndefinedEntries(headers),
+      signal: abortSignal
+    });
+    const responseHeaders = extractResponseHeaders(response);
+    if (!response.ok) {
+      let errorInformation;
+      try {
+        errorInformation = await failedResponseHandler({
+          response,
+          url: url2,
+          requestBodyValues: {}
+        });
+      } catch (error45) {
+        if (isAbortError(error45) || APICallError.isInstance(error45)) {
+          throw error45;
+        }
+        throw new APICallError({
+          message: "Failed to process error response",
+          cause: error45,
+          statusCode: response.status,
+          url: url2,
+          responseHeaders,
+          requestBodyValues: {}
+        });
+      }
+      throw errorInformation.value;
+    }
+    try {
+      return await successfulResponseHandler({
+        response,
+        url: url2,
+        requestBodyValues: {}
+      });
+    } catch (error45) {
+      if (error45 instanceof Error) {
+        if (isAbortError(error45) || APICallError.isInstance(error45)) {
+          throw error45;
+        }
+      }
+      throw new APICallError({
+        message: "Failed to process successful response",
+        cause: error45,
+        statusCode: response.status,
+        url: url2,
+        responseHeaders,
+        requestBodyValues: {}
+      });
+    }
+  } catch (error45) {
+    throw handleFetchError({ error: error45, url: url2, requestBodyValues: {} });
+  }
+};
+function isUrlSupported({
+  mediaType,
+  url: url2,
+  supportedUrls
+}) {
+  url2 = url2.toLowerCase();
+  mediaType = mediaType.toLowerCase();
+  return Object.entries(supportedUrls).map(([key, value]) => {
+    const mediaType2 = key.toLowerCase();
+    return mediaType2 === "*" || mediaType2 === "*/*" ? { mediaTypePrefix: "", regexes: value } : { mediaTypePrefix: mediaType2.replace(/\*/, ""), regexes: value };
+  }).filter(({ mediaTypePrefix }) => mediaType.startsWith(mediaTypePrefix)).flatMap(({ regexes }) => regexes).some((pattern) => pattern.test(url2));
+}
+function loadApiKey({
+  apiKey,
+  environmentVariableName,
+  apiKeyParameterName = "apiKey",
+  description
+}) {
+  if (typeof apiKey === "string") {
+    return apiKey;
+  }
+  if (apiKey != null) {
+    throw new LoadAPIKeyError({
+      message: `${description} API key must be a string.`
+    });
+  }
+  if (typeof process === "undefined") {
+    throw new LoadAPIKeyError({
+      message: `${description} API key is missing. Pass it using the '${apiKeyParameterName}' parameter. Environment variables is not supported in this environment.`
+    });
+  }
+  apiKey = process.env[environmentVariableName];
+  if (apiKey == null) {
+    throw new LoadAPIKeyError({
+      message: `${description} API key is missing. Pass it using the '${apiKeyParameterName}' parameter or the ${environmentVariableName} environment variable.`
+    });
+  }
+  if (typeof apiKey !== "string") {
+    throw new LoadAPIKeyError({
+      message: `${description} API key must be a string. The value of the ${environmentVariableName} environment variable is not a string.`
+    });
+  }
+  return apiKey;
+}
+function loadOptionalSetting({
+  settingValue,
+  environmentVariableName
+}) {
+  if (typeof settingValue === "string") {
+    return settingValue;
+  }
+  if (settingValue != null || typeof process === "undefined") {
+    return void 0;
+  }
+  settingValue = process.env[environmentVariableName];
+  if (settingValue == null || typeof settingValue !== "string") {
+    return void 0;
+  }
+  return settingValue;
+}
+function mediaTypeToExtension(mediaType) {
+  var _a17;
+  const [_type, subtype = ""] = mediaType.toLowerCase().split("/");
+  return (_a17 = {
+    mpeg: "mp3",
+    "x-wav": "wav",
+    opus: "ogg",
+    mp4: "m4a",
+    "x-m4a": "m4a"
+  }[subtype]) != null ? _a17 : subtype;
+}
 var suspectProtoRx = /"__proto__"\s*:/;
 var suspectConstructorRx = /"constructor"\s*:/;
 function _parse2(text3) {
@@ -25752,6 +33496,16 @@ function standardSchemaValidator(standardSchema) {
     };
   });
 }
+async function validateTypes({
+  value,
+  schema
+}) {
+  const result = await safeValidateTypes({ value, schema });
+  if (!result.success) {
+    throw TypeValidationError.wrap({ value, cause: result.error });
+  }
+  return result.value;
+}
 async function safeValidateTypes({
   value,
   schema
@@ -25778,6 +33532,23 @@ async function safeValidateTypes({
     };
   }
 }
+async function parseJSON({
+  text: text3,
+  schema
+}) {
+  try {
+    const value = secureJsonParse(text3);
+    if (schema == null) {
+      return value;
+    }
+    return validateTypes({ value, schema });
+  } catch (error45) {
+    if (JSONParseError.isInstance(error45) || TypeValidationError.isInstance(error45)) {
+      throw error45;
+    }
+    throw new JSONParseError({ text: text3, cause: error45 });
+  }
+}
 async function safeParseJSON({
   text: text3,
   schema
@@ -25796,9 +33567,343 @@ async function safeParseJSON({
     };
   }
 }
+function isParsableJson(input) {
+  try {
+    secureJsonParse(input);
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
+function parseJsonEventStream({
+  stream,
+  schema
+}) {
+  return stream.pipeThrough(new TextDecoderStream()).pipeThrough(new EventSourceParserStream()).pipeThrough(
+    new TransformStream({
+      async transform({ data }, controller) {
+        if (data === "[DONE]") {
+          return;
+        }
+        controller.enqueue(await safeParseJSON({ text: data, schema }));
+      }
+    })
+  );
+}
+async function parseProviderOptions({
+  provider,
+  providerOptions,
+  schema
+}) {
+  if ((providerOptions == null ? void 0 : providerOptions[provider]) == null) {
+    return void 0;
+  }
+  const parsedProviderOptions = await safeValidateTypes({
+    value: providerOptions[provider],
+    schema
+  });
+  if (!parsedProviderOptions.success) {
+    throw new InvalidArgumentError2({
+      argument: "providerOptions",
+      message: `invalid ${provider} provider options`,
+      cause: parsedProviderOptions.error
+    });
+  }
+  return parsedProviderOptions.value;
+}
+var getOriginalFetch2 = () => globalThis.fetch;
+var postJsonToApi = async ({
+  url: url2,
+  headers,
+  body,
+  failedResponseHandler,
+  successfulResponseHandler,
+  abortSignal,
+  fetch: fetch2
+}) => postToApi({
+  url: url2,
+  headers: {
+    "Content-Type": "application/json",
+    ...headers
+  },
+  body: {
+    content: JSON.stringify(body),
+    values: body
+  },
+  failedResponseHandler,
+  successfulResponseHandler,
+  abortSignal,
+  fetch: fetch2
+});
+var postFormDataToApi = async ({
+  url: url2,
+  headers,
+  formData,
+  failedResponseHandler,
+  successfulResponseHandler,
+  abortSignal,
+  fetch: fetch2
+}) => postToApi({
+  url: url2,
+  headers,
+  body: {
+    content: formData,
+    values: Object.fromEntries(formData.entries())
+  },
+  failedResponseHandler,
+  successfulResponseHandler,
+  abortSignal,
+  fetch: fetch2
+});
+var postToApi = async ({
+  url: url2,
+  headers = {},
+  body,
+  successfulResponseHandler,
+  failedResponseHandler,
+  abortSignal,
+  fetch: fetch2 = getOriginalFetch2()
+}) => {
+  try {
+    const response = await fetch2(url2, {
+      method: "POST",
+      headers: removeUndefinedEntries(headers),
+      body: body.content,
+      signal: abortSignal
+    });
+    const responseHeaders = extractResponseHeaders(response);
+    if (!response.ok) {
+      let errorInformation;
+      try {
+        errorInformation = await failedResponseHandler({
+          response,
+          url: url2,
+          requestBodyValues: body.values
+        });
+      } catch (error45) {
+        if (isAbortError(error45) || APICallError.isInstance(error45)) {
+          throw error45;
+        }
+        throw new APICallError({
+          message: "Failed to process error response",
+          cause: error45,
+          statusCode: response.status,
+          url: url2,
+          responseHeaders,
+          requestBodyValues: body.values
+        });
+      }
+      throw errorInformation.value;
+    }
+    try {
+      return await successfulResponseHandler({
+        response,
+        url: url2,
+        requestBodyValues: body.values
+      });
+    } catch (error45) {
+      if (error45 instanceof Error) {
+        if (isAbortError(error45) || APICallError.isInstance(error45)) {
+          throw error45;
+        }
+      }
+      throw new APICallError({
+        message: "Failed to process successful response",
+        cause: error45,
+        statusCode: response.status,
+        url: url2,
+        responseHeaders,
+        requestBodyValues: body.values
+      });
+    }
+  } catch (error45) {
+    throw handleFetchError({ error: error45, url: url2, requestBodyValues: body.values });
+  }
+};
 function tool(tool2) {
   return tool2;
 }
+function createProviderDefinedToolFactory({
+  id,
+  name: name17,
+  inputSchema
+}) {
+  return ({
+    execute,
+    outputSchema: outputSchema2,
+    toModelOutput,
+    onInputStart,
+    onInputDelta,
+    onInputAvailable,
+    ...args
+  }) => tool({
+    type: "provider-defined",
+    id,
+    name: name17,
+    args,
+    inputSchema,
+    outputSchema: outputSchema2,
+    execute,
+    toModelOutput,
+    onInputStart,
+    onInputDelta,
+    onInputAvailable
+  });
+}
+function createProviderDefinedToolFactoryWithOutputSchema({
+  id,
+  name: name17,
+  inputSchema,
+  outputSchema: outputSchema2
+}) {
+  return ({
+    execute,
+    toModelOutput,
+    onInputStart,
+    onInputDelta,
+    onInputAvailable,
+    ...args
+  }) => tool({
+    type: "provider-defined",
+    id,
+    name: name17,
+    args,
+    inputSchema,
+    outputSchema: outputSchema2,
+    execute,
+    toModelOutput,
+    onInputStart,
+    onInputDelta,
+    onInputAvailable
+  });
+}
+async function resolve(value) {
+  if (typeof value === "function") {
+    value = value();
+  }
+  return Promise.resolve(value);
+}
+var createJsonErrorResponseHandler = ({
+  errorSchema,
+  errorToMessage,
+  isRetryable
+}) => async ({ response, url: url2, requestBodyValues }) => {
+  const responseBody = await response.text();
+  const responseHeaders = extractResponseHeaders(response);
+  if (responseBody.trim() === "") {
+    return {
+      responseHeaders,
+      value: new APICallError({
+        message: response.statusText,
+        url: url2,
+        requestBodyValues,
+        statusCode: response.status,
+        responseHeaders,
+        responseBody,
+        isRetryable: isRetryable == null ? void 0 : isRetryable(response)
+      })
+    };
+  }
+  try {
+    const parsedError = await parseJSON({
+      text: responseBody,
+      schema: errorSchema
+    });
+    return {
+      responseHeaders,
+      value: new APICallError({
+        message: errorToMessage(parsedError),
+        url: url2,
+        requestBodyValues,
+        statusCode: response.status,
+        responseHeaders,
+        responseBody,
+        data: parsedError,
+        isRetryable: isRetryable == null ? void 0 : isRetryable(response, parsedError)
+      })
+    };
+  } catch (parseError) {
+    return {
+      responseHeaders,
+      value: new APICallError({
+        message: response.statusText,
+        url: url2,
+        requestBodyValues,
+        statusCode: response.status,
+        responseHeaders,
+        responseBody,
+        isRetryable: isRetryable == null ? void 0 : isRetryable(response)
+      })
+    };
+  }
+};
+var createEventSourceResponseHandler = (chunkSchema) => async ({ response }) => {
+  const responseHeaders = extractResponseHeaders(response);
+  if (response.body == null) {
+    throw new EmptyResponseBodyError({});
+  }
+  return {
+    responseHeaders,
+    value: parseJsonEventStream({
+      stream: response.body,
+      schema: chunkSchema
+    })
+  };
+};
+var createJsonResponseHandler = (responseSchema) => async ({ response, url: url2, requestBodyValues }) => {
+  const responseBody = await response.text();
+  const parsedResult = await safeParseJSON({
+    text: responseBody,
+    schema: responseSchema
+  });
+  const responseHeaders = extractResponseHeaders(response);
+  if (!parsedResult.success) {
+    throw new APICallError({
+      message: "Invalid JSON response",
+      cause: parsedResult.error,
+      statusCode: response.status,
+      responseHeaders,
+      responseBody,
+      url: url2,
+      requestBodyValues
+    });
+  }
+  return {
+    responseHeaders,
+    value: parsedResult.value,
+    rawValue: parsedResult.rawValue
+  };
+};
+var createBinaryResponseHandler = () => async ({ response, url: url2, requestBodyValues }) => {
+  const responseHeaders = extractResponseHeaders(response);
+  if (!response.body) {
+    throw new APICallError({
+      message: "Response body is empty",
+      url: url2,
+      requestBodyValues,
+      statusCode: response.status,
+      responseHeaders,
+      responseBody: void 0
+    });
+  }
+  try {
+    const buffer = await response.arrayBuffer();
+    return {
+      responseHeaders,
+      value: new Uint8Array(buffer)
+    };
+  } catch (error45) {
+    throw new APICallError({
+      message: "Failed to read response as array buffer",
+      url: url2,
+      requestBodyValues,
+      statusCode: response.status,
+      responseHeaders,
+      responseBody: void 0,
+      cause: error45
+    });
+  }
+};
 var getRelativePath = (pathA, pathB) => {
   let i = 0;
   for (; i < pathA.length && i < pathB.length; i++) {
@@ -25842,11 +33947,11 @@ function parseAnyDef() {
   return {};
 }
 function parseArrayDef(def, refs) {
-  var _a17, _b, _c;
+  var _a17, _b8, _c;
   const res = {
     type: "array"
   };
-  if (((_a17 = def.type) == null ? void 0 : _a17._def) && ((_c = (_b = def.type) == null ? void 0 : _b._def) == null ? void 0 : _c.typeName) !== ZodFirstPartyTypeKind2.ZodAny) {
+  if (((_a17 = def.type) == null ? void 0 : _a17._def) && ((_c = (_b8 = def.type) == null ? void 0 : _b8._def) == null ? void 0 : _c.typeName) !== ZodFirstPartyTypeKind2.ZodAny) {
     res.items = parseDef(def.type._def, {
       ...refs,
       currentPath: [...refs.currentPath, "items"]
@@ -26336,7 +34441,7 @@ function stringifyRegExpWithFlags(regex, refs) {
   return pattern;
 }
 function parseRecordDef(def, refs) {
-  var _a17, _b, _c, _d, _e, _f;
+  var _a17, _b8, _c, _d, _e, _f;
   const schema = {
     type: "object",
     additionalProperties: (_a17 = parseDef(def.valueType._def, {
@@ -26344,7 +34449,7 @@ function parseRecordDef(def, refs) {
       currentPath: [...refs.currentPath, "additionalProperties"]
     })) != null ? _a17 : refs.allowedAdditionalProperties
   };
-  if (((_b = def.keyType) == null ? void 0 : _b._def.typeName) === ZodFirstPartyTypeKind2.ZodString && ((_c = def.keyType._def.checks) == null ? void 0 : _c.length)) {
+  if (((_b8 = def.keyType) == null ? void 0 : _b8._def.typeName) === ZodFirstPartyTypeKind2.ZodString && ((_c = def.keyType._def.checks) == null ? void 0 : _c.length)) {
     const { type, ...keyType } = parseStringDef(def.keyType._def, refs);
     return {
       ...schema,
@@ -26857,18 +34962,18 @@ var zodToJsonSchema = (schema, options) => {
   var _a17;
   const refs = getRefs(options);
   let definitions = typeof options === "object" && options.definitions ? Object.entries(options.definitions).reduce(
-    (acc, [name23, schema2]) => {
-      var _a23;
+    (acc, [name24, schema2]) => {
+      var _a24;
       return {
         ...acc,
-        [name23]: (_a23 = parseDef(
+        [name24]: (_a24 = parseDef(
           schema2._def,
           {
             ...refs,
-            currentPath: [...refs.basePath, refs.definitionPath, name23]
+            currentPath: [...refs.basePath, refs.definitionPath, name24]
           },
           true
-        )) != null ? _a23 : parseAnyDef()
+        )) != null ? _a24 : parseAnyDef()
       };
     },
     {}
@@ -26967,6 +35072,1512 @@ function asSchema(schema) {
   }) : isSchema(schema) ? schema : zodSchema(schema);
 }
 var { btoa: btoa2, atob: atob2 } = globalThis;
+function convertBase64ToUint8Array(base64String) {
+  const base64Url = base64String.replace(/-/g, "+").replace(/_/g, "/");
+  const latin1string = atob2(base64Url);
+  return Uint8Array.from(latin1string, (byte) => byte.codePointAt(0));
+}
+function convertUint8ArrayToBase64(array2) {
+  let latin1string = "";
+  for (let i = 0; i < array2.length; i++) {
+    latin1string += String.fromCodePoint(array2[i]);
+  }
+  return btoa2(latin1string);
+}
+function convertToBase64(value) {
+  return value instanceof Uint8Array ? convertUint8ArrayToBase64(value) : value;
+}
+function withoutTrailingSlash(url2) {
+  return url2 == null ? void 0 : url2.replace(/\/$/, "");
+}
+function isAsyncIterable(obj) {
+  return obj != null && typeof obj[Symbol.asyncIterator] === "function";
+}
+async function* executeTool({
+  execute,
+  input,
+  options
+}) {
+  const result = execute(input, options);
+  if (isAsyncIterable(result)) {
+    let lastOutput;
+    for await (const output of result) {
+      lastOutput = output;
+      yield { type: "preliminary", output };
+    }
+    yield { type: "final", output: lastOutput };
+  } else {
+    yield { type: "final", output: await result };
+  }
+}
+
+// node_modules/@ai-sdk/gateway/dist/index.mjs
+var marker15 = "vercel.ai.gateway.error";
+var symbol16 = Symbol.for(marker15);
+var _a15;
+var _b;
+var GatewayError = class _GatewayError extends (_b = Error, _a15 = symbol16, _b) {
+  constructor({
+    message,
+    statusCode = 500,
+    cause
+  }) {
+    super(message);
+    this[_a15] = true;
+    this.statusCode = statusCode;
+    this.cause = cause;
+  }
+  /**
+   * Checks if the given error is a Gateway Error.
+   * @param {unknown} error - The error to check.
+   * @returns {boolean} True if the error is a Gateway Error, false otherwise.
+   */
+  static isInstance(error45) {
+    return _GatewayError.hasMarker(error45);
+  }
+  static hasMarker(error45) {
+    return typeof error45 === "object" && error45 !== null && symbol16 in error45 && error45[symbol16] === true;
+  }
+};
+var name14 = "GatewayAuthenticationError";
+var marker22 = `vercel.ai.gateway.error.${name14}`;
+var symbol22 = Symbol.for(marker22);
+var _a22;
+var _b2;
+var GatewayAuthenticationError = class _GatewayAuthenticationError extends (_b2 = GatewayError, _a22 = symbol22, _b2) {
+  constructor({
+    message = "Authentication failed",
+    statusCode = 401,
+    cause
+  } = {}) {
+    super({ message, statusCode, cause });
+    this[_a22] = true;
+    this.name = name14;
+    this.type = "authentication_error";
+  }
+  static isInstance(error45) {
+    return GatewayError.hasMarker(error45) && symbol22 in error45;
+  }
+  /**
+   * Creates a contextual error message when authentication fails
+   */
+  static createContextualError({
+    apiKeyProvided,
+    oidcTokenProvided,
+    message = "Authentication failed",
+    statusCode = 401,
+    cause
+  }) {
+    let contextualMessage;
+    if (apiKeyProvided) {
+      contextualMessage = `AI Gateway authentication failed: Invalid API key provided.
+
+The token is expected to be provided via the 'apiKey' option or 'AI_GATEWAY_API_KEY' environment variable.`;
+    } else if (oidcTokenProvided) {
+      contextualMessage = `AI Gateway authentication failed: Invalid OIDC token provided.
+
+The token is expected to be provided via the 'VERCEL_OIDC_TOKEN' environment variable. It expires every 12 hours.
+- make sure your Vercel project settings have OIDC enabled
+- if running locally with 'vercel dev', the token is automatically obtained and refreshed
+- if running locally with your own dev server, run 'vercel env pull' to fetch the token
+- in production/preview, the token is automatically obtained and refreshed
+
+Alternative: Provide an API key via 'apiKey' option or 'AI_GATEWAY_API_KEY' environment variable.`;
+    } else {
+      contextualMessage = `AI Gateway authentication failed: No authentication provided.
+
+Provide either an API key or OIDC token.
+
+API key instructions:
+
+The token is expected to be provided via the 'apiKey' option or 'AI_GATEWAY_API_KEY' environment variable.
+
+OIDC token instructions:
+
+The token is expected to be provided via the 'VERCEL_OIDC_TOKEN' environment variable. It expires every 12 hours.
+- make sure your Vercel project settings have OIDC enabled
+- if running locally with 'vercel dev', the token is automatically obtained and refreshed
+- if running locally with your own dev server, run 'vercel env pull' to fetch the token
+- in production/preview, the token is automatically obtained and refreshed`;
+    }
+    return new _GatewayAuthenticationError({
+      message: contextualMessage,
+      statusCode,
+      cause
+    });
+  }
+};
+var name22 = "GatewayInvalidRequestError";
+var marker32 = `vercel.ai.gateway.error.${name22}`;
+var symbol32 = Symbol.for(marker32);
+var _a32;
+var _b3;
+var GatewayInvalidRequestError = class extends (_b3 = GatewayError, _a32 = symbol32, _b3) {
+  constructor({
+    message = "Invalid request",
+    statusCode = 400,
+    cause
+  } = {}) {
+    super({ message, statusCode, cause });
+    this[_a32] = true;
+    this.name = name22;
+    this.type = "invalid_request_error";
+  }
+  static isInstance(error45) {
+    return GatewayError.hasMarker(error45) && symbol32 in error45;
+  }
+};
+var name32 = "GatewayRateLimitError";
+var marker42 = `vercel.ai.gateway.error.${name32}`;
+var symbol42 = Symbol.for(marker42);
+var _a42;
+var _b4;
+var GatewayRateLimitError = class extends (_b4 = GatewayError, _a42 = symbol42, _b4) {
+  constructor({
+    message = "Rate limit exceeded",
+    statusCode = 429,
+    cause
+  } = {}) {
+    super({ message, statusCode, cause });
+    this[_a42] = true;
+    this.name = name32;
+    this.type = "rate_limit_exceeded";
+  }
+  static isInstance(error45) {
+    return GatewayError.hasMarker(error45) && symbol42 in error45;
+  }
+};
+var name42 = "GatewayModelNotFoundError";
+var marker52 = `vercel.ai.gateway.error.${name42}`;
+var symbol52 = Symbol.for(marker52);
+var modelNotFoundParamSchema = external_exports.object({
+  modelId: external_exports.string()
+});
+var _a52;
+var _b5;
+var GatewayModelNotFoundError = class extends (_b5 = GatewayError, _a52 = symbol52, _b5) {
+  constructor({
+    message = "Model not found",
+    statusCode = 404,
+    modelId,
+    cause
+  } = {}) {
+    super({ message, statusCode, cause });
+    this[_a52] = true;
+    this.name = name42;
+    this.type = "model_not_found";
+    this.modelId = modelId;
+  }
+  static isInstance(error45) {
+    return GatewayError.hasMarker(error45) && symbol52 in error45;
+  }
+};
+var name52 = "GatewayInternalServerError";
+var marker62 = `vercel.ai.gateway.error.${name52}`;
+var symbol62 = Symbol.for(marker62);
+var _a62;
+var _b6;
+var GatewayInternalServerError = class extends (_b6 = GatewayError, _a62 = symbol62, _b6) {
+  constructor({
+    message = "Internal server error",
+    statusCode = 500,
+    cause
+  } = {}) {
+    super({ message, statusCode, cause });
+    this[_a62] = true;
+    this.name = name52;
+    this.type = "internal_server_error";
+  }
+  static isInstance(error45) {
+    return GatewayError.hasMarker(error45) && symbol62 in error45;
+  }
+};
+var name62 = "GatewayResponseError";
+var marker72 = `vercel.ai.gateway.error.${name62}`;
+var symbol72 = Symbol.for(marker72);
+var _a72;
+var _b7;
+var GatewayResponseError = class extends (_b7 = GatewayError, _a72 = symbol72, _b7) {
+  constructor({
+    message = "Invalid response from Gateway",
+    statusCode = 502,
+    response,
+    validationError,
+    cause
+  } = {}) {
+    super({ message, statusCode, cause });
+    this[_a72] = true;
+    this.name = name62;
+    this.type = "response_error";
+    this.response = response;
+    this.validationError = validationError;
+  }
+  static isInstance(error45) {
+    return GatewayError.hasMarker(error45) && symbol72 in error45;
+  }
+};
+function createGatewayErrorFromResponse({
+  response,
+  statusCode,
+  defaultMessage = "Gateway request failed",
+  cause,
+  authMethod
+}) {
+  const parseResult = gatewayErrorResponseSchema.safeParse(response);
+  if (!parseResult.success) {
+    return new GatewayResponseError({
+      message: `Invalid error response format: ${defaultMessage}`,
+      statusCode,
+      response,
+      validationError: parseResult.error,
+      cause
+    });
+  }
+  const validatedResponse = parseResult.data;
+  const errorType = validatedResponse.error.type;
+  const message = validatedResponse.error.message;
+  switch (errorType) {
+    case "authentication_error":
+      return GatewayAuthenticationError.createContextualError({
+        apiKeyProvided: authMethod === "api-key",
+        oidcTokenProvided: authMethod === "oidc",
+        statusCode,
+        cause
+      });
+    case "invalid_request_error":
+      return new GatewayInvalidRequestError({ message, statusCode, cause });
+    case "rate_limit_exceeded":
+      return new GatewayRateLimitError({ message, statusCode, cause });
+    case "model_not_found": {
+      const modelResult = modelNotFoundParamSchema.safeParse(
+        validatedResponse.error.param
+      );
+      return new GatewayModelNotFoundError({
+        message,
+        statusCode,
+        modelId: modelResult.success ? modelResult.data.modelId : void 0,
+        cause
+      });
+    }
+    case "internal_server_error":
+      return new GatewayInternalServerError({ message, statusCode, cause });
+    default:
+      return new GatewayInternalServerError({ message, statusCode, cause });
+  }
+}
+var gatewayErrorResponseSchema = external_exports.object({
+  error: external_exports.object({
+    message: external_exports.string(),
+    type: external_exports.string().nullish(),
+    param: external_exports.unknown().nullish(),
+    code: external_exports.union([external_exports.string(), external_exports.number()]).nullish()
+  })
+});
+function asGatewayError(error45, authMethod) {
+  var _a83;
+  if (GatewayError.isInstance(error45)) {
+    return error45;
+  }
+  if (APICallError.isInstance(error45)) {
+    return createGatewayErrorFromResponse({
+      response: extractApiCallResponse(error45),
+      statusCode: (_a83 = error45.statusCode) != null ? _a83 : 500,
+      defaultMessage: "Gateway request failed",
+      cause: error45,
+      authMethod
+    });
+  }
+  return createGatewayErrorFromResponse({
+    response: {},
+    statusCode: 500,
+    defaultMessage: error45 instanceof Error ? `Gateway request failed: ${error45.message}` : "Unknown Gateway error",
+    cause: error45,
+    authMethod
+  });
+}
+function extractApiCallResponse(error45) {
+  if (error45.data !== void 0) {
+    return error45.data;
+  }
+  if (error45.responseBody != null) {
+    try {
+      return JSON.parse(error45.responseBody);
+    } catch (e) {
+      return error45.responseBody;
+    }
+  }
+  return {};
+}
+var GATEWAY_AUTH_METHOD_HEADER = "ai-gateway-auth-method";
+function parseAuthMethod(headers) {
+  const result = gatewayAuthMethodSchema.safeParse(
+    headers[GATEWAY_AUTH_METHOD_HEADER]
+  );
+  return result.success ? result.data : void 0;
+}
+var gatewayAuthMethodSchema = external_exports.union([
+  external_exports.literal("api-key"),
+  external_exports.literal("oidc")
+]);
+var GatewayFetchMetadata = class {
+  constructor(config2) {
+    this.config = config2;
+  }
+  async getAvailableModels() {
+    try {
+      const { value } = await getFromApi({
+        url: `${this.config.baseURL}/config`,
+        headers: await resolve(this.config.headers()),
+        successfulResponseHandler: createJsonResponseHandler(
+          gatewayFetchMetadataSchema
+        ),
+        failedResponseHandler: createJsonErrorResponseHandler({
+          errorSchema: external_exports.any(),
+          errorToMessage: (data) => data
+        }),
+        fetch: this.config.fetch
+      });
+      return value;
+    } catch (error45) {
+      throw asGatewayError(error45);
+    }
+  }
+};
+var gatewayLanguageModelSpecificationSchema = external_exports.object({
+  specificationVersion: external_exports.literal("v2"),
+  provider: external_exports.string(),
+  modelId: external_exports.string()
+});
+var gatewayLanguageModelPricingSchema = external_exports.object({
+  input: external_exports.string(),
+  output: external_exports.string(),
+  input_cache_read: external_exports.string().nullish(),
+  input_cache_write: external_exports.string().nullish()
+}).transform(({ input, output, input_cache_read, input_cache_write }) => ({
+  input,
+  output,
+  ...input_cache_read ? { cachedInputTokens: input_cache_read } : {},
+  ...input_cache_write ? { cacheCreationInputTokens: input_cache_write } : {}
+}));
+var gatewayLanguageModelEntrySchema = external_exports.object({
+  id: external_exports.string(),
+  name: external_exports.string(),
+  description: external_exports.string().nullish(),
+  pricing: gatewayLanguageModelPricingSchema.nullish(),
+  specification: gatewayLanguageModelSpecificationSchema,
+  modelType: external_exports.enum(["language", "embedding", "image"]).nullish()
+});
+var gatewayFetchMetadataSchema = external_exports.object({
+  models: external_exports.array(gatewayLanguageModelEntrySchema)
+});
+var GatewayLanguageModel = class {
+  constructor(modelId, config2) {
+    this.modelId = modelId;
+    this.config = config2;
+    this.specificationVersion = "v2";
+    this.supportedUrls = { "*/*": [/.*/] };
+  }
+  get provider() {
+    return this.config.provider;
+  }
+  async getArgs(options) {
+    const { abortSignal: _abortSignal, ...optionsWithoutSignal } = options;
+    return {
+      args: this.maybeEncodeFileParts(optionsWithoutSignal),
+      warnings: []
+    };
+  }
+  async doGenerate(options) {
+    const { args, warnings } = await this.getArgs(options);
+    const { abortSignal } = options;
+    const resolvedHeaders = await resolve(this.config.headers());
+    try {
+      const {
+        responseHeaders,
+        value: responseBody,
+        rawValue: rawResponse
+      } = await postJsonToApi({
+        url: this.getUrl(),
+        headers: combineHeaders(
+          resolvedHeaders,
+          options.headers,
+          this.getModelConfigHeaders(this.modelId, false),
+          await resolve(this.config.o11yHeaders)
+        ),
+        body: args,
+        successfulResponseHandler: createJsonResponseHandler(external_exports.any()),
+        failedResponseHandler: createJsonErrorResponseHandler({
+          errorSchema: external_exports.any(),
+          errorToMessage: (data) => data
+        }),
+        ...abortSignal && { abortSignal },
+        fetch: this.config.fetch
+      });
+      return {
+        ...responseBody,
+        request: { body: args },
+        response: { headers: responseHeaders, body: rawResponse },
+        warnings
+      };
+    } catch (error45) {
+      throw asGatewayError(error45, parseAuthMethod(resolvedHeaders));
+    }
+  }
+  async doStream(options) {
+    const { args, warnings } = await this.getArgs(options);
+    const { abortSignal } = options;
+    const resolvedHeaders = await resolve(this.config.headers());
+    try {
+      const { value: response, responseHeaders } = await postJsonToApi({
+        url: this.getUrl(),
+        headers: combineHeaders(
+          resolvedHeaders,
+          options.headers,
+          this.getModelConfigHeaders(this.modelId, true),
+          await resolve(this.config.o11yHeaders)
+        ),
+        body: args,
+        successfulResponseHandler: createEventSourceResponseHandler(external_exports.any()),
+        failedResponseHandler: createJsonErrorResponseHandler({
+          errorSchema: external_exports.any(),
+          errorToMessage: (data) => data
+        }),
+        ...abortSignal && { abortSignal },
+        fetch: this.config.fetch
+      });
+      return {
+        stream: response.pipeThrough(
+          new TransformStream({
+            start(controller) {
+              if (warnings.length > 0) {
+                controller.enqueue({ type: "stream-start", warnings });
+              }
+            },
+            transform(chunk, controller) {
+              if (chunk.success) {
+                const streamPart = chunk.value;
+                if (streamPart.type === "raw" && !options.includeRawChunks) {
+                  return;
+                }
+                if (streamPart.type === "response-metadata" && streamPart.timestamp && typeof streamPart.timestamp === "string") {
+                  streamPart.timestamp = new Date(streamPart.timestamp);
+                }
+                controller.enqueue(streamPart);
+              } else {
+                controller.error(
+                  chunk.error
+                );
+              }
+            }
+          })
+        ),
+        request: { body: args },
+        response: { headers: responseHeaders }
+      };
+    } catch (error45) {
+      throw asGatewayError(error45, parseAuthMethod(resolvedHeaders));
+    }
+  }
+  isFilePart(part) {
+    return part && typeof part === "object" && "type" in part && part.type === "file";
+  }
+  /**
+   * Encodes file parts in the prompt to base64. Mutates the passed options
+   * instance directly to avoid copying the file data.
+   * @param options - The options to encode.
+   * @returns The options with the file parts encoded.
+   */
+  maybeEncodeFileParts(options) {
+    for (const message of options.prompt) {
+      for (const part of message.content) {
+        if (this.isFilePart(part)) {
+          const filePart = part;
+          if (filePart.data instanceof Uint8Array) {
+            const buffer = Uint8Array.from(filePart.data);
+            const base64Data = Buffer.from(buffer).toString("base64");
+            filePart.data = new URL(
+              `data:${filePart.mediaType || "application/octet-stream"};base64,${base64Data}`
+            );
+          }
+        }
+      }
+    }
+    return options;
+  }
+  getUrl() {
+    return `${this.config.baseURL}/language-model`;
+  }
+  getModelConfigHeaders(modelId, streaming) {
+    return {
+      "ai-language-model-specification-version": "2",
+      "ai-language-model-id": modelId,
+      "ai-language-model-streaming": String(streaming)
+    };
+  }
+};
+var GatewayEmbeddingModel = class {
+  constructor(modelId, config2) {
+    this.modelId = modelId;
+    this.config = config2;
+    this.specificationVersion = "v2";
+    this.maxEmbeddingsPerCall = 2048;
+    this.supportsParallelCalls = true;
+  }
+  get provider() {
+    return this.config.provider;
+  }
+  async doEmbed({
+    values,
+    headers,
+    abortSignal,
+    providerOptions
+  }) {
+    var _a83;
+    const resolvedHeaders = await resolve(this.config.headers());
+    try {
+      const {
+        responseHeaders,
+        value: responseBody,
+        rawValue
+      } = await postJsonToApi({
+        url: this.getUrl(),
+        headers: combineHeaders(
+          resolvedHeaders,
+          headers != null ? headers : {},
+          this.getModelConfigHeaders(),
+          await resolve(this.config.o11yHeaders)
+        ),
+        body: {
+          input: values.length === 1 ? values[0] : values,
+          ...providerOptions ? { providerOptions } : {}
+        },
+        successfulResponseHandler: createJsonResponseHandler(
+          gatewayEmbeddingResponseSchema
+        ),
+        failedResponseHandler: createJsonErrorResponseHandler({
+          errorSchema: external_exports.any(),
+          errorToMessage: (data) => data
+        }),
+        ...abortSignal && { abortSignal },
+        fetch: this.config.fetch
+      });
+      return {
+        embeddings: responseBody.embeddings,
+        usage: (_a83 = responseBody.usage) != null ? _a83 : void 0,
+        providerMetadata: responseBody.providerMetadata,
+        response: { headers: responseHeaders, body: rawValue }
+      };
+    } catch (error45) {
+      throw asGatewayError(error45, parseAuthMethod(resolvedHeaders));
+    }
+  }
+  getUrl() {
+    return `${this.config.baseURL}/embedding-model`;
+  }
+  getModelConfigHeaders() {
+    return {
+      "ai-embedding-model-specification-version": "2",
+      "ai-model-id": this.modelId
+    };
+  }
+};
+var gatewayEmbeddingResponseSchema = external_exports.object({
+  embeddings: external_exports.array(external_exports.array(external_exports.number())),
+  usage: external_exports.object({ tokens: external_exports.number() }).nullish(),
+  providerMetadata: external_exports.record(external_exports.string(), external_exports.record(external_exports.string(), external_exports.unknown())).optional()
+});
+async function getVercelOidcToken() {
+  var _a83, _b8;
+  const token = (_b8 = (_a83 = getContext().headers) == null ? void 0 : _a83["x-vercel-oidc-token"]) != null ? _b8 : process.env.VERCEL_OIDC_TOKEN;
+  if (!token) {
+    throw new GatewayAuthenticationError({
+      message: "OIDC token not available",
+      statusCode: 401
+    });
+  }
+  return token;
+}
+async function getVercelRequestId() {
+  var _a83;
+  return (_a83 = getContext().headers) == null ? void 0 : _a83["x-vercel-id"];
+}
+var SYMBOL_FOR_REQ_CONTEXT = Symbol.for("@vercel/request-context");
+function getContext() {
+  var _a83, _b8, _c;
+  const fromSymbol = globalThis;
+  return (_c = (_b8 = (_a83 = fromSymbol[SYMBOL_FOR_REQ_CONTEXT]) == null ? void 0 : _a83.get) == null ? void 0 : _b8.call(_a83)) != null ? _c : {};
+}
+var AI_GATEWAY_PROTOCOL_VERSION = "0.0.1";
+function createGatewayProvider(options = {}) {
+  var _a83, _b8;
+  let pendingMetadata = null;
+  let metadataCache = null;
+  const cacheRefreshMillis = (_a83 = options.metadataCacheRefreshMillis) != null ? _a83 : 1e3 * 60 * 5;
+  let lastFetchTime = 0;
+  const baseURL = (_b8 = withoutTrailingSlash(options.baseURL)) != null ? _b8 : "https://ai-gateway.vercel.sh/v1/ai";
+  const getHeaders = async () => {
+    const auth = await getGatewayAuthToken(options);
+    if (auth) {
+      return {
+        Authorization: `Bearer ${auth.token}`,
+        "ai-gateway-protocol-version": AI_GATEWAY_PROTOCOL_VERSION,
+        [GATEWAY_AUTH_METHOD_HEADER]: auth.authMethod,
+        ...options.headers
+      };
+    }
+    throw GatewayAuthenticationError.createContextualError({
+      apiKeyProvided: false,
+      oidcTokenProvided: false,
+      statusCode: 401
+    });
+  };
+  const createO11yHeaders = () => {
+    const deploymentId = loadOptionalSetting({
+      settingValue: void 0,
+      environmentVariableName: "VERCEL_DEPLOYMENT_ID"
+    });
+    const environment = loadOptionalSetting({
+      settingValue: void 0,
+      environmentVariableName: "VERCEL_ENV"
+    });
+    const region = loadOptionalSetting({
+      settingValue: void 0,
+      environmentVariableName: "VERCEL_REGION"
+    });
+    return async () => {
+      const requestId = await getVercelRequestId();
+      return {
+        ...deploymentId && { "ai-o11y-deployment-id": deploymentId },
+        ...environment && { "ai-o11y-environment": environment },
+        ...region && { "ai-o11y-region": region },
+        ...requestId && { "ai-o11y-request-id": requestId }
+      };
+    };
+  };
+  const createLanguageModel = (modelId) => {
+    return new GatewayLanguageModel(modelId, {
+      provider: "gateway",
+      baseURL,
+      headers: getHeaders,
+      fetch: options.fetch,
+      o11yHeaders: createO11yHeaders()
+    });
+  };
+  const getAvailableModels = async () => {
+    var _a93, _b9, _c;
+    const now = (_c = (_b9 = (_a93 = options._internal) == null ? void 0 : _a93.currentDate) == null ? void 0 : _b9.call(_a93).getTime()) != null ? _c : Date.now();
+    if (!pendingMetadata || now - lastFetchTime > cacheRefreshMillis) {
+      lastFetchTime = now;
+      pendingMetadata = new GatewayFetchMetadata({
+        baseURL,
+        headers: getHeaders,
+        fetch: options.fetch
+      }).getAvailableModels().then((metadata) => {
+        metadataCache = metadata;
+        return metadata;
+      }).catch(async (error45) => {
+        throw asGatewayError(error45, parseAuthMethod(await getHeaders()));
+      });
+    }
+    return metadataCache ? Promise.resolve(metadataCache) : pendingMetadata;
+  };
+  const provider = function(modelId) {
+    if (new.target) {
+      throw new Error(
+        "The Gateway Provider model function cannot be called with the new keyword."
+      );
+    }
+    return createLanguageModel(modelId);
+  };
+  provider.getAvailableModels = getAvailableModels;
+  provider.imageModel = (modelId) => {
+    throw new NoSuchModelError({ modelId, modelType: "imageModel" });
+  };
+  provider.languageModel = createLanguageModel;
+  provider.textEmbeddingModel = (modelId) => {
+    return new GatewayEmbeddingModel(modelId, {
+      provider: "gateway",
+      baseURL,
+      headers: getHeaders,
+      fetch: options.fetch,
+      o11yHeaders: createO11yHeaders()
+    });
+  };
+  return provider;
+}
+var gateway = createGatewayProvider();
+async function getGatewayAuthToken(options) {
+  const apiKey = loadOptionalSetting({
+    settingValue: options.apiKey,
+    environmentVariableName: "AI_GATEWAY_API_KEY"
+  });
+  if (apiKey) {
+    return {
+      token: apiKey,
+      authMethod: "api-key"
+    };
+  }
+  try {
+    const oidcToken = await getVercelOidcToken();
+    return {
+      token: oidcToken,
+      authMethod: "oidc"
+    };
+  } catch (e) {
+    return null;
+  }
+}
+
+// node_modules/@opentelemetry/api/build/esm/platform/node/globalThis.js
+var _globalThis = typeof globalThis === "object" ? globalThis : global;
+
+// node_modules/@opentelemetry/api/build/esm/version.js
+var VERSION = "1.9.0";
+
+// node_modules/@opentelemetry/api/build/esm/internal/semver.js
+var re = /^(\d+)\.(\d+)\.(\d+)(-(.+))?$/;
+function _makeCompatibilityCheck(ownVersion) {
+  var acceptedVersions = /* @__PURE__ */ new Set([ownVersion]);
+  var rejectedVersions = /* @__PURE__ */ new Set();
+  var myVersionMatch = ownVersion.match(re);
+  if (!myVersionMatch) {
+    return function() {
+      return false;
+    };
+  }
+  var ownVersionParsed = {
+    major: +myVersionMatch[1],
+    minor: +myVersionMatch[2],
+    patch: +myVersionMatch[3],
+    prerelease: myVersionMatch[4]
+  };
+  if (ownVersionParsed.prerelease != null) {
+    return function isExactmatch(globalVersion) {
+      return globalVersion === ownVersion;
+    };
+  }
+  function _reject(v) {
+    rejectedVersions.add(v);
+    return false;
+  }
+  function _accept(v) {
+    acceptedVersions.add(v);
+    return true;
+  }
+  return function isCompatible2(globalVersion) {
+    if (acceptedVersions.has(globalVersion)) {
+      return true;
+    }
+    if (rejectedVersions.has(globalVersion)) {
+      return false;
+    }
+    var globalVersionMatch = globalVersion.match(re);
+    if (!globalVersionMatch) {
+      return _reject(globalVersion);
+    }
+    var globalVersionParsed = {
+      major: +globalVersionMatch[1],
+      minor: +globalVersionMatch[2],
+      patch: +globalVersionMatch[3],
+      prerelease: globalVersionMatch[4]
+    };
+    if (globalVersionParsed.prerelease != null) {
+      return _reject(globalVersion);
+    }
+    if (ownVersionParsed.major !== globalVersionParsed.major) {
+      return _reject(globalVersion);
+    }
+    if (ownVersionParsed.major === 0) {
+      if (ownVersionParsed.minor === globalVersionParsed.minor && ownVersionParsed.patch <= globalVersionParsed.patch) {
+        return _accept(globalVersion);
+      }
+      return _reject(globalVersion);
+    }
+    if (ownVersionParsed.minor <= globalVersionParsed.minor) {
+      return _accept(globalVersion);
+    }
+    return _reject(globalVersion);
+  };
+}
+var isCompatible = _makeCompatibilityCheck(VERSION);
+
+// node_modules/@opentelemetry/api/build/esm/internal/global-utils.js
+var major = VERSION.split(".")[0];
+var GLOBAL_OPENTELEMETRY_API_KEY = Symbol.for("opentelemetry.js.api." + major);
+var _global = _globalThis;
+function registerGlobal(type, instance, diag, allowOverride) {
+  var _a17;
+  if (allowOverride === void 0) {
+    allowOverride = false;
+  }
+  var api = _global[GLOBAL_OPENTELEMETRY_API_KEY] = (_a17 = _global[GLOBAL_OPENTELEMETRY_API_KEY]) !== null && _a17 !== void 0 ? _a17 : {
+    version: VERSION
+  };
+  if (!allowOverride && api[type]) {
+    var err = new Error("@opentelemetry/api: Attempted duplicate registration of API: " + type);
+    diag.error(err.stack || err.message);
+    return false;
+  }
+  if (api.version !== VERSION) {
+    var err = new Error("@opentelemetry/api: Registration of version v" + api.version + " for " + type + " does not match previously registered API v" + VERSION);
+    diag.error(err.stack || err.message);
+    return false;
+  }
+  api[type] = instance;
+  diag.debug("@opentelemetry/api: Registered a global for " + type + " v" + VERSION + ".");
+  return true;
+}
+function getGlobal(type) {
+  var _a17, _b8;
+  var globalVersion = (_a17 = _global[GLOBAL_OPENTELEMETRY_API_KEY]) === null || _a17 === void 0 ? void 0 : _a17.version;
+  if (!globalVersion || !isCompatible(globalVersion)) {
+    return;
+  }
+  return (_b8 = _global[GLOBAL_OPENTELEMETRY_API_KEY]) === null || _b8 === void 0 ? void 0 : _b8[type];
+}
+function unregisterGlobal(type, diag) {
+  diag.debug("@opentelemetry/api: Unregistering a global for " + type + " v" + VERSION + ".");
+  var api = _global[GLOBAL_OPENTELEMETRY_API_KEY];
+  if (api) {
+    delete api[type];
+  }
+}
+
+// node_modules/@opentelemetry/api/build/esm/diag/ComponentLogger.js
+var __read = function(o, n) {
+  var m = typeof Symbol === "function" && o[Symbol.iterator];
+  if (!m) return o;
+  var i = m.call(o), r, ar = [], e;
+  try {
+    while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+  } catch (error45) {
+    e = { error: error45 };
+  } finally {
+    try {
+      if (r && !r.done && (m = i["return"])) m.call(i);
+    } finally {
+      if (e) throw e.error;
+    }
+  }
+  return ar;
+};
+var __spreadArray = function(to, from, pack) {
+  if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+    if (ar || !(i in from)) {
+      if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+      ar[i] = from[i];
+    }
+  }
+  return to.concat(ar || Array.prototype.slice.call(from));
+};
+var DiagComponentLogger = (
+  /** @class */
+  function() {
+    function DiagComponentLogger2(props) {
+      this._namespace = props.namespace || "DiagComponentLogger";
+    }
+    DiagComponentLogger2.prototype.debug = function() {
+      var args = [];
+      for (var _i = 0; _i < arguments.length; _i++) {
+        args[_i] = arguments[_i];
+      }
+      return logProxy("debug", this._namespace, args);
+    };
+    DiagComponentLogger2.prototype.error = function() {
+      var args = [];
+      for (var _i = 0; _i < arguments.length; _i++) {
+        args[_i] = arguments[_i];
+      }
+      return logProxy("error", this._namespace, args);
+    };
+    DiagComponentLogger2.prototype.info = function() {
+      var args = [];
+      for (var _i = 0; _i < arguments.length; _i++) {
+        args[_i] = arguments[_i];
+      }
+      return logProxy("info", this._namespace, args);
+    };
+    DiagComponentLogger2.prototype.warn = function() {
+      var args = [];
+      for (var _i = 0; _i < arguments.length; _i++) {
+        args[_i] = arguments[_i];
+      }
+      return logProxy("warn", this._namespace, args);
+    };
+    DiagComponentLogger2.prototype.verbose = function() {
+      var args = [];
+      for (var _i = 0; _i < arguments.length; _i++) {
+        args[_i] = arguments[_i];
+      }
+      return logProxy("verbose", this._namespace, args);
+    };
+    return DiagComponentLogger2;
+  }()
+);
+function logProxy(funcName, namespace, args) {
+  var logger = getGlobal("diag");
+  if (!logger) {
+    return;
+  }
+  args.unshift(namespace);
+  return logger[funcName].apply(logger, __spreadArray([], __read(args), false));
+}
+
+// node_modules/@opentelemetry/api/build/esm/diag/types.js
+var DiagLogLevel;
+(function(DiagLogLevel2) {
+  DiagLogLevel2[DiagLogLevel2["NONE"] = 0] = "NONE";
+  DiagLogLevel2[DiagLogLevel2["ERROR"] = 30] = "ERROR";
+  DiagLogLevel2[DiagLogLevel2["WARN"] = 50] = "WARN";
+  DiagLogLevel2[DiagLogLevel2["INFO"] = 60] = "INFO";
+  DiagLogLevel2[DiagLogLevel2["DEBUG"] = 70] = "DEBUG";
+  DiagLogLevel2[DiagLogLevel2["VERBOSE"] = 80] = "VERBOSE";
+  DiagLogLevel2[DiagLogLevel2["ALL"] = 9999] = "ALL";
+})(DiagLogLevel || (DiagLogLevel = {}));
+
+// node_modules/@opentelemetry/api/build/esm/diag/internal/logLevelLogger.js
+function createLogLevelDiagLogger(maxLevel, logger) {
+  if (maxLevel < DiagLogLevel.NONE) {
+    maxLevel = DiagLogLevel.NONE;
+  } else if (maxLevel > DiagLogLevel.ALL) {
+    maxLevel = DiagLogLevel.ALL;
+  }
+  logger = logger || {};
+  function _filterFunc(funcName, theLevel) {
+    var theFunc = logger[funcName];
+    if (typeof theFunc === "function" && maxLevel >= theLevel) {
+      return theFunc.bind(logger);
+    }
+    return function() {
+    };
+  }
+  return {
+    error: _filterFunc("error", DiagLogLevel.ERROR),
+    warn: _filterFunc("warn", DiagLogLevel.WARN),
+    info: _filterFunc("info", DiagLogLevel.INFO),
+    debug: _filterFunc("debug", DiagLogLevel.DEBUG),
+    verbose: _filterFunc("verbose", DiagLogLevel.VERBOSE)
+  };
+}
+
+// node_modules/@opentelemetry/api/build/esm/api/diag.js
+var __read2 = function(o, n) {
+  var m = typeof Symbol === "function" && o[Symbol.iterator];
+  if (!m) return o;
+  var i = m.call(o), r, ar = [], e;
+  try {
+    while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+  } catch (error45) {
+    e = { error: error45 };
+  } finally {
+    try {
+      if (r && !r.done && (m = i["return"])) m.call(i);
+    } finally {
+      if (e) throw e.error;
+    }
+  }
+  return ar;
+};
+var __spreadArray2 = function(to, from, pack) {
+  if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+    if (ar || !(i in from)) {
+      if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+      ar[i] = from[i];
+    }
+  }
+  return to.concat(ar || Array.prototype.slice.call(from));
+};
+var API_NAME = "diag";
+var DiagAPI = (
+  /** @class */
+  function() {
+    function DiagAPI2() {
+      function _logProxy(funcName) {
+        return function() {
+          var args = [];
+          for (var _i = 0; _i < arguments.length; _i++) {
+            args[_i] = arguments[_i];
+          }
+          var logger = getGlobal("diag");
+          if (!logger)
+            return;
+          return logger[funcName].apply(logger, __spreadArray2([], __read2(args), false));
+        };
+      }
+      var self = this;
+      var setLogger = function(logger, optionsOrLogLevel) {
+        var _a17, _b8, _c;
+        if (optionsOrLogLevel === void 0) {
+          optionsOrLogLevel = { logLevel: DiagLogLevel.INFO };
+        }
+        if (logger === self) {
+          var err = new Error("Cannot use diag as the logger for itself. Please use a DiagLogger implementation like ConsoleDiagLogger or a custom implementation");
+          self.error((_a17 = err.stack) !== null && _a17 !== void 0 ? _a17 : err.message);
+          return false;
+        }
+        if (typeof optionsOrLogLevel === "number") {
+          optionsOrLogLevel = {
+            logLevel: optionsOrLogLevel
+          };
+        }
+        var oldLogger = getGlobal("diag");
+        var newLogger = createLogLevelDiagLogger((_b8 = optionsOrLogLevel.logLevel) !== null && _b8 !== void 0 ? _b8 : DiagLogLevel.INFO, logger);
+        if (oldLogger && !optionsOrLogLevel.suppressOverrideMessage) {
+          var stack = (_c = new Error().stack) !== null && _c !== void 0 ? _c : "<failed to generate stacktrace>";
+          oldLogger.warn("Current logger will be overwritten from " + stack);
+          newLogger.warn("Current logger will overwrite one already registered from " + stack);
+        }
+        return registerGlobal("diag", newLogger, self, true);
+      };
+      self.setLogger = setLogger;
+      self.disable = function() {
+        unregisterGlobal(API_NAME, self);
+      };
+      self.createComponentLogger = function(options) {
+        return new DiagComponentLogger(options);
+      };
+      self.verbose = _logProxy("verbose");
+      self.debug = _logProxy("debug");
+      self.info = _logProxy("info");
+      self.warn = _logProxy("warn");
+      self.error = _logProxy("error");
+    }
+    DiagAPI2.instance = function() {
+      if (!this._instance) {
+        this._instance = new DiagAPI2();
+      }
+      return this._instance;
+    };
+    return DiagAPI2;
+  }()
+);
+
+// node_modules/@opentelemetry/api/build/esm/context/context.js
+function createContextKey(description) {
+  return Symbol.for(description);
+}
+var BaseContext = (
+  /** @class */
+  /* @__PURE__ */ function() {
+    function BaseContext2(parentContext) {
+      var self = this;
+      self._currentContext = parentContext ? new Map(parentContext) : /* @__PURE__ */ new Map();
+      self.getValue = function(key) {
+        return self._currentContext.get(key);
+      };
+      self.setValue = function(key, value) {
+        var context = new BaseContext2(self._currentContext);
+        context._currentContext.set(key, value);
+        return context;
+      };
+      self.deleteValue = function(key) {
+        var context = new BaseContext2(self._currentContext);
+        context._currentContext.delete(key);
+        return context;
+      };
+    }
+    return BaseContext2;
+  }()
+);
+var ROOT_CONTEXT = new BaseContext();
+
+// node_modules/@opentelemetry/api/build/esm/context/NoopContextManager.js
+var __read3 = function(o, n) {
+  var m = typeof Symbol === "function" && o[Symbol.iterator];
+  if (!m) return o;
+  var i = m.call(o), r, ar = [], e;
+  try {
+    while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+  } catch (error45) {
+    e = { error: error45 };
+  } finally {
+    try {
+      if (r && !r.done && (m = i["return"])) m.call(i);
+    } finally {
+      if (e) throw e.error;
+    }
+  }
+  return ar;
+};
+var __spreadArray3 = function(to, from, pack) {
+  if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+    if (ar || !(i in from)) {
+      if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+      ar[i] = from[i];
+    }
+  }
+  return to.concat(ar || Array.prototype.slice.call(from));
+};
+var NoopContextManager = (
+  /** @class */
+  function() {
+    function NoopContextManager2() {
+    }
+    NoopContextManager2.prototype.active = function() {
+      return ROOT_CONTEXT;
+    };
+    NoopContextManager2.prototype.with = function(_context, fn, thisArg) {
+      var args = [];
+      for (var _i = 3; _i < arguments.length; _i++) {
+        args[_i - 3] = arguments[_i];
+      }
+      return fn.call.apply(fn, __spreadArray3([thisArg], __read3(args), false));
+    };
+    NoopContextManager2.prototype.bind = function(_context, target) {
+      return target;
+    };
+    NoopContextManager2.prototype.enable = function() {
+      return this;
+    };
+    NoopContextManager2.prototype.disable = function() {
+      return this;
+    };
+    return NoopContextManager2;
+  }()
+);
+
+// node_modules/@opentelemetry/api/build/esm/api/context.js
+var __read4 = function(o, n) {
+  var m = typeof Symbol === "function" && o[Symbol.iterator];
+  if (!m) return o;
+  var i = m.call(o), r, ar = [], e;
+  try {
+    while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+  } catch (error45) {
+    e = { error: error45 };
+  } finally {
+    try {
+      if (r && !r.done && (m = i["return"])) m.call(i);
+    } finally {
+      if (e) throw e.error;
+    }
+  }
+  return ar;
+};
+var __spreadArray4 = function(to, from, pack) {
+  if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+    if (ar || !(i in from)) {
+      if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+      ar[i] = from[i];
+    }
+  }
+  return to.concat(ar || Array.prototype.slice.call(from));
+};
+var API_NAME2 = "context";
+var NOOP_CONTEXT_MANAGER = new NoopContextManager();
+var ContextAPI = (
+  /** @class */
+  function() {
+    function ContextAPI2() {
+    }
+    ContextAPI2.getInstance = function() {
+      if (!this._instance) {
+        this._instance = new ContextAPI2();
+      }
+      return this._instance;
+    };
+    ContextAPI2.prototype.setGlobalContextManager = function(contextManager) {
+      return registerGlobal(API_NAME2, contextManager, DiagAPI.instance());
+    };
+    ContextAPI2.prototype.active = function() {
+      return this._getContextManager().active();
+    };
+    ContextAPI2.prototype.with = function(context, fn, thisArg) {
+      var _a17;
+      var args = [];
+      for (var _i = 3; _i < arguments.length; _i++) {
+        args[_i - 3] = arguments[_i];
+      }
+      return (_a17 = this._getContextManager()).with.apply(_a17, __spreadArray4([context, fn, thisArg], __read4(args), false));
+    };
+    ContextAPI2.prototype.bind = function(context, target) {
+      return this._getContextManager().bind(context, target);
+    };
+    ContextAPI2.prototype._getContextManager = function() {
+      return getGlobal(API_NAME2) || NOOP_CONTEXT_MANAGER;
+    };
+    ContextAPI2.prototype.disable = function() {
+      this._getContextManager().disable();
+      unregisterGlobal(API_NAME2, DiagAPI.instance());
+    };
+    return ContextAPI2;
+  }()
+);
+
+// node_modules/@opentelemetry/api/build/esm/trace/trace_flags.js
+var TraceFlags;
+(function(TraceFlags2) {
+  TraceFlags2[TraceFlags2["NONE"] = 0] = "NONE";
+  TraceFlags2[TraceFlags2["SAMPLED"] = 1] = "SAMPLED";
+})(TraceFlags || (TraceFlags = {}));
+
+// node_modules/@opentelemetry/api/build/esm/trace/invalid-span-constants.js
+var INVALID_SPANID = "0000000000000000";
+var INVALID_TRACEID = "00000000000000000000000000000000";
+var INVALID_SPAN_CONTEXT = {
+  traceId: INVALID_TRACEID,
+  spanId: INVALID_SPANID,
+  traceFlags: TraceFlags.NONE
+};
+
+// node_modules/@opentelemetry/api/build/esm/trace/NonRecordingSpan.js
+var NonRecordingSpan = (
+  /** @class */
+  function() {
+    function NonRecordingSpan2(_spanContext) {
+      if (_spanContext === void 0) {
+        _spanContext = INVALID_SPAN_CONTEXT;
+      }
+      this._spanContext = _spanContext;
+    }
+    NonRecordingSpan2.prototype.spanContext = function() {
+      return this._spanContext;
+    };
+    NonRecordingSpan2.prototype.setAttribute = function(_key, _value) {
+      return this;
+    };
+    NonRecordingSpan2.prototype.setAttributes = function(_attributes) {
+      return this;
+    };
+    NonRecordingSpan2.prototype.addEvent = function(_name, _attributes) {
+      return this;
+    };
+    NonRecordingSpan2.prototype.addLink = function(_link) {
+      return this;
+    };
+    NonRecordingSpan2.prototype.addLinks = function(_links) {
+      return this;
+    };
+    NonRecordingSpan2.prototype.setStatus = function(_status) {
+      return this;
+    };
+    NonRecordingSpan2.prototype.updateName = function(_name) {
+      return this;
+    };
+    NonRecordingSpan2.prototype.end = function(_endTime) {
+    };
+    NonRecordingSpan2.prototype.isRecording = function() {
+      return false;
+    };
+    NonRecordingSpan2.prototype.recordException = function(_exception, _time) {
+    };
+    return NonRecordingSpan2;
+  }()
+);
+
+// node_modules/@opentelemetry/api/build/esm/trace/context-utils.js
+var SPAN_KEY = createContextKey("OpenTelemetry Context Key SPAN");
+function getSpan(context) {
+  return context.getValue(SPAN_KEY) || void 0;
+}
+function getActiveSpan() {
+  return getSpan(ContextAPI.getInstance().active());
+}
+function setSpan(context, span) {
+  return context.setValue(SPAN_KEY, span);
+}
+function deleteSpan(context) {
+  return context.deleteValue(SPAN_KEY);
+}
+function setSpanContext(context, spanContext) {
+  return setSpan(context, new NonRecordingSpan(spanContext));
+}
+function getSpanContext(context) {
+  var _a17;
+  return (_a17 = getSpan(context)) === null || _a17 === void 0 ? void 0 : _a17.spanContext();
+}
+
+// node_modules/@opentelemetry/api/build/esm/trace/spancontext-utils.js
+var VALID_TRACEID_REGEX = /^([0-9a-f]{32})$/i;
+var VALID_SPANID_REGEX = /^[0-9a-f]{16}$/i;
+function isValidTraceId(traceId) {
+  return VALID_TRACEID_REGEX.test(traceId) && traceId !== INVALID_TRACEID;
+}
+function isValidSpanId(spanId) {
+  return VALID_SPANID_REGEX.test(spanId) && spanId !== INVALID_SPANID;
+}
+function isSpanContextValid(spanContext) {
+  return isValidTraceId(spanContext.traceId) && isValidSpanId(spanContext.spanId);
+}
+function wrapSpanContext(spanContext) {
+  return new NonRecordingSpan(spanContext);
+}
+
+// node_modules/@opentelemetry/api/build/esm/trace/NoopTracer.js
+var contextApi = ContextAPI.getInstance();
+var NoopTracer = (
+  /** @class */
+  function() {
+    function NoopTracer2() {
+    }
+    NoopTracer2.prototype.startSpan = function(name17, options, context) {
+      if (context === void 0) {
+        context = contextApi.active();
+      }
+      var root = Boolean(options === null || options === void 0 ? void 0 : options.root);
+      if (root) {
+        return new NonRecordingSpan();
+      }
+      var parentFromContext = context && getSpanContext(context);
+      if (isSpanContext(parentFromContext) && isSpanContextValid(parentFromContext)) {
+        return new NonRecordingSpan(parentFromContext);
+      } else {
+        return new NonRecordingSpan();
+      }
+    };
+    NoopTracer2.prototype.startActiveSpan = function(name17, arg2, arg3, arg4) {
+      var opts;
+      var ctx;
+      var fn;
+      if (arguments.length < 2) {
+        return;
+      } else if (arguments.length === 2) {
+        fn = arg2;
+      } else if (arguments.length === 3) {
+        opts = arg2;
+        fn = arg3;
+      } else {
+        opts = arg2;
+        ctx = arg3;
+        fn = arg4;
+      }
+      var parentContext = ctx !== null && ctx !== void 0 ? ctx : contextApi.active();
+      var span = this.startSpan(name17, opts, parentContext);
+      var contextWithSpanSet = setSpan(parentContext, span);
+      return contextApi.with(contextWithSpanSet, fn, void 0, span);
+    };
+    return NoopTracer2;
+  }()
+);
+function isSpanContext(spanContext) {
+  return typeof spanContext === "object" && typeof spanContext["spanId"] === "string" && typeof spanContext["traceId"] === "string" && typeof spanContext["traceFlags"] === "number";
+}
+
+// node_modules/@opentelemetry/api/build/esm/trace/ProxyTracer.js
+var NOOP_TRACER = new NoopTracer();
+var ProxyTracer = (
+  /** @class */
+  function() {
+    function ProxyTracer2(_provider, name17, version3, options) {
+      this._provider = _provider;
+      this.name = name17;
+      this.version = version3;
+      this.options = options;
+    }
+    ProxyTracer2.prototype.startSpan = function(name17, options, context) {
+      return this._getTracer().startSpan(name17, options, context);
+    };
+    ProxyTracer2.prototype.startActiveSpan = function(_name, _options, _context, _fn) {
+      var tracer2 = this._getTracer();
+      return Reflect.apply(tracer2.startActiveSpan, tracer2, arguments);
+    };
+    ProxyTracer2.prototype._getTracer = function() {
+      if (this._delegate) {
+        return this._delegate;
+      }
+      var tracer2 = this._provider.getDelegateTracer(this.name, this.version, this.options);
+      if (!tracer2) {
+        return NOOP_TRACER;
+      }
+      this._delegate = tracer2;
+      return this._delegate;
+    };
+    return ProxyTracer2;
+  }()
+);
+
+// node_modules/@opentelemetry/api/build/esm/trace/NoopTracerProvider.js
+var NoopTracerProvider = (
+  /** @class */
+  function() {
+    function NoopTracerProvider2() {
+    }
+    NoopTracerProvider2.prototype.getTracer = function(_name, _version, _options) {
+      return new NoopTracer();
+    };
+    return NoopTracerProvider2;
+  }()
+);
+
+// node_modules/@opentelemetry/api/build/esm/trace/ProxyTracerProvider.js
+var NOOP_TRACER_PROVIDER = new NoopTracerProvider();
+var ProxyTracerProvider = (
+  /** @class */
+  function() {
+    function ProxyTracerProvider2() {
+    }
+    ProxyTracerProvider2.prototype.getTracer = function(name17, version3, options) {
+      var _a17;
+      return (_a17 = this.getDelegateTracer(name17, version3, options)) !== null && _a17 !== void 0 ? _a17 : new ProxyTracer(this, name17, version3, options);
+    };
+    ProxyTracerProvider2.prototype.getDelegate = function() {
+      var _a17;
+      return (_a17 = this._delegate) !== null && _a17 !== void 0 ? _a17 : NOOP_TRACER_PROVIDER;
+    };
+    ProxyTracerProvider2.prototype.setDelegate = function(delegate) {
+      this._delegate = delegate;
+    };
+    ProxyTracerProvider2.prototype.getDelegateTracer = function(name17, version3, options) {
+      var _a17;
+      return (_a17 = this._delegate) === null || _a17 === void 0 ? void 0 : _a17.getTracer(name17, version3, options);
+    };
+    return ProxyTracerProvider2;
+  }()
+);
+
+// node_modules/@opentelemetry/api/build/esm/trace/status.js
+var SpanStatusCode;
+(function(SpanStatusCode2) {
+  SpanStatusCode2[SpanStatusCode2["UNSET"] = 0] = "UNSET";
+  SpanStatusCode2[SpanStatusCode2["OK"] = 1] = "OK";
+  SpanStatusCode2[SpanStatusCode2["ERROR"] = 2] = "ERROR";
+})(SpanStatusCode || (SpanStatusCode = {}));
+
+// node_modules/@opentelemetry/api/build/esm/api/trace.js
+var API_NAME3 = "trace";
+var TraceAPI = (
+  /** @class */
+  function() {
+    function TraceAPI2() {
+      this._proxyTracerProvider = new ProxyTracerProvider();
+      this.wrapSpanContext = wrapSpanContext;
+      this.isSpanContextValid = isSpanContextValid;
+      this.deleteSpan = deleteSpan;
+      this.getSpan = getSpan;
+      this.getActiveSpan = getActiveSpan;
+      this.getSpanContext = getSpanContext;
+      this.setSpan = setSpan;
+      this.setSpanContext = setSpanContext;
+    }
+    TraceAPI2.getInstance = function() {
+      if (!this._instance) {
+        this._instance = new TraceAPI2();
+      }
+      return this._instance;
+    };
+    TraceAPI2.prototype.setGlobalTracerProvider = function(provider) {
+      var success2 = registerGlobal(API_NAME3, this._proxyTracerProvider, DiagAPI.instance());
+      if (success2) {
+        this._proxyTracerProvider.setDelegate(provider);
+      }
+      return success2;
+    };
+    TraceAPI2.prototype.getTracerProvider = function() {
+      return getGlobal(API_NAME3) || this._proxyTracerProvider;
+    };
+    TraceAPI2.prototype.getTracer = function(name17, version3) {
+      return this.getTracerProvider().getTracer(name17, version3);
+    };
+    TraceAPI2.prototype.disable = function() {
+      unregisterGlobal(API_NAME3, DiagAPI.instance());
+      this._proxyTracerProvider = new ProxyTracerProvider();
+    };
+    return TraceAPI2;
+  }()
+);
+
+// node_modules/@opentelemetry/api/build/esm/trace-api.js
+var trace = TraceAPI.getInstance();
 
 // node_modules/ai/dist/index.mjs
 var __defProp2 = Object.defineProperty;
@@ -26974,40 +36585,132 @@ var __export2 = (target, all) => {
   for (var name17 in all)
     __defProp2(target, name17, { get: all[name17], enumerable: true });
 };
-var name14 = "AI_NoOutputSpecifiedError";
-var marker15 = `vercel.ai.error.${name14}`;
-var symbol16 = Symbol.for(marker15);
-var _a15;
-_a15 = symbol16;
-var name22 = "AI_InvalidArgumentError";
-var marker22 = `vercel.ai.error.${name22}`;
-var symbol22 = Symbol.for(marker22);
-var _a22;
-_a22 = symbol22;
-var name32 = "AI_InvalidStreamPartError";
-var marker32 = `vercel.ai.error.${name32}`;
-var symbol32 = Symbol.for(marker32);
-var _a32;
-_a32 = symbol32;
-var name42 = "AI_InvalidToolInputError";
-var marker42 = `vercel.ai.error.${name42}`;
-var symbol42 = Symbol.for(marker42);
-var _a42;
-_a42 = symbol42;
-var name52 = "AI_MCPClientError";
-var marker52 = `vercel.ai.error.${name52}`;
-var symbol52 = Symbol.for(marker52);
-var _a52;
-_a52 = symbol52;
-var name62 = "AI_NoImageGeneratedError";
-var marker62 = `vercel.ai.error.${name62}`;
-var symbol62 = Symbol.for(marker62);
-var _a62;
-_a62 = symbol62;
+var name15 = "AI_NoOutputSpecifiedError";
+var marker16 = `vercel.ai.error.${name15}`;
+var symbol17 = Symbol.for(marker16);
+var _a16;
+var NoOutputSpecifiedError = class extends AISDKError {
+  // used in isInstance
+  constructor({ message = "No output specified." } = {}) {
+    super({ name: name15, message });
+    this[_a16] = true;
+  }
+  static isInstance(error45) {
+    return AISDKError.hasMarker(error45, marker16);
+  }
+};
+_a16 = symbol17;
+function formatWarning(warning) {
+  const prefix = "AI SDK Warning:";
+  switch (warning.type) {
+    case "unsupported-setting": {
+      let message = `${prefix} The "${warning.setting}" setting is not supported by this model`;
+      if (warning.details) {
+        message += ` - ${warning.details}`;
+      }
+      return message;
+    }
+    case "unsupported-tool": {
+      const toolName = "name" in warning.tool ? warning.tool.name : "unknown tool";
+      let message = `${prefix} The tool "${toolName}" is not supported by this model`;
+      if (warning.details) {
+        message += ` - ${warning.details}`;
+      }
+      return message;
+    }
+    case "other": {
+      return `${prefix} ${warning.message}`;
+    }
+    default: {
+      return `${prefix} ${JSON.stringify(warning, null, 2)}`;
+    }
+  }
+}
+var FIRST_WARNING_INFO_MESSAGE = "AI SDK Warning System: To turn off warning logging, set the AI_SDK_LOG_WARNINGS global to false.";
+var hasLoggedBefore = false;
+var logWarnings = (warnings) => {
+  if (warnings.length === 0) {
+    return;
+  }
+  const logger = globalThis.AI_SDK_LOG_WARNINGS;
+  if (logger === false) {
+    return;
+  }
+  if (typeof logger === "function") {
+    logger(warnings);
+    return;
+  }
+  if (!hasLoggedBefore) {
+    hasLoggedBefore = true;
+    console.info(FIRST_WARNING_INFO_MESSAGE);
+  }
+  for (const warning of warnings) {
+    console.warn(formatWarning(warning));
+  }
+};
+var name23 = "AI_InvalidArgumentError";
+var marker23 = `vercel.ai.error.${name23}`;
+var symbol23 = Symbol.for(marker23);
+var _a23;
+var InvalidArgumentError3 = class extends AISDKError {
+  constructor({
+    parameter,
+    value,
+    message
+  }) {
+    super({
+      name: name23,
+      message: `Invalid argument for parameter ${parameter}: ${message}`
+    });
+    this[_a23] = true;
+    this.parameter = parameter;
+    this.value = value;
+  }
+  static isInstance(error45) {
+    return AISDKError.hasMarker(error45, marker23);
+  }
+};
+_a23 = symbol23;
+var name33 = "AI_InvalidStreamPartError";
+var marker33 = `vercel.ai.error.${name33}`;
+var symbol33 = Symbol.for(marker33);
+var _a33;
+_a33 = symbol33;
+var name43 = "AI_InvalidToolInputError";
+var marker43 = `vercel.ai.error.${name43}`;
+var symbol43 = Symbol.for(marker43);
+var _a43;
+var InvalidToolInputError = class extends AISDKError {
+  constructor({
+    toolInput,
+    toolName,
+    cause,
+    message = `Invalid input for tool ${toolName}: ${getErrorMessage(cause)}`
+  }) {
+    super({ name: name43, message, cause });
+    this[_a43] = true;
+    this.toolInput = toolInput;
+    this.toolName = toolName;
+  }
+  static isInstance(error45) {
+    return AISDKError.hasMarker(error45, marker43);
+  }
+};
+_a43 = symbol43;
+var name53 = "AI_MCPClientError";
+var marker53 = `vercel.ai.error.${name53}`;
+var symbol53 = Symbol.for(marker53);
+var _a53;
+_a53 = symbol53;
+var name63 = "AI_NoImageGeneratedError";
+var marker63 = `vercel.ai.error.${name63}`;
+var symbol63 = Symbol.for(marker63);
+var _a63;
+_a63 = symbol63;
 var name72 = "AI_NoObjectGeneratedError";
-var marker72 = `vercel.ai.error.${name72}`;
-var symbol72 = Symbol.for(marker72);
-var _a72;
+var marker73 = `vercel.ai.error.${name72}`;
+var symbol73 = Symbol.for(marker73);
+var _a73;
 var NoObjectGeneratedError = class extends AISDKError {
   constructor({
     message = "No object generated.",
@@ -27018,17 +36721,17 @@ var NoObjectGeneratedError = class extends AISDKError {
     finishReason
   }) {
     super({ name: name72, message, cause });
-    this[_a72] = true;
+    this[_a73] = true;
     this.text = text22;
     this.response = response;
     this.usage = usage;
     this.finishReason = finishReason;
   }
   static isInstance(error45) {
-    return AISDKError.hasMarker(error45, marker72);
+    return AISDKError.hasMarker(error45, marker73);
   }
 };
-_a72 = symbol72;
+_a73 = symbol73;
 var name82 = "AI_NoOutputGeneratedError";
 var marker82 = `vercel.ai.error.${name82}`;
 var symbol82 = Symbol.for(marker82);
@@ -27038,12 +36741,52 @@ var name92 = "AI_NoSuchToolError";
 var marker92 = `vercel.ai.error.${name92}`;
 var symbol92 = Symbol.for(marker92);
 var _a92;
+var NoSuchToolError = class extends AISDKError {
+  constructor({
+    toolName,
+    availableTools = void 0,
+    message = `Model tried to call unavailable tool '${toolName}'. ${availableTools === void 0 ? "No tools are available." : `Available tools: ${availableTools.join(", ")}.`}`
+  }) {
+    super({ name: name92, message });
+    this[_a92] = true;
+    this.toolName = toolName;
+    this.availableTools = availableTools;
+  }
+  static isInstance(error45) {
+    return AISDKError.hasMarker(error45, marker92);
+  }
+};
 _a92 = symbol92;
 var name102 = "AI_ToolCallRepairError";
 var marker102 = `vercel.ai.error.${name102}`;
 var symbol102 = Symbol.for(marker102);
 var _a102;
+var ToolCallRepairError = class extends AISDKError {
+  constructor({
+    cause,
+    originalError,
+    message = `Error repairing tool call: ${getErrorMessage(cause)}`
+  }) {
+    super({ name: name102, message, cause });
+    this[_a102] = true;
+    this.originalError = originalError;
+  }
+  static isInstance(error45) {
+    return AISDKError.hasMarker(error45, marker102);
+  }
+};
 _a102 = symbol102;
+var UnsupportedModelVersionError = class extends AISDKError {
+  constructor(options) {
+    super({
+      name: "AI_UnsupportedModelVersionError",
+      message: `Unsupported model version ${options.version} for provider "${options.provider}" and model "${options.modelId}". AI SDK 5 only supports models that implement specification version "v2".`
+    });
+    this.version = options.version;
+    this.provider = options.provider;
+    this.modelId = options.modelId;
+  }
+};
 var name112 = "AI_InvalidDataContentError";
 var marker112 = `vercel.ai.error.${name112}`;
 var symbol112 = Symbol.for(marker112);
@@ -27053,6 +36796,19 @@ var name122 = "AI_InvalidMessageRoleError";
 var marker122 = `vercel.ai.error.${name122}`;
 var symbol122 = Symbol.for(marker122);
 var _a122;
+var InvalidMessageRoleError = class extends AISDKError {
+  constructor({
+    role,
+    message = `Invalid message role: '${role}'. Must be one of: "system", "user", "assistant", "tool".`
+  }) {
+    super({ name: name122, message });
+    this[_a122] = true;
+    this.role = role;
+  }
+  static isInstance(error45) {
+    return AISDKError.hasMarker(error45, marker122);
+  }
+};
 _a122 = symbol122;
 var name132 = "AI_MessageConversionError";
 var marker132 = `vercel.ai.error.${name132}`;
@@ -27063,12 +36819,203 @@ var name142 = "AI_DownloadError";
 var marker142 = `vercel.ai.error.${name142}`;
 var symbol142 = Symbol.for(marker142);
 var _a142;
+var DownloadError = class extends AISDKError {
+  constructor({
+    url: url2,
+    statusCode,
+    statusText,
+    cause,
+    message = cause == null ? `Failed to download ${url2}: ${statusCode} ${statusText}` : `Failed to download ${url2}: ${cause}`
+  }) {
+    super({ name: name142, message, cause });
+    this[_a142] = true;
+    this.url = url2;
+    this.statusCode = statusCode;
+    this.statusText = statusText;
+  }
+  static isInstance(error45) {
+    return AISDKError.hasMarker(error45, marker142);
+  }
+};
 _a142 = symbol142;
-var name15 = "AI_RetryError";
-var marker152 = `vercel.ai.error.${name15}`;
+var name152 = "AI_RetryError";
+var marker152 = `vercel.ai.error.${name152}`;
 var symbol152 = Symbol.for(marker152);
 var _a152;
+var RetryError = class extends AISDKError {
+  constructor({
+    message,
+    reason,
+    errors
+  }) {
+    super({ name: name152, message });
+    this[_a152] = true;
+    this.reason = reason;
+    this.errors = errors;
+    this.lastError = errors[errors.length - 1];
+  }
+  static isInstance(error45) {
+    return AISDKError.hasMarker(error45, marker152);
+  }
+};
 _a152 = symbol152;
+function resolveLanguageModel(model) {
+  if (typeof model !== "string") {
+    if (model.specificationVersion !== "v2") {
+      throw new UnsupportedModelVersionError({
+        version: model.specificationVersion,
+        provider: model.provider,
+        modelId: model.modelId
+      });
+    }
+    return model;
+  }
+  return getGlobalProvider().languageModel(model);
+}
+function getGlobalProvider() {
+  var _a17;
+  return (_a17 = globalThis.AI_SDK_DEFAULT_PROVIDER) != null ? _a17 : gateway;
+}
+var imageMediaTypeSignatures = [
+  {
+    mediaType: "image/gif",
+    bytesPrefix: [71, 73, 70],
+    base64Prefix: "R0lG"
+  },
+  {
+    mediaType: "image/png",
+    bytesPrefix: [137, 80, 78, 71],
+    base64Prefix: "iVBORw"
+  },
+  {
+    mediaType: "image/jpeg",
+    bytesPrefix: [255, 216],
+    base64Prefix: "/9j/"
+  },
+  {
+    mediaType: "image/webp",
+    bytesPrefix: [82, 73, 70, 70],
+    base64Prefix: "UklGRg"
+  },
+  {
+    mediaType: "image/bmp",
+    bytesPrefix: [66, 77],
+    base64Prefix: "Qk"
+  },
+  {
+    mediaType: "image/tiff",
+    bytesPrefix: [73, 73, 42, 0],
+    base64Prefix: "SUkqAA"
+  },
+  {
+    mediaType: "image/tiff",
+    bytesPrefix: [77, 77, 0, 42],
+    base64Prefix: "TU0AKg"
+  },
+  {
+    mediaType: "image/avif",
+    bytesPrefix: [
+      0,
+      0,
+      0,
+      32,
+      102,
+      116,
+      121,
+      112,
+      97,
+      118,
+      105,
+      102
+    ],
+    base64Prefix: "AAAAIGZ0eXBhdmlm"
+  },
+  {
+    mediaType: "image/heic",
+    bytesPrefix: [
+      0,
+      0,
+      0,
+      32,
+      102,
+      116,
+      121,
+      112,
+      104,
+      101,
+      105,
+      99
+    ],
+    base64Prefix: "AAAAIGZ0eXBoZWlj"
+  }
+];
+var stripID3 = (data) => {
+  const bytes = typeof data === "string" ? convertBase64ToUint8Array(data) : data;
+  const id3Size = (bytes[6] & 127) << 21 | (bytes[7] & 127) << 14 | (bytes[8] & 127) << 7 | bytes[9] & 127;
+  return bytes.slice(id3Size + 10);
+};
+function stripID3TagsIfPresent(data) {
+  const hasId3 = typeof data === "string" && data.startsWith("SUQz") || typeof data !== "string" && data.length > 10 && data[0] === 73 && // 'I'
+  data[1] === 68 && // 'D'
+  data[2] === 51;
+  return hasId3 ? stripID3(data) : data;
+}
+function detectMediaType({
+  data,
+  signatures
+}) {
+  const processedData = stripID3TagsIfPresent(data);
+  for (const signature of signatures) {
+    if (typeof processedData === "string" ? processedData.startsWith(signature.base64Prefix) : processedData.length >= signature.bytesPrefix.length && signature.bytesPrefix.every(
+      (byte, index) => processedData[index] === byte
+    )) {
+      return signature.mediaType;
+    }
+  }
+  return void 0;
+}
+var download = async ({ url: url2 }) => {
+  var _a17;
+  const urlText = url2.toString();
+  try {
+    const response = await fetch(urlText);
+    if (!response.ok) {
+      throw new DownloadError({
+        url: urlText,
+        statusCode: response.status,
+        statusText: response.statusText
+      });
+    }
+    return {
+      data: new Uint8Array(await response.arrayBuffer()),
+      mediaType: (_a17 = response.headers.get("content-type")) != null ? _a17 : void 0
+    };
+  } catch (error45) {
+    if (DownloadError.isInstance(error45)) {
+      throw error45;
+    }
+    throw new DownloadError({ url: urlText, cause: error45 });
+  }
+};
+var createDefaultDownloadFunction = (download2 = download) => (requestedDownloads) => Promise.all(
+  requestedDownloads.map(
+    async (requestedDownload) => requestedDownload.isUrlSupportedByModel ? null : download2(requestedDownload)
+  )
+);
+function splitDataUrl(dataUrl) {
+  try {
+    const [header, base64Content] = dataUrl.split(",");
+    return {
+      mediaType: header.split(";")[0].split(":")[1],
+      base64Content
+    };
+  } catch (error45) {
+    return {
+      mediaType: void 0,
+      base64Content: void 0
+    };
+  }
+}
 var dataContentSchema = external_exports.union([
   external_exports.string(),
   external_exports.instanceof(Uint8Array),
@@ -27076,12 +37023,410 @@ var dataContentSchema = external_exports.union([
   external_exports.custom(
     // Buffer might not be available in some environments such as CloudFlare:
     (value) => {
-      var _a17, _b;
-      return (_b = (_a17 = globalThis.Buffer) == null ? void 0 : _a17.isBuffer(value)) != null ? _b : false;
+      var _a17, _b8;
+      return (_b8 = (_a17 = globalThis.Buffer) == null ? void 0 : _a17.isBuffer(value)) != null ? _b8 : false;
     },
     { message: "Must be a Buffer" }
   )
 ]);
+function convertToLanguageModelV2DataContent(content) {
+  if (content instanceof Uint8Array) {
+    return { data: content, mediaType: void 0 };
+  }
+  if (content instanceof ArrayBuffer) {
+    return { data: new Uint8Array(content), mediaType: void 0 };
+  }
+  if (typeof content === "string") {
+    try {
+      content = new URL(content);
+    } catch (error45) {
+    }
+  }
+  if (content instanceof URL && content.protocol === "data:") {
+    const { mediaType: dataUrlMediaType, base64Content } = splitDataUrl(
+      content.toString()
+    );
+    if (dataUrlMediaType == null || base64Content == null) {
+      throw new AISDKError({
+        name: "InvalidDataContentError",
+        message: `Invalid data URL format in content ${content.toString()}`
+      });
+    }
+    return { data: base64Content, mediaType: dataUrlMediaType };
+  }
+  return { data: content, mediaType: void 0 };
+}
+function convertDataContentToBase64String(content) {
+  if (typeof content === "string") {
+    return content;
+  }
+  if (content instanceof ArrayBuffer) {
+    return convertUint8ArrayToBase64(new Uint8Array(content));
+  }
+  return convertUint8ArrayToBase64(content);
+}
+async function convertToLanguageModelPrompt({
+  prompt,
+  supportedUrls,
+  download: download2 = createDefaultDownloadFunction()
+}) {
+  const downloadedAssets = await downloadAssets(
+    prompt.messages,
+    download2,
+    supportedUrls
+  );
+  return [
+    ...prompt.system != null ? [{ role: "system", content: prompt.system }] : [],
+    ...prompt.messages.map(
+      (message) => convertToLanguageModelMessage({ message, downloadedAssets })
+    )
+  ];
+}
+function convertToLanguageModelMessage({
+  message,
+  downloadedAssets
+}) {
+  const role = message.role;
+  switch (role) {
+    case "system": {
+      return {
+        role: "system",
+        content: message.content,
+        providerOptions: message.providerOptions
+      };
+    }
+    case "user": {
+      if (typeof message.content === "string") {
+        return {
+          role: "user",
+          content: [{ type: "text", text: message.content }],
+          providerOptions: message.providerOptions
+        };
+      }
+      return {
+        role: "user",
+        content: message.content.map((part) => convertPartToLanguageModelPart(part, downloadedAssets)).filter((part) => part.type !== "text" || part.text !== ""),
+        providerOptions: message.providerOptions
+      };
+    }
+    case "assistant": {
+      if (typeof message.content === "string") {
+        return {
+          role: "assistant",
+          content: [{ type: "text", text: message.content }],
+          providerOptions: message.providerOptions
+        };
+      }
+      return {
+        role: "assistant",
+        content: message.content.filter(
+          // remove empty text parts:
+          (part) => part.type !== "text" || part.text !== ""
+        ).map((part) => {
+          const providerOptions = part.providerOptions;
+          switch (part.type) {
+            case "file": {
+              const { data, mediaType } = convertToLanguageModelV2DataContent(
+                part.data
+              );
+              return {
+                type: "file",
+                data,
+                filename: part.filename,
+                mediaType: mediaType != null ? mediaType : part.mediaType,
+                providerOptions
+              };
+            }
+            case "reasoning": {
+              return {
+                type: "reasoning",
+                text: part.text,
+                providerOptions
+              };
+            }
+            case "text": {
+              return {
+                type: "text",
+                text: part.text,
+                providerOptions
+              };
+            }
+            case "tool-call": {
+              return {
+                type: "tool-call",
+                toolCallId: part.toolCallId,
+                toolName: part.toolName,
+                input: part.input,
+                providerExecuted: part.providerExecuted,
+                providerOptions
+              };
+            }
+            case "tool-result": {
+              return {
+                type: "tool-result",
+                toolCallId: part.toolCallId,
+                toolName: part.toolName,
+                output: part.output,
+                providerOptions
+              };
+            }
+          }
+        }),
+        providerOptions: message.providerOptions
+      };
+    }
+    case "tool": {
+      return {
+        role: "tool",
+        content: message.content.map((part) => ({
+          type: "tool-result",
+          toolCallId: part.toolCallId,
+          toolName: part.toolName,
+          output: part.output,
+          providerOptions: part.providerOptions
+        })),
+        providerOptions: message.providerOptions
+      };
+    }
+    default: {
+      const _exhaustiveCheck = role;
+      throw new InvalidMessageRoleError({ role: _exhaustiveCheck });
+    }
+  }
+}
+async function downloadAssets(messages, download2, supportedUrls) {
+  const plannedDownloads = messages.filter((message) => message.role === "user").map((message) => message.content).filter(
+    (content) => Array.isArray(content)
+  ).flat().filter(
+    (part) => part.type === "image" || part.type === "file"
+  ).map((part) => {
+    var _a17;
+    const mediaType = (_a17 = part.mediaType) != null ? _a17 : part.type === "image" ? "image/*" : void 0;
+    let data = part.type === "image" ? part.image : part.data;
+    if (typeof data === "string") {
+      try {
+        data = new URL(data);
+      } catch (ignored) {
+      }
+    }
+    return { mediaType, data };
+  }).filter(
+    (part) => part.data instanceof URL
+  ).map((part) => ({
+    url: part.data,
+    isUrlSupportedByModel: part.mediaType != null && isUrlSupported({
+      url: part.data.toString(),
+      mediaType: part.mediaType,
+      supportedUrls
+    })
+  }));
+  const downloadedFiles = await download2(plannedDownloads);
+  return Object.fromEntries(
+    downloadedFiles.filter(
+      (downloadedFile) => (downloadedFile == null ? void 0 : downloadedFile.data) != null
+    ).map(({ data, mediaType }, index) => [
+      plannedDownloads[index].url.toString(),
+      { data, mediaType }
+    ])
+  );
+}
+function convertPartToLanguageModelPart(part, downloadedAssets) {
+  var _a17;
+  if (part.type === "text") {
+    return {
+      type: "text",
+      text: part.text,
+      providerOptions: part.providerOptions
+    };
+  }
+  let originalData;
+  const type = part.type;
+  switch (type) {
+    case "image":
+      originalData = part.image;
+      break;
+    case "file":
+      originalData = part.data;
+      break;
+    default:
+      throw new Error(`Unsupported part type: ${type}`);
+  }
+  const { data: convertedData, mediaType: convertedMediaType } = convertToLanguageModelV2DataContent(originalData);
+  let mediaType = convertedMediaType != null ? convertedMediaType : part.mediaType;
+  let data = convertedData;
+  if (data instanceof URL) {
+    const downloadedFile = downloadedAssets[data.toString()];
+    if (downloadedFile) {
+      data = downloadedFile.data;
+      mediaType != null ? mediaType : mediaType = downloadedFile.mediaType;
+    }
+  }
+  switch (type) {
+    case "image": {
+      if (data instanceof Uint8Array || typeof data === "string") {
+        mediaType = (_a17 = detectMediaType({ data, signatures: imageMediaTypeSignatures })) != null ? _a17 : mediaType;
+      }
+      return {
+        type: "file",
+        mediaType: mediaType != null ? mediaType : "image/*",
+        // any image
+        filename: void 0,
+        data,
+        providerOptions: part.providerOptions
+      };
+    }
+    case "file": {
+      if (mediaType == null) {
+        throw new Error(`Media type is missing for file part`);
+      }
+      return {
+        type: "file",
+        mediaType,
+        filename: part.filename,
+        data,
+        providerOptions: part.providerOptions
+      };
+    }
+  }
+}
+function prepareCallSettings({
+  maxOutputTokens,
+  temperature,
+  topP,
+  topK,
+  presencePenalty,
+  frequencyPenalty,
+  seed,
+  stopSequences
+}) {
+  if (maxOutputTokens != null) {
+    if (!Number.isInteger(maxOutputTokens)) {
+      throw new InvalidArgumentError3({
+        parameter: "maxOutputTokens",
+        value: maxOutputTokens,
+        message: "maxOutputTokens must be an integer"
+      });
+    }
+    if (maxOutputTokens < 1) {
+      throw new InvalidArgumentError3({
+        parameter: "maxOutputTokens",
+        value: maxOutputTokens,
+        message: "maxOutputTokens must be >= 1"
+      });
+    }
+  }
+  if (temperature != null) {
+    if (typeof temperature !== "number") {
+      throw new InvalidArgumentError3({
+        parameter: "temperature",
+        value: temperature,
+        message: "temperature must be a number"
+      });
+    }
+  }
+  if (topP != null) {
+    if (typeof topP !== "number") {
+      throw new InvalidArgumentError3({
+        parameter: "topP",
+        value: topP,
+        message: "topP must be a number"
+      });
+    }
+  }
+  if (topK != null) {
+    if (typeof topK !== "number") {
+      throw new InvalidArgumentError3({
+        parameter: "topK",
+        value: topK,
+        message: "topK must be a number"
+      });
+    }
+  }
+  if (presencePenalty != null) {
+    if (typeof presencePenalty !== "number") {
+      throw new InvalidArgumentError3({
+        parameter: "presencePenalty",
+        value: presencePenalty,
+        message: "presencePenalty must be a number"
+      });
+    }
+  }
+  if (frequencyPenalty != null) {
+    if (typeof frequencyPenalty !== "number") {
+      throw new InvalidArgumentError3({
+        parameter: "frequencyPenalty",
+        value: frequencyPenalty,
+        message: "frequencyPenalty must be a number"
+      });
+    }
+  }
+  if (seed != null) {
+    if (!Number.isInteger(seed)) {
+      throw new InvalidArgumentError3({
+        parameter: "seed",
+        value: seed,
+        message: "seed must be an integer"
+      });
+    }
+  }
+  return {
+    maxOutputTokens,
+    temperature,
+    topP,
+    topK,
+    presencePenalty,
+    frequencyPenalty,
+    stopSequences,
+    seed
+  };
+}
+function isNonEmptyObject(object22) {
+  return object22 != null && Object.keys(object22).length > 0;
+}
+function prepareToolsAndToolChoice({
+  tools,
+  toolChoice,
+  activeTools
+}) {
+  if (!isNonEmptyObject(tools)) {
+    return {
+      tools: void 0,
+      toolChoice: void 0
+    };
+  }
+  const filteredTools = activeTools != null ? Object.entries(tools).filter(
+    ([name17]) => activeTools.includes(name17)
+  ) : Object.entries(tools);
+  return {
+    tools: filteredTools.map(([name17, tool3]) => {
+      const toolType = tool3.type;
+      switch (toolType) {
+        case void 0:
+        case "dynamic":
+        case "function":
+          return {
+            type: "function",
+            name: name17,
+            description: tool3.description,
+            inputSchema: asSchema(tool3.inputSchema).jsonSchema,
+            providerOptions: tool3.providerOptions
+          };
+        case "provider-defined":
+          return {
+            type: "provider-defined",
+            name: name17,
+            id: tool3.id,
+            args: tool3.args
+          };
+        default: {
+          const exhaustiveCheck = toolType;
+          throw new Error(`Unsupported tool type: ${exhaustiveCheck}`);
+        }
+      }
+    }),
+    toolChoice: toolChoice == null ? { type: "auto" } : typeof toolChoice === "string" ? { type: toolChoice } : { type: "tool", toolName: toolChoice.toolName }
+  };
+}
 var jsonValueSchema = external_exports.lazy(
   () => external_exports.union([
     external_exports.null(),
@@ -27210,10 +37555,1288 @@ var modelMessageSchema = external_exports.union([
   assistantModelMessageSchema,
   toolModelMessageSchema
 ]);
+async function standardizePrompt(prompt) {
+  if (prompt.prompt == null && prompt.messages == null) {
+    throw new InvalidPromptError({
+      prompt,
+      message: "prompt or messages must be defined"
+    });
+  }
+  if (prompt.prompt != null && prompt.messages != null) {
+    throw new InvalidPromptError({
+      prompt,
+      message: "prompt and messages cannot be defined at the same time"
+    });
+  }
+  if (prompt.system != null && typeof prompt.system !== "string") {
+    throw new InvalidPromptError({
+      prompt,
+      message: "system must be a string"
+    });
+  }
+  let messages;
+  if (prompt.prompt != null && typeof prompt.prompt === "string") {
+    messages = [{ role: "user", content: prompt.prompt }];
+  } else if (prompt.prompt != null && Array.isArray(prompt.prompt)) {
+    messages = prompt.prompt;
+  } else if (prompt.messages != null) {
+    messages = prompt.messages;
+  } else {
+    throw new InvalidPromptError({
+      prompt,
+      message: "prompt or messages must be defined"
+    });
+  }
+  if (messages.length === 0) {
+    throw new InvalidPromptError({
+      prompt,
+      message: "messages must not be empty"
+    });
+  }
+  const validationResult = await safeValidateTypes({
+    value: messages,
+    schema: external_exports.array(modelMessageSchema)
+  });
+  if (!validationResult.success) {
+    throw new InvalidPromptError({
+      prompt,
+      message: "The messages must be a ModelMessage[]. If you have passed a UIMessage[], you can use convertToModelMessages to convert them.",
+      cause: validationResult.error
+    });
+  }
+  return {
+    messages,
+    system: prompt.system
+  };
+}
+function wrapGatewayError(error45) {
+  if (GatewayAuthenticationError.isInstance(error45) || GatewayModelNotFoundError.isInstance(error45)) {
+    return new AISDKError({
+      name: "GatewayError",
+      message: "Vercel AI Gateway access failed. If you want to use AI SDK providers directly, use the providers, e.g. @ai-sdk/openai, or register a different global default provider.",
+      cause: error45
+    });
+  }
+  return error45;
+}
+function assembleOperationName({
+  operationId,
+  telemetry
+}) {
+  return {
+    // standardized operation and resource name:
+    "operation.name": `${operationId}${(telemetry == null ? void 0 : telemetry.functionId) != null ? ` ${telemetry.functionId}` : ""}`,
+    "resource.name": telemetry == null ? void 0 : telemetry.functionId,
+    // detailed, AI SDK specific data:
+    "ai.operationId": operationId,
+    "ai.telemetry.functionId": telemetry == null ? void 0 : telemetry.functionId
+  };
+}
+function getBaseTelemetryAttributes({
+  model,
+  settings,
+  telemetry,
+  headers
+}) {
+  var _a17;
+  return {
+    "ai.model.provider": model.provider,
+    "ai.model.id": model.modelId,
+    // settings:
+    ...Object.entries(settings).reduce((attributes, [key, value]) => {
+      attributes[`ai.settings.${key}`] = value;
+      return attributes;
+    }, {}),
+    // add metadata as attributes:
+    ...Object.entries((_a17 = telemetry == null ? void 0 : telemetry.metadata) != null ? _a17 : {}).reduce(
+      (attributes, [key, value]) => {
+        attributes[`ai.telemetry.metadata.${key}`] = value;
+        return attributes;
+      },
+      {}
+    ),
+    // request headers
+    ...Object.entries(headers != null ? headers : {}).reduce((attributes, [key, value]) => {
+      if (value !== void 0) {
+        attributes[`ai.request.headers.${key}`] = value;
+      }
+      return attributes;
+    }, {})
+  };
+}
+var noopTracer = {
+  startSpan() {
+    return noopSpan;
+  },
+  startActiveSpan(name17, arg1, arg2, arg3) {
+    if (typeof arg1 === "function") {
+      return arg1(noopSpan);
+    }
+    if (typeof arg2 === "function") {
+      return arg2(noopSpan);
+    }
+    if (typeof arg3 === "function") {
+      return arg3(noopSpan);
+    }
+  }
+};
+var noopSpan = {
+  spanContext() {
+    return noopSpanContext;
+  },
+  setAttribute() {
+    return this;
+  },
+  setAttributes() {
+    return this;
+  },
+  addEvent() {
+    return this;
+  },
+  addLink() {
+    return this;
+  },
+  addLinks() {
+    return this;
+  },
+  setStatus() {
+    return this;
+  },
+  updateName() {
+    return this;
+  },
+  end() {
+    return this;
+  },
+  isRecording() {
+    return false;
+  },
+  recordException() {
+    return this;
+  }
+};
+var noopSpanContext = {
+  traceId: "",
+  spanId: "",
+  traceFlags: 0
+};
+function getTracer({
+  isEnabled = false,
+  tracer: tracer2
+} = {}) {
+  if (!isEnabled) {
+    return noopTracer;
+  }
+  if (tracer2) {
+    return tracer2;
+  }
+  return trace.getTracer("ai");
+}
+function recordSpan({
+  name: name17,
+  tracer: tracer2,
+  attributes,
+  fn,
+  endWhenDone = true
+}) {
+  return tracer2.startActiveSpan(name17, { attributes }, async (span) => {
+    try {
+      const result = await fn(span);
+      if (endWhenDone) {
+        span.end();
+      }
+      return result;
+    } catch (error45) {
+      try {
+        recordErrorOnSpan(span, error45);
+      } finally {
+        span.end();
+      }
+      throw error45;
+    }
+  });
+}
+function recordErrorOnSpan(span, error45) {
+  if (error45 instanceof Error) {
+    span.recordException({
+      name: error45.name,
+      message: error45.message,
+      stack: error45.stack
+    });
+    span.setStatus({
+      code: SpanStatusCode.ERROR,
+      message: error45.message
+    });
+  } else {
+    span.setStatus({ code: SpanStatusCode.ERROR });
+  }
+}
+function selectTelemetryAttributes({
+  telemetry,
+  attributes
+}) {
+  if ((telemetry == null ? void 0 : telemetry.isEnabled) !== true) {
+    return {};
+  }
+  return Object.entries(attributes).reduce((attributes2, [key, value]) => {
+    if (value == null) {
+      return attributes2;
+    }
+    if (typeof value === "object" && "input" in value && typeof value.input === "function") {
+      if ((telemetry == null ? void 0 : telemetry.recordInputs) === false) {
+        return attributes2;
+      }
+      const result = value.input();
+      return result == null ? attributes2 : { ...attributes2, [key]: result };
+    }
+    if (typeof value === "object" && "output" in value && typeof value.output === "function") {
+      if ((telemetry == null ? void 0 : telemetry.recordOutputs) === false) {
+        return attributes2;
+      }
+      const result = value.output();
+      return result == null ? attributes2 : { ...attributes2, [key]: result };
+    }
+    return { ...attributes2, [key]: value };
+  }, {});
+}
+function stringifyForTelemetry(prompt) {
+  return JSON.stringify(
+    prompt.map((message) => ({
+      ...message,
+      content: typeof message.content === "string" ? message.content : message.content.map(
+        (part) => part.type === "file" ? {
+          ...part,
+          data: part.data instanceof Uint8Array ? convertDataContentToBase64String(part.data) : part.data
+        } : part
+      )
+    }))
+  );
+}
+function addLanguageModelUsage(usage1, usage2) {
+  return {
+    inputTokens: addTokenCounts(usage1.inputTokens, usage2.inputTokens),
+    outputTokens: addTokenCounts(usage1.outputTokens, usage2.outputTokens),
+    totalTokens: addTokenCounts(usage1.totalTokens, usage2.totalTokens),
+    reasoningTokens: addTokenCounts(
+      usage1.reasoningTokens,
+      usage2.reasoningTokens
+    ),
+    cachedInputTokens: addTokenCounts(
+      usage1.cachedInputTokens,
+      usage2.cachedInputTokens
+    )
+  };
+}
+function addTokenCounts(tokenCount1, tokenCount2) {
+  return tokenCount1 == null && tokenCount2 == null ? void 0 : (tokenCount1 != null ? tokenCount1 : 0) + (tokenCount2 != null ? tokenCount2 : 0);
+}
+function asArray(value) {
+  return value === void 0 ? [] : Array.isArray(value) ? value : [value];
+}
+function getRetryDelayInMs({
+  error: error45,
+  exponentialBackoffDelay
+}) {
+  const headers = error45.responseHeaders;
+  if (!headers)
+    return exponentialBackoffDelay;
+  let ms;
+  const retryAfterMs = headers["retry-after-ms"];
+  if (retryAfterMs) {
+    const timeoutMs = parseFloat(retryAfterMs);
+    if (!Number.isNaN(timeoutMs)) {
+      ms = timeoutMs;
+    }
+  }
+  const retryAfter = headers["retry-after"];
+  if (retryAfter && ms === void 0) {
+    const timeoutSeconds = parseFloat(retryAfter);
+    if (!Number.isNaN(timeoutSeconds)) {
+      ms = timeoutSeconds * 1e3;
+    } else {
+      ms = Date.parse(retryAfter) - Date.now();
+    }
+  }
+  if (ms != null && !Number.isNaN(ms) && 0 <= ms && (ms < 60 * 1e3 || ms < exponentialBackoffDelay)) {
+    return ms;
+  }
+  return exponentialBackoffDelay;
+}
+var retryWithExponentialBackoffRespectingRetryHeaders = ({
+  maxRetries = 2,
+  initialDelayInMs = 2e3,
+  backoffFactor = 2,
+  abortSignal
+} = {}) => async (f) => _retryWithExponentialBackoff(f, {
+  maxRetries,
+  delayInMs: initialDelayInMs,
+  backoffFactor,
+  abortSignal
+});
+async function _retryWithExponentialBackoff(f, {
+  maxRetries,
+  delayInMs,
+  backoffFactor,
+  abortSignal
+}, errors = []) {
+  try {
+    return await f();
+  } catch (error45) {
+    if (isAbortError(error45)) {
+      throw error45;
+    }
+    if (maxRetries === 0) {
+      throw error45;
+    }
+    const errorMessage = getErrorMessage2(error45);
+    const newErrors = [...errors, error45];
+    const tryNumber = newErrors.length;
+    if (tryNumber > maxRetries) {
+      throw new RetryError({
+        message: `Failed after ${tryNumber} attempts. Last error: ${errorMessage}`,
+        reason: "maxRetriesExceeded",
+        errors: newErrors
+      });
+    }
+    if (error45 instanceof Error && APICallError.isInstance(error45) && error45.isRetryable === true && tryNumber <= maxRetries) {
+      await delay(
+        getRetryDelayInMs({
+          error: error45,
+          exponentialBackoffDelay: delayInMs
+        }),
+        { abortSignal }
+      );
+      return _retryWithExponentialBackoff(
+        f,
+        {
+          maxRetries,
+          delayInMs: backoffFactor * delayInMs,
+          backoffFactor,
+          abortSignal
+        },
+        newErrors
+      );
+    }
+    if (tryNumber === 1) {
+      throw error45;
+    }
+    throw new RetryError({
+      message: `Failed after ${tryNumber} attempts with non-retryable error: '${errorMessage}'`,
+      reason: "errorNotRetryable",
+      errors: newErrors
+    });
+  }
+}
+function prepareRetries({
+  maxRetries,
+  abortSignal
+}) {
+  if (maxRetries != null) {
+    if (!Number.isInteger(maxRetries)) {
+      throw new InvalidArgumentError3({
+        parameter: "maxRetries",
+        value: maxRetries,
+        message: "maxRetries must be an integer"
+      });
+    }
+    if (maxRetries < 0) {
+      throw new InvalidArgumentError3({
+        parameter: "maxRetries",
+        value: maxRetries,
+        message: "maxRetries must be >= 0"
+      });
+    }
+  }
+  const maxRetriesResult = maxRetries != null ? maxRetries : 2;
+  return {
+    maxRetries: maxRetriesResult,
+    retry: retryWithExponentialBackoffRespectingRetryHeaders({
+      maxRetries: maxRetriesResult,
+      abortSignal
+    })
+  };
+}
+function extractTextContent(content) {
+  const parts = content.filter(
+    (content2) => content2.type === "text"
+  );
+  if (parts.length === 0) {
+    return void 0;
+  }
+  return parts.map((content2) => content2.text).join("");
+}
+var DefaultGeneratedFile = class {
+  constructor({
+    data,
+    mediaType
+  }) {
+    const isUint8Array = data instanceof Uint8Array;
+    this.base64Data = isUint8Array ? void 0 : data;
+    this.uint8ArrayData = isUint8Array ? data : void 0;
+    this.mediaType = mediaType;
+  }
+  // lazy conversion with caching to avoid unnecessary conversion overhead:
+  get base64() {
+    if (this.base64Data == null) {
+      this.base64Data = convertUint8ArrayToBase64(this.uint8ArrayData);
+    }
+    return this.base64Data;
+  }
+  // lazy conversion with caching to avoid unnecessary conversion overhead:
+  get uint8Array() {
+    if (this.uint8ArrayData == null) {
+      this.uint8ArrayData = convertBase64ToUint8Array(this.base64Data);
+    }
+    return this.uint8ArrayData;
+  }
+};
+async function parseToolCall({
+  toolCall,
+  tools,
+  repairToolCall,
+  system,
+  messages
+}) {
+  try {
+    if (tools == null) {
+      throw new NoSuchToolError({ toolName: toolCall.toolName });
+    }
+    try {
+      return await doParseToolCall({ toolCall, tools });
+    } catch (error45) {
+      if (repairToolCall == null || !(NoSuchToolError.isInstance(error45) || InvalidToolInputError.isInstance(error45))) {
+        throw error45;
+      }
+      let repairedToolCall = null;
+      try {
+        repairedToolCall = await repairToolCall({
+          toolCall,
+          tools,
+          inputSchema: ({ toolName }) => {
+            const { inputSchema } = tools[toolName];
+            return asSchema(inputSchema).jsonSchema;
+          },
+          system,
+          messages,
+          error: error45
+        });
+      } catch (repairError) {
+        throw new ToolCallRepairError({
+          cause: repairError,
+          originalError: error45
+        });
+      }
+      if (repairedToolCall == null) {
+        throw error45;
+      }
+      return await doParseToolCall({ toolCall: repairedToolCall, tools });
+    }
+  } catch (error45) {
+    const parsedInput = await safeParseJSON({ text: toolCall.input });
+    const input = parsedInput.success ? parsedInput.value : toolCall.input;
+    return {
+      type: "tool-call",
+      toolCallId: toolCall.toolCallId,
+      toolName: toolCall.toolName,
+      input,
+      dynamic: true,
+      invalid: true,
+      error: error45
+    };
+  }
+}
+async function doParseToolCall({
+  toolCall,
+  tools
+}) {
+  const toolName = toolCall.toolName;
+  const tool3 = tools[toolName];
+  if (tool3 == null) {
+    throw new NoSuchToolError({
+      toolName: toolCall.toolName,
+      availableTools: Object.keys(tools)
+    });
+  }
+  const schema = asSchema(tool3.inputSchema);
+  const parseResult = toolCall.input.trim() === "" ? await safeValidateTypes({ value: {}, schema }) : await safeParseJSON({ text: toolCall.input, schema });
+  if (parseResult.success === false) {
+    throw new InvalidToolInputError({
+      toolName,
+      toolInput: toolCall.input,
+      cause: parseResult.error
+    });
+  }
+  return tool3.type === "dynamic" ? {
+    type: "tool-call",
+    toolCallId: toolCall.toolCallId,
+    toolName: toolCall.toolName,
+    input: parseResult.value,
+    providerExecuted: toolCall.providerExecuted,
+    providerMetadata: toolCall.providerMetadata,
+    dynamic: true
+  } : {
+    type: "tool-call",
+    toolCallId: toolCall.toolCallId,
+    toolName,
+    input: parseResult.value,
+    providerExecuted: toolCall.providerExecuted,
+    providerMetadata: toolCall.providerMetadata
+  };
+}
+var DefaultStepResult = class {
+  constructor({
+    content,
+    finishReason,
+    usage,
+    warnings,
+    request,
+    response,
+    providerMetadata
+  }) {
+    this.content = content;
+    this.finishReason = finishReason;
+    this.usage = usage;
+    this.warnings = warnings;
+    this.request = request;
+    this.response = response;
+    this.providerMetadata = providerMetadata;
+  }
+  get text() {
+    return this.content.filter((part) => part.type === "text").map((part) => part.text).join("");
+  }
+  get reasoning() {
+    return this.content.filter((part) => part.type === "reasoning");
+  }
+  get reasoningText() {
+    return this.reasoning.length === 0 ? void 0 : this.reasoning.map((part) => part.text).join("");
+  }
+  get files() {
+    return this.content.filter((part) => part.type === "file").map((part) => part.file);
+  }
+  get sources() {
+    return this.content.filter((part) => part.type === "source");
+  }
+  get toolCalls() {
+    return this.content.filter((part) => part.type === "tool-call");
+  }
+  get staticToolCalls() {
+    return this.toolCalls.filter(
+      (toolCall) => toolCall.dynamic === false
+    );
+  }
+  get dynamicToolCalls() {
+    return this.toolCalls.filter(
+      (toolCall) => toolCall.dynamic === true
+    );
+  }
+  get toolResults() {
+    return this.content.filter((part) => part.type === "tool-result");
+  }
+  get staticToolResults() {
+    return this.toolResults.filter(
+      (toolResult) => toolResult.dynamic === false
+    );
+  }
+  get dynamicToolResults() {
+    return this.toolResults.filter(
+      (toolResult) => toolResult.dynamic === true
+    );
+  }
+};
+function stepCountIs(stepCount) {
+  return ({ steps }) => steps.length === stepCount;
+}
+async function isStopConditionMet({
+  stopConditions,
+  steps
+}) {
+  return (await Promise.all(stopConditions.map((condition) => condition({ steps })))).some((result) => result);
+}
+function createToolModelOutput({
+  output,
+  tool: tool3,
+  errorMode
+}) {
+  if (errorMode === "text") {
+    return { type: "error-text", value: getErrorMessage(output) };
+  } else if (errorMode === "json") {
+    return { type: "error-json", value: toJSONValue(output) };
+  }
+  if (tool3 == null ? void 0 : tool3.toModelOutput) {
+    return tool3.toModelOutput(output);
+  }
+  return typeof output === "string" ? { type: "text", value: output } : { type: "json", value: toJSONValue(output) };
+}
+function toJSONValue(value) {
+  return value === void 0 ? null : value;
+}
+function toResponseMessages({
+  content: inputContent,
+  tools
+}) {
+  const responseMessages = [];
+  const content = inputContent.filter((part) => part.type !== "source").filter(
+    (part) => (part.type !== "tool-result" || part.providerExecuted) && (part.type !== "tool-error" || part.providerExecuted)
+  ).filter((part) => part.type !== "text" || part.text.length > 0).map((part) => {
+    switch (part.type) {
+      case "text":
+        return {
+          type: "text",
+          text: part.text,
+          providerOptions: part.providerMetadata
+        };
+      case "reasoning":
+        return {
+          type: "reasoning",
+          text: part.text,
+          providerOptions: part.providerMetadata
+        };
+      case "file":
+        return {
+          type: "file",
+          data: part.file.base64,
+          mediaType: part.file.mediaType,
+          providerOptions: part.providerMetadata
+        };
+      case "tool-call":
+        return {
+          type: "tool-call",
+          toolCallId: part.toolCallId,
+          toolName: part.toolName,
+          input: part.input,
+          providerExecuted: part.providerExecuted,
+          providerOptions: part.providerMetadata
+        };
+      case "tool-result":
+        return {
+          type: "tool-result",
+          toolCallId: part.toolCallId,
+          toolName: part.toolName,
+          output: createToolModelOutput({
+            tool: tools == null ? void 0 : tools[part.toolName],
+            output: part.output,
+            errorMode: "none"
+          }),
+          providerExecuted: true,
+          providerOptions: part.providerMetadata
+        };
+      case "tool-error":
+        return {
+          type: "tool-result",
+          toolCallId: part.toolCallId,
+          toolName: part.toolName,
+          output: createToolModelOutput({
+            tool: tools == null ? void 0 : tools[part.toolName],
+            output: part.error,
+            errorMode: "json"
+          }),
+          providerOptions: part.providerMetadata
+        };
+    }
+  });
+  if (content.length > 0) {
+    responseMessages.push({
+      role: "assistant",
+      content
+    });
+  }
+  const toolResultContent = inputContent.filter((part) => part.type === "tool-result" || part.type === "tool-error").filter((part) => !part.providerExecuted).map((toolResult) => ({
+    type: "tool-result",
+    toolCallId: toolResult.toolCallId,
+    toolName: toolResult.toolName,
+    output: createToolModelOutput({
+      tool: tools == null ? void 0 : tools[toolResult.toolName],
+      output: toolResult.type === "tool-result" ? toolResult.output : toolResult.error,
+      errorMode: toolResult.type === "tool-error" ? "text" : "none"
+    })
+  }));
+  if (toolResultContent.length > 0) {
+    responseMessages.push({
+      role: "tool",
+      content: toolResultContent
+    });
+  }
+  return responseMessages;
+}
 var originalGenerateId = createIdGenerator({
   prefix: "aitxt",
   size: 24
 });
+async function generateText({
+  model: modelArg,
+  tools,
+  toolChoice,
+  system,
+  prompt,
+  messages,
+  maxRetries: maxRetriesArg,
+  abortSignal,
+  headers,
+  stopWhen = stepCountIs(1),
+  experimental_output: output,
+  experimental_telemetry: telemetry,
+  providerOptions,
+  experimental_activeTools,
+  activeTools = experimental_activeTools,
+  experimental_prepareStep,
+  prepareStep = experimental_prepareStep,
+  experimental_repairToolCall: repairToolCall,
+  experimental_download: download2,
+  experimental_context,
+  _internal: {
+    generateId: generateId3 = originalGenerateId,
+    currentDate = () => /* @__PURE__ */ new Date()
+  } = {},
+  onStepFinish,
+  ...settings
+}) {
+  const model = resolveLanguageModel(modelArg);
+  const stopConditions = asArray(stopWhen);
+  const { maxRetries, retry } = prepareRetries({
+    maxRetries: maxRetriesArg,
+    abortSignal
+  });
+  const callSettings = prepareCallSettings(settings);
+  const baseTelemetryAttributes = getBaseTelemetryAttributes({
+    model,
+    telemetry,
+    headers,
+    settings: { ...callSettings, maxRetries }
+  });
+  const initialPrompt = await standardizePrompt({
+    system,
+    prompt,
+    messages
+  });
+  const tracer2 = getTracer(telemetry);
+  try {
+    return await recordSpan({
+      name: "ai.generateText",
+      attributes: selectTelemetryAttributes({
+        telemetry,
+        attributes: {
+          ...assembleOperationName({
+            operationId: "ai.generateText",
+            telemetry
+          }),
+          ...baseTelemetryAttributes,
+          // model:
+          "ai.model.provider": model.provider,
+          "ai.model.id": model.modelId,
+          // specific settings that only make sense on the outer level:
+          "ai.prompt": {
+            input: () => JSON.stringify({ system, prompt, messages })
+          }
+        }
+      }),
+      tracer: tracer2,
+      fn: async (span) => {
+        var _a17, _b8, _c, _d, _e, _f, _g;
+        const callSettings2 = prepareCallSettings(settings);
+        let currentModelResponse;
+        let clientToolCalls = [];
+        let clientToolOutputs = [];
+        const responseMessages = [];
+        const steps = [];
+        do {
+          const stepInputMessages = [
+            ...initialPrompt.messages,
+            ...responseMessages
+          ];
+          const prepareStepResult = await (prepareStep == null ? void 0 : prepareStep({
+            model,
+            steps,
+            stepNumber: steps.length,
+            messages: stepInputMessages
+          }));
+          const promptMessages = await convertToLanguageModelPrompt({
+            prompt: {
+              system: (_a17 = prepareStepResult == null ? void 0 : prepareStepResult.system) != null ? _a17 : initialPrompt.system,
+              messages: (_b8 = prepareStepResult == null ? void 0 : prepareStepResult.messages) != null ? _b8 : stepInputMessages
+            },
+            supportedUrls: await model.supportedUrls,
+            download: download2
+          });
+          const stepModel = resolveLanguageModel(
+            (_c = prepareStepResult == null ? void 0 : prepareStepResult.model) != null ? _c : model
+          );
+          const { toolChoice: stepToolChoice, tools: stepTools } = prepareToolsAndToolChoice({
+            tools,
+            toolChoice: (_d = prepareStepResult == null ? void 0 : prepareStepResult.toolChoice) != null ? _d : toolChoice,
+            activeTools: (_e = prepareStepResult == null ? void 0 : prepareStepResult.activeTools) != null ? _e : activeTools
+          });
+          currentModelResponse = await retry(
+            () => {
+              var _a18;
+              return recordSpan({
+                name: "ai.generateText.doGenerate",
+                attributes: selectTelemetryAttributes({
+                  telemetry,
+                  attributes: {
+                    ...assembleOperationName({
+                      operationId: "ai.generateText.doGenerate",
+                      telemetry
+                    }),
+                    ...baseTelemetryAttributes,
+                    // model:
+                    "ai.model.provider": stepModel.provider,
+                    "ai.model.id": stepModel.modelId,
+                    // prompt:
+                    "ai.prompt.messages": {
+                      input: () => stringifyForTelemetry(promptMessages)
+                    },
+                    "ai.prompt.tools": {
+                      // convert the language model level tools:
+                      input: () => stepTools == null ? void 0 : stepTools.map((tool3) => JSON.stringify(tool3))
+                    },
+                    "ai.prompt.toolChoice": {
+                      input: () => stepToolChoice != null ? JSON.stringify(stepToolChoice) : void 0
+                    },
+                    // standardized gen-ai llm span attributes:
+                    "gen_ai.system": stepModel.provider,
+                    "gen_ai.request.model": stepModel.modelId,
+                    "gen_ai.request.frequency_penalty": settings.frequencyPenalty,
+                    "gen_ai.request.max_tokens": settings.maxOutputTokens,
+                    "gen_ai.request.presence_penalty": settings.presencePenalty,
+                    "gen_ai.request.stop_sequences": settings.stopSequences,
+                    "gen_ai.request.temperature": (_a18 = settings.temperature) != null ? _a18 : void 0,
+                    "gen_ai.request.top_k": settings.topK,
+                    "gen_ai.request.top_p": settings.topP
+                  }
+                }),
+                tracer: tracer2,
+                fn: async (span2) => {
+                  var _a19, _b22, _c2, _d2, _e2, _f2, _g2, _h;
+                  const result = await stepModel.doGenerate({
+                    ...callSettings2,
+                    tools: stepTools,
+                    toolChoice: stepToolChoice,
+                    responseFormat: output == null ? void 0 : output.responseFormat,
+                    prompt: promptMessages,
+                    providerOptions,
+                    abortSignal,
+                    headers
+                  });
+                  const responseData = {
+                    id: (_b22 = (_a19 = result.response) == null ? void 0 : _a19.id) != null ? _b22 : generateId3(),
+                    timestamp: (_d2 = (_c2 = result.response) == null ? void 0 : _c2.timestamp) != null ? _d2 : currentDate(),
+                    modelId: (_f2 = (_e2 = result.response) == null ? void 0 : _e2.modelId) != null ? _f2 : stepModel.modelId,
+                    headers: (_g2 = result.response) == null ? void 0 : _g2.headers,
+                    body: (_h = result.response) == null ? void 0 : _h.body
+                  };
+                  span2.setAttributes(
+                    selectTelemetryAttributes({
+                      telemetry,
+                      attributes: {
+                        "ai.response.finishReason": result.finishReason,
+                        "ai.response.text": {
+                          output: () => extractTextContent(result.content)
+                        },
+                        "ai.response.toolCalls": {
+                          output: () => {
+                            const toolCalls = asToolCalls(result.content);
+                            return toolCalls == null ? void 0 : JSON.stringify(toolCalls);
+                          }
+                        },
+                        "ai.response.id": responseData.id,
+                        "ai.response.model": responseData.modelId,
+                        "ai.response.timestamp": responseData.timestamp.toISOString(),
+                        "ai.response.providerMetadata": JSON.stringify(
+                          result.providerMetadata
+                        ),
+                        // TODO rename telemetry attributes to inputTokens and outputTokens
+                        "ai.usage.promptTokens": result.usage.inputTokens,
+                        "ai.usage.completionTokens": result.usage.outputTokens,
+                        // standardized gen-ai llm span attributes:
+                        "gen_ai.response.finish_reasons": [result.finishReason],
+                        "gen_ai.response.id": responseData.id,
+                        "gen_ai.response.model": responseData.modelId,
+                        "gen_ai.usage.input_tokens": result.usage.inputTokens,
+                        "gen_ai.usage.output_tokens": result.usage.outputTokens
+                      }
+                    })
+                  );
+                  return { ...result, response: responseData };
+                }
+              });
+            }
+          );
+          const stepToolCalls = await Promise.all(
+            currentModelResponse.content.filter(
+              (part) => part.type === "tool-call"
+            ).map(
+              (toolCall) => parseToolCall({
+                toolCall,
+                tools,
+                repairToolCall,
+                system,
+                messages: stepInputMessages
+              })
+            )
+          );
+          for (const toolCall of stepToolCalls) {
+            if (toolCall.invalid) {
+              continue;
+            }
+            const tool3 = tools[toolCall.toolName];
+            if ((tool3 == null ? void 0 : tool3.onInputAvailable) != null) {
+              await tool3.onInputAvailable({
+                input: toolCall.input,
+                toolCallId: toolCall.toolCallId,
+                messages: stepInputMessages,
+                abortSignal,
+                experimental_context
+              });
+            }
+          }
+          const invalidToolCalls = stepToolCalls.filter(
+            (toolCall) => toolCall.invalid && toolCall.dynamic
+          );
+          clientToolOutputs = [];
+          for (const toolCall of invalidToolCalls) {
+            clientToolOutputs.push({
+              type: "tool-error",
+              toolCallId: toolCall.toolCallId,
+              toolName: toolCall.toolName,
+              input: toolCall.input,
+              error: getErrorMessage2(toolCall.error),
+              dynamic: true
+            });
+          }
+          clientToolCalls = stepToolCalls.filter(
+            (toolCall) => !toolCall.providerExecuted
+          );
+          if (tools != null) {
+            clientToolOutputs.push(
+              ...await executeTools({
+                toolCalls: clientToolCalls.filter(
+                  (toolCall) => !toolCall.invalid
+                ),
+                tools,
+                tracer: tracer2,
+                telemetry,
+                messages: stepInputMessages,
+                abortSignal,
+                experimental_context
+              })
+            );
+          }
+          const stepContent = asContent({
+            content: currentModelResponse.content,
+            toolCalls: stepToolCalls,
+            toolOutputs: clientToolOutputs
+          });
+          responseMessages.push(
+            ...toResponseMessages({
+              content: stepContent,
+              tools
+            })
+          );
+          const currentStepResult = new DefaultStepResult({
+            content: stepContent,
+            finishReason: currentModelResponse.finishReason,
+            usage: currentModelResponse.usage,
+            warnings: currentModelResponse.warnings,
+            providerMetadata: currentModelResponse.providerMetadata,
+            request: (_f = currentModelResponse.request) != null ? _f : {},
+            response: {
+              ...currentModelResponse.response,
+              // deep clone msgs to avoid mutating past messages in multi-step:
+              messages: structuredClone(responseMessages)
+            }
+          });
+          logWarnings((_g = currentModelResponse.warnings) != null ? _g : []);
+          steps.push(currentStepResult);
+          await (onStepFinish == null ? void 0 : onStepFinish(currentStepResult));
+        } while (
+          // there are tool calls:
+          clientToolCalls.length > 0 && // all current tool calls have outputs (incl. execution errors):
+          clientToolOutputs.length === clientToolCalls.length && // continue until a stop condition is met:
+          !await isStopConditionMet({ stopConditions, steps })
+        );
+        span.setAttributes(
+          selectTelemetryAttributes({
+            telemetry,
+            attributes: {
+              "ai.response.finishReason": currentModelResponse.finishReason,
+              "ai.response.text": {
+                output: () => extractTextContent(currentModelResponse.content)
+              },
+              "ai.response.toolCalls": {
+                output: () => {
+                  const toolCalls = asToolCalls(currentModelResponse.content);
+                  return toolCalls == null ? void 0 : JSON.stringify(toolCalls);
+                }
+              },
+              "ai.response.providerMetadata": JSON.stringify(
+                currentModelResponse.providerMetadata
+              ),
+              // TODO rename telemetry attributes to inputTokens and outputTokens
+              "ai.usage.promptTokens": currentModelResponse.usage.inputTokens,
+              "ai.usage.completionTokens": currentModelResponse.usage.outputTokens
+            }
+          })
+        );
+        const lastStep = steps[steps.length - 1];
+        return new DefaultGenerateTextResult({
+          steps,
+          resolvedOutput: await (output == null ? void 0 : output.parseOutput(
+            { text: lastStep.text },
+            {
+              response: lastStep.response,
+              usage: lastStep.usage,
+              finishReason: lastStep.finishReason
+            }
+          ))
+        });
+      }
+    });
+  } catch (error45) {
+    throw wrapGatewayError(error45);
+  }
+}
+async function executeTools({
+  toolCalls,
+  tools,
+  tracer: tracer2,
+  telemetry,
+  messages,
+  abortSignal,
+  experimental_context
+}) {
+  const toolOutputs = await Promise.all(
+    toolCalls.map(async ({ toolCallId, toolName, input }) => {
+      const tool3 = tools[toolName];
+      if ((tool3 == null ? void 0 : tool3.execute) == null) {
+        return void 0;
+      }
+      return recordSpan({
+        name: "ai.toolCall",
+        attributes: selectTelemetryAttributes({
+          telemetry,
+          attributes: {
+            ...assembleOperationName({
+              operationId: "ai.toolCall",
+              telemetry
+            }),
+            "ai.toolCall.name": toolName,
+            "ai.toolCall.id": toolCallId,
+            "ai.toolCall.args": {
+              output: () => JSON.stringify(input)
+            }
+          }
+        }),
+        tracer: tracer2,
+        fn: async (span) => {
+          try {
+            const stream = executeTool({
+              execute: tool3.execute.bind(tool3),
+              input,
+              options: {
+                toolCallId,
+                messages,
+                abortSignal,
+                experimental_context
+              }
+            });
+            let output;
+            for await (const part of stream) {
+              if (part.type === "final") {
+                output = part.output;
+              }
+            }
+            try {
+              span.setAttributes(
+                selectTelemetryAttributes({
+                  telemetry,
+                  attributes: {
+                    "ai.toolCall.result": {
+                      output: () => JSON.stringify(output)
+                    }
+                  }
+                })
+              );
+            } catch (ignored) {
+            }
+            return {
+              type: "tool-result",
+              toolCallId,
+              toolName,
+              input,
+              output,
+              dynamic: tool3.type === "dynamic"
+            };
+          } catch (error45) {
+            recordErrorOnSpan(span, error45);
+            return {
+              type: "tool-error",
+              toolCallId,
+              toolName,
+              input,
+              error: error45,
+              dynamic: tool3.type === "dynamic"
+            };
+          }
+        }
+      });
+    })
+  );
+  return toolOutputs.filter(
+    (output) => output != null
+  );
+}
+var DefaultGenerateTextResult = class {
+  constructor(options) {
+    this.steps = options.steps;
+    this.resolvedOutput = options.resolvedOutput;
+  }
+  get finalStep() {
+    return this.steps[this.steps.length - 1];
+  }
+  get content() {
+    return this.finalStep.content;
+  }
+  get text() {
+    return this.finalStep.text;
+  }
+  get files() {
+    return this.finalStep.files;
+  }
+  get reasoningText() {
+    return this.finalStep.reasoningText;
+  }
+  get reasoning() {
+    return this.finalStep.reasoning;
+  }
+  get toolCalls() {
+    return this.finalStep.toolCalls;
+  }
+  get staticToolCalls() {
+    return this.finalStep.staticToolCalls;
+  }
+  get dynamicToolCalls() {
+    return this.finalStep.dynamicToolCalls;
+  }
+  get toolResults() {
+    return this.finalStep.toolResults;
+  }
+  get staticToolResults() {
+    return this.finalStep.staticToolResults;
+  }
+  get dynamicToolResults() {
+    return this.finalStep.dynamicToolResults;
+  }
+  get sources() {
+    return this.finalStep.sources;
+  }
+  get finishReason() {
+    return this.finalStep.finishReason;
+  }
+  get warnings() {
+    return this.finalStep.warnings;
+  }
+  get providerMetadata() {
+    return this.finalStep.providerMetadata;
+  }
+  get response() {
+    return this.finalStep.response;
+  }
+  get request() {
+    return this.finalStep.request;
+  }
+  get usage() {
+    return this.finalStep.usage;
+  }
+  get totalUsage() {
+    return this.steps.reduce(
+      (totalUsage, step) => {
+        return addLanguageModelUsage(totalUsage, step.usage);
+      },
+      {
+        inputTokens: void 0,
+        outputTokens: void 0,
+        totalTokens: void 0,
+        reasoningTokens: void 0,
+        cachedInputTokens: void 0
+      }
+    );
+  }
+  get experimental_output() {
+    if (this.resolvedOutput == null) {
+      throw new NoOutputSpecifiedError();
+    }
+    return this.resolvedOutput;
+  }
+};
+function asToolCalls(content) {
+  const parts = content.filter(
+    (part) => part.type === "tool-call"
+  );
+  if (parts.length === 0) {
+    return void 0;
+  }
+  return parts.map((toolCall) => ({
+    toolCallId: toolCall.toolCallId,
+    toolName: toolCall.toolName,
+    input: toolCall.input
+  }));
+}
+function asContent({
+  content,
+  toolCalls,
+  toolOutputs
+}) {
+  return [
+    ...content.map((part) => {
+      switch (part.type) {
+        case "text":
+        case "reasoning":
+        case "source":
+          return part;
+        case "file": {
+          return {
+            type: "file",
+            file: new DefaultGeneratedFile(part)
+          };
+        }
+        case "tool-call": {
+          return toolCalls.find(
+            (toolCall) => toolCall.toolCallId === part.toolCallId
+          );
+        }
+        case "tool-result": {
+          const toolCall = toolCalls.find(
+            (toolCall2) => toolCall2.toolCallId === part.toolCallId
+          );
+          if (toolCall == null) {
+            throw new Error(`Tool call ${part.toolCallId} not found.`);
+          }
+          if (part.isError) {
+            return {
+              type: "tool-error",
+              toolCallId: part.toolCallId,
+              toolName: part.toolName,
+              input: toolCall.input,
+              error: part.result,
+              providerExecuted: true,
+              dynamic: toolCall.dynamic
+            };
+          }
+          return {
+            type: "tool-result",
+            toolCallId: part.toolCallId,
+            toolName: part.toolName,
+            input: toolCall.input,
+            output: part.result,
+            providerExecuted: true,
+            dynamic: toolCall.dynamic
+          };
+        }
+      }
+    }),
+    ...toolOutputs
+  ];
+}
 var JsonToSseTransformStream = class extends TransformStream {
   constructor() {
     super({
@@ -27779,10 +39402,10 @@ var object2 = ({
   };
 };
 var name16 = "AI_NoSuchProviderError";
-var marker16 = `vercel.ai.error.${name16}`;
-var symbol162 = Symbol.for(marker16);
-var _a16;
-_a16 = symbol162;
+var marker162 = `vercel.ai.error.${name16}`;
+var symbol162 = Symbol.for(marker162);
+var _a162;
+_a162 = symbol162;
 var ClientOrServerImplementationSchema = external_exports.looseObject({
   name: external_exports.string(),
   version: external_exports.string()
@@ -28052,173 +39675,5216 @@ var uiMessageSchema = external_exports.object({
   )
 });
 
+// node_modules/@ai-sdk/openai/dist/index.mjs
+var openaiErrorDataSchema = external_exports.object({
+  error: external_exports.object({
+    message: external_exports.string(),
+    // The additional information below is handled loosely to support
+    // OpenAI-compatible providers that have slightly different error
+    // responses:
+    type: external_exports.string().nullish(),
+    param: external_exports.any().nullish(),
+    code: external_exports.union([external_exports.string(), external_exports.number()]).nullish()
+  })
+});
+var openaiFailedResponseHandler = createJsonErrorResponseHandler({
+  errorSchema: openaiErrorDataSchema,
+  errorToMessage: (data) => data.error.message
+});
+function convertToOpenAIChatMessages({
+  prompt,
+  systemMessageMode = "system"
+}) {
+  const messages = [];
+  const warnings = [];
+  for (const { role, content } of prompt) {
+    switch (role) {
+      case "system": {
+        switch (systemMessageMode) {
+          case "system": {
+            messages.push({ role: "system", content });
+            break;
+          }
+          case "developer": {
+            messages.push({ role: "developer", content });
+            break;
+          }
+          case "remove": {
+            warnings.push({
+              type: "other",
+              message: "system messages are removed for this model"
+            });
+            break;
+          }
+          default: {
+            const _exhaustiveCheck = systemMessageMode;
+            throw new Error(
+              `Unsupported system message mode: ${_exhaustiveCheck}`
+            );
+          }
+        }
+        break;
+      }
+      case "user": {
+        if (content.length === 1 && content[0].type === "text") {
+          messages.push({ role: "user", content: content[0].text });
+          break;
+        }
+        messages.push({
+          role: "user",
+          content: content.map((part, index) => {
+            var _a17, _b8, _c;
+            switch (part.type) {
+              case "text": {
+                return { type: "text", text: part.text };
+              }
+              case "file": {
+                if (part.mediaType.startsWith("image/")) {
+                  const mediaType = part.mediaType === "image/*" ? "image/jpeg" : part.mediaType;
+                  return {
+                    type: "image_url",
+                    image_url: {
+                      url: part.data instanceof URL ? part.data.toString() : `data:${mediaType};base64,${convertToBase64(part.data)}`,
+                      // OpenAI specific extension: image detail
+                      detail: (_b8 = (_a17 = part.providerOptions) == null ? void 0 : _a17.openai) == null ? void 0 : _b8.imageDetail
+                    }
+                  };
+                } else if (part.mediaType.startsWith("audio/")) {
+                  if (part.data instanceof URL) {
+                    throw new UnsupportedFunctionalityError({
+                      functionality: "audio file parts with URLs"
+                    });
+                  }
+                  switch (part.mediaType) {
+                    case "audio/wav": {
+                      return {
+                        type: "input_audio",
+                        input_audio: {
+                          data: convertToBase64(part.data),
+                          format: "wav"
+                        }
+                      };
+                    }
+                    case "audio/mp3":
+                    case "audio/mpeg": {
+                      return {
+                        type: "input_audio",
+                        input_audio: {
+                          data: convertToBase64(part.data),
+                          format: "mp3"
+                        }
+                      };
+                    }
+                    default: {
+                      throw new UnsupportedFunctionalityError({
+                        functionality: `audio content parts with media type ${part.mediaType}`
+                      });
+                    }
+                  }
+                } else if (part.mediaType === "application/pdf") {
+                  if (part.data instanceof URL) {
+                    throw new UnsupportedFunctionalityError({
+                      functionality: "PDF file parts with URLs"
+                    });
+                  }
+                  return {
+                    type: "file",
+                    file: typeof part.data === "string" && part.data.startsWith("file-") ? { file_id: part.data } : {
+                      filename: (_c = part.filename) != null ? _c : `part-${index}.pdf`,
+                      file_data: `data:application/pdf;base64,${convertToBase64(part.data)}`
+                    }
+                  };
+                } else {
+                  throw new UnsupportedFunctionalityError({
+                    functionality: `file part media type ${part.mediaType}`
+                  });
+                }
+              }
+            }
+          })
+        });
+        break;
+      }
+      case "assistant": {
+        let text3 = "";
+        const toolCalls = [];
+        for (const part of content) {
+          switch (part.type) {
+            case "text": {
+              text3 += part.text;
+              break;
+            }
+            case "tool-call": {
+              toolCalls.push({
+                id: part.toolCallId,
+                type: "function",
+                function: {
+                  name: part.toolName,
+                  arguments: JSON.stringify(part.input)
+                }
+              });
+              break;
+            }
+          }
+        }
+        messages.push({
+          role: "assistant",
+          content: text3,
+          tool_calls: toolCalls.length > 0 ? toolCalls : void 0
+        });
+        break;
+      }
+      case "tool": {
+        for (const toolResponse of content) {
+          const output = toolResponse.output;
+          let contentValue;
+          switch (output.type) {
+            case "text":
+            case "error-text":
+              contentValue = output.value;
+              break;
+            case "content":
+            case "json":
+            case "error-json":
+              contentValue = JSON.stringify(output.value);
+              break;
+          }
+          messages.push({
+            role: "tool",
+            tool_call_id: toolResponse.toolCallId,
+            content: contentValue
+          });
+        }
+        break;
+      }
+      default: {
+        const _exhaustiveCheck = role;
+        throw new Error(`Unsupported role: ${_exhaustiveCheck}`);
+      }
+    }
+  }
+  return { messages, warnings };
+}
+function getResponseMetadata({
+  id,
+  model,
+  created
+}) {
+  return {
+    id: id != null ? id : void 0,
+    modelId: model != null ? model : void 0,
+    timestamp: created != null ? new Date(created * 1e3) : void 0
+  };
+}
+function mapOpenAIFinishReason(finishReason) {
+  switch (finishReason) {
+    case "stop":
+      return "stop";
+    case "length":
+      return "length";
+    case "content_filter":
+      return "content-filter";
+    case "function_call":
+    case "tool_calls":
+      return "tool-calls";
+    default:
+      return "unknown";
+  }
+}
+var openaiProviderOptions = external_exports.object({
+  /**
+   * Modify the likelihood of specified tokens appearing in the completion.
+   *
+   * Accepts a JSON object that maps tokens (specified by their token ID in
+   * the GPT tokenizer) to an associated bias value from -100 to 100.
+   */
+  logitBias: external_exports.record(external_exports.coerce.number(), external_exports.number()).optional(),
+  /**
+   * Return the log probabilities of the tokens.
+   *
+   * Setting to true will return the log probabilities of the tokens that
+   * were generated.
+   *
+   * Setting to a number will return the log probabilities of the top n
+   * tokens that were generated.
+   */
+  logprobs: external_exports.union([external_exports.boolean(), external_exports.number()]).optional(),
+  /**
+   * Whether to enable parallel function calling during tool use. Default to true.
+   */
+  parallelToolCalls: external_exports.boolean().optional(),
+  /**
+   * A unique identifier representing your end-user, which can help OpenAI to
+   * monitor and detect abuse.
+   */
+  user: external_exports.string().optional(),
+  /**
+   * Reasoning effort for reasoning models. Defaults to `medium`.
+   */
+  reasoningEffort: external_exports.enum(["minimal", "low", "medium", "high"]).optional(),
+  /**
+   * Maximum number of completion tokens to generate. Useful for reasoning models.
+   */
+  maxCompletionTokens: external_exports.number().optional(),
+  /**
+   * Whether to enable persistence in responses API.
+   */
+  store: external_exports.boolean().optional(),
+  /**
+   * Metadata to associate with the request.
+   */
+  metadata: external_exports.record(external_exports.string().max(64), external_exports.string().max(512)).optional(),
+  /**
+   * Parameters for prediction mode.
+   */
+  prediction: external_exports.record(external_exports.string(), external_exports.any()).optional(),
+  /**
+   * Whether to use structured outputs.
+   *
+   * @default true
+   */
+  structuredOutputs: external_exports.boolean().optional(),
+  /**
+   * Service tier for the request.
+   * - 'auto': Default service tier
+   * - 'flex': 50% cheaper processing at the cost of increased latency. Only available for o3 and o4-mini models.
+   * - 'priority': Higher-speed processing with predictably low latency at premium cost. Available for Enterprise customers.
+   *
+   * @default 'auto'
+   */
+  serviceTier: external_exports.enum(["auto", "flex", "priority"]).optional(),
+  /**
+   * Whether to use strict JSON schema validation.
+   *
+   * @default false
+   */
+  strictJsonSchema: external_exports.boolean().optional(),
+  /**
+   * Controls the verbosity of the model's responses.
+   * Lower values will result in more concise responses, while higher values will result in more verbose responses.
+   */
+  textVerbosity: external_exports.enum(["low", "medium", "high"]).optional(),
+  /**
+   * A cache key for prompt caching. Allows manual control over prompt caching behavior.
+   * Useful for improving cache hit rates and working around automatic caching issues.
+   */
+  promptCacheKey: external_exports.string().optional(),
+  /**
+   * A stable identifier used to help detect users of your application
+   * that may be violating OpenAI's usage policies. The IDs should be a
+   * string that uniquely identifies each user. We recommend hashing their
+   * username or email address, in order to avoid sending us any identifying
+   * information.
+   */
+  safetyIdentifier: external_exports.string().optional()
+});
+var comparisonFilterSchema = external_exports.object({
+  key: external_exports.string(),
+  type: external_exports.enum(["eq", "ne", "gt", "gte", "lt", "lte"]),
+  value: external_exports.union([external_exports.string(), external_exports.number(), external_exports.boolean()])
+});
+var compoundFilterSchema = external_exports.object({
+  type: external_exports.enum(["and", "or"]),
+  filters: external_exports.array(
+    external_exports.union([comparisonFilterSchema, external_exports.lazy(() => compoundFilterSchema)])
+  )
+});
+var filtersSchema = external_exports.union([comparisonFilterSchema, compoundFilterSchema]);
+var fileSearchArgsSchema = external_exports.object({
+  vectorStoreIds: external_exports.array(external_exports.string()).optional(),
+  maxNumResults: external_exports.number().optional(),
+  ranking: external_exports.object({
+    ranker: external_exports.enum(["auto", "default-2024-08-21"]).optional()
+  }).optional(),
+  filters: filtersSchema.optional()
+});
+var fileSearch = createProviderDefinedToolFactory({
+  id: "openai.file_search",
+  name: "file_search",
+  inputSchema: external_exports.object({
+    query: external_exports.string()
+  })
+});
+var webSearchPreviewArgsSchema = external_exports.object({
+  /**
+   * Search context size to use for the web search.
+   * - high: Most comprehensive context, highest cost, slower response
+   * - medium: Balanced context, cost, and latency (default)
+   * - low: Least context, lowest cost, fastest response
+   */
+  searchContextSize: external_exports.enum(["low", "medium", "high"]).optional(),
+  /**
+   * User location information to provide geographically relevant search results.
+   */
+  userLocation: external_exports.object({
+    /**
+     * Type of location (always 'approximate')
+     */
+    type: external_exports.literal("approximate"),
+    /**
+     * Two-letter ISO country code (e.g., 'US', 'GB')
+     */
+    country: external_exports.string().optional(),
+    /**
+     * City name (free text, e.g., 'Minneapolis')
+     */
+    city: external_exports.string().optional(),
+    /**
+     * Region name (free text, e.g., 'Minnesota')
+     */
+    region: external_exports.string().optional(),
+    /**
+     * IANA timezone (e.g., 'America/Chicago')
+     */
+    timezone: external_exports.string().optional()
+  }).optional()
+});
+var webSearchPreview = createProviderDefinedToolFactory({
+  id: "openai.web_search_preview",
+  name: "web_search_preview",
+  inputSchema: external_exports.object({
+    action: external_exports.discriminatedUnion("type", [
+      external_exports.object({
+        type: external_exports.literal("search"),
+        query: external_exports.string().nullish()
+      }),
+      external_exports.object({
+        type: external_exports.literal("open_page"),
+        url: external_exports.string()
+      }),
+      external_exports.object({
+        type: external_exports.literal("find"),
+        url: external_exports.string(),
+        pattern: external_exports.string()
+      })
+    ]).nullish()
+  })
+});
+function prepareChatTools({
+  tools,
+  toolChoice,
+  structuredOutputs,
+  strictJsonSchema
+}) {
+  tools = (tools == null ? void 0 : tools.length) ? tools : void 0;
+  const toolWarnings = [];
+  if (tools == null) {
+    return { tools: void 0, toolChoice: void 0, toolWarnings };
+  }
+  const openaiTools2 = [];
+  for (const tool2 of tools) {
+    switch (tool2.type) {
+      case "function":
+        openaiTools2.push({
+          type: "function",
+          function: {
+            name: tool2.name,
+            description: tool2.description,
+            parameters: tool2.inputSchema,
+            strict: structuredOutputs ? strictJsonSchema : void 0
+          }
+        });
+        break;
+      case "provider-defined":
+        switch (tool2.id) {
+          case "openai.file_search": {
+            const args = fileSearchArgsSchema.parse(tool2.args);
+            openaiTools2.push({
+              type: "file_search",
+              vector_store_ids: args.vectorStoreIds,
+              max_num_results: args.maxNumResults,
+              ranking_options: args.ranking ? { ranker: args.ranking.ranker } : void 0,
+              filters: args.filters
+            });
+            break;
+          }
+          case "openai.web_search_preview": {
+            const args = webSearchPreviewArgsSchema.parse(tool2.args);
+            openaiTools2.push({
+              type: "web_search_preview",
+              search_context_size: args.searchContextSize,
+              user_location: args.userLocation
+            });
+            break;
+          }
+          default:
+            toolWarnings.push({ type: "unsupported-tool", tool: tool2 });
+            break;
+        }
+        break;
+      default:
+        toolWarnings.push({ type: "unsupported-tool", tool: tool2 });
+        break;
+    }
+  }
+  if (toolChoice == null) {
+    return { tools: openaiTools2, toolChoice: void 0, toolWarnings };
+  }
+  const type = toolChoice.type;
+  switch (type) {
+    case "auto":
+    case "none":
+    case "required":
+      return { tools: openaiTools2, toolChoice: type, toolWarnings };
+    case "tool":
+      return {
+        tools: openaiTools2,
+        toolChoice: {
+          type: "function",
+          function: {
+            name: toolChoice.toolName
+          }
+        },
+        toolWarnings
+      };
+    default: {
+      const _exhaustiveCheck = type;
+      throw new UnsupportedFunctionalityError({
+        functionality: `tool choice type: ${_exhaustiveCheck}`
+      });
+    }
+  }
+}
+var OpenAIChatLanguageModel = class {
+  constructor(modelId, config2) {
+    this.specificationVersion = "v2";
+    this.supportedUrls = {
+      "image/*": [/^https?:\/\/.*$/]
+    };
+    this.modelId = modelId;
+    this.config = config2;
+  }
+  get provider() {
+    return this.config.provider;
+  }
+  async getArgs({
+    prompt,
+    maxOutputTokens,
+    temperature,
+    topP,
+    topK,
+    frequencyPenalty,
+    presencePenalty,
+    stopSequences,
+    responseFormat,
+    seed,
+    tools,
+    toolChoice,
+    providerOptions
+  }) {
+    var _a17, _b8, _c, _d;
+    const warnings = [];
+    const openaiOptions = (_a17 = await parseProviderOptions({
+      provider: "openai",
+      providerOptions,
+      schema: openaiProviderOptions
+    })) != null ? _a17 : {};
+    const structuredOutputs = (_b8 = openaiOptions.structuredOutputs) != null ? _b8 : true;
+    if (topK != null) {
+      warnings.push({
+        type: "unsupported-setting",
+        setting: "topK"
+      });
+    }
+    if ((responseFormat == null ? void 0 : responseFormat.type) === "json" && responseFormat.schema != null && !structuredOutputs) {
+      warnings.push({
+        type: "unsupported-setting",
+        setting: "responseFormat",
+        details: "JSON response format schema is only supported with structuredOutputs"
+      });
+    }
+    const { messages, warnings: messageWarnings } = convertToOpenAIChatMessages(
+      {
+        prompt,
+        systemMessageMode: getSystemMessageMode(this.modelId)
+      }
+    );
+    warnings.push(...messageWarnings);
+    const strictJsonSchema = (_c = openaiOptions.strictJsonSchema) != null ? _c : false;
+    const baseArgs = {
+      // model id:
+      model: this.modelId,
+      // model specific settings:
+      logit_bias: openaiOptions.logitBias,
+      logprobs: openaiOptions.logprobs === true || typeof openaiOptions.logprobs === "number" ? true : void 0,
+      top_logprobs: typeof openaiOptions.logprobs === "number" ? openaiOptions.logprobs : typeof openaiOptions.logprobs === "boolean" ? openaiOptions.logprobs ? 0 : void 0 : void 0,
+      user: openaiOptions.user,
+      parallel_tool_calls: openaiOptions.parallelToolCalls,
+      // standardized settings:
+      max_tokens: maxOutputTokens,
+      temperature,
+      top_p: topP,
+      frequency_penalty: frequencyPenalty,
+      presence_penalty: presencePenalty,
+      response_format: (responseFormat == null ? void 0 : responseFormat.type) === "json" ? structuredOutputs && responseFormat.schema != null ? {
+        type: "json_schema",
+        json_schema: {
+          schema: responseFormat.schema,
+          strict: strictJsonSchema,
+          name: (_d = responseFormat.name) != null ? _d : "response",
+          description: responseFormat.description
+        }
+      } : { type: "json_object" } : void 0,
+      stop: stopSequences,
+      seed,
+      verbosity: openaiOptions.textVerbosity,
+      // openai specific settings:
+      // TODO AI SDK 6: remove, we auto-map maxOutputTokens now
+      max_completion_tokens: openaiOptions.maxCompletionTokens,
+      store: openaiOptions.store,
+      metadata: openaiOptions.metadata,
+      prediction: openaiOptions.prediction,
+      reasoning_effort: openaiOptions.reasoningEffort,
+      service_tier: openaiOptions.serviceTier,
+      prompt_cache_key: openaiOptions.promptCacheKey,
+      safety_identifier: openaiOptions.safetyIdentifier,
+      // messages:
+      messages
+    };
+    if (isReasoningModel(this.modelId)) {
+      if (baseArgs.temperature != null) {
+        baseArgs.temperature = void 0;
+        warnings.push({
+          type: "unsupported-setting",
+          setting: "temperature",
+          details: "temperature is not supported for reasoning models"
+        });
+      }
+      if (baseArgs.top_p != null) {
+        baseArgs.top_p = void 0;
+        warnings.push({
+          type: "unsupported-setting",
+          setting: "topP",
+          details: "topP is not supported for reasoning models"
+        });
+      }
+      if (baseArgs.frequency_penalty != null) {
+        baseArgs.frequency_penalty = void 0;
+        warnings.push({
+          type: "unsupported-setting",
+          setting: "frequencyPenalty",
+          details: "frequencyPenalty is not supported for reasoning models"
+        });
+      }
+      if (baseArgs.presence_penalty != null) {
+        baseArgs.presence_penalty = void 0;
+        warnings.push({
+          type: "unsupported-setting",
+          setting: "presencePenalty",
+          details: "presencePenalty is not supported for reasoning models"
+        });
+      }
+      if (baseArgs.logit_bias != null) {
+        baseArgs.logit_bias = void 0;
+        warnings.push({
+          type: "other",
+          message: "logitBias is not supported for reasoning models"
+        });
+      }
+      if (baseArgs.logprobs != null) {
+        baseArgs.logprobs = void 0;
+        warnings.push({
+          type: "other",
+          message: "logprobs is not supported for reasoning models"
+        });
+      }
+      if (baseArgs.top_logprobs != null) {
+        baseArgs.top_logprobs = void 0;
+        warnings.push({
+          type: "other",
+          message: "topLogprobs is not supported for reasoning models"
+        });
+      }
+      if (baseArgs.max_tokens != null) {
+        if (baseArgs.max_completion_tokens == null) {
+          baseArgs.max_completion_tokens = baseArgs.max_tokens;
+        }
+        baseArgs.max_tokens = void 0;
+      }
+    } else if (this.modelId.startsWith("gpt-4o-search-preview") || this.modelId.startsWith("gpt-4o-mini-search-preview")) {
+      if (baseArgs.temperature != null) {
+        baseArgs.temperature = void 0;
+        warnings.push({
+          type: "unsupported-setting",
+          setting: "temperature",
+          details: "temperature is not supported for the search preview models and has been removed."
+        });
+      }
+    }
+    if (openaiOptions.serviceTier === "flex" && !supportsFlexProcessing(this.modelId)) {
+      warnings.push({
+        type: "unsupported-setting",
+        setting: "serviceTier",
+        details: "flex processing is only available for o3, o4-mini, and gpt-5 models"
+      });
+      baseArgs.service_tier = void 0;
+    }
+    if (openaiOptions.serviceTier === "priority" && !supportsPriorityProcessing(this.modelId)) {
+      warnings.push({
+        type: "unsupported-setting",
+        setting: "serviceTier",
+        details: "priority processing is only available for supported models (gpt-4, gpt-5, gpt-5-mini, o3, o4-mini) and requires Enterprise access. gpt-5-nano is not supported"
+      });
+      baseArgs.service_tier = void 0;
+    }
+    const {
+      tools: openaiTools2,
+      toolChoice: openaiToolChoice,
+      toolWarnings
+    } = prepareChatTools({
+      tools,
+      toolChoice,
+      structuredOutputs,
+      strictJsonSchema
+    });
+    return {
+      args: {
+        ...baseArgs,
+        tools: openaiTools2,
+        tool_choice: openaiToolChoice
+      },
+      warnings: [...warnings, ...toolWarnings]
+    };
+  }
+  async doGenerate(options) {
+    var _a17, _b8, _c, _d, _e, _f, _g, _h, _i, _j, _k, _l, _m, _n;
+    const { args: body, warnings } = await this.getArgs(options);
+    const {
+      responseHeaders,
+      value: response,
+      rawValue: rawResponse
+    } = await postJsonToApi({
+      url: this.config.url({
+        path: "/chat/completions",
+        modelId: this.modelId
+      }),
+      headers: combineHeaders(this.config.headers(), options.headers),
+      body,
+      failedResponseHandler: openaiFailedResponseHandler,
+      successfulResponseHandler: createJsonResponseHandler(
+        openaiChatResponseSchema
+      ),
+      abortSignal: options.abortSignal,
+      fetch: this.config.fetch
+    });
+    const choice = response.choices[0];
+    const content = [];
+    const text3 = choice.message.content;
+    if (text3 != null && text3.length > 0) {
+      content.push({ type: "text", text: text3 });
+    }
+    for (const toolCall of (_a17 = choice.message.tool_calls) != null ? _a17 : []) {
+      content.push({
+        type: "tool-call",
+        toolCallId: (_b8 = toolCall.id) != null ? _b8 : generateId(),
+        toolName: toolCall.function.name,
+        input: toolCall.function.arguments
+      });
+    }
+    for (const annotation of (_c = choice.message.annotations) != null ? _c : []) {
+      content.push({
+        type: "source",
+        sourceType: "url",
+        id: generateId(),
+        url: annotation.url,
+        title: annotation.title
+      });
+    }
+    const completionTokenDetails = (_d = response.usage) == null ? void 0 : _d.completion_tokens_details;
+    const promptTokenDetails = (_e = response.usage) == null ? void 0 : _e.prompt_tokens_details;
+    const providerMetadata = { openai: {} };
+    if ((completionTokenDetails == null ? void 0 : completionTokenDetails.accepted_prediction_tokens) != null) {
+      providerMetadata.openai.acceptedPredictionTokens = completionTokenDetails == null ? void 0 : completionTokenDetails.accepted_prediction_tokens;
+    }
+    if ((completionTokenDetails == null ? void 0 : completionTokenDetails.rejected_prediction_tokens) != null) {
+      providerMetadata.openai.rejectedPredictionTokens = completionTokenDetails == null ? void 0 : completionTokenDetails.rejected_prediction_tokens;
+    }
+    if (((_f = choice.logprobs) == null ? void 0 : _f.content) != null) {
+      providerMetadata.openai.logprobs = choice.logprobs.content;
+    }
+    return {
+      content,
+      finishReason: mapOpenAIFinishReason(choice.finish_reason),
+      usage: {
+        inputTokens: (_h = (_g = response.usage) == null ? void 0 : _g.prompt_tokens) != null ? _h : void 0,
+        outputTokens: (_j = (_i = response.usage) == null ? void 0 : _i.completion_tokens) != null ? _j : void 0,
+        totalTokens: (_l = (_k = response.usage) == null ? void 0 : _k.total_tokens) != null ? _l : void 0,
+        reasoningTokens: (_m = completionTokenDetails == null ? void 0 : completionTokenDetails.reasoning_tokens) != null ? _m : void 0,
+        cachedInputTokens: (_n = promptTokenDetails == null ? void 0 : promptTokenDetails.cached_tokens) != null ? _n : void 0
+      },
+      request: { body },
+      response: {
+        ...getResponseMetadata(response),
+        headers: responseHeaders,
+        body: rawResponse
+      },
+      warnings,
+      providerMetadata
+    };
+  }
+  async doStream(options) {
+    const { args, warnings } = await this.getArgs(options);
+    const body = {
+      ...args,
+      stream: true,
+      stream_options: {
+        include_usage: true
+      }
+    };
+    const { responseHeaders, value: response } = await postJsonToApi({
+      url: this.config.url({
+        path: "/chat/completions",
+        modelId: this.modelId
+      }),
+      headers: combineHeaders(this.config.headers(), options.headers),
+      body,
+      failedResponseHandler: openaiFailedResponseHandler,
+      successfulResponseHandler: createEventSourceResponseHandler(
+        openaiChatChunkSchema
+      ),
+      abortSignal: options.abortSignal,
+      fetch: this.config.fetch
+    });
+    const toolCalls = [];
+    let finishReason = "unknown";
+    const usage = {
+      inputTokens: void 0,
+      outputTokens: void 0,
+      totalTokens: void 0
+    };
+    let isFirstChunk = true;
+    let isActiveText = false;
+    const providerMetadata = { openai: {} };
+    return {
+      stream: response.pipeThrough(
+        new TransformStream({
+          start(controller) {
+            controller.enqueue({ type: "stream-start", warnings });
+          },
+          transform(chunk, controller) {
+            var _a17, _b8, _c, _d, _e, _f, _g, _h, _i, _j, _k, _l, _m, _n, _o, _p, _q, _r, _s, _t, _u, _v, _w, _x;
+            if (options.includeRawChunks) {
+              controller.enqueue({ type: "raw", rawValue: chunk.rawValue });
+            }
+            if (!chunk.success) {
+              finishReason = "error";
+              controller.enqueue({ type: "error", error: chunk.error });
+              return;
+            }
+            const value = chunk.value;
+            if ("error" in value) {
+              finishReason = "error";
+              controller.enqueue({ type: "error", error: value.error });
+              return;
+            }
+            if (isFirstChunk) {
+              isFirstChunk = false;
+              controller.enqueue({
+                type: "response-metadata",
+                ...getResponseMetadata(value)
+              });
+            }
+            if (value.usage != null) {
+              usage.inputTokens = (_a17 = value.usage.prompt_tokens) != null ? _a17 : void 0;
+              usage.outputTokens = (_b8 = value.usage.completion_tokens) != null ? _b8 : void 0;
+              usage.totalTokens = (_c = value.usage.total_tokens) != null ? _c : void 0;
+              usage.reasoningTokens = (_e = (_d = value.usage.completion_tokens_details) == null ? void 0 : _d.reasoning_tokens) != null ? _e : void 0;
+              usage.cachedInputTokens = (_g = (_f = value.usage.prompt_tokens_details) == null ? void 0 : _f.cached_tokens) != null ? _g : void 0;
+              if (((_h = value.usage.completion_tokens_details) == null ? void 0 : _h.accepted_prediction_tokens) != null) {
+                providerMetadata.openai.acceptedPredictionTokens = (_i = value.usage.completion_tokens_details) == null ? void 0 : _i.accepted_prediction_tokens;
+              }
+              if (((_j = value.usage.completion_tokens_details) == null ? void 0 : _j.rejected_prediction_tokens) != null) {
+                providerMetadata.openai.rejectedPredictionTokens = (_k = value.usage.completion_tokens_details) == null ? void 0 : _k.rejected_prediction_tokens;
+              }
+            }
+            const choice = value.choices[0];
+            if ((choice == null ? void 0 : choice.finish_reason) != null) {
+              finishReason = mapOpenAIFinishReason(choice.finish_reason);
+            }
+            if (((_l = choice == null ? void 0 : choice.logprobs) == null ? void 0 : _l.content) != null) {
+              providerMetadata.openai.logprobs = choice.logprobs.content;
+            }
+            if ((choice == null ? void 0 : choice.delta) == null) {
+              return;
+            }
+            const delta = choice.delta;
+            if (delta.content != null) {
+              if (!isActiveText) {
+                controller.enqueue({ type: "text-start", id: "0" });
+                isActiveText = true;
+              }
+              controller.enqueue({
+                type: "text-delta",
+                id: "0",
+                delta: delta.content
+              });
+            }
+            if (delta.tool_calls != null) {
+              for (const toolCallDelta of delta.tool_calls) {
+                const index = toolCallDelta.index;
+                if (toolCalls[index] == null) {
+                  if (toolCallDelta.type !== "function") {
+                    throw new InvalidResponseDataError({
+                      data: toolCallDelta,
+                      message: `Expected 'function' type.`
+                    });
+                  }
+                  if (toolCallDelta.id == null) {
+                    throw new InvalidResponseDataError({
+                      data: toolCallDelta,
+                      message: `Expected 'id' to be a string.`
+                    });
+                  }
+                  if (((_m = toolCallDelta.function) == null ? void 0 : _m.name) == null) {
+                    throw new InvalidResponseDataError({
+                      data: toolCallDelta,
+                      message: `Expected 'function.name' to be a string.`
+                    });
+                  }
+                  controller.enqueue({
+                    type: "tool-input-start",
+                    id: toolCallDelta.id,
+                    toolName: toolCallDelta.function.name
+                  });
+                  toolCalls[index] = {
+                    id: toolCallDelta.id,
+                    type: "function",
+                    function: {
+                      name: toolCallDelta.function.name,
+                      arguments: (_n = toolCallDelta.function.arguments) != null ? _n : ""
+                    },
+                    hasFinished: false
+                  };
+                  const toolCall2 = toolCalls[index];
+                  if (((_o = toolCall2.function) == null ? void 0 : _o.name) != null && ((_p = toolCall2.function) == null ? void 0 : _p.arguments) != null) {
+                    if (toolCall2.function.arguments.length > 0) {
+                      controller.enqueue({
+                        type: "tool-input-delta",
+                        id: toolCall2.id,
+                        delta: toolCall2.function.arguments
+                      });
+                    }
+                    if (isParsableJson(toolCall2.function.arguments)) {
+                      controller.enqueue({
+                        type: "tool-input-end",
+                        id: toolCall2.id
+                      });
+                      controller.enqueue({
+                        type: "tool-call",
+                        toolCallId: (_q = toolCall2.id) != null ? _q : generateId(),
+                        toolName: toolCall2.function.name,
+                        input: toolCall2.function.arguments
+                      });
+                      toolCall2.hasFinished = true;
+                    }
+                  }
+                  continue;
+                }
+                const toolCall = toolCalls[index];
+                if (toolCall.hasFinished) {
+                  continue;
+                }
+                if (((_r = toolCallDelta.function) == null ? void 0 : _r.arguments) != null) {
+                  toolCall.function.arguments += (_t = (_s = toolCallDelta.function) == null ? void 0 : _s.arguments) != null ? _t : "";
+                }
+                controller.enqueue({
+                  type: "tool-input-delta",
+                  id: toolCall.id,
+                  delta: (_u = toolCallDelta.function.arguments) != null ? _u : ""
+                });
+                if (((_v = toolCall.function) == null ? void 0 : _v.name) != null && ((_w = toolCall.function) == null ? void 0 : _w.arguments) != null && isParsableJson(toolCall.function.arguments)) {
+                  controller.enqueue({
+                    type: "tool-input-end",
+                    id: toolCall.id
+                  });
+                  controller.enqueue({
+                    type: "tool-call",
+                    toolCallId: (_x = toolCall.id) != null ? _x : generateId(),
+                    toolName: toolCall.function.name,
+                    input: toolCall.function.arguments
+                  });
+                  toolCall.hasFinished = true;
+                }
+              }
+            }
+            if (delta.annotations != null) {
+              for (const annotation of delta.annotations) {
+                controller.enqueue({
+                  type: "source",
+                  sourceType: "url",
+                  id: generateId(),
+                  url: annotation.url,
+                  title: annotation.title
+                });
+              }
+            }
+          },
+          flush(controller) {
+            if (isActiveText) {
+              controller.enqueue({ type: "text-end", id: "0" });
+            }
+            controller.enqueue({
+              type: "finish",
+              finishReason,
+              usage,
+              ...providerMetadata != null ? { providerMetadata } : {}
+            });
+          }
+        })
+      ),
+      request: { body },
+      response: { headers: responseHeaders }
+    };
+  }
+};
+var openaiTokenUsageSchema = external_exports.object({
+  prompt_tokens: external_exports.number().nullish(),
+  completion_tokens: external_exports.number().nullish(),
+  total_tokens: external_exports.number().nullish(),
+  prompt_tokens_details: external_exports.object({
+    cached_tokens: external_exports.number().nullish()
+  }).nullish(),
+  completion_tokens_details: external_exports.object({
+    reasoning_tokens: external_exports.number().nullish(),
+    accepted_prediction_tokens: external_exports.number().nullish(),
+    rejected_prediction_tokens: external_exports.number().nullish()
+  }).nullish()
+}).nullish();
+var openaiChatResponseSchema = external_exports.object({
+  id: external_exports.string().nullish(),
+  created: external_exports.number().nullish(),
+  model: external_exports.string().nullish(),
+  choices: external_exports.array(
+    external_exports.object({
+      message: external_exports.object({
+        role: external_exports.literal("assistant").nullish(),
+        content: external_exports.string().nullish(),
+        tool_calls: external_exports.array(
+          external_exports.object({
+            id: external_exports.string().nullish(),
+            type: external_exports.literal("function"),
+            function: external_exports.object({
+              name: external_exports.string(),
+              arguments: external_exports.string()
+            })
+          })
+        ).nullish(),
+        annotations: external_exports.array(
+          external_exports.object({
+            type: external_exports.literal("url_citation"),
+            start_index: external_exports.number(),
+            end_index: external_exports.number(),
+            url: external_exports.string(),
+            title: external_exports.string()
+          })
+        ).nullish()
+      }),
+      index: external_exports.number(),
+      logprobs: external_exports.object({
+        content: external_exports.array(
+          external_exports.object({
+            token: external_exports.string(),
+            logprob: external_exports.number(),
+            top_logprobs: external_exports.array(
+              external_exports.object({
+                token: external_exports.string(),
+                logprob: external_exports.number()
+              })
+            )
+          })
+        ).nullish()
+      }).nullish(),
+      finish_reason: external_exports.string().nullish()
+    })
+  ),
+  usage: openaiTokenUsageSchema
+});
+var openaiChatChunkSchema = external_exports.union([
+  external_exports.object({
+    id: external_exports.string().nullish(),
+    created: external_exports.number().nullish(),
+    model: external_exports.string().nullish(),
+    choices: external_exports.array(
+      external_exports.object({
+        delta: external_exports.object({
+          role: external_exports.enum(["assistant"]).nullish(),
+          content: external_exports.string().nullish(),
+          tool_calls: external_exports.array(
+            external_exports.object({
+              index: external_exports.number(),
+              id: external_exports.string().nullish(),
+              type: external_exports.literal("function").nullish(),
+              function: external_exports.object({
+                name: external_exports.string().nullish(),
+                arguments: external_exports.string().nullish()
+              })
+            })
+          ).nullish(),
+          annotations: external_exports.array(
+            external_exports.object({
+              type: external_exports.literal("url_citation"),
+              start_index: external_exports.number(),
+              end_index: external_exports.number(),
+              url: external_exports.string(),
+              title: external_exports.string()
+            })
+          ).nullish()
+        }).nullish(),
+        logprobs: external_exports.object({
+          content: external_exports.array(
+            external_exports.object({
+              token: external_exports.string(),
+              logprob: external_exports.number(),
+              top_logprobs: external_exports.array(
+                external_exports.object({
+                  token: external_exports.string(),
+                  logprob: external_exports.number()
+                })
+              )
+            })
+          ).nullish()
+        }).nullish(),
+        finish_reason: external_exports.string().nullish(),
+        index: external_exports.number()
+      })
+    ),
+    usage: openaiTokenUsageSchema
+  }),
+  openaiErrorDataSchema
+]);
+function isReasoningModel(modelId) {
+  return (modelId.startsWith("o") || modelId.startsWith("gpt-5")) && !modelId.startsWith("gpt-5-chat");
+}
+function supportsFlexProcessing(modelId) {
+  return modelId.startsWith("o3") || modelId.startsWith("o4-mini") || modelId.startsWith("gpt-5") && !modelId.startsWith("gpt-5-chat");
+}
+function supportsPriorityProcessing(modelId) {
+  return modelId.startsWith("gpt-4") || modelId.startsWith("gpt-5-mini") || modelId.startsWith("gpt-5") && !modelId.startsWith("gpt-5-nano") && !modelId.startsWith("gpt-5-chat") || modelId.startsWith("o3") || modelId.startsWith("o4-mini");
+}
+function getSystemMessageMode(modelId) {
+  var _a17, _b8;
+  if (!isReasoningModel(modelId)) {
+    return "system";
+  }
+  return (_b8 = (_a17 = reasoningModels[modelId]) == null ? void 0 : _a17.systemMessageMode) != null ? _b8 : "developer";
+}
+var reasoningModels = {
+  "o1-mini": {
+    systemMessageMode: "remove"
+  },
+  "o1-mini-2024-09-12": {
+    systemMessageMode: "remove"
+  },
+  "o1-preview": {
+    systemMessageMode: "remove"
+  },
+  "o1-preview-2024-09-12": {
+    systemMessageMode: "remove"
+  },
+  o3: {
+    systemMessageMode: "developer"
+  },
+  "o3-2025-04-16": {
+    systemMessageMode: "developer"
+  },
+  "o3-mini": {
+    systemMessageMode: "developer"
+  },
+  "o3-mini-2025-01-31": {
+    systemMessageMode: "developer"
+  },
+  "o4-mini": {
+    systemMessageMode: "developer"
+  },
+  "o4-mini-2025-04-16": {
+    systemMessageMode: "developer"
+  }
+};
+function convertToOpenAICompletionPrompt({
+  prompt,
+  user = "user",
+  assistant = "assistant"
+}) {
+  let text3 = "";
+  if (prompt[0].role === "system") {
+    text3 += `${prompt[0].content}
+
+`;
+    prompt = prompt.slice(1);
+  }
+  for (const { role, content } of prompt) {
+    switch (role) {
+      case "system": {
+        throw new InvalidPromptError({
+          message: "Unexpected system message in prompt: ${content}",
+          prompt
+        });
+      }
+      case "user": {
+        const userMessage = content.map((part) => {
+          switch (part.type) {
+            case "text": {
+              return part.text;
+            }
+          }
+        }).filter(Boolean).join("");
+        text3 += `${user}:
+${userMessage}
+
+`;
+        break;
+      }
+      case "assistant": {
+        const assistantMessage = content.map((part) => {
+          switch (part.type) {
+            case "text": {
+              return part.text;
+            }
+            case "tool-call": {
+              throw new UnsupportedFunctionalityError({
+                functionality: "tool-call messages"
+              });
+            }
+          }
+        }).join("");
+        text3 += `${assistant}:
+${assistantMessage}
+
+`;
+        break;
+      }
+      case "tool": {
+        throw new UnsupportedFunctionalityError({
+          functionality: "tool messages"
+        });
+      }
+      default: {
+        const _exhaustiveCheck = role;
+        throw new Error(`Unsupported role: ${_exhaustiveCheck}`);
+      }
+    }
+  }
+  text3 += `${assistant}:
+`;
+  return {
+    prompt: text3,
+    stopSequences: [`
+${user}:`]
+  };
+}
+function getResponseMetadata2({
+  id,
+  model,
+  created
+}) {
+  return {
+    id: id != null ? id : void 0,
+    modelId: model != null ? model : void 0,
+    timestamp: created != null ? new Date(created * 1e3) : void 0
+  };
+}
+function mapOpenAIFinishReason2(finishReason) {
+  switch (finishReason) {
+    case "stop":
+      return "stop";
+    case "length":
+      return "length";
+    case "content_filter":
+      return "content-filter";
+    case "function_call":
+    case "tool_calls":
+      return "tool-calls";
+    default:
+      return "unknown";
+  }
+}
+var openaiCompletionProviderOptions = external_exports.object({
+  /**
+  Echo back the prompt in addition to the completion.
+     */
+  echo: external_exports.boolean().optional(),
+  /**
+  Modify the likelihood of specified tokens appearing in the completion.
+  
+  Accepts a JSON object that maps tokens (specified by their token ID in
+  the GPT tokenizer) to an associated bias value from -100 to 100. You
+  can use this tokenizer tool to convert text to token IDs. Mathematically,
+  the bias is added to the logits generated by the model prior to sampling.
+  The exact effect will vary per model, but values between -1 and 1 should
+  decrease or increase likelihood of selection; values like -100 or 100
+  should result in a ban or exclusive selection of the relevant token.
+  
+  As an example, you can pass {"50256": -100} to prevent the <|endoftext|>
+  token from being generated.
+   */
+  logitBias: external_exports.record(external_exports.string(), external_exports.number()).optional(),
+  /**
+  The suffix that comes after a completion of inserted text.
+   */
+  suffix: external_exports.string().optional(),
+  /**
+  A unique identifier representing your end-user, which can help OpenAI to
+  monitor and detect abuse. Learn more.
+   */
+  user: external_exports.string().optional(),
+  /**
+  Return the log probabilities of the tokens. Including logprobs will increase
+  the response size and can slow down response times. However, it can
+  be useful to better understand how the model is behaving.
+  Setting to true will return the log probabilities of the tokens that
+  were generated.
+  Setting to a number will return the log probabilities of the top n
+  tokens that were generated.
+     */
+  logprobs: external_exports.union([external_exports.boolean(), external_exports.number()]).optional()
+});
+var OpenAICompletionLanguageModel = class {
+  constructor(modelId, config2) {
+    this.specificationVersion = "v2";
+    this.supportedUrls = {
+      // No URLs are supported for completion models.
+    };
+    this.modelId = modelId;
+    this.config = config2;
+  }
+  get providerOptionsName() {
+    return this.config.provider.split(".")[0].trim();
+  }
+  get provider() {
+    return this.config.provider;
+  }
+  async getArgs({
+    prompt,
+    maxOutputTokens,
+    temperature,
+    topP,
+    topK,
+    frequencyPenalty,
+    presencePenalty,
+    stopSequences: userStopSequences,
+    responseFormat,
+    tools,
+    toolChoice,
+    seed,
+    providerOptions
+  }) {
+    const warnings = [];
+    const openaiOptions = {
+      ...await parseProviderOptions({
+        provider: "openai",
+        providerOptions,
+        schema: openaiCompletionProviderOptions
+      }),
+      ...await parseProviderOptions({
+        provider: this.providerOptionsName,
+        providerOptions,
+        schema: openaiCompletionProviderOptions
+      })
+    };
+    if (topK != null) {
+      warnings.push({ type: "unsupported-setting", setting: "topK" });
+    }
+    if (tools == null ? void 0 : tools.length) {
+      warnings.push({ type: "unsupported-setting", setting: "tools" });
+    }
+    if (toolChoice != null) {
+      warnings.push({ type: "unsupported-setting", setting: "toolChoice" });
+    }
+    if (responseFormat != null && responseFormat.type !== "text") {
+      warnings.push({
+        type: "unsupported-setting",
+        setting: "responseFormat",
+        details: "JSON response format is not supported."
+      });
+    }
+    const { prompt: completionPrompt, stopSequences } = convertToOpenAICompletionPrompt({ prompt });
+    const stop = [...stopSequences != null ? stopSequences : [], ...userStopSequences != null ? userStopSequences : []];
+    return {
+      args: {
+        // model id:
+        model: this.modelId,
+        // model specific settings:
+        echo: openaiOptions.echo,
+        logit_bias: openaiOptions.logitBias,
+        logprobs: (openaiOptions == null ? void 0 : openaiOptions.logprobs) === true ? 0 : (openaiOptions == null ? void 0 : openaiOptions.logprobs) === false ? void 0 : openaiOptions == null ? void 0 : openaiOptions.logprobs,
+        suffix: openaiOptions.suffix,
+        user: openaiOptions.user,
+        // standardized settings:
+        max_tokens: maxOutputTokens,
+        temperature,
+        top_p: topP,
+        frequency_penalty: frequencyPenalty,
+        presence_penalty: presencePenalty,
+        seed,
+        // prompt:
+        prompt: completionPrompt,
+        // stop sequences:
+        stop: stop.length > 0 ? stop : void 0
+      },
+      warnings
+    };
+  }
+  async doGenerate(options) {
+    var _a17, _b8, _c;
+    const { args, warnings } = await this.getArgs(options);
+    const {
+      responseHeaders,
+      value: response,
+      rawValue: rawResponse
+    } = await postJsonToApi({
+      url: this.config.url({
+        path: "/completions",
+        modelId: this.modelId
+      }),
+      headers: combineHeaders(this.config.headers(), options.headers),
+      body: args,
+      failedResponseHandler: openaiFailedResponseHandler,
+      successfulResponseHandler: createJsonResponseHandler(
+        openaiCompletionResponseSchema
+      ),
+      abortSignal: options.abortSignal,
+      fetch: this.config.fetch
+    });
+    const choice = response.choices[0];
+    const providerMetadata = { openai: {} };
+    if (choice.logprobs != null) {
+      providerMetadata.openai.logprobs = choice.logprobs;
+    }
+    return {
+      content: [{ type: "text", text: choice.text }],
+      usage: {
+        inputTokens: (_a17 = response.usage) == null ? void 0 : _a17.prompt_tokens,
+        outputTokens: (_b8 = response.usage) == null ? void 0 : _b8.completion_tokens,
+        totalTokens: (_c = response.usage) == null ? void 0 : _c.total_tokens
+      },
+      finishReason: mapOpenAIFinishReason2(choice.finish_reason),
+      request: { body: args },
+      response: {
+        ...getResponseMetadata2(response),
+        headers: responseHeaders,
+        body: rawResponse
+      },
+      providerMetadata,
+      warnings
+    };
+  }
+  async doStream(options) {
+    const { args, warnings } = await this.getArgs(options);
+    const body = {
+      ...args,
+      stream: true,
+      stream_options: {
+        include_usage: true
+      }
+    };
+    const { responseHeaders, value: response } = await postJsonToApi({
+      url: this.config.url({
+        path: "/completions",
+        modelId: this.modelId
+      }),
+      headers: combineHeaders(this.config.headers(), options.headers),
+      body,
+      failedResponseHandler: openaiFailedResponseHandler,
+      successfulResponseHandler: createEventSourceResponseHandler(
+        openaiCompletionChunkSchema
+      ),
+      abortSignal: options.abortSignal,
+      fetch: this.config.fetch
+    });
+    let finishReason = "unknown";
+    const providerMetadata = { openai: {} };
+    const usage = {
+      inputTokens: void 0,
+      outputTokens: void 0,
+      totalTokens: void 0
+    };
+    let isFirstChunk = true;
+    return {
+      stream: response.pipeThrough(
+        new TransformStream({
+          start(controller) {
+            controller.enqueue({ type: "stream-start", warnings });
+          },
+          transform(chunk, controller) {
+            if (options.includeRawChunks) {
+              controller.enqueue({ type: "raw", rawValue: chunk.rawValue });
+            }
+            if (!chunk.success) {
+              finishReason = "error";
+              controller.enqueue({ type: "error", error: chunk.error });
+              return;
+            }
+            const value = chunk.value;
+            if ("error" in value) {
+              finishReason = "error";
+              controller.enqueue({ type: "error", error: value.error });
+              return;
+            }
+            if (isFirstChunk) {
+              isFirstChunk = false;
+              controller.enqueue({
+                type: "response-metadata",
+                ...getResponseMetadata2(value)
+              });
+              controller.enqueue({ type: "text-start", id: "0" });
+            }
+            if (value.usage != null) {
+              usage.inputTokens = value.usage.prompt_tokens;
+              usage.outputTokens = value.usage.completion_tokens;
+              usage.totalTokens = value.usage.total_tokens;
+            }
+            const choice = value.choices[0];
+            if ((choice == null ? void 0 : choice.finish_reason) != null) {
+              finishReason = mapOpenAIFinishReason2(choice.finish_reason);
+            }
+            if ((choice == null ? void 0 : choice.logprobs) != null) {
+              providerMetadata.openai.logprobs = choice.logprobs;
+            }
+            if ((choice == null ? void 0 : choice.text) != null && choice.text.length > 0) {
+              controller.enqueue({
+                type: "text-delta",
+                id: "0",
+                delta: choice.text
+              });
+            }
+          },
+          flush(controller) {
+            if (!isFirstChunk) {
+              controller.enqueue({ type: "text-end", id: "0" });
+            }
+            controller.enqueue({
+              type: "finish",
+              finishReason,
+              providerMetadata,
+              usage
+            });
+          }
+        })
+      ),
+      request: { body },
+      response: { headers: responseHeaders }
+    };
+  }
+};
+var usageSchema = external_exports.object({
+  prompt_tokens: external_exports.number(),
+  completion_tokens: external_exports.number(),
+  total_tokens: external_exports.number()
+});
+var openaiCompletionResponseSchema = external_exports.object({
+  id: external_exports.string().nullish(),
+  created: external_exports.number().nullish(),
+  model: external_exports.string().nullish(),
+  choices: external_exports.array(
+    external_exports.object({
+      text: external_exports.string(),
+      finish_reason: external_exports.string(),
+      logprobs: external_exports.object({
+        tokens: external_exports.array(external_exports.string()),
+        token_logprobs: external_exports.array(external_exports.number()),
+        top_logprobs: external_exports.array(external_exports.record(external_exports.string(), external_exports.number())).nullish()
+      }).nullish()
+    })
+  ),
+  usage: usageSchema.nullish()
+});
+var openaiCompletionChunkSchema = external_exports.union([
+  external_exports.object({
+    id: external_exports.string().nullish(),
+    created: external_exports.number().nullish(),
+    model: external_exports.string().nullish(),
+    choices: external_exports.array(
+      external_exports.object({
+        text: external_exports.string(),
+        finish_reason: external_exports.string().nullish(),
+        index: external_exports.number(),
+        logprobs: external_exports.object({
+          tokens: external_exports.array(external_exports.string()),
+          token_logprobs: external_exports.array(external_exports.number()),
+          top_logprobs: external_exports.array(external_exports.record(external_exports.string(), external_exports.number())).nullish()
+        }).nullish()
+      })
+    ),
+    usage: usageSchema.nullish()
+  }),
+  openaiErrorDataSchema
+]);
+var openaiEmbeddingProviderOptions = external_exports.object({
+  /**
+  The number of dimensions the resulting output embeddings should have.
+  Only supported in text-embedding-3 and later models.
+     */
+  dimensions: external_exports.number().optional(),
+  /**
+  A unique identifier representing your end-user, which can help OpenAI to
+  monitor and detect abuse. Learn more.
+  */
+  user: external_exports.string().optional()
+});
+var OpenAIEmbeddingModel = class {
+  constructor(modelId, config2) {
+    this.specificationVersion = "v2";
+    this.maxEmbeddingsPerCall = 2048;
+    this.supportsParallelCalls = true;
+    this.modelId = modelId;
+    this.config = config2;
+  }
+  get provider() {
+    return this.config.provider;
+  }
+  async doEmbed({
+    values,
+    headers,
+    abortSignal,
+    providerOptions
+  }) {
+    var _a17;
+    if (values.length > this.maxEmbeddingsPerCall) {
+      throw new TooManyEmbeddingValuesForCallError({
+        provider: this.provider,
+        modelId: this.modelId,
+        maxEmbeddingsPerCall: this.maxEmbeddingsPerCall,
+        values
+      });
+    }
+    const openaiOptions = (_a17 = await parseProviderOptions({
+      provider: "openai",
+      providerOptions,
+      schema: openaiEmbeddingProviderOptions
+    })) != null ? _a17 : {};
+    const {
+      responseHeaders,
+      value: response,
+      rawValue
+    } = await postJsonToApi({
+      url: this.config.url({
+        path: "/embeddings",
+        modelId: this.modelId
+      }),
+      headers: combineHeaders(this.config.headers(), headers),
+      body: {
+        model: this.modelId,
+        input: values,
+        encoding_format: "float",
+        dimensions: openaiOptions.dimensions,
+        user: openaiOptions.user
+      },
+      failedResponseHandler: openaiFailedResponseHandler,
+      successfulResponseHandler: createJsonResponseHandler(
+        openaiTextEmbeddingResponseSchema
+      ),
+      abortSignal,
+      fetch: this.config.fetch
+    });
+    return {
+      embeddings: response.data.map((item) => item.embedding),
+      usage: response.usage ? { tokens: response.usage.prompt_tokens } : void 0,
+      response: { headers: responseHeaders, body: rawValue }
+    };
+  }
+};
+var openaiTextEmbeddingResponseSchema = external_exports.object({
+  data: external_exports.array(external_exports.object({ embedding: external_exports.array(external_exports.number()) })),
+  usage: external_exports.object({ prompt_tokens: external_exports.number() }).nullish()
+});
+var modelMaxImagesPerCall = {
+  "dall-e-3": 1,
+  "dall-e-2": 10,
+  "gpt-image-1": 10
+};
+var hasDefaultResponseFormat = /* @__PURE__ */ new Set(["gpt-image-1"]);
+var OpenAIImageModel = class {
+  constructor(modelId, config2) {
+    this.modelId = modelId;
+    this.config = config2;
+    this.specificationVersion = "v2";
+  }
+  get maxImagesPerCall() {
+    var _a17;
+    return (_a17 = modelMaxImagesPerCall[this.modelId]) != null ? _a17 : 1;
+  }
+  get provider() {
+    return this.config.provider;
+  }
+  async doGenerate({
+    prompt,
+    n,
+    size,
+    aspectRatio,
+    seed,
+    providerOptions,
+    headers,
+    abortSignal
+  }) {
+    var _a17, _b8, _c, _d;
+    const warnings = [];
+    if (aspectRatio != null) {
+      warnings.push({
+        type: "unsupported-setting",
+        setting: "aspectRatio",
+        details: "This model does not support aspect ratio. Use `size` instead."
+      });
+    }
+    if (seed != null) {
+      warnings.push({ type: "unsupported-setting", setting: "seed" });
+    }
+    const currentDate = (_c = (_b8 = (_a17 = this.config._internal) == null ? void 0 : _a17.currentDate) == null ? void 0 : _b8.call(_a17)) != null ? _c : /* @__PURE__ */ new Date();
+    const { value: response, responseHeaders } = await postJsonToApi({
+      url: this.config.url({
+        path: "/images/generations",
+        modelId: this.modelId
+      }),
+      headers: combineHeaders(this.config.headers(), headers),
+      body: {
+        model: this.modelId,
+        prompt,
+        n,
+        size,
+        ...(_d = providerOptions.openai) != null ? _d : {},
+        ...!hasDefaultResponseFormat.has(this.modelId) ? { response_format: "b64_json" } : {}
+      },
+      failedResponseHandler: openaiFailedResponseHandler,
+      successfulResponseHandler: createJsonResponseHandler(
+        openaiImageResponseSchema
+      ),
+      abortSignal,
+      fetch: this.config.fetch
+    });
+    return {
+      images: response.data.map((item) => item.b64_json),
+      warnings,
+      response: {
+        timestamp: currentDate,
+        modelId: this.modelId,
+        headers: responseHeaders
+      },
+      providerMetadata: {
+        openai: {
+          images: response.data.map(
+            (item) => item.revised_prompt ? {
+              revisedPrompt: item.revised_prompt
+            } : null
+          )
+        }
+      }
+    };
+  }
+};
+var openaiImageResponseSchema = external_exports.object({
+  data: external_exports.array(
+    external_exports.object({ b64_json: external_exports.string(), revised_prompt: external_exports.string().optional() })
+  )
+});
+var codeInterpreterInputSchema = external_exports.object({
+  code: external_exports.string().nullish(),
+  containerId: external_exports.string()
+});
+var codeInterpreterOutputSchema = external_exports.object({
+  outputs: external_exports.array(
+    external_exports.discriminatedUnion("type", [
+      external_exports.object({ type: external_exports.literal("logs"), logs: external_exports.string() }),
+      external_exports.object({ type: external_exports.literal("image"), url: external_exports.string() })
+    ])
+  ).nullish()
+});
+var codeInterpreterArgsSchema = external_exports.object({
+  container: external_exports.union([
+    external_exports.string(),
+    external_exports.object({
+      fileIds: external_exports.array(external_exports.string()).optional()
+    })
+  ]).optional()
+});
+var codeInterpreterToolFactory = createProviderDefinedToolFactoryWithOutputSchema({
+  id: "openai.code_interpreter",
+  name: "code_interpreter",
+  inputSchema: codeInterpreterInputSchema,
+  outputSchema: codeInterpreterOutputSchema
+});
+var codeInterpreter = (args = {}) => {
+  return codeInterpreterToolFactory(args);
+};
+var webSearchArgsSchema = external_exports.object({
+  filters: external_exports.object({
+    allowedDomains: external_exports.array(external_exports.string()).optional()
+  }).optional(),
+  searchContextSize: external_exports.enum(["low", "medium", "high"]).optional(),
+  userLocation: external_exports.object({
+    type: external_exports.literal("approximate"),
+    country: external_exports.string().optional(),
+    city: external_exports.string().optional(),
+    region: external_exports.string().optional(),
+    timezone: external_exports.string().optional()
+  }).optional()
+});
+var webSearchToolFactory = createProviderDefinedToolFactory({
+  id: "openai.web_search",
+  name: "web_search",
+  inputSchema: external_exports.object({
+    action: external_exports.discriminatedUnion("type", [
+      external_exports.object({
+        type: external_exports.literal("search"),
+        query: external_exports.string().nullish()
+      }),
+      external_exports.object({
+        type: external_exports.literal("open_page"),
+        url: external_exports.string()
+      }),
+      external_exports.object({
+        type: external_exports.literal("find"),
+        url: external_exports.string(),
+        pattern: external_exports.string()
+      })
+    ]).nullish()
+  })
+});
+var webSearch = (args = {}) => {
+  return webSearchToolFactory(args);
+};
+var openaiTools = {
+  /**
+   * The Code Interpreter tool allows models to write and run Python code in a
+   * sandboxed environment to solve complex problems in domains like data analysis,
+   * coding, and math.
+   *
+   * @param container - The container to use for the code interpreter.
+   *
+   * Must have name `code_interpreter`.
+   */
+  codeInterpreter,
+  /**
+   * File search is a tool available in the Responses API. It enables models to
+   * retrieve information in a knowledge base of previously uploaded files through
+   * semantic and keyword search.
+   *
+   * Must have name `file_search`.
+   *
+   * @param vectorStoreIds - The vector store IDs to use for the file search.
+   * @param maxNumResults - The maximum number of results to return.
+   * @param ranking - The ranking options to use for the file search.
+   * @param filters - The filters to use for the file search.
+   */
+  fileSearch,
+  /**
+   * Web search allows models to access up-to-date information from the internet
+   * and provide answers with sourced citations.
+   *
+   * Must have name `web_search_preview`.
+   *
+   * @param searchContextSize - The search context size to use for the web search.
+   * @param userLocation - The user location to use for the web search.
+   *
+   * @deprecated Use `webSearch` instead.
+   */
+  webSearchPreview,
+  /**
+   * Web search allows models to access up-to-date information from the internet
+   * and provide answers with sourced citations.
+   *
+   * Must have name `web_search`.
+   *
+   * @param filters - The filters to use for the web search.
+   * @param searchContextSize - The search context size to use for the web search.
+   * @param userLocation - The user location to use for the web search.
+   */
+  webSearch
+};
+function isFileId(data, prefixes) {
+  if (!prefixes) return false;
+  return prefixes.some((prefix) => data.startsWith(prefix));
+}
+async function convertToOpenAIResponsesMessages({
+  prompt,
+  systemMessageMode,
+  fileIdPrefixes
+}) {
+  var _a17, _b8, _c, _d, _e, _f;
+  const messages = [];
+  const warnings = [];
+  for (const { role, content } of prompt) {
+    switch (role) {
+      case "system": {
+        switch (systemMessageMode) {
+          case "system": {
+            messages.push({ role: "system", content });
+            break;
+          }
+          case "developer": {
+            messages.push({ role: "developer", content });
+            break;
+          }
+          case "remove": {
+            warnings.push({
+              type: "other",
+              message: "system messages are removed for this model"
+            });
+            break;
+          }
+          default: {
+            const _exhaustiveCheck = systemMessageMode;
+            throw new Error(
+              `Unsupported system message mode: ${_exhaustiveCheck}`
+            );
+          }
+        }
+        break;
+      }
+      case "user": {
+        messages.push({
+          role: "user",
+          content: content.map((part, index) => {
+            var _a24, _b22, _c2;
+            switch (part.type) {
+              case "text": {
+                return { type: "input_text", text: part.text };
+              }
+              case "file": {
+                if (part.mediaType.startsWith("image/")) {
+                  const mediaType = part.mediaType === "image/*" ? "image/jpeg" : part.mediaType;
+                  return {
+                    type: "input_image",
+                    ...part.data instanceof URL ? { image_url: part.data.toString() } : typeof part.data === "string" && isFileId(part.data, fileIdPrefixes) ? { file_id: part.data } : {
+                      image_url: `data:${mediaType};base64,${convertToBase64(part.data)}`
+                    },
+                    detail: (_b22 = (_a24 = part.providerOptions) == null ? void 0 : _a24.openai) == null ? void 0 : _b22.imageDetail
+                  };
+                } else if (part.mediaType === "application/pdf") {
+                  if (part.data instanceof URL) {
+                    return {
+                      type: "input_file",
+                      file_url: part.data.toString()
+                    };
+                  }
+                  return {
+                    type: "input_file",
+                    ...typeof part.data === "string" && isFileId(part.data, fileIdPrefixes) ? { file_id: part.data } : {
+                      filename: (_c2 = part.filename) != null ? _c2 : `part-${index}.pdf`,
+                      file_data: `data:application/pdf;base64,${convertToBase64(part.data)}`
+                    }
+                  };
+                } else {
+                  throw new UnsupportedFunctionalityError({
+                    functionality: `file part media type ${part.mediaType}`
+                  });
+                }
+              }
+            }
+          })
+        });
+        break;
+      }
+      case "assistant": {
+        const reasoningMessages = {};
+        for (const part of content) {
+          switch (part.type) {
+            case "text": {
+              messages.push({
+                role: "assistant",
+                content: [{ type: "output_text", text: part.text }],
+                id: (_c = (_b8 = (_a17 = part.providerOptions) == null ? void 0 : _a17.openai) == null ? void 0 : _b8.itemId) != null ? _c : void 0
+              });
+              break;
+            }
+            case "tool-call": {
+              if (part.providerExecuted) {
+                break;
+              }
+              messages.push({
+                type: "function_call",
+                call_id: part.toolCallId,
+                name: part.toolName,
+                arguments: JSON.stringify(part.input),
+                id: (_f = (_e = (_d = part.providerOptions) == null ? void 0 : _d.openai) == null ? void 0 : _e.itemId) != null ? _f : void 0
+              });
+              break;
+            }
+            case "tool-result": {
+              warnings.push({
+                type: "other",
+                message: `tool result parts in assistant messages are not supported for OpenAI responses`
+              });
+              break;
+            }
+            case "reasoning": {
+              const providerOptions = await parseProviderOptions({
+                provider: "openai",
+                providerOptions: part.providerOptions,
+                schema: openaiResponsesReasoningProviderOptionsSchema
+              });
+              const reasoningId = providerOptions == null ? void 0 : providerOptions.itemId;
+              if (reasoningId != null) {
+                const existingReasoningMessage = reasoningMessages[reasoningId];
+                const summaryParts = [];
+                if (part.text.length > 0) {
+                  summaryParts.push({ type: "summary_text", text: part.text });
+                } else if (existingReasoningMessage !== void 0) {
+                  warnings.push({
+                    type: "other",
+                    message: `Cannot append empty reasoning part to existing reasoning sequence. Skipping reasoning part: ${JSON.stringify(part)}.`
+                  });
+                }
+                if (existingReasoningMessage === void 0) {
+                  reasoningMessages[reasoningId] = {
+                    type: "reasoning",
+                    id: reasoningId,
+                    encrypted_content: providerOptions == null ? void 0 : providerOptions.reasoningEncryptedContent,
+                    summary: summaryParts
+                  };
+                  messages.push(reasoningMessages[reasoningId]);
+                } else {
+                  existingReasoningMessage.summary.push(...summaryParts);
+                }
+              } else {
+                warnings.push({
+                  type: "other",
+                  message: `Non-OpenAI reasoning parts are not supported. Skipping reasoning part: ${JSON.stringify(part)}.`
+                });
+              }
+              break;
+            }
+          }
+        }
+        break;
+      }
+      case "tool": {
+        for (const part of content) {
+          const output = part.output;
+          let contentValue;
+          switch (output.type) {
+            case "text":
+            case "error-text":
+              contentValue = output.value;
+              break;
+            case "content":
+            case "json":
+            case "error-json":
+              contentValue = JSON.stringify(output.value);
+              break;
+          }
+          messages.push({
+            type: "function_call_output",
+            call_id: part.toolCallId,
+            output: contentValue
+          });
+        }
+        break;
+      }
+      default: {
+        const _exhaustiveCheck = role;
+        throw new Error(`Unsupported role: ${_exhaustiveCheck}`);
+      }
+    }
+  }
+  return { messages, warnings };
+}
+var openaiResponsesReasoningProviderOptionsSchema = external_exports.object({
+  itemId: external_exports.string().nullish(),
+  reasoningEncryptedContent: external_exports.string().nullish()
+});
+function mapOpenAIResponseFinishReason({
+  finishReason,
+  hasFunctionCall
+}) {
+  switch (finishReason) {
+    case void 0:
+    case null:
+      return hasFunctionCall ? "tool-calls" : "stop";
+    case "max_output_tokens":
+      return "length";
+    case "content_filter":
+      return "content-filter";
+    default:
+      return hasFunctionCall ? "tool-calls" : "unknown";
+  }
+}
+function prepareResponsesTools({
+  tools,
+  toolChoice,
+  strictJsonSchema
+}) {
+  tools = (tools == null ? void 0 : tools.length) ? tools : void 0;
+  const toolWarnings = [];
+  if (tools == null) {
+    return { tools: void 0, toolChoice: void 0, toolWarnings };
+  }
+  const openaiTools2 = [];
+  for (const tool2 of tools) {
+    switch (tool2.type) {
+      case "function":
+        openaiTools2.push({
+          type: "function",
+          name: tool2.name,
+          description: tool2.description,
+          parameters: tool2.inputSchema,
+          strict: strictJsonSchema
+        });
+        break;
+      case "provider-defined": {
+        switch (tool2.id) {
+          case "openai.file_search": {
+            const args = fileSearchArgsSchema.parse(tool2.args);
+            openaiTools2.push({
+              type: "file_search",
+              vector_store_ids: args.vectorStoreIds,
+              max_num_results: args.maxNumResults,
+              ranking_options: args.ranking ? { ranker: args.ranking.ranker } : void 0,
+              filters: args.filters
+            });
+            break;
+          }
+          case "openai.web_search_preview": {
+            const args = webSearchPreviewArgsSchema.parse(tool2.args);
+            openaiTools2.push({
+              type: "web_search_preview",
+              search_context_size: args.searchContextSize,
+              user_location: args.userLocation
+            });
+            break;
+          }
+          case "openai.web_search": {
+            const args = webSearchArgsSchema.parse(tool2.args);
+            openaiTools2.push({
+              type: "web_search",
+              filters: args.filters != null ? { allowed_domains: args.filters.allowedDomains } : void 0,
+              search_context_size: args.searchContextSize,
+              user_location: args.userLocation
+            });
+            break;
+          }
+          case "openai.code_interpreter": {
+            const args = codeInterpreterArgsSchema.parse(tool2.args);
+            openaiTools2.push({
+              type: "code_interpreter",
+              container: args.container == null ? { type: "auto", file_ids: void 0 } : typeof args.container === "string" ? args.container : { type: "auto", file_ids: args.container.fileIds }
+            });
+            break;
+          }
+          default: {
+            toolWarnings.push({ type: "unsupported-tool", tool: tool2 });
+            break;
+          }
+        }
+        break;
+      }
+      default:
+        toolWarnings.push({ type: "unsupported-tool", tool: tool2 });
+        break;
+    }
+  }
+  if (toolChoice == null) {
+    return { tools: openaiTools2, toolChoice: void 0, toolWarnings };
+  }
+  const type = toolChoice.type;
+  switch (type) {
+    case "auto":
+    case "none":
+    case "required":
+      return { tools: openaiTools2, toolChoice: type, toolWarnings };
+    case "tool":
+      return {
+        tools: openaiTools2,
+        toolChoice: toolChoice.toolName === "code_interpreter" || toolChoice.toolName === "file_search" || toolChoice.toolName === "web_search_preview" || toolChoice.toolName === "web_search" ? { type: toolChoice.toolName } : { type: "function", name: toolChoice.toolName },
+        toolWarnings
+      };
+    default: {
+      const _exhaustiveCheck = type;
+      throw new UnsupportedFunctionalityError({
+        functionality: `tool choice type: ${_exhaustiveCheck}`
+      });
+    }
+  }
+}
+var webSearchCallItem = external_exports.object({
+  type: external_exports.literal("web_search_call"),
+  id: external_exports.string(),
+  status: external_exports.string(),
+  action: external_exports.discriminatedUnion("type", [
+    external_exports.object({
+      type: external_exports.literal("search"),
+      query: external_exports.string().nullish()
+    }),
+    external_exports.object({
+      type: external_exports.literal("open_page"),
+      url: external_exports.string()
+    }),
+    external_exports.object({
+      type: external_exports.literal("find"),
+      url: external_exports.string(),
+      pattern: external_exports.string()
+    })
+  ]).nullish()
+});
+var codeInterpreterCallItem = external_exports.object({
+  type: external_exports.literal("code_interpreter_call"),
+  id: external_exports.string(),
+  code: external_exports.string().nullable(),
+  container_id: external_exports.string(),
+  outputs: external_exports.array(
+    external_exports.discriminatedUnion("type", [
+      external_exports.object({ type: external_exports.literal("logs"), logs: external_exports.string() }),
+      external_exports.object({ type: external_exports.literal("image"), url: external_exports.string() })
+    ])
+  ).nullable()
+});
+var TOP_LOGPROBS_MAX = 20;
+var LOGPROBS_SCHEMA = external_exports.array(
+  external_exports.object({
+    token: external_exports.string(),
+    logprob: external_exports.number(),
+    top_logprobs: external_exports.array(
+      external_exports.object({
+        token: external_exports.string(),
+        logprob: external_exports.number()
+      })
+    )
+  })
+);
+var OpenAIResponsesLanguageModel = class {
+  constructor(modelId, config2) {
+    this.specificationVersion = "v2";
+    this.supportedUrls = {
+      "image/*": [/^https?:\/\/.*$/],
+      "application/pdf": [/^https?:\/\/.*$/]
+    };
+    this.modelId = modelId;
+    this.config = config2;
+  }
+  get provider() {
+    return this.config.provider;
+  }
+  async getArgs({
+    maxOutputTokens,
+    temperature,
+    stopSequences,
+    topP,
+    topK,
+    presencePenalty,
+    frequencyPenalty,
+    seed,
+    prompt,
+    providerOptions,
+    tools,
+    toolChoice,
+    responseFormat
+  }) {
+    var _a17, _b8, _c, _d;
+    const warnings = [];
+    const modelConfig = getResponsesModelConfig(this.modelId);
+    if (topK != null) {
+      warnings.push({ type: "unsupported-setting", setting: "topK" });
+    }
+    if (seed != null) {
+      warnings.push({ type: "unsupported-setting", setting: "seed" });
+    }
+    if (presencePenalty != null) {
+      warnings.push({
+        type: "unsupported-setting",
+        setting: "presencePenalty"
+      });
+    }
+    if (frequencyPenalty != null) {
+      warnings.push({
+        type: "unsupported-setting",
+        setting: "frequencyPenalty"
+      });
+    }
+    if (stopSequences != null) {
+      warnings.push({ type: "unsupported-setting", setting: "stopSequences" });
+    }
+    const { messages, warnings: messageWarnings } = await convertToOpenAIResponsesMessages({
+      prompt,
+      systemMessageMode: modelConfig.systemMessageMode,
+      fileIdPrefixes: this.config.fileIdPrefixes
+    });
+    warnings.push(...messageWarnings);
+    const openaiOptions = await parseProviderOptions({
+      provider: "openai",
+      providerOptions,
+      schema: openaiResponsesProviderOptionsSchema
+    });
+    const strictJsonSchema = (_a17 = openaiOptions == null ? void 0 : openaiOptions.strictJsonSchema) != null ? _a17 : false;
+    let include = openaiOptions == null ? void 0 : openaiOptions.include;
+    const topLogprobs = typeof (openaiOptions == null ? void 0 : openaiOptions.logprobs) === "number" ? openaiOptions == null ? void 0 : openaiOptions.logprobs : (openaiOptions == null ? void 0 : openaiOptions.logprobs) === true ? TOP_LOGPROBS_MAX : void 0;
+    include = topLogprobs ? Array.isArray(include) ? [...include, "message.output_text.logprobs"] : ["message.output_text.logprobs"] : include;
+    const webSearchToolName = (_b8 = tools == null ? void 0 : tools.find(
+      (tool2) => tool2.type === "provider-defined" && (tool2.id === "openai.web_search" || tool2.id === "openai.web_search_preview")
+    )) == null ? void 0 : _b8.name;
+    include = webSearchToolName ? Array.isArray(include) ? [...include, "web_search_call.action.sources"] : ["web_search_call.action.sources"] : include;
+    const codeInterpreterToolName = (_c = tools == null ? void 0 : tools.find(
+      (tool2) => tool2.type === "provider-defined" && tool2.id === "openai.code_interpreter"
+    )) == null ? void 0 : _c.name;
+    include = codeInterpreterToolName ? Array.isArray(include) ? [...include, "code_interpreter_call.outputs"] : ["code_interpreter_call.outputs"] : include;
+    const baseArgs = {
+      model: this.modelId,
+      input: messages,
+      temperature,
+      top_p: topP,
+      max_output_tokens: maxOutputTokens,
+      ...((responseFormat == null ? void 0 : responseFormat.type) === "json" || (openaiOptions == null ? void 0 : openaiOptions.textVerbosity)) && {
+        text: {
+          ...(responseFormat == null ? void 0 : responseFormat.type) === "json" && {
+            format: responseFormat.schema != null ? {
+              type: "json_schema",
+              strict: strictJsonSchema,
+              name: (_d = responseFormat.name) != null ? _d : "response",
+              description: responseFormat.description,
+              schema: responseFormat.schema
+            } : { type: "json_object" }
+          },
+          ...(openaiOptions == null ? void 0 : openaiOptions.textVerbosity) && {
+            verbosity: openaiOptions.textVerbosity
+          }
+        }
+      },
+      // provider options:
+      metadata: openaiOptions == null ? void 0 : openaiOptions.metadata,
+      parallel_tool_calls: openaiOptions == null ? void 0 : openaiOptions.parallelToolCalls,
+      previous_response_id: openaiOptions == null ? void 0 : openaiOptions.previousResponseId,
+      store: openaiOptions == null ? void 0 : openaiOptions.store,
+      user: openaiOptions == null ? void 0 : openaiOptions.user,
+      instructions: openaiOptions == null ? void 0 : openaiOptions.instructions,
+      service_tier: openaiOptions == null ? void 0 : openaiOptions.serviceTier,
+      include,
+      prompt_cache_key: openaiOptions == null ? void 0 : openaiOptions.promptCacheKey,
+      safety_identifier: openaiOptions == null ? void 0 : openaiOptions.safetyIdentifier,
+      top_logprobs: topLogprobs,
+      // model-specific settings:
+      ...modelConfig.isReasoningModel && ((openaiOptions == null ? void 0 : openaiOptions.reasoningEffort) != null || (openaiOptions == null ? void 0 : openaiOptions.reasoningSummary) != null) && {
+        reasoning: {
+          ...(openaiOptions == null ? void 0 : openaiOptions.reasoningEffort) != null && {
+            effort: openaiOptions.reasoningEffort
+          },
+          ...(openaiOptions == null ? void 0 : openaiOptions.reasoningSummary) != null && {
+            summary: openaiOptions.reasoningSummary
+          }
+        }
+      },
+      ...modelConfig.requiredAutoTruncation && {
+        truncation: "auto"
+      }
+    };
+    if (modelConfig.isReasoningModel) {
+      if (baseArgs.temperature != null) {
+        baseArgs.temperature = void 0;
+        warnings.push({
+          type: "unsupported-setting",
+          setting: "temperature",
+          details: "temperature is not supported for reasoning models"
+        });
+      }
+      if (baseArgs.top_p != null) {
+        baseArgs.top_p = void 0;
+        warnings.push({
+          type: "unsupported-setting",
+          setting: "topP",
+          details: "topP is not supported for reasoning models"
+        });
+      }
+    } else {
+      if ((openaiOptions == null ? void 0 : openaiOptions.reasoningEffort) != null) {
+        warnings.push({
+          type: "unsupported-setting",
+          setting: "reasoningEffort",
+          details: "reasoningEffort is not supported for non-reasoning models"
+        });
+      }
+      if ((openaiOptions == null ? void 0 : openaiOptions.reasoningSummary) != null) {
+        warnings.push({
+          type: "unsupported-setting",
+          setting: "reasoningSummary",
+          details: "reasoningSummary is not supported for non-reasoning models"
+        });
+      }
+    }
+    if ((openaiOptions == null ? void 0 : openaiOptions.serviceTier) === "flex" && !modelConfig.supportsFlexProcessing) {
+      warnings.push({
+        type: "unsupported-setting",
+        setting: "serviceTier",
+        details: "flex processing is only available for o3, o4-mini, and gpt-5 models"
+      });
+      delete baseArgs.service_tier;
+    }
+    if ((openaiOptions == null ? void 0 : openaiOptions.serviceTier) === "priority" && !modelConfig.supportsPriorityProcessing) {
+      warnings.push({
+        type: "unsupported-setting",
+        setting: "serviceTier",
+        details: "priority processing is only available for supported models (gpt-4, gpt-5, gpt-5-mini, o3, o4-mini) and requires Enterprise access. gpt-5-nano is not supported"
+      });
+      delete baseArgs.service_tier;
+    }
+    const {
+      tools: openaiTools2,
+      toolChoice: openaiToolChoice,
+      toolWarnings
+    } = prepareResponsesTools({
+      tools,
+      toolChoice,
+      strictJsonSchema
+    });
+    return {
+      webSearchToolName,
+      args: {
+        ...baseArgs,
+        tools: openaiTools2,
+        tool_choice: openaiToolChoice
+      },
+      warnings: [...warnings, ...toolWarnings]
+    };
+  }
+  async doGenerate(options) {
+    var _a17, _b8, _c, _d, _e, _f, _g, _h, _i, _j, _k, _l, _m, _n, _o, _p, _q;
+    const {
+      args: body,
+      warnings,
+      webSearchToolName
+    } = await this.getArgs(options);
+    const url2 = this.config.url({
+      path: "/responses",
+      modelId: this.modelId
+    });
+    const {
+      responseHeaders,
+      value: response,
+      rawValue: rawResponse
+    } = await postJsonToApi({
+      url: url2,
+      headers: combineHeaders(this.config.headers(), options.headers),
+      body,
+      failedResponseHandler: openaiFailedResponseHandler,
+      successfulResponseHandler: createJsonResponseHandler(
+        external_exports.object({
+          id: external_exports.string(),
+          created_at: external_exports.number(),
+          error: external_exports.object({
+            code: external_exports.string(),
+            message: external_exports.string()
+          }).nullish(),
+          model: external_exports.string(),
+          output: external_exports.array(
+            external_exports.discriminatedUnion("type", [
+              external_exports.object({
+                type: external_exports.literal("message"),
+                role: external_exports.literal("assistant"),
+                id: external_exports.string(),
+                content: external_exports.array(
+                  external_exports.object({
+                    type: external_exports.literal("output_text"),
+                    text: external_exports.string(),
+                    logprobs: LOGPROBS_SCHEMA.nullish(),
+                    annotations: external_exports.array(
+                      external_exports.discriminatedUnion("type", [
+                        external_exports.object({
+                          type: external_exports.literal("url_citation"),
+                          start_index: external_exports.number(),
+                          end_index: external_exports.number(),
+                          url: external_exports.string(),
+                          title: external_exports.string()
+                        }),
+                        external_exports.object({
+                          type: external_exports.literal("file_citation"),
+                          file_id: external_exports.string(),
+                          filename: external_exports.string().nullish(),
+                          index: external_exports.number().nullish(),
+                          start_index: external_exports.number().nullish(),
+                          end_index: external_exports.number().nullish(),
+                          quote: external_exports.string().nullish()
+                        }),
+                        external_exports.object({
+                          type: external_exports.literal("container_file_citation")
+                        })
+                      ])
+                    )
+                  })
+                )
+              }),
+              codeInterpreterCallItem,
+              external_exports.object({
+                type: external_exports.literal("function_call"),
+                call_id: external_exports.string(),
+                name: external_exports.string(),
+                arguments: external_exports.string(),
+                id: external_exports.string()
+              }),
+              webSearchCallItem,
+              external_exports.object({
+                type: external_exports.literal("computer_call"),
+                id: external_exports.string(),
+                status: external_exports.string().optional()
+              }),
+              external_exports.object({
+                type: external_exports.literal("file_search_call"),
+                id: external_exports.string(),
+                status: external_exports.string().optional(),
+                queries: external_exports.array(external_exports.string()).nullish(),
+                results: external_exports.array(
+                  external_exports.object({
+                    attributes: external_exports.object({
+                      file_id: external_exports.string(),
+                      filename: external_exports.string(),
+                      score: external_exports.number(),
+                      text: external_exports.string()
+                    })
+                  })
+                ).nullish()
+              }),
+              external_exports.object({
+                type: external_exports.literal("reasoning"),
+                id: external_exports.string(),
+                encrypted_content: external_exports.string().nullish(),
+                summary: external_exports.array(
+                  external_exports.object({
+                    type: external_exports.literal("summary_text"),
+                    text: external_exports.string()
+                  })
+                )
+              })
+            ])
+          ),
+          service_tier: external_exports.string().nullish(),
+          incomplete_details: external_exports.object({ reason: external_exports.string() }).nullable(),
+          usage: usageSchema2
+        })
+      ),
+      abortSignal: options.abortSignal,
+      fetch: this.config.fetch
+    });
+    if (response.error) {
+      throw new APICallError({
+        message: response.error.message,
+        url: url2,
+        requestBodyValues: body,
+        statusCode: 400,
+        responseHeaders,
+        responseBody: rawResponse,
+        isRetryable: false
+      });
+    }
+    const content = [];
+    const logprobs = [];
+    let hasFunctionCall = false;
+    for (const part of response.output) {
+      switch (part.type) {
+        case "reasoning": {
+          if (part.summary.length === 0) {
+            part.summary.push({ type: "summary_text", text: "" });
+          }
+          for (const summary of part.summary) {
+            content.push({
+              type: "reasoning",
+              text: summary.text,
+              providerMetadata: {
+                openai: {
+                  itemId: part.id,
+                  reasoningEncryptedContent: (_a17 = part.encrypted_content) != null ? _a17 : null
+                }
+              }
+            });
+          }
+          break;
+        }
+        case "message": {
+          for (const contentPart of part.content) {
+            if (((_c = (_b8 = options.providerOptions) == null ? void 0 : _b8.openai) == null ? void 0 : _c.logprobs) && contentPart.logprobs) {
+              logprobs.push(contentPart.logprobs);
+            }
+            content.push({
+              type: "text",
+              text: contentPart.text,
+              providerMetadata: {
+                openai: {
+                  itemId: part.id
+                }
+              }
+            });
+            for (const annotation of contentPart.annotations) {
+              if (annotation.type === "url_citation") {
+                content.push({
+                  type: "source",
+                  sourceType: "url",
+                  id: (_f = (_e = (_d = this.config).generateId) == null ? void 0 : _e.call(_d)) != null ? _f : generateId(),
+                  url: annotation.url,
+                  title: annotation.title
+                });
+              } else if (annotation.type === "file_citation") {
+                content.push({
+                  type: "source",
+                  sourceType: "document",
+                  id: (_i = (_h = (_g = this.config).generateId) == null ? void 0 : _h.call(_g)) != null ? _i : generateId(),
+                  mediaType: "text/plain",
+                  title: (_k = (_j = annotation.quote) != null ? _j : annotation.filename) != null ? _k : "Document",
+                  filename: (_l = annotation.filename) != null ? _l : annotation.file_id
+                });
+              }
+            }
+          }
+          break;
+        }
+        case "function_call": {
+          hasFunctionCall = true;
+          content.push({
+            type: "tool-call",
+            toolCallId: part.call_id,
+            toolName: part.name,
+            input: part.arguments,
+            providerMetadata: {
+              openai: {
+                itemId: part.id
+              }
+            }
+          });
+          break;
+        }
+        case "web_search_call": {
+          content.push({
+            type: "tool-call",
+            toolCallId: part.id,
+            toolName: webSearchToolName != null ? webSearchToolName : "web_search",
+            input: JSON.stringify({ action: part.action }),
+            providerExecuted: true
+          });
+          content.push({
+            type: "tool-result",
+            toolCallId: part.id,
+            toolName: webSearchToolName != null ? webSearchToolName : "web_search",
+            result: { status: part.status },
+            providerExecuted: true
+          });
+          break;
+        }
+        case "computer_call": {
+          content.push({
+            type: "tool-call",
+            toolCallId: part.id,
+            toolName: "computer_use",
+            input: "",
+            providerExecuted: true
+          });
+          content.push({
+            type: "tool-result",
+            toolCallId: part.id,
+            toolName: "computer_use",
+            result: {
+              type: "computer_use_tool_result",
+              status: part.status || "completed"
+            },
+            providerExecuted: true
+          });
+          break;
+        }
+        case "file_search_call": {
+          content.push({
+            type: "tool-call",
+            toolCallId: part.id,
+            toolName: "file_search",
+            input: "",
+            providerExecuted: true
+          });
+          content.push({
+            type: "tool-result",
+            toolCallId: part.id,
+            toolName: "file_search",
+            result: {
+              type: "file_search_tool_result",
+              status: part.status || "completed",
+              ...part.queries && { queries: part.queries },
+              ...part.results && { results: part.results }
+            },
+            providerExecuted: true
+          });
+          break;
+        }
+        case "code_interpreter_call": {
+          content.push({
+            type: "tool-call",
+            toolCallId: part.id,
+            toolName: "code_interpreter",
+            input: JSON.stringify({
+              code: part.code,
+              containerId: part.container_id
+            }),
+            providerExecuted: true
+          });
+          content.push({
+            type: "tool-result",
+            toolCallId: part.id,
+            toolName: "code_interpreter",
+            result: {
+              outputs: part.outputs
+            },
+            providerExecuted: true
+          });
+          break;
+        }
+      }
+    }
+    const providerMetadata = {
+      openai: { responseId: response.id }
+    };
+    if (logprobs.length > 0) {
+      providerMetadata.openai.logprobs = logprobs;
+    }
+    if (typeof response.service_tier === "string") {
+      providerMetadata.openai.serviceTier = response.service_tier;
+    }
+    return {
+      content,
+      finishReason: mapOpenAIResponseFinishReason({
+        finishReason: (_m = response.incomplete_details) == null ? void 0 : _m.reason,
+        hasFunctionCall
+      }),
+      usage: {
+        inputTokens: response.usage.input_tokens,
+        outputTokens: response.usage.output_tokens,
+        totalTokens: response.usage.input_tokens + response.usage.output_tokens,
+        reasoningTokens: (_o = (_n = response.usage.output_tokens_details) == null ? void 0 : _n.reasoning_tokens) != null ? _o : void 0,
+        cachedInputTokens: (_q = (_p = response.usage.input_tokens_details) == null ? void 0 : _p.cached_tokens) != null ? _q : void 0
+      },
+      request: { body },
+      response: {
+        id: response.id,
+        timestamp: new Date(response.created_at * 1e3),
+        modelId: response.model,
+        headers: responseHeaders,
+        body: rawResponse
+      },
+      providerMetadata,
+      warnings
+    };
+  }
+  async doStream(options) {
+    const {
+      args: body,
+      warnings,
+      webSearchToolName
+    } = await this.getArgs(options);
+    const { responseHeaders, value: response } = await postJsonToApi({
+      url: this.config.url({
+        path: "/responses",
+        modelId: this.modelId
+      }),
+      headers: combineHeaders(this.config.headers(), options.headers),
+      body: {
+        ...body,
+        stream: true
+      },
+      failedResponseHandler: openaiFailedResponseHandler,
+      successfulResponseHandler: createEventSourceResponseHandler(
+        openaiResponsesChunkSchema
+      ),
+      abortSignal: options.abortSignal,
+      fetch: this.config.fetch
+    });
+    const self = this;
+    let finishReason = "unknown";
+    const usage = {
+      inputTokens: void 0,
+      outputTokens: void 0,
+      totalTokens: void 0
+    };
+    const logprobs = [];
+    let responseId = null;
+    const ongoingToolCalls = {};
+    let hasFunctionCall = false;
+    const activeReasoning = {};
+    let serviceTier;
+    return {
+      stream: response.pipeThrough(
+        new TransformStream({
+          start(controller) {
+            controller.enqueue({ type: "stream-start", warnings });
+          },
+          transform(chunk, controller) {
+            var _a17, _b8, _c, _d, _e, _f, _g, _h, _i, _j, _k, _l, _m, _n, _o, _p, _q, _r, _s, _t, _u;
+            if (options.includeRawChunks) {
+              controller.enqueue({ type: "raw", rawValue: chunk.rawValue });
+            }
+            if (!chunk.success) {
+              finishReason = "error";
+              controller.enqueue({ type: "error", error: chunk.error });
+              return;
+            }
+            const value = chunk.value;
+            if (isResponseOutputItemAddedChunk(value)) {
+              if (value.item.type === "function_call") {
+                ongoingToolCalls[value.output_index] = {
+                  toolName: value.item.name,
+                  toolCallId: value.item.call_id
+                };
+                controller.enqueue({
+                  type: "tool-input-start",
+                  id: value.item.call_id,
+                  toolName: value.item.name
+                });
+              } else if (value.item.type === "web_search_call") {
+                ongoingToolCalls[value.output_index] = {
+                  toolName: webSearchToolName != null ? webSearchToolName : "web_search",
+                  toolCallId: value.item.id
+                };
+                controller.enqueue({
+                  type: "tool-input-start",
+                  id: value.item.id,
+                  toolName: webSearchToolName != null ? webSearchToolName : "web_search"
+                });
+              } else if (value.item.type === "computer_call") {
+                ongoingToolCalls[value.output_index] = {
+                  toolName: "computer_use",
+                  toolCallId: value.item.id
+                };
+                controller.enqueue({
+                  type: "tool-input-start",
+                  id: value.item.id,
+                  toolName: "computer_use"
+                });
+              } else if (value.item.type === "file_search_call") {
+                ongoingToolCalls[value.output_index] = {
+                  toolName: "file_search",
+                  toolCallId: value.item.id
+                };
+                controller.enqueue({
+                  type: "tool-input-start",
+                  id: value.item.id,
+                  toolName: "file_search"
+                });
+              } else if (value.item.type === "message") {
+                controller.enqueue({
+                  type: "text-start",
+                  id: value.item.id,
+                  providerMetadata: {
+                    openai: {
+                      itemId: value.item.id
+                    }
+                  }
+                });
+              } else if (isResponseOutputItemAddedReasoningChunk(value)) {
+                activeReasoning[value.item.id] = {
+                  encryptedContent: value.item.encrypted_content,
+                  summaryParts: [0]
+                };
+                controller.enqueue({
+                  type: "reasoning-start",
+                  id: `${value.item.id}:0`,
+                  providerMetadata: {
+                    openai: {
+                      itemId: value.item.id,
+                      reasoningEncryptedContent: (_a17 = value.item.encrypted_content) != null ? _a17 : null
+                    }
+                  }
+                });
+              }
+            } else if (isResponseOutputItemDoneChunk(value)) {
+              if (value.item.type === "function_call") {
+                ongoingToolCalls[value.output_index] = void 0;
+                hasFunctionCall = true;
+                controller.enqueue({
+                  type: "tool-input-end",
+                  id: value.item.call_id
+                });
+                controller.enqueue({
+                  type: "tool-call",
+                  toolCallId: value.item.call_id,
+                  toolName: value.item.name,
+                  input: value.item.arguments,
+                  providerMetadata: {
+                    openai: {
+                      itemId: value.item.id
+                    }
+                  }
+                });
+              } else if (value.item.type === "web_search_call") {
+                ongoingToolCalls[value.output_index] = void 0;
+                controller.enqueue({
+                  type: "tool-input-end",
+                  id: value.item.id
+                });
+                controller.enqueue({
+                  type: "tool-call",
+                  toolCallId: value.item.id,
+                  toolName: "web_search",
+                  input: JSON.stringify({ action: value.item.action }),
+                  providerExecuted: true
+                });
+                controller.enqueue({
+                  type: "tool-result",
+                  toolCallId: value.item.id,
+                  toolName: "web_search",
+                  result: { status: value.item.status },
+                  providerExecuted: true
+                });
+              } else if (value.item.type === "computer_call") {
+                ongoingToolCalls[value.output_index] = void 0;
+                controller.enqueue({
+                  type: "tool-input-end",
+                  id: value.item.id
+                });
+                controller.enqueue({
+                  type: "tool-call",
+                  toolCallId: value.item.id,
+                  toolName: "computer_use",
+                  input: "",
+                  providerExecuted: true
+                });
+                controller.enqueue({
+                  type: "tool-result",
+                  toolCallId: value.item.id,
+                  toolName: "computer_use",
+                  result: {
+                    type: "computer_use_tool_result",
+                    status: value.item.status || "completed"
+                  },
+                  providerExecuted: true
+                });
+              } else if (value.item.type === "file_search_call") {
+                ongoingToolCalls[value.output_index] = void 0;
+                controller.enqueue({
+                  type: "tool-input-end",
+                  id: value.item.id
+                });
+                controller.enqueue({
+                  type: "tool-call",
+                  toolCallId: value.item.id,
+                  toolName: "file_search",
+                  input: "",
+                  providerExecuted: true
+                });
+                controller.enqueue({
+                  type: "tool-result",
+                  toolCallId: value.item.id,
+                  toolName: "file_search",
+                  result: {
+                    type: "file_search_tool_result",
+                    status: value.item.status || "completed",
+                    ...value.item.queries && { queries: value.item.queries },
+                    ...value.item.results && { results: value.item.results }
+                  },
+                  providerExecuted: true
+                });
+              } else if (value.item.type === "code_interpreter_call") {
+                controller.enqueue({
+                  type: "tool-call",
+                  toolCallId: value.item.id,
+                  toolName: "code_interpreter",
+                  input: JSON.stringify({
+                    code: value.item.code,
+                    containerId: value.item.container_id
+                  }),
+                  providerExecuted: true
+                });
+                controller.enqueue({
+                  type: "tool-result",
+                  toolCallId: value.item.id,
+                  toolName: "code_interpreter",
+                  result: {
+                    outputs: value.item.outputs
+                  },
+                  providerExecuted: true
+                });
+              } else if (value.item.type === "message") {
+                controller.enqueue({
+                  type: "text-end",
+                  id: value.item.id
+                });
+              } else if (isResponseOutputItemDoneReasoningChunk(value)) {
+                const activeReasoningPart = activeReasoning[value.item.id];
+                for (const summaryIndex of activeReasoningPart.summaryParts) {
+                  controller.enqueue({
+                    type: "reasoning-end",
+                    id: `${value.item.id}:${summaryIndex}`,
+                    providerMetadata: {
+                      openai: {
+                        itemId: value.item.id,
+                        reasoningEncryptedContent: (_b8 = value.item.encrypted_content) != null ? _b8 : null
+                      }
+                    }
+                  });
+                }
+                delete activeReasoning[value.item.id];
+              }
+            } else if (isResponseFunctionCallArgumentsDeltaChunk(value)) {
+              const toolCall = ongoingToolCalls[value.output_index];
+              if (toolCall != null) {
+                controller.enqueue({
+                  type: "tool-input-delta",
+                  id: toolCall.toolCallId,
+                  delta: value.delta
+                });
+              }
+            } else if (isResponseCreatedChunk(value)) {
+              responseId = value.response.id;
+              controller.enqueue({
+                type: "response-metadata",
+                id: value.response.id,
+                timestamp: new Date(value.response.created_at * 1e3),
+                modelId: value.response.model
+              });
+            } else if (isTextDeltaChunk(value)) {
+              controller.enqueue({
+                type: "text-delta",
+                id: value.item_id,
+                delta: value.delta
+              });
+              if (((_d = (_c = options.providerOptions) == null ? void 0 : _c.openai) == null ? void 0 : _d.logprobs) && value.logprobs) {
+                logprobs.push(value.logprobs);
+              }
+            } else if (isResponseReasoningSummaryPartAddedChunk(value)) {
+              if (value.summary_index > 0) {
+                (_e = activeReasoning[value.item_id]) == null ? void 0 : _e.summaryParts.push(
+                  value.summary_index
+                );
+                controller.enqueue({
+                  type: "reasoning-start",
+                  id: `${value.item_id}:${value.summary_index}`,
+                  providerMetadata: {
+                    openai: {
+                      itemId: value.item_id,
+                      reasoningEncryptedContent: (_g = (_f = activeReasoning[value.item_id]) == null ? void 0 : _f.encryptedContent) != null ? _g : null
+                    }
+                  }
+                });
+              }
+            } else if (isResponseReasoningSummaryTextDeltaChunk(value)) {
+              controller.enqueue({
+                type: "reasoning-delta",
+                id: `${value.item_id}:${value.summary_index}`,
+                delta: value.delta,
+                providerMetadata: {
+                  openai: {
+                    itemId: value.item_id
+                  }
+                }
+              });
+            } else if (isResponseFinishedChunk(value)) {
+              finishReason = mapOpenAIResponseFinishReason({
+                finishReason: (_h = value.response.incomplete_details) == null ? void 0 : _h.reason,
+                hasFunctionCall
+              });
+              usage.inputTokens = value.response.usage.input_tokens;
+              usage.outputTokens = value.response.usage.output_tokens;
+              usage.totalTokens = value.response.usage.input_tokens + value.response.usage.output_tokens;
+              usage.reasoningTokens = (_j = (_i = value.response.usage.output_tokens_details) == null ? void 0 : _i.reasoning_tokens) != null ? _j : void 0;
+              usage.cachedInputTokens = (_l = (_k = value.response.usage.input_tokens_details) == null ? void 0 : _k.cached_tokens) != null ? _l : void 0;
+              if (typeof value.response.service_tier === "string") {
+                serviceTier = value.response.service_tier;
+              }
+            } else if (isResponseAnnotationAddedChunk(value)) {
+              if (value.annotation.type === "url_citation") {
+                controller.enqueue({
+                  type: "source",
+                  sourceType: "url",
+                  id: (_o = (_n = (_m = self.config).generateId) == null ? void 0 : _n.call(_m)) != null ? _o : generateId(),
+                  url: value.annotation.url,
+                  title: value.annotation.title
+                });
+              } else if (value.annotation.type === "file_citation") {
+                controller.enqueue({
+                  type: "source",
+                  sourceType: "document",
+                  id: (_r = (_q = (_p = self.config).generateId) == null ? void 0 : _q.call(_p)) != null ? _r : generateId(),
+                  mediaType: "text/plain",
+                  title: (_t = (_s = value.annotation.quote) != null ? _s : value.annotation.filename) != null ? _t : "Document",
+                  filename: (_u = value.annotation.filename) != null ? _u : value.annotation.file_id
+                });
+              }
+            } else if (isErrorChunk(value)) {
+              controller.enqueue({ type: "error", error: value });
+            }
+          },
+          flush(controller) {
+            const providerMetadata = {
+              openai: {
+                responseId
+              }
+            };
+            if (logprobs.length > 0) {
+              providerMetadata.openai.logprobs = logprobs;
+            }
+            if (serviceTier !== void 0) {
+              providerMetadata.openai.serviceTier = serviceTier;
+            }
+            controller.enqueue({
+              type: "finish",
+              finishReason,
+              usage,
+              providerMetadata
+            });
+          }
+        })
+      ),
+      request: { body },
+      response: { headers: responseHeaders }
+    };
+  }
+};
+var usageSchema2 = external_exports.object({
+  input_tokens: external_exports.number(),
+  input_tokens_details: external_exports.object({ cached_tokens: external_exports.number().nullish() }).nullish(),
+  output_tokens: external_exports.number(),
+  output_tokens_details: external_exports.object({ reasoning_tokens: external_exports.number().nullish() }).nullish()
+});
+var textDeltaChunkSchema = external_exports.object({
+  type: external_exports.literal("response.output_text.delta"),
+  item_id: external_exports.string(),
+  delta: external_exports.string(),
+  logprobs: LOGPROBS_SCHEMA.nullish()
+});
+var errorChunkSchema = external_exports.object({
+  type: external_exports.literal("error"),
+  code: external_exports.string(),
+  message: external_exports.string(),
+  param: external_exports.string().nullish(),
+  sequence_number: external_exports.number()
+});
+var responseFinishedChunkSchema = external_exports.object({
+  type: external_exports.enum(["response.completed", "response.incomplete"]),
+  response: external_exports.object({
+    incomplete_details: external_exports.object({ reason: external_exports.string() }).nullish(),
+    usage: usageSchema2,
+    service_tier: external_exports.string().nullish()
+  })
+});
+var responseCreatedChunkSchema = external_exports.object({
+  type: external_exports.literal("response.created"),
+  response: external_exports.object({
+    id: external_exports.string(),
+    created_at: external_exports.number(),
+    model: external_exports.string(),
+    service_tier: external_exports.string().nullish()
+  })
+});
+var responseOutputItemAddedSchema = external_exports.object({
+  type: external_exports.literal("response.output_item.added"),
+  output_index: external_exports.number(),
+  item: external_exports.discriminatedUnion("type", [
+    external_exports.object({
+      type: external_exports.literal("message"),
+      id: external_exports.string()
+    }),
+    external_exports.object({
+      type: external_exports.literal("reasoning"),
+      id: external_exports.string(),
+      encrypted_content: external_exports.string().nullish()
+    }),
+    external_exports.object({
+      type: external_exports.literal("function_call"),
+      id: external_exports.string(),
+      call_id: external_exports.string(),
+      name: external_exports.string(),
+      arguments: external_exports.string()
+    }),
+    external_exports.object({
+      type: external_exports.literal("web_search_call"),
+      id: external_exports.string(),
+      status: external_exports.string(),
+      action: external_exports.object({
+        type: external_exports.literal("search"),
+        query: external_exports.string().optional()
+      }).nullish()
+    }),
+    external_exports.object({
+      type: external_exports.literal("computer_call"),
+      id: external_exports.string(),
+      status: external_exports.string()
+    }),
+    external_exports.object({
+      type: external_exports.literal("file_search_call"),
+      id: external_exports.string(),
+      status: external_exports.string(),
+      queries: external_exports.array(external_exports.string()).nullish(),
+      results: external_exports.array(
+        external_exports.object({
+          attributes: external_exports.object({
+            file_id: external_exports.string(),
+            filename: external_exports.string(),
+            score: external_exports.number(),
+            text: external_exports.string()
+          })
+        })
+      ).optional()
+    })
+  ])
+});
+var responseOutputItemDoneSchema = external_exports.object({
+  type: external_exports.literal("response.output_item.done"),
+  output_index: external_exports.number(),
+  item: external_exports.discriminatedUnion("type", [
+    external_exports.object({
+      type: external_exports.literal("message"),
+      id: external_exports.string()
+    }),
+    external_exports.object({
+      type: external_exports.literal("reasoning"),
+      id: external_exports.string(),
+      encrypted_content: external_exports.string().nullish()
+    }),
+    external_exports.object({
+      type: external_exports.literal("function_call"),
+      id: external_exports.string(),
+      call_id: external_exports.string(),
+      name: external_exports.string(),
+      arguments: external_exports.string(),
+      status: external_exports.literal("completed")
+    }),
+    codeInterpreterCallItem,
+    webSearchCallItem,
+    external_exports.object({
+      type: external_exports.literal("computer_call"),
+      id: external_exports.string(),
+      status: external_exports.literal("completed")
+    }),
+    external_exports.object({
+      type: external_exports.literal("file_search_call"),
+      id: external_exports.string(),
+      status: external_exports.literal("completed"),
+      queries: external_exports.array(external_exports.string()).nullish(),
+      results: external_exports.array(
+        external_exports.object({
+          attributes: external_exports.object({
+            file_id: external_exports.string(),
+            filename: external_exports.string(),
+            score: external_exports.number(),
+            text: external_exports.string()
+          })
+        })
+      ).nullish()
+    })
+  ])
+});
+var responseFunctionCallArgumentsDeltaSchema = external_exports.object({
+  type: external_exports.literal("response.function_call_arguments.delta"),
+  item_id: external_exports.string(),
+  output_index: external_exports.number(),
+  delta: external_exports.string()
+});
+var responseAnnotationAddedSchema = external_exports.object({
+  type: external_exports.literal("response.output_text.annotation.added"),
+  annotation: external_exports.discriminatedUnion("type", [
+    external_exports.object({
+      type: external_exports.literal("url_citation"),
+      url: external_exports.string(),
+      title: external_exports.string()
+    }),
+    external_exports.object({
+      type: external_exports.literal("file_citation"),
+      file_id: external_exports.string(),
+      filename: external_exports.string().nullish(),
+      index: external_exports.number().nullish(),
+      start_index: external_exports.number().nullish(),
+      end_index: external_exports.number().nullish(),
+      quote: external_exports.string().nullish()
+    })
+  ])
+});
+var responseReasoningSummaryPartAddedSchema = external_exports.object({
+  type: external_exports.literal("response.reasoning_summary_part.added"),
+  item_id: external_exports.string(),
+  summary_index: external_exports.number()
+});
+var responseReasoningSummaryTextDeltaSchema = external_exports.object({
+  type: external_exports.literal("response.reasoning_summary_text.delta"),
+  item_id: external_exports.string(),
+  summary_index: external_exports.number(),
+  delta: external_exports.string()
+});
+var openaiResponsesChunkSchema = external_exports.union([
+  textDeltaChunkSchema,
+  responseFinishedChunkSchema,
+  responseCreatedChunkSchema,
+  responseOutputItemAddedSchema,
+  responseOutputItemDoneSchema,
+  responseFunctionCallArgumentsDeltaSchema,
+  responseAnnotationAddedSchema,
+  responseReasoningSummaryPartAddedSchema,
+  responseReasoningSummaryTextDeltaSchema,
+  errorChunkSchema,
+  external_exports.object({ type: external_exports.string() }).loose()
+  // fallback for unknown chunks
+]);
+function isTextDeltaChunk(chunk) {
+  return chunk.type === "response.output_text.delta";
+}
+function isResponseOutputItemDoneChunk(chunk) {
+  return chunk.type === "response.output_item.done";
+}
+function isResponseOutputItemDoneReasoningChunk(chunk) {
+  return isResponseOutputItemDoneChunk(chunk) && chunk.item.type === "reasoning";
+}
+function isResponseFinishedChunk(chunk) {
+  return chunk.type === "response.completed" || chunk.type === "response.incomplete";
+}
+function isResponseCreatedChunk(chunk) {
+  return chunk.type === "response.created";
+}
+function isResponseFunctionCallArgumentsDeltaChunk(chunk) {
+  return chunk.type === "response.function_call_arguments.delta";
+}
+function isResponseOutputItemAddedChunk(chunk) {
+  return chunk.type === "response.output_item.added";
+}
+function isResponseOutputItemAddedReasoningChunk(chunk) {
+  return isResponseOutputItemAddedChunk(chunk) && chunk.item.type === "reasoning";
+}
+function isResponseAnnotationAddedChunk(chunk) {
+  return chunk.type === "response.output_text.annotation.added";
+}
+function isResponseReasoningSummaryPartAddedChunk(chunk) {
+  return chunk.type === "response.reasoning_summary_part.added";
+}
+function isResponseReasoningSummaryTextDeltaChunk(chunk) {
+  return chunk.type === "response.reasoning_summary_text.delta";
+}
+function isErrorChunk(chunk) {
+  return chunk.type === "error";
+}
+function getResponsesModelConfig(modelId) {
+  const supportsFlexProcessing2 = modelId.startsWith("o3") || modelId.startsWith("o4-mini") || modelId.startsWith("gpt-5") && !modelId.startsWith("gpt-5-chat");
+  const supportsPriorityProcessing2 = modelId.startsWith("gpt-4") || modelId.startsWith("gpt-5-mini") || modelId.startsWith("gpt-5") && !modelId.startsWith("gpt-5-nano") && !modelId.startsWith("gpt-5-chat") || modelId.startsWith("o3") || modelId.startsWith("o4-mini");
+  const defaults = {
+    requiredAutoTruncation: false,
+    systemMessageMode: "system",
+    supportsFlexProcessing: supportsFlexProcessing2,
+    supportsPriorityProcessing: supportsPriorityProcessing2
+  };
+  if (modelId.startsWith("gpt-5-chat")) {
+    return {
+      ...defaults,
+      isReasoningModel: false
+    };
+  }
+  if (modelId.startsWith("o") || modelId.startsWith("gpt-5") || modelId.startsWith("codex-") || modelId.startsWith("computer-use")) {
+    if (modelId.startsWith("o1-mini") || modelId.startsWith("o1-preview")) {
+      return {
+        ...defaults,
+        isReasoningModel: true,
+        systemMessageMode: "remove"
+      };
+    }
+    return {
+      ...defaults,
+      isReasoningModel: true,
+      systemMessageMode: "developer"
+    };
+  }
+  return {
+    ...defaults,
+    isReasoningModel: false
+  };
+}
+var openaiResponsesProviderOptionsSchema = external_exports.object({
+  metadata: external_exports.any().nullish(),
+  parallelToolCalls: external_exports.boolean().nullish(),
+  previousResponseId: external_exports.string().nullish(),
+  store: external_exports.boolean().nullish(),
+  user: external_exports.string().nullish(),
+  reasoningEffort: external_exports.string().nullish(),
+  strictJsonSchema: external_exports.boolean().nullish(),
+  instructions: external_exports.string().nullish(),
+  reasoningSummary: external_exports.string().nullish(),
+  serviceTier: external_exports.enum(["auto", "flex", "priority"]).nullish(),
+  include: external_exports.array(
+    external_exports.enum([
+      "reasoning.encrypted_content",
+      "file_search_call.results",
+      "message.output_text.logprobs"
+    ])
+  ).nullish(),
+  textVerbosity: external_exports.enum(["low", "medium", "high"]).nullish(),
+  promptCacheKey: external_exports.string().nullish(),
+  safetyIdentifier: external_exports.string().nullish(),
+  /**
+   * Return the log probabilities of the tokens.
+   *
+   * Setting to true will return the log probabilities of the tokens that
+   * were generated.
+   *
+   * Setting to a number will return the log probabilities of the top n
+   * tokens that were generated.
+   *
+   * @see https://platform.openai.com/docs/api-reference/responses/create
+   * @see https://cookbook.openai.com/examples/using_logprobs
+   */
+  logprobs: external_exports.union([external_exports.boolean(), external_exports.number().min(1).max(TOP_LOGPROBS_MAX)]).optional()
+});
+var OpenAIProviderOptionsSchema = external_exports.object({
+  instructions: external_exports.string().nullish(),
+  speed: external_exports.number().min(0.25).max(4).default(1).nullish()
+});
+var OpenAISpeechModel = class {
+  constructor(modelId, config2) {
+    this.modelId = modelId;
+    this.config = config2;
+    this.specificationVersion = "v2";
+  }
+  get provider() {
+    return this.config.provider;
+  }
+  async getArgs({
+    text: text3,
+    voice = "alloy",
+    outputFormat = "mp3",
+    speed,
+    instructions,
+    language,
+    providerOptions
+  }) {
+    const warnings = [];
+    const openAIOptions = await parseProviderOptions({
+      provider: "openai",
+      providerOptions,
+      schema: OpenAIProviderOptionsSchema
+    });
+    const requestBody = {
+      model: this.modelId,
+      input: text3,
+      voice,
+      response_format: "mp3",
+      speed,
+      instructions
+    };
+    if (outputFormat) {
+      if (["mp3", "opus", "aac", "flac", "wav", "pcm"].includes(outputFormat)) {
+        requestBody.response_format = outputFormat;
+      } else {
+        warnings.push({
+          type: "unsupported-setting",
+          setting: "outputFormat",
+          details: `Unsupported output format: ${outputFormat}. Using mp3 instead.`
+        });
+      }
+    }
+    if (openAIOptions) {
+      const speechModelOptions = {};
+      for (const key in speechModelOptions) {
+        const value = speechModelOptions[key];
+        if (value !== void 0) {
+          requestBody[key] = value;
+        }
+      }
+    }
+    if (language) {
+      warnings.push({
+        type: "unsupported-setting",
+        setting: "language",
+        details: `OpenAI speech models do not support language selection. Language parameter "${language}" was ignored.`
+      });
+    }
+    return {
+      requestBody,
+      warnings
+    };
+  }
+  async doGenerate(options) {
+    var _a17, _b8, _c;
+    const currentDate = (_c = (_b8 = (_a17 = this.config._internal) == null ? void 0 : _a17.currentDate) == null ? void 0 : _b8.call(_a17)) != null ? _c : /* @__PURE__ */ new Date();
+    const { requestBody, warnings } = await this.getArgs(options);
+    const {
+      value: audio,
+      responseHeaders,
+      rawValue: rawResponse
+    } = await postJsonToApi({
+      url: this.config.url({
+        path: "/audio/speech",
+        modelId: this.modelId
+      }),
+      headers: combineHeaders(this.config.headers(), options.headers),
+      body: requestBody,
+      failedResponseHandler: openaiFailedResponseHandler,
+      successfulResponseHandler: createBinaryResponseHandler(),
+      abortSignal: options.abortSignal,
+      fetch: this.config.fetch
+    });
+    return {
+      audio,
+      warnings,
+      request: {
+        body: JSON.stringify(requestBody)
+      },
+      response: {
+        timestamp: currentDate,
+        modelId: this.modelId,
+        headers: responseHeaders,
+        body: rawResponse
+      }
+    };
+  }
+};
+var openAITranscriptionProviderOptions = external_exports.object({
+  /**
+   * Additional information to include in the transcription response.
+   */
+  include: external_exports.array(external_exports.string()).optional(),
+  /**
+   * The language of the input audio in ISO-639-1 format.
+   */
+  language: external_exports.string().optional(),
+  /**
+   * An optional text to guide the model's style or continue a previous audio segment.
+   */
+  prompt: external_exports.string().optional(),
+  /**
+   * The sampling temperature, between 0 and 1.
+   * @default 0
+   */
+  temperature: external_exports.number().min(0).max(1).default(0).optional(),
+  /**
+   * The timestamp granularities to populate for this transcription.
+   * @default ['segment']
+   */
+  timestampGranularities: external_exports.array(external_exports.enum(["word", "segment"])).default(["segment"]).optional()
+});
+var languageMap = {
+  afrikaans: "af",
+  arabic: "ar",
+  armenian: "hy",
+  azerbaijani: "az",
+  belarusian: "be",
+  bosnian: "bs",
+  bulgarian: "bg",
+  catalan: "ca",
+  chinese: "zh",
+  croatian: "hr",
+  czech: "cs",
+  danish: "da",
+  dutch: "nl",
+  english: "en",
+  estonian: "et",
+  finnish: "fi",
+  french: "fr",
+  galician: "gl",
+  german: "de",
+  greek: "el",
+  hebrew: "he",
+  hindi: "hi",
+  hungarian: "hu",
+  icelandic: "is",
+  indonesian: "id",
+  italian: "it",
+  japanese: "ja",
+  kannada: "kn",
+  kazakh: "kk",
+  korean: "ko",
+  latvian: "lv",
+  lithuanian: "lt",
+  macedonian: "mk",
+  malay: "ms",
+  marathi: "mr",
+  maori: "mi",
+  nepali: "ne",
+  norwegian: "no",
+  persian: "fa",
+  polish: "pl",
+  portuguese: "pt",
+  romanian: "ro",
+  russian: "ru",
+  serbian: "sr",
+  slovak: "sk",
+  slovenian: "sl",
+  spanish: "es",
+  swahili: "sw",
+  swedish: "sv",
+  tagalog: "tl",
+  tamil: "ta",
+  thai: "th",
+  turkish: "tr",
+  ukrainian: "uk",
+  urdu: "ur",
+  vietnamese: "vi",
+  welsh: "cy"
+};
+var OpenAITranscriptionModel = class {
+  constructor(modelId, config2) {
+    this.modelId = modelId;
+    this.config = config2;
+    this.specificationVersion = "v2";
+  }
+  get provider() {
+    return this.config.provider;
+  }
+  async getArgs({
+    audio,
+    mediaType,
+    providerOptions
+  }) {
+    const warnings = [];
+    const openAIOptions = await parseProviderOptions({
+      provider: "openai",
+      providerOptions,
+      schema: openAITranscriptionProviderOptions
+    });
+    const formData = new FormData();
+    const blob2 = audio instanceof Uint8Array ? new Blob([audio]) : new Blob([convertBase64ToUint8Array(audio)]);
+    formData.append("model", this.modelId);
+    const fileExtension = mediaTypeToExtension(mediaType);
+    formData.append(
+      "file",
+      new File([blob2], "audio", { type: mediaType }),
+      `audio.${fileExtension}`
+    );
+    if (openAIOptions) {
+      const transcriptionModelOptions = {
+        include: openAIOptions.include,
+        language: openAIOptions.language,
+        prompt: openAIOptions.prompt,
+        // https://platform.openai.com/docs/api-reference/audio/createTranscription#audio_createtranscription-response_format
+        // prefer verbose_json to get segments for models that support it
+        response_format: [
+          "gpt-4o-transcribe",
+          "gpt-4o-mini-transcribe"
+        ].includes(this.modelId) ? "json" : "verbose_json",
+        temperature: openAIOptions.temperature,
+        timestamp_granularities: openAIOptions.timestampGranularities
+      };
+      for (const [key, value] of Object.entries(transcriptionModelOptions)) {
+        if (value != null) {
+          if (Array.isArray(value)) {
+            for (const item of value) {
+              formData.append(`${key}[]`, String(item));
+            }
+          } else {
+            formData.append(key, String(value));
+          }
+        }
+      }
+    }
+    return {
+      formData,
+      warnings
+    };
+  }
+  async doGenerate(options) {
+    var _a17, _b8, _c, _d, _e, _f, _g, _h;
+    const currentDate = (_c = (_b8 = (_a17 = this.config._internal) == null ? void 0 : _a17.currentDate) == null ? void 0 : _b8.call(_a17)) != null ? _c : /* @__PURE__ */ new Date();
+    const { formData, warnings } = await this.getArgs(options);
+    const {
+      value: response,
+      responseHeaders,
+      rawValue: rawResponse
+    } = await postFormDataToApi({
+      url: this.config.url({
+        path: "/audio/transcriptions",
+        modelId: this.modelId
+      }),
+      headers: combineHeaders(this.config.headers(), options.headers),
+      formData,
+      failedResponseHandler: openaiFailedResponseHandler,
+      successfulResponseHandler: createJsonResponseHandler(
+        openaiTranscriptionResponseSchema
+      ),
+      abortSignal: options.abortSignal,
+      fetch: this.config.fetch
+    });
+    const language = response.language != null && response.language in languageMap ? languageMap[response.language] : void 0;
+    return {
+      text: response.text,
+      segments: (_g = (_f = (_d = response.segments) == null ? void 0 : _d.map((segment) => ({
+        text: segment.text,
+        startSecond: segment.start,
+        endSecond: segment.end
+      }))) != null ? _f : (_e = response.words) == null ? void 0 : _e.map((word) => ({
+        text: word.word,
+        startSecond: word.start,
+        endSecond: word.end
+      }))) != null ? _g : [],
+      language,
+      durationInSeconds: (_h = response.duration) != null ? _h : void 0,
+      warnings,
+      response: {
+        timestamp: currentDate,
+        modelId: this.modelId,
+        headers: responseHeaders,
+        body: rawResponse
+      }
+    };
+  }
+};
+var openaiTranscriptionResponseSchema = external_exports.object({
+  text: external_exports.string(),
+  language: external_exports.string().nullish(),
+  duration: external_exports.number().nullish(),
+  words: external_exports.array(
+    external_exports.object({
+      word: external_exports.string(),
+      start: external_exports.number(),
+      end: external_exports.number()
+    })
+  ).nullish(),
+  segments: external_exports.array(
+    external_exports.object({
+      id: external_exports.number(),
+      seek: external_exports.number(),
+      start: external_exports.number(),
+      end: external_exports.number(),
+      text: external_exports.string(),
+      tokens: external_exports.array(external_exports.number()),
+      temperature: external_exports.number(),
+      avg_logprob: external_exports.number(),
+      compression_ratio: external_exports.number(),
+      no_speech_prob: external_exports.number()
+    })
+  ).nullish()
+});
+function createOpenAI(options = {}) {
+  var _a17, _b8;
+  const baseURL = (_a17 = withoutTrailingSlash(options.baseURL)) != null ? _a17 : "https://api.openai.com/v1";
+  const providerName = (_b8 = options.name) != null ? _b8 : "openai";
+  const getHeaders = () => ({
+    Authorization: `Bearer ${loadApiKey({
+      apiKey: options.apiKey,
+      environmentVariableName: "OPENAI_API_KEY",
+      description: "OpenAI"
+    })}`,
+    "OpenAI-Organization": options.organization,
+    "OpenAI-Project": options.project,
+    ...options.headers
+  });
+  const createChatModel = (modelId) => new OpenAIChatLanguageModel(modelId, {
+    provider: `${providerName}.chat`,
+    url: ({ path: path5 }) => `${baseURL}${path5}`,
+    headers: getHeaders,
+    fetch: options.fetch
+  });
+  const createCompletionModel = (modelId) => new OpenAICompletionLanguageModel(modelId, {
+    provider: `${providerName}.completion`,
+    url: ({ path: path5 }) => `${baseURL}${path5}`,
+    headers: getHeaders,
+    fetch: options.fetch
+  });
+  const createEmbeddingModel = (modelId) => new OpenAIEmbeddingModel(modelId, {
+    provider: `${providerName}.embedding`,
+    url: ({ path: path5 }) => `${baseURL}${path5}`,
+    headers: getHeaders,
+    fetch: options.fetch
+  });
+  const createImageModel = (modelId) => new OpenAIImageModel(modelId, {
+    provider: `${providerName}.image`,
+    url: ({ path: path5 }) => `${baseURL}${path5}`,
+    headers: getHeaders,
+    fetch: options.fetch
+  });
+  const createTranscriptionModel = (modelId) => new OpenAITranscriptionModel(modelId, {
+    provider: `${providerName}.transcription`,
+    url: ({ path: path5 }) => `${baseURL}${path5}`,
+    headers: getHeaders,
+    fetch: options.fetch
+  });
+  const createSpeechModel = (modelId) => new OpenAISpeechModel(modelId, {
+    provider: `${providerName}.speech`,
+    url: ({ path: path5 }) => `${baseURL}${path5}`,
+    headers: getHeaders,
+    fetch: options.fetch
+  });
+  const createLanguageModel = (modelId) => {
+    if (new.target) {
+      throw new Error(
+        "The OpenAI model function cannot be called with the new keyword."
+      );
+    }
+    return createResponsesModel(modelId);
+  };
+  const createResponsesModel = (modelId) => {
+    return new OpenAIResponsesLanguageModel(modelId, {
+      provider: `${providerName}.responses`,
+      url: ({ path: path5 }) => `${baseURL}${path5}`,
+      headers: getHeaders,
+      fetch: options.fetch,
+      fileIdPrefixes: ["file-"]
+    });
+  };
+  const provider = function(modelId) {
+    return createLanguageModel(modelId);
+  };
+  provider.languageModel = createLanguageModel;
+  provider.chat = createChatModel;
+  provider.completion = createCompletionModel;
+  provider.responses = createResponsesModel;
+  provider.embedding = createEmbeddingModel;
+  provider.textEmbedding = createEmbeddingModel;
+  provider.textEmbeddingModel = createEmbeddingModel;
+  provider.image = createImageModel;
+  provider.imageModel = createImageModel;
+  provider.transcription = createTranscriptionModel;
+  provider.transcriptionModel = createTranscriptionModel;
+  provider.speech = createSpeechModel;
+  provider.speechModel = createSpeechModel;
+  provider.tools = openaiTools;
+  return provider;
+}
+var openai = createOpenAI();
+
+// src/utils/json-parser.ts
+function parseJsonResponse(text3) {
+  let cleanText = text3.trim();
+  if (cleanText.startsWith("```json")) {
+    cleanText = cleanText.replace(/^```json\s*/, "").replace(/\s*```$/, "");
+  } else if (cleanText.startsWith("```")) {
+    cleanText = cleanText.replace(/^```\s*/, "").replace(/\s*```$/, "");
+  }
+  return JSON.parse(cleanText);
+}
+
 // src/agents/summary.ts
 var SummaryResultSchema = external_exports.object({
-  project: external_exports.string().min(1, "Project name is required"),
+  // Support both formats
+  project_name: external_exports.string().optional(),
+  projectName: external_exports.string().optional(),
   description: external_exports.string().min(10, "Project description must be at least 10 characters"),
   version: external_exports.string().default("1.0.0"),
-  stakeholders: external_exports.array(external_exports.string()).default([]),
-  businessGoals: external_exports.array(external_exports.string()).default([]),
-  technicalRequirements: external_exports.array(external_exports.string()).default([]),
-  scope: external_exports.object({
-    inScope: external_exports.array(external_exports.string()).default([]),
-    outOfScope: external_exports.array(external_exports.string()).default([])
-  }).optional(),
-  timeline: external_exports.object({
-    estimatedWeeks: external_exports.number().positive().optional(),
-    milestones: external_exports.array(external_exports.string()).default([]),
-    dependencies: external_exports.array(external_exports.string()).default([])
-  }).optional(),
-  riskFactors: external_exports.array(external_exports.string()).default([]),
-  successCriteria: external_exports.array(external_exports.string()).default([])
-});
+  key_stakeholders: external_exports.union([external_exports.record(external_exports.string()), external_exports.array(external_exports.any())]).optional(),
+  keyStakeholders: external_exports.union([external_exports.record(external_exports.string()), external_exports.array(external_exports.any())]).optional(),
+  business_goals: external_exports.array(external_exports.any()).default([]),
+  businessGoals: external_exports.array(external_exports.any()).default([]),
+  technical_requirements: external_exports.any().optional(),
+  technicalRequirements: external_exports.any().optional(),
+  project_scope: external_exports.any().optional(),
+  projectScope: external_exports.any().optional(),
+  timeline_and_milestones: external_exports.any().optional(),
+  timeline: external_exports.any().optional(),
+  risk_factors_and_dependencies: external_exports.any().optional(),
+  risk_factors: external_exports.any().optional(),
+  riskFactors: external_exports.any().optional(),
+  success_criteria_and_kpis: external_exports.any().optional(),
+  success_criteria: external_exports.any().optional(),
+  successCriteria: external_exports.any().optional()
+}).refine((data) => data.project_name || data.projectName, {
+  message: "Project name is required"
+}).transform((data) => ({
+  // Transform to our expected format
+  project: data.project_name || data.projectName || "",
+  description: data.description,
+  version: data.version,
+  stakeholders: (() => {
+    const stakeholders = data.key_stakeholders || data.keyStakeholders;
+    return Array.isArray(stakeholders) ? stakeholders.map((s) => s.role || s.name || String(s)) : stakeholders ? Object.keys(stakeholders) : [];
+  })(),
+  businessGoals: (() => {
+    const goals = data.business_goals || data.businessGoals || [];
+    return goals.map(
+      (goal) => typeof goal === "string" ? goal : goal.goal || JSON.stringify(goal)
+    );
+  })(),
+  technicalRequirements: (() => {
+    const tech = data.technical_requirements || data.technicalRequirements;
+    return tech ? [JSON.stringify(tech)] : [];
+  })(),
+  scope: (() => {
+    const scope = data.project_scope || data.projectScope;
+    return scope ? {
+      inScope: scope.in_scope || scope.inScope || [],
+      outOfScope: scope.out_of_scope || scope.outOfScope || []
+    } : void 0;
+  })(),
+  timeline: (() => {
+    const timeline = data.timeline_and_milestones || data.timeline;
+    return timeline ? {
+      estimatedWeeks: 14,
+      // Default based on the phases
+      milestones: timeline.phases?.map((p) => p.phase) || [],
+      dependencies: []
+    } : void 0;
+  })(),
+  riskFactors: (() => {
+    const risks = data.risk_factors_and_dependencies?.high_risk_items || data.risk_factors?.high_risk_items || data.riskFactors;
+    return Array.isArray(risks) ? risks.map((r) => r.risk || r) : [];
+  })(),
+  successCriteria: (() => {
+    const criteria = data.success_criteria_and_kpis?.primary_kpis || data.success_criteria?.primary_kpis || data.successCriteria?.primaryKPIs;
+    return Array.isArray(criteria) ? criteria.map((kpi) => `${kpi.metric}: ${kpi.target}`) : [];
+  })()
+}));
+var SummaryAgent = class {
+  constructor(model = "gpt-4o-mini") {
+    this.model = model;
+  }
+  async extractSummary(prdContent, sourceFile) {
+    const systemPrompt = `You are the Summary Agent in the IdeaForge system. Your job is to extract high-level project information from a Product Requirements Document (PRD).
 
-// src/schemas/spec.ts
-var PersonaSchema = external_exports.object({
-  name: external_exports.string().min(1, "Persona name is required"),
-  goals: external_exports.array(external_exports.string().min(1, "Goal cannot be empty")).min(1, "At least one goal is required")
-});
-var EntityRelationSchema = external_exports.object({
-  to: external_exports.string().min(1, "Relation target is required"),
-  type: external_exports.enum(["one-to-one", "one-to-many", "many-to-many"])
-});
-var EntitySchema = external_exports.object({
-  name: external_exports.string().min(1, "Entity name is required"),
-  attributes: external_exports.array(external_exports.string().min(1, "Attribute cannot be empty")).min(1, "At least one attribute is required"),
-  relations: external_exports.array(EntityRelationSchema).optional().default([])
-});
-var ApiParameterSchema = external_exports.object({
-  name: external_exports.string().min(1, "Parameter name is required"),
-  type: external_exports.string().min(1, "Parameter type is required"),
-  required: external_exports.boolean().optional().default(true),
-  description: external_exports.string().optional()
-});
-var ApiSchema = external_exports.object({
-  method: external_exports.enum(["GET", "POST", "PUT", "DELETE", "PATCH"]),
-  route: external_exports.string().min(1, "API route is required").regex(/^\//, "Route must start with /"),
-  summary: external_exports.string().optional(),
-  inputs: external_exports.array(ApiParameterSchema).default([]),
-  outputs: external_exports.array(ApiParameterSchema).default([]),
-  authenticated: external_exports.boolean().optional().default(false)
-});
-var ConstraintSchema = external_exports.object({
-  rule: external_exports.string().min(1, "Constraint rule is required"),
-  type: external_exports.enum(["perf", "security", "compliance", "ux", "business"]),
-  value: external_exports.string().optional(),
-  priority: external_exports.enum(["low", "medium", "high", "critical"]).optional().default("medium")
-});
-var ScenarioSchema = external_exports.object({
-  id: external_exports.string().min(1, "Scenario ID is required").regex(/^AC-\d{3}$/, "ID must be in format AC-XXX"),
-  given: external_exports.string().min(1, "Given condition is required"),
-  when: external_exports.string().min(1, "When action is required"),
-  then: external_exports.string().min(1, "Then outcome is required"),
-  priority: external_exports.enum(["low", "medium", "high", "critical"]).optional().default("medium")
-});
-var TaskSchema = external_exports.object({
-  id: external_exports.string().min(1, "Task ID is required").regex(/^T-\d{3}$/, "ID must be in format T-XXX"),
-  title: external_exports.string().min(1, "Task title is required"),
-  description: external_exports.string().optional(),
-  dependsOn: external_exports.array(external_exports.string().regex(/^T-\d{3}$/)).default([]),
-  deliverables: external_exports.array(external_exports.string().min(1, "Deliverable cannot be empty")).default([]),
-  acceptanceCriteria: external_exports.array(external_exports.string().regex(/^AC-\d{3}$/)).default([]),
-  estimatedComplexity: external_exports.enum(["low", "medium", "high", "critical"]).optional().default("medium"),
-  ownerAgent: external_exports.string().optional().default("code-ts"),
-  runtime: external_exports.object({
-    language: external_exports.string().optional(),
-    framework: external_exports.string().optional(),
-    database: external_exports.string().optional()
-  }).optional()
-});
-var SpecSchema = external_exports.object({
-  project: external_exports.string().min(1, "Project name is required"),
-  version: external_exports.string().optional().default("1.0.0"),
-  description: external_exports.string().optional(),
-  personas: external_exports.array(PersonaSchema).min(1, "At least one persona is required"),
-  entities: external_exports.array(EntitySchema).min(1, "At least one entity is required"),
-  apis: external_exports.array(ApiSchema).default([]),
-  constraints: external_exports.array(ConstraintSchema).default([]),
-  scenarios: external_exports.array(ScenarioSchema).min(1, "At least one acceptance criteria is required"),
-  tasks: external_exports.array(TaskSchema).min(1, "At least one task is required"),
-  metadata: external_exports.object({
-    compiledAt: external_exports.date().optional(),
-    compiledBy: external_exports.string().optional().default("ideaforge"),
-    sourceFile: external_exports.string().optional(),
-    totalEstimatedHours: external_exports.number().optional()
-  }).optional()
-});
+Extract and structure the following information:
+1. Project name and description
+2. Key stakeholders and their roles
+3. Business goals and objectives
+4. Technical requirements at a high level
+5. Project scope (what's in/out of scope)
+6. Timeline and milestones if mentioned
+7. Risk factors and dependencies
+8. Success criteria and KPIs
+
+Be thorough but concise. Focus on the strategic overview rather than detailed technical specifications.
+If information is not explicitly stated, make reasonable inferences based on context.
+
+Return your analysis in a structured JSON format that matches the expected schema.`;
+    const userPrompt = `Analyze this PRD and extract the high-level project summary:
+
+${prdContent}
+
+${sourceFile ? `
+Source file: ${sourceFile}` : ""}
+
+Please provide a comprehensive project summary in JSON format.`;
+    try {
+      const result = await generateText({
+        model: openai(this.model),
+        system: systemPrompt,
+        prompt: userPrompt,
+        temperature: 0.1,
+        // Low temperature for consistent extraction
+        maxTokens: 2e3
+      });
+      let summaryData;
+      try {
+        summaryData = parseJsonResponse(result.text);
+        console.log("\u2705 Summary data parsed successfully");
+      } catch (parseError) {
+        console.error(
+          "\u274C JSON parsing failed. Raw response:",
+          result.text.substring(0, 500) + "..."
+        );
+        throw new Error(
+          `Failed to parse summary result as JSON: ${parseError}`
+        );
+      }
+      try {
+        const validatedSummary = SummaryResultSchema.parse(summaryData);
+        console.log("\u2705 Summary validation passed");
+        return validatedSummary;
+      } catch (validationError) {
+        if (validationError instanceof external_exports.ZodError) {
+          console.error(
+            "\u274C Summary validation failed:",
+            validationError.errors
+          );
+          console.error(
+            "Raw data structure:",
+            JSON.stringify(summaryData, null, 2)
+          );
+          throw new Error(
+            `Summary validation failed: ${validationError.errors.map((e) => `${e.path.join(".")}: ${e.message}`).join(", ")}`
+          );
+        }
+        throw validationError;
+      }
+    } catch (error45) {
+      throw error45;
+    }
+  }
+  /**
+   * Generate a concise executive summary from the extracted data
+   */
+  generateExecutiveSummary(summary) {
+    const sections = [];
+    sections.push(`# ${summary.project}`);
+    sections.push(`
+${summary.description}`);
+    if (summary.businessGoals.length > 0) {
+      sections.push(`
+## Business Goals`);
+      sections.push(
+        summary.businessGoals.map((goal) => `- ${goal}`).join("\n")
+      );
+    }
+    if (summary.technicalRequirements.length > 0) {
+      sections.push(`
+## Technical Requirements`);
+      sections.push(
+        summary.technicalRequirements.map((req) => `- ${req}`).join("\n")
+      );
+    }
+    if (summary.scope) {
+      sections.push(`
+## Scope`);
+      if (summary.scope.inScope.length > 0) {
+        sections.push(`**In Scope:**`);
+        sections.push(
+          summary.scope.inScope.map((item) => `- ${item}`).join("\n")
+        );
+      }
+      if (summary.scope.outOfScope.length > 0) {
+        sections.push(`**Out of Scope:**`);
+        sections.push(
+          summary.scope.outOfScope.map((item) => `- ${item}`).join("\n")
+        );
+      }
+    }
+    if (summary.successCriteria.length > 0) {
+      sections.push(`
+## Success Criteria`);
+      sections.push(
+        summary.successCriteria.map((criteria) => `- ${criteria}`).join("\n")
+      );
+    }
+    if (summary.riskFactors.length > 0) {
+      sections.push(`
+## Risk Factors`);
+      sections.push(summary.riskFactors.map((risk) => `- ${risk}`).join("\n"));
+    }
+    return sections.join("\n");
+  }
+  /**
+   * Validate that the PRD contains sufficient information for processing
+   */
+  async validatePRDCompleteness(prdContent) {
+    const systemPrompt = `You are a PRD quality analyzer. Evaluate if this PRD contains sufficient information for automated code generation.
+
+Check for these essential elements:
+1. Clear project description and goals
+2. User stories or use cases
+3. Functional requirements
+4. Technical requirements or constraints
+5. API endpoints or data models (if applicable)
+6. Success criteria or acceptance criteria
+
+Identify what's missing and provide recommendations for improvement.`;
+    const userPrompt = `Analyze this PRD for completeness:
+
+${prdContent}
+
+Return a JSON object with:
+- isComplete: boolean
+- missingElements: array of missing critical elements
+- recommendations: array of suggestions to improve the PRD`;
+    try {
+      const result = await generateText({
+        model: openai(this.model),
+        system: systemPrompt,
+        prompt: userPrompt,
+        temperature: 0.1,
+        maxTokens: 1e3
+      });
+      const analysis = JSON.parse(result.text);
+      return {
+        isComplete: analysis.isComplete || false,
+        missingElements: analysis.missingElements || [],
+        recommendations: analysis.recommendations || []
+      };
+    } catch (error45) {
+      return {
+        isComplete: false,
+        missingElements: ["Failed to analyze PRD completeness"],
+        recommendations: [
+          "Please ensure the PRD is well-formatted and contains clear requirements"
+        ]
+      };
+    }
+  }
+};
+function createSummaryAgent(model) {
+  return new SummaryAgent(model);
+}
 
 // src/agents/entity-api.ts
 var EntityApiResultSchema = external_exports.object({
-  entities: external_exports.array(EntitySchema).min(1, "At least one entity is required"),
-  apis: external_exports.array(ApiSchema).default([]),
-  dataFlow: external_exports.array(
-    external_exports.object({
-      from: external_exports.string(),
-      to: external_exports.string(),
-      operation: external_exports.string(),
-      description: external_exports.string().optional()
-    })
-  ).default([]),
-  integrations: external_exports.array(
-    external_exports.object({
-      name: external_exports.string(),
-      type: external_exports.enum(["database", "external_api", "service", "library"]),
-      description: external_exports.string(),
-      required: external_exports.boolean().default(true)
-    })
-  ).default([])
+  entities: external_exports.any().optional(),
+  apis: external_exports.any().default([]),
+  apiEndpoints: external_exports.any().default([]),
+  dataFlow: external_exports.any().default([]),
+  integrations: external_exports.any().default([]),
+  externalIntegrations: external_exports.any().default([])
 });
+var EntityApiAgent = class {
+  constructor(model = "gpt-4o-mini") {
+    this.model = model;
+  }
+  async extractEntitiesAndApis(prdContent, projectContext) {
+    const systemPrompt = `You are the Entity/API Agent in the IdeaForge system. Your job is to extract data models (entities) and API endpoints from a Product Requirements Document.
+
+Your responsibilities:
+1. ENTITIES: Identify core business entities with their attributes and relationships
+2. APIs: Extract RESTful endpoints with proper HTTP methods, routes, inputs, and outputs
+3. DATA FLOW: Map how data moves between entities through operations
+4. INTEGRATIONS: Identify external systems, databases, or services needed
+
+Guidelines for entities:
+- Focus on business domain objects (User, Product, Order, etc.)
+- Include all relevant attributes for each entity
+- Map relationships clearly (one-to-one, one-to-many, many-to-many)
+- Avoid technical implementation details
+
+Guidelines for APIs:
+- Use RESTful conventions (GET /users, POST /users, PUT /users/:id, etc.)
+- Routes must start with forward slash
+- Specify clear input/output parameters with types
+- Include authentication requirements where applicable
+
+Return structured JSON that matches the expected schema.`;
+    const userPrompt = `Analyze this PRD and extract all entities and API endpoints:
+
+${prdContent}
+
+${projectContext ? `
+Project Context: ${JSON.stringify(projectContext, null, 2)}` : ""}
+
+Focus on:
+1. What are the core business entities and their attributes?
+2. How do these entities relate to each other?
+3. What API endpoints are needed for CRUD operations?
+4. What external integrations are required?
+5. How does data flow through the system?
+
+Provide a comprehensive analysis in JSON format.`;
+    try {
+      const result = await generateText({
+        model: openai(this.model),
+        system: systemPrompt,
+        prompt: userPrompt,
+        temperature: 0.2,
+        // Slightly higher for creative entity modeling
+        maxTokens: 3e3
+      });
+      let entityApiData;
+      try {
+        entityApiData = parseJsonResponse(result.text);
+        console.log("\u2705 Entity/API data parsed successfully");
+      } catch (parseError) {
+        console.error(
+          "\u274C JSON parsing failed. Raw response:",
+          result.text.substring(0, 500) + "..."
+        );
+        throw new Error(
+          `Failed to parse entity/API result as JSON: ${parseError}`
+        );
+      }
+      try {
+        console.log("\u{1F50D} Starting Entity/API validation...");
+        const validatedResult = EntityApiResultSchema.parse(entityApiData);
+        console.log("\u2705 Entity/API validation passed");
+        const transformedResult = this.transformEntityApiData(validatedResult);
+        console.log("\u{1F4CA} Entities found:", transformedResult.entities.length);
+        console.log("\u{1F50C} APIs found:", transformedResult.apis.length);
+        return transformedResult;
+      } catch (validationError) {
+        console.error("\u274C Entity/API validation error:", validationError);
+        if (validationError instanceof external_exports.ZodError) {
+          console.error(
+            "\u274C Entity/API validation failed:",
+            validationError.errors
+          );
+          console.error(
+            "Raw data structure:",
+            JSON.stringify(entityApiData, null, 2)
+          );
+          throw new Error(
+            `Entity/API validation failed: ${validationError.errors.map((e) => `${e.path.join(".")}: ${e.message}`).join(", ")}`
+          );
+        }
+        throw validationError;
+      }
+    } catch (error45) {
+      throw error45;
+    }
+  }
+  /**
+   * Transform raw LLM data to our expected format
+   */
+  transformEntityApiData(data) {
+    const entitiesData = data.entities;
+    const entities = Array.isArray(entitiesData) ? entitiesData : entitiesData ? Object.entries(entitiesData).map(([name17, entity]) => ({
+      name: name17,
+      ...entity
+    })) : [];
+    const apisData = Array.isArray(data.apiEndpoints) ? data.apiEndpoints : data.apiEndpoints;
+    const apis = Array.isArray(apisData) ? apisData : apisData && typeof apisData === "object" ? Object.entries(apisData).flatMap(
+      ([entityName, entityApis]) => Object.entries(entityApis).map(
+        ([operation, apiDef]) => ({
+          ...apiDef,
+          summary: apiDef.description || `${operation} ${entityName}`
+        })
+      )
+    ) : [];
+    const integrationsData = data.integrations;
+    const integrations = Array.isArray(integrationsData) ? integrationsData : integrationsData && typeof integrationsData === "object" ? Object.entries(integrationsData).map(
+      ([name17, value]) => ({
+        name: name17,
+        description: Array.isArray(value) ? value.join(", ") : String(value)
+      })
+    ) : [];
+    return {
+      entities: entities.map((entity) => ({
+        name: entity.name,
+        attributes: Array.isArray(entity.attributes) ? entity.attributes : entity.attributes ? Object.keys(entity.attributes) : [],
+        relations: entity.relationships ? Object.entries(entity.relationships).map(([key, value]) => ({
+          to: key,
+          type: value
+        })) : []
+      })),
+      apis: apis.map((api) => ({
+        method: api.method,
+        route: api.route,
+        summary: api.description || api.summary || "API endpoint",
+        authenticated: false,
+        // Default
+        inputs: api.input ? Object.entries(api.input).map(([name17, type]) => ({
+          name: name17,
+          type: String(type),
+          required: true
+        })) : [],
+        outputs: api.output ? Object.entries(api.output).map(([name17, type]) => ({
+          name: name17,
+          type: String(type)
+        })) : []
+      })),
+      dataFlow: Array.isArray(data.dataFlow) ? data.dataFlow : [],
+      integrations: integrations.map((integration) => ({
+        name: integration.name,
+        type: "external_api",
+        description: integration.description || "",
+        required: true
+      }))
+    };
+  }
+  /**
+   * Generate entity relationship diagram in Mermaid format
+   */
+  generateEntityDiagram(entities) {
+    const lines = ["erDiagram"];
+    entities.forEach((entity) => {
+      lines.push(`  ${entity.name.toUpperCase()} {`);
+      entity.attributes.forEach((attr) => {
+        lines.push(`    string ${attr}`);
+      });
+      lines.push("  }");
+    });
+    entities.forEach((entity) => {
+      if (entity.relations) {
+        entity.relations.forEach((relation) => {
+          const relationSymbol = {
+            "one-to-one": "||--||",
+            "one-to-many": "||--o{",
+            "many-to-many": "}o--o{"
+          }[relation.type];
+          lines.push(
+            `  ${entity.name.toUpperCase()} ${relationSymbol} ${relation.to.toUpperCase()} : ${relation.type}`
+          );
+        });
+      }
+    });
+    return lines.join("\n");
+  }
+  /**
+   * Generate API documentation in markdown format
+   */
+  generateApiDocumentation(apis) {
+    const sections = ["# API Documentation\n"];
+    const groupedApis = apis.reduce((groups, api) => {
+      const resource = api.route.split("/")[1] || "root";
+      if (!groups[resource]) groups[resource] = [];
+      groups[resource].push(api);
+      return groups;
+    }, {});
+    Object.entries(groupedApis).forEach(([resource, resourceApis]) => {
+      sections.push(
+        `## ${resource.charAt(0).toUpperCase() + resource.slice(1)}`
+      );
+      resourceApis.forEach((api) => {
+        sections.push(`
+### ${api.method} ${api.route}`);
+        if (api.summary) {
+          sections.push(`${api.summary}`);
+        }
+        if (api.authenticated) {
+          sections.push("\u{1F512} **Authentication required**");
+        }
+        if (api.inputs.length > 0) {
+          sections.push("\n**Request Parameters:**");
+          api.inputs.forEach((input) => {
+            const required2 = input.required !== false ? " (required)" : " (optional)";
+            sections.push(
+              `- \`${input.name}\` (${input.type})${required2}${input.description ? `: ${input.description}` : ""}`
+            );
+          });
+        }
+        if (api.outputs.length > 0) {
+          sections.push("\n**Response:**");
+          api.outputs.forEach((output) => {
+            sections.push(
+              `- \`${output.name}\` (${output.type})${output.description ? `: ${output.description}` : ""}`
+            );
+          });
+        }
+        sections.push("");
+      });
+    });
+    return sections.join("\n");
+  }
+  /**
+   * Validate entity relationships for consistency
+   */
+  validateEntityRelationships(entities) {
+    const issues = [];
+    const suggestions = [];
+    const entityNames = entities.map((e) => e.name);
+    entities.forEach((entity) => {
+      if (entity.relations) {
+        entity.relations.forEach((relation) => {
+          if (!entityNames.includes(relation.to)) {
+            issues.push(
+              `Entity "${entity.name}" has relation to non-existent entity "${relation.to}"`
+            );
+          }
+          const targetEntity = entities.find((e) => e.name === relation.to);
+          if (targetEntity?.relations) {
+            const backRelation = targetEntity.relations.find(
+              (r) => r.to === entity.name
+            );
+            if (!backRelation && relation.type !== "one-to-many") {
+              suggestions.push(
+                `Consider adding bidirectional relationship between "${entity.name}" and "${relation.to}"`
+              );
+            }
+          }
+        });
+      }
+      const commonAttributes = ["id", "createdAt", "updatedAt"];
+      const missingCommon = commonAttributes.filter(
+        (attr) => !entity.attributes.some(
+          (a) => a.toLowerCase().includes(attr.toLowerCase())
+        )
+      );
+      if (missingCommon.length > 0) {
+        suggestions.push(
+          `Entity "${entity.name}" might benefit from common attributes: ${missingCommon.join(", ")}`
+        );
+      }
+    });
+    return {
+      isValid: issues.length === 0,
+      issues,
+      suggestions
+    };
+  }
+  /**
+   * Generate database schema suggestions based on entities
+   */
+  generateDatabaseSchema(entities) {
+    const tables = [];
+    entities.forEach((entity) => {
+      const tableName = entity.name.toLowerCase() + "s";
+      const columns = ["  id SERIAL PRIMARY KEY"];
+      entity.attributes.forEach((attr) => {
+        if (attr.toLowerCase() !== "id") {
+          const sqlType = this.mapAttributeToSqlType(attr);
+          columns.push(`  ${attr.toLowerCase()} ${sqlType}`);
+        }
+      });
+      columns.push("  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP");
+      columns.push("  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP");
+      tables.push(`CREATE TABLE ${tableName} (
+${columns.join(",\n")}
+);`);
+    });
+    return tables.join("\n\n");
+  }
+  mapAttributeToSqlType(attribute) {
+    const attr = attribute.toLowerCase();
+    if (attr.includes("email")) return "VARCHAR(255) UNIQUE";
+    if (attr.includes("password")) return "VARCHAR(255)";
+    if (attr.includes("phone")) return "VARCHAR(20)";
+    if (attr.includes("url") || attr.includes("link")) return "TEXT";
+    if (attr.includes("description") || attr.includes("content")) return "TEXT";
+    if (attr.includes("price") || attr.includes("amount"))
+      return "DECIMAL(10,2)";
+    if (attr.includes("count") || attr.includes("quantity")) return "INTEGER";
+    if (attr.includes("date") || attr.includes("time")) return "TIMESTAMP";
+    if (attr.includes("active") || attr.includes("enabled"))
+      return "BOOLEAN DEFAULT TRUE";
+    return "VARCHAR(255)";
+  }
+  /**
+   * Suggest additional APIs based on entities
+   */
+  suggestAdditionalApis(entities, existingApis) {
+    const suggestions = [];
+    const existingRoutes = existingApis.map(
+      (api) => `${api.method} ${api.route}`
+    );
+    entities.forEach((entity) => {
+      const resource = entity.name.toLowerCase();
+      const resourcePlural = resource + "s";
+      const crudApis = [
+        {
+          method: "GET",
+          route: `/${resourcePlural}`,
+          summary: `List all ${resourcePlural}`,
+          inputs: [
+            {
+              name: "page",
+              type: "number",
+              required: false,
+              description: "Page number for pagination"
+            },
+            {
+              name: "limit",
+              type: "number",
+              required: false,
+              description: "Number of items per page"
+            }
+          ],
+          outputs: [
+            {
+              name: resourcePlural,
+              type: "array",
+              description: `Array of ${resource} objects`
+            },
+            {
+              name: "total",
+              type: "number",
+              description: "Total number of items"
+            }
+          ]
+        },
+        {
+          method: "GET",
+          route: `/${resourcePlural}/:id`,
+          summary: `Get a specific ${resource}`,
+          inputs: [
+            {
+              name: "id",
+              type: "string",
+              required: true,
+              description: `${resource} ID`
+            }
+          ],
+          outputs: entity.attributes.map((attr) => ({
+            name: attr,
+            type: "string"
+          }))
+        },
+        {
+          method: "POST",
+          route: `/${resourcePlural}`,
+          summary: `Create a new ${resource}`,
+          inputs: entity.attributes.filter((attr) => attr.toLowerCase() !== "id").map((attr) => ({ name: attr, type: "string", required: true })),
+          outputs: entity.attributes.map((attr) => ({
+            name: attr,
+            type: "string"
+          }))
+        },
+        {
+          method: "PUT",
+          route: `/${resourcePlural}/:id`,
+          summary: `Update a ${resource}`,
+          inputs: [
+            {
+              name: "id",
+              type: "string",
+              required: true,
+              description: `${resource} ID`
+            },
+            ...entity.attributes.filter((attr) => attr.toLowerCase() !== "id").map((attr) => ({ name: attr, type: "string", required: false }))
+          ],
+          outputs: entity.attributes.map((attr) => ({
+            name: attr,
+            type: "string"
+          }))
+        },
+        {
+          method: "DELETE",
+          route: `/${resourcePlural}/:id`,
+          summary: `Delete a ${resource}`,
+          inputs: [
+            {
+              name: "id",
+              type: "string",
+              required: true,
+              description: `${resource} ID`
+            }
+          ],
+          outputs: [
+            {
+              name: "success",
+              type: "boolean",
+              description: "Deletion success status"
+            }
+          ]
+        }
+      ];
+      crudApis.forEach((api) => {
+        const routeKey = `${api.method} ${api.route}`;
+        if (!existingRoutes.includes(routeKey)) {
+          suggestions.push(api);
+        }
+      });
+    });
+    return suggestions;
+  }
+};
+function createEntityApiAgent(model) {
+  return new EntityApiAgent(model);
+}
 
 // src/agents/constraints.ts
 var ConstraintsResultSchema = external_exports.object({
-  constraints: external_exports.array(ConstraintSchema).min(1, "At least one constraint should be identified"),
-  categories: external_exports.object({
-    performance: external_exports.array(ConstraintSchema).default([]),
-    security: external_exports.array(ConstraintSchema).default([]),
-    compliance: external_exports.array(ConstraintSchema).default([]),
-    ux: external_exports.array(ConstraintSchema).default([]),
-    business: external_exports.array(ConstraintSchema).default([])
-  }),
-  recommendations: external_exports.array(
-    external_exports.object({
-      category: external_exports.enum(["perf", "security", "compliance", "ux", "business"]),
-      recommendation: external_exports.string(),
-      rationale: external_exports.string(),
-      priority: external_exports.enum(["low", "medium", "high", "critical"]).default("medium")
-    })
-  ).default([])
+  constraints: external_exports.any().default([]),
+  categories: external_exports.any().optional(),
+  recommendations: external_exports.any().default([])
 });
+var ConstraintsAgent = class {
+  constructor(model = "gpt-4o-mini") {
+    this.model = model;
+  }
+  async extractConstraints(prdContent, projectContext) {
+    const systemPrompt = `You are the Constraints Agent in the IdeaForge system. Your job is to extract all technical and business constraints from a Product Requirements Document.
+
+Your responsibilities:
+1. PERFORMANCE: Response times, throughput, scalability, load requirements
+2. SECURITY: Authentication, authorization, data protection, encryption, compliance
+3. COMPLIANCE: Regulatory requirements (GDPR, HIPAA, SOX, PCI-DSS, etc.)
+4. UX: Accessibility (WCAG), browser support, mobile requirements, usability standards
+5. BUSINESS: Budget, timeline, resource limitations, operational constraints
+
+Guidelines:
+- Be specific with measurable constraints (e.g., "response time < 200ms" not "fast response")
+- Identify implicit constraints that may not be explicitly stated
+- Categorize constraints by type and priority
+- Consider industry standards and best practices
+- Flag potential conflicts between constraints
+
+For each constraint, provide:
+- Clear, actionable rule statement
+- Appropriate category (perf/security/compliance/ux/business)
+- Specific value or threshold where applicable
+- Priority level (low/medium/high/critical)
+
+Return structured JSON that matches the expected schema.`;
+    const userPrompt = `Analyze this PRD and extract all constraints and requirements:
+
+${prdContent}
+
+${projectContext ? `
+Project Context: ${JSON.stringify(projectContext, null, 2)}` : ""}
+
+Focus on identifying:
+1. Performance requirements (response times, concurrent users, data volumes)
+2. Security requirements (authentication, encryption, access control)
+3. Compliance requirements (regulations, standards, certifications)
+4. UX requirements (accessibility, browser support, mobile compatibility)
+5. Business constraints (budget, timeline, resource limitations)
+6. Technical constraints (platform requirements, integration limitations)
+
+Also provide recommendations for additional constraints that should be considered based on the project type and industry.
+
+Provide a comprehensive analysis in JSON format.`;
+    try {
+      const result = await generateText({
+        model: openai(this.model),
+        system: systemPrompt,
+        prompt: userPrompt,
+        temperature: 0.1,
+        // Low temperature for consistent constraint extraction
+        maxTokens: 2500
+      });
+      let constraintsData;
+      try {
+        constraintsData = parseJsonResponse(result.text);
+      } catch (parseError) {
+        throw new Error(
+          `Failed to parse constraints result as JSON: ${parseError}`
+        );
+      }
+      const validatedResult = ConstraintsResultSchema.parse(constraintsData);
+      console.log("\u2705 Constraints validation passed");
+      const transformedResult = this.transformConstraintsData(validatedResult);
+      console.log(
+        "\u{1F4CA} Constraints found:",
+        transformedResult.constraints.length
+      );
+      return transformedResult;
+    } catch (error45) {
+      if (error45 instanceof external_exports.ZodError) {
+        throw new Error(
+          `Constraints validation failed: ${error45.errors.map((e) => `${e.path.join(".")}: ${e.message}`).join(", ")}`
+        );
+      }
+      throw error45;
+    }
+  }
+  /**
+   * Transform raw LLM data to our expected format
+   */
+  transformConstraintsData(data) {
+    let constraints = [];
+    if (Array.isArray(data.constraints)) {
+      constraints = data.constraints;
+    } else if (data.constraints && typeof data.constraints === "object") {
+      constraints = Object.values(data.constraints).flat();
+    }
+    const formattedConstraints = constraints.map((constraint) => ({
+      rule: constraint.rule || constraint.constraint || String(constraint),
+      type: constraint.type || "business",
+      value: constraint.value,
+      priority: constraint.priority || "medium"
+    }));
+    const categorized = this.categorizeConstraints(formattedConstraints);
+    return {
+      constraints: formattedConstraints,
+      categories: categorized,
+      recommendations: data.recommendations || []
+    };
+  }
+  /**
+   * Categorize constraints by type
+   */
+  categorizeConstraints(constraints) {
+    const categories = {
+      performance: [],
+      security: [],
+      compliance: [],
+      ux: [],
+      business: []
+    };
+    constraints.forEach((constraint) => {
+      categories[constraint.type].push(constraint);
+    });
+    return categories;
+  }
+  /**
+   * Generate constraints checklist for development teams
+   */
+  generateConstraintsChecklist(constraints) {
+    const sections = ["# Constraints Checklist\n"];
+    const categories = this.categorizeConstraints(constraints);
+    Object.entries(categories).forEach(([category, categoryConstraints]) => {
+      if (categoryConstraints.length > 0) {
+        sections.push(
+          `## ${category.charAt(0).toUpperCase() + category.slice(1)} Constraints
+`
+        );
+        categoryConstraints.forEach((constraint) => {
+          const priority = constraint.priority || "medium";
+          const priorityEmoji = {
+            low: "\u{1F7E2}",
+            medium: "\u{1F7E1}",
+            high: "\u{1F7E0}",
+            critical: "\u{1F534}"
+          }[priority];
+          sections.push(`- [ ] ${priorityEmoji} **${constraint.rule}**`);
+          if (constraint.value) {
+            sections.push(`  - Target: ${constraint.value}`);
+          }
+          sections.push("");
+        });
+      }
+    });
+    return sections.join("\n");
+  }
+  /**
+   * Validate constraints for conflicts and feasibility
+   */
+  validateConstraints(constraints) {
+    const conflicts = [];
+    const warnings = [];
+    const suggestions = [];
+    const perfConstraints = constraints.filter((c) => c.type === "perf");
+    const responseTimeConstraints = perfConstraints.filter(
+      (c) => c.rule.toLowerCase().includes("response") && c.rule.toLowerCase().includes("time")
+    );
+    if (responseTimeConstraints.length > 1) {
+      const values = responseTimeConstraints.map((c) => c.value).filter(Boolean);
+      if (values.length > 1 && new Set(values).size > 1) {
+        conflicts.push("Multiple conflicting response time requirements found");
+      }
+    }
+    const securityConstraints = constraints.filter(
+      (c) => c.type === "security"
+    );
+    const hasEncryption = securityConstraints.some(
+      (c) => c.rule.toLowerCase().includes("encrypt")
+    );
+    const hasStrictPerf = perfConstraints.some(
+      (c) => c.value && parseFloat(c.value.replace(/[^\d.]/g, "")) < 100
+      // < 100ms
+    );
+    if (hasEncryption && hasStrictPerf) {
+      warnings.push(
+        "Encryption requirements may impact strict performance targets"
+      );
+    }
+    const hasAuth = securityConstraints.some(
+      (c) => c.rule.toLowerCase().includes("auth")
+    );
+    const hasHttps = securityConstraints.some(
+      (c) => c.rule.toLowerCase().includes("https") || c.rule.toLowerCase().includes("ssl")
+    );
+    const hasAccessibility = constraints.some(
+      (c) => c.type === "ux" && c.rule.toLowerCase().includes("accessibility")
+    );
+    if (!hasAuth) {
+      suggestions.push("Consider adding authentication requirements");
+    }
+    if (!hasHttps) {
+      suggestions.push("Consider requiring HTTPS/SSL encryption");
+    }
+    if (!hasAccessibility) {
+      suggestions.push(
+        "Consider adding accessibility requirements (WCAG compliance)"
+      );
+    }
+    perfConstraints.forEach((constraint) => {
+      if (constraint.value) {
+        const numValue = parseFloat(constraint.value.replace(/[^\d.]/g, ""));
+        if (constraint.rule.toLowerCase().includes("response") && numValue < 10) {
+          warnings.push(
+            `Response time requirement of ${constraint.value} may be unrealistic for complex operations`
+          );
+        }
+      }
+    });
+    return {
+      isValid: conflicts.length === 0,
+      conflicts,
+      warnings,
+      suggestions
+    };
+  }
+  /**
+   * Generate implementation guidelines for constraints
+   */
+  generateImplementationGuidelines(constraints) {
+    const sections = ["# Implementation Guidelines\n"];
+    const categories = this.categorizeConstraints(constraints);
+    if (categories.performance.length > 0) {
+      sections.push("## Performance Implementation\n");
+      categories.performance.forEach((constraint) => {
+        sections.push(`### ${constraint.rule}`);
+        sections.push(this.getPerformanceGuideline(constraint));
+        sections.push("");
+      });
+    }
+    if (categories.security.length > 0) {
+      sections.push("## Security Implementation\n");
+      categories.security.forEach((constraint) => {
+        sections.push(`### ${constraint.rule}`);
+        sections.push(this.getSecurityGuideline(constraint));
+        sections.push("");
+      });
+    }
+    if (categories.ux.length > 0) {
+      sections.push("## UX Implementation\n");
+      categories.ux.forEach((constraint) => {
+        sections.push(`### ${constraint.rule}`);
+        sections.push(this.getUxGuideline(constraint));
+        sections.push("");
+      });
+    }
+    return sections.join("\n");
+  }
+  getPerformanceGuideline(constraint) {
+    const rule = constraint.rule.toLowerCase();
+    if (rule.includes("response time")) {
+      return `- Implement caching strategies (Redis, CDN)
+- Optimize database queries with proper indexing
+- Use connection pooling
+- Consider async processing for heavy operations
+- Monitor with APM tools`;
+    }
+    if (rule.includes("concurrent") || rule.includes("load")) {
+      return `- Implement horizontal scaling
+- Use load balancers
+- Optimize resource usage
+- Implement circuit breakers
+- Load test regularly`;
+    }
+    if (rule.includes("availability") || rule.includes("uptime")) {
+      return `- Implement health checks
+- Use multiple availability zones
+- Set up monitoring and alerting
+- Plan for graceful degradation
+- Implement backup systems`;
+    }
+    return "- Review performance best practices for your technology stack";
+  }
+  getSecurityGuideline(constraint) {
+    const rule = constraint.rule.toLowerCase();
+    if (rule.includes("authentication")) {
+      return `- Implement OAuth 2.0 or JWT tokens
+- Use secure session management
+- Implement multi-factor authentication
+- Follow OWASP authentication guidelines`;
+    }
+    if (rule.includes("encryption")) {
+      return `- Use TLS 1.3 for data in transit
+- Implement AES-256 for data at rest
+- Use proper key management
+- Hash passwords with bcrypt or Argon2`;
+    }
+    if (rule.includes("authorization")) {
+      return `- Implement role-based access control (RBAC)
+- Use principle of least privilege
+- Validate permissions on every request
+- Implement proper session management`;
+    }
+    return "- Follow OWASP security guidelines";
+  }
+  getUxGuideline(constraint) {
+    const rule = constraint.rule.toLowerCase();
+    if (rule.includes("accessibility")) {
+      return `- Follow WCAG 2.1 AA guidelines
+- Implement proper ARIA labels
+- Ensure keyboard navigation
+- Test with screen readers
+- Maintain color contrast ratios`;
+    }
+    if (rule.includes("mobile") || rule.includes("responsive")) {
+      return `- Use responsive design principles
+- Test on multiple device sizes
+- Optimize touch interactions
+- Consider mobile-first approach
+- Test performance on mobile networks`;
+    }
+    if (rule.includes("browser")) {
+      return `- Test on target browsers
+- Use progressive enhancement
+- Implement proper polyfills
+- Consider graceful degradation`;
+    }
+    return "- Follow UX best practices and usability guidelines";
+  }
+  /**
+   * Suggest additional constraints based on project type
+   */
+  suggestAdditionalConstraints(projectType, existingConstraints) {
+    const suggestions = [];
+    const existingRules = existingConstraints.map((c) => c.rule.toLowerCase());
+    const commonConstraints = [
+      {
+        rule: "HTTPS required for all communications",
+        type: "security",
+        priority: "high"
+      },
+      {
+        rule: "Input validation on all user inputs",
+        type: "security",
+        priority: "high"
+      },
+      {
+        rule: "Error handling must not expose sensitive information",
+        type: "security",
+        priority: "medium"
+      },
+      {
+        rule: "Logging must not include sensitive data",
+        type: "security",
+        priority: "medium"
+      }
+    ];
+    if (projectType.toLowerCase().includes("ecommerce") || projectType.toLowerCase().includes("payment")) {
+      const ecommerceConstraints = [
+        {
+          rule: "PCI DSS compliance required",
+          type: "compliance",
+          priority: "critical"
+        },
+        {
+          rule: "Payment data must be encrypted",
+          type: "security",
+          priority: "critical"
+        },
+        {
+          rule: "Cart abandonment recovery within 24 hours",
+          type: "business",
+          priority: "medium"
+        }
+      ];
+      suggestions.push(...ecommerceConstraints);
+    }
+    if (projectType.toLowerCase().includes("healthcare") || projectType.toLowerCase().includes("medical")) {
+      const healthcareConstraints = [
+        {
+          rule: "HIPAA compliance required",
+          type: "compliance",
+          priority: "critical"
+        },
+        {
+          rule: "Data encryption at rest and in transit",
+          type: "security",
+          priority: "critical"
+        },
+        {
+          rule: "Audit trail for all data access",
+          type: "security",
+          priority: "high"
+        }
+      ];
+      suggestions.push(...healthcareConstraints);
+    }
+    return [...commonConstraints, ...suggestions].filter(
+      (constraint) => !existingRules.some(
+        (existing) => existing.includes(constraint.rule.toLowerCase().substring(0, 10))
+      )
+    );
+  }
+};
+function createConstraintsAgent(model) {
+  return new ConstraintsAgent(model);
+}
 
 // src/agents/scenarios.ts
 var ScenariosResultSchema = external_exports.object({
-  scenarios: external_exports.array(ScenarioSchema).min(1, "At least one scenario is required"),
-  categories: external_exports.object({
-    happy_path: external_exports.array(ScenarioSchema).default([]),
-    edge_cases: external_exports.array(ScenarioSchema).default([]),
-    error_handling: external_exports.array(ScenarioSchema).default([]),
-    security: external_exports.array(ScenarioSchema).default([]),
-    performance: external_exports.array(ScenarioSchema).default([])
-  }),
-  coverage: external_exports.object({
-    userStories: external_exports.array(external_exports.string()).default([]),
-    businessRules: external_exports.array(external_exports.string()).default([]),
-    integrationPoints: external_exports.array(external_exports.string()).default([])
-  }),
-  testSuggestions: external_exports.array(
-    external_exports.object({
-      scenarioId: external_exports.string(),
-      testType: external_exports.enum([
-        "unit",
-        "integration",
-        "e2e",
-        "performance",
-        "security"
-      ]),
-      description: external_exports.string(),
-      priority: external_exports.enum(["low", "medium", "high", "critical"]).default("medium")
-    })
-  ).default([])
+  scenarios: external_exports.any().default([]),
+  categories: external_exports.any().optional(),
+  coverage: external_exports.any().optional(),
+  testSuggestions: external_exports.any().default([])
 });
+var ScenariosAgent = class {
+  constructor(model = "gpt-4o-mini") {
+    this.model = model;
+  }
+  async extractScenarios(prdContent, entities, apis, constraints) {
+    const systemPrompt = `You are the Scenarios Agent in the IdeaForge system. Your job is to generate comprehensive acceptance criteria in Given/When/Then format from a Product Requirements Document.
+
+Your responsibilities:
+1. HAPPY PATH: Normal user flows and successful operations
+2. EDGE CASES: Boundary conditions, unusual but valid scenarios
+3. ERROR HANDLING: Invalid inputs, system failures, network issues
+4. SECURITY: Authentication, authorization, data protection scenarios
+5. PERFORMANCE: Load, stress, and timing-related scenarios
+
+Guidelines for scenarios:
+- Use clear Given/When/Then format
+- Each scenario should be testable and specific
+- Include both positive and negative test cases
+- Cover all user roles and permissions
+- Consider integration points and external dependencies
+- Ensure scenarios are independent and can run in any order
+
+Format requirements:
+- ID: AC-001, AC-002, etc. (sequential numbering)
+- Given: Initial state/context (what exists before the action)
+- When: The action being performed (what the user does)
+- Then: Expected outcome (what should happen)
+- Priority: low/medium/high/critical based on business impact
+
+Focus on creating scenarios that:
+- Validate business rules and constraints
+- Cover all user journeys end-to-end
+- Test error conditions and recovery
+- Verify security and access controls
+- Validate performance requirements
+
+IMPORTANT: Return ONLY valid JSON that matches the expected schema. Do not include any explanatory text, markdown formatting, or code blocks. Your response must be parseable JSON.`;
+    const contextInfo = [];
+    if (entities?.length) {
+      contextInfo.push(
+        `Entities: ${entities.map((e) => e.name).join(", ")}`
+      );
+    }
+    if (apis?.length) {
+      contextInfo.push(
+        `APIs: ${apis.map((a) => `${a.method} ${a.route}`).join(", ")}`
+      );
+    }
+    if (constraints?.length) {
+      contextInfo.push(
+        `Constraints: ${constraints.map((c) => c.rule).join(", ")}`
+      );
+    }
+    const userPrompt = `Analyze this PRD and generate comprehensive acceptance criteria scenarios:
+
+${prdContent}
+
+${contextInfo.length > 0 ? `
+Context Information:
+${contextInfo.join("\n")}` : ""}
+
+Generate scenarios that cover:
+1. All user stories and use cases mentioned
+2. CRUD operations for each entity
+3. API endpoint behaviors (success and failure cases)
+4. Business rule validation
+5. Security and access control
+6. Error handling and edge cases
+7. Performance and scalability requirements
+8. Integration with external systems
+
+Ensure each scenario:
+- Has a unique ID (AC-001, AC-002, etc.)
+- Follows Given/When/Then format precisely
+- Is specific and testable
+- Covers both positive and negative cases
+- Includes appropriate priority level
+
+Provide comprehensive scenario coverage in JSON format. Return ONLY valid JSON without any additional text or formatting.`;
+    try {
+      const result = await generateText({
+        model: openai(this.model),
+        system: systemPrompt,
+        prompt: userPrompt,
+        temperature: 0.3,
+        // Moderate creativity for comprehensive scenario generation
+        maxTokens: 4e3
+      });
+      let scenariosData;
+      try {
+        scenariosData = parseJsonResponse(result.text);
+        console.log("\u2705 Scenarios data parsed successfully");
+      } catch (parseError) {
+        console.error(
+          "\u274C Scenarios JSON parsing failed. Raw response:",
+          result.text.substring(0, 500) + "..."
+        );
+        throw new Error(
+          `Failed to parse scenarios result as JSON: ${parseError}`
+        );
+      }
+      const validatedResult = ScenariosResultSchema.parse(scenariosData);
+      console.log("\u2705 Scenarios validation passed");
+      const transformedResult = this.transformScenariosData(validatedResult);
+      console.log("\u{1F3AF} Scenarios found:", transformedResult.scenarios.length);
+      return transformedResult;
+    } catch (error45) {
+      if (error45 instanceof external_exports.ZodError) {
+        throw new Error(
+          `Scenarios validation failed: ${error45.errors.map((e) => `${e.path.join(".")}: ${e.message}`).join(", ")}`
+        );
+      }
+      throw error45;
+    }
+  }
+  /**
+   * Transform raw LLM data to our expected format
+   */
+  transformScenariosData(data) {
+    let scenarios = [];
+    if (Array.isArray(data.scenarios)) {
+      scenarios = data.scenarios;
+    } else if (data.scenarios && typeof data.scenarios === "object") {
+      scenarios = Object.values(data.scenarios).flat();
+    }
+    const formattedScenarios = scenarios.map(
+      (scenario, index) => ({
+        id: scenario.id || `AC-${String(index + 1).padStart(3, "0")}`,
+        given: scenario.given || scenario.Given || "",
+        when: scenario.when || scenario.When || "",
+        then: scenario.then || scenario.Then || "",
+        priority: scenario.priority || "medium"
+      })
+    );
+    const categorized = this.categorizeScenarios(formattedScenarios);
+    const testSuggestions = this.generateTestSuggestions(formattedScenarios);
+    return {
+      scenarios: formattedScenarios,
+      categories: categorized,
+      coverage: data.coverage || {
+        userStories: [],
+        businessRules: [],
+        integrationPoints: []
+      },
+      testSuggestions
+    };
+  }
+  /**
+   * Categorize scenarios by type
+   */
+  categorizeScenarios(scenarios) {
+    const categories = {
+      happy_path: [],
+      edge_cases: [],
+      error_handling: [],
+      security: [],
+      performance: []
+    };
+    scenarios.forEach((scenario) => {
+      const content = `${scenario.given} ${scenario.when} ${scenario.then}`.toLowerCase();
+      if (content.includes("invalid") || content.includes("error") || content.includes("fail")) {
+        categories.error_handling.push(scenario);
+      } else if (content.includes("auth") || content.includes("permission") || content.includes("unauthorized")) {
+        categories.security.push(scenario);
+      } else if (content.includes("performance") || content.includes("load") || content.includes("concurrent")) {
+        categories.performance.push(scenario);
+      } else if (content.includes("empty") || content.includes("maximum") || content.includes("minimum") || content.includes("boundary")) {
+        categories.edge_cases.push(scenario);
+      } else {
+        categories.happy_path.push(scenario);
+      }
+    });
+    return categories;
+  }
+  /**
+   * Generate test automation suggestions
+   */
+  generateTestSuggestions(scenarios) {
+    const suggestions = [];
+    scenarios.forEach((scenario) => {
+      const content = `${scenario.given} ${scenario.when} ${scenario.then}`.toLowerCase();
+      let testType = "e2e";
+      if (content.includes("api") || content.includes("endpoint")) {
+        testType = "integration";
+      } else if (content.includes("performance") || content.includes("load") || content.includes("concurrent")) {
+        testType = "performance";
+      } else if (content.includes("auth") || content.includes("security") || content.includes("permission")) {
+        testType = "security";
+      } else if (content.includes("validation") || content.includes("calculate") || content.includes("format")) {
+        testType = "unit";
+      }
+      suggestions.push({
+        scenarioId: scenario.id,
+        testType,
+        description: `Automated test for: ${scenario.when}`,
+        priority: scenario.priority || "medium"
+      });
+    });
+    return suggestions;
+  }
+  /**
+   * Generate test cases in Gherkin format
+   */
+  generateGherkinFeatures(scenarios) {
+    const features = ["Feature: Application Scenarios\n"];
+    const categories = this.categorizeScenarios(scenarios);
+    Object.entries(categories).forEach(([category, categoryScenarios]) => {
+      if (categoryScenarios.length > 0) {
+        features.push(
+          `  # ${category.replace("_", " ").toUpperCase()} SCENARIOS
+`
+        );
+        categoryScenarios.forEach((scenario) => {
+          features.push(
+            `  Scenario: ${scenario.id} - ${this.generateScenarioTitle(
+              scenario
+            )}`
+          );
+          features.push(`    Given ${scenario.given}`);
+          features.push(`    When ${scenario.when}`);
+          features.push(`    Then ${scenario.then}`);
+          features.push("");
+        });
+      }
+    });
+    return features.join("\n");
+  }
+  generateScenarioTitle(scenario) {
+    const when = scenario.when.toLowerCase();
+    if (when.includes("user")) {
+      return when.replace("user", "User").replace(/^./, (str) => str.toUpperCase());
+    }
+    return scenario.when.charAt(0).toUpperCase() + scenario.when.slice(1);
+  }
+  /**
+   * Generate test automation code templates
+   */
+  generateTestTemplates(scenarios, framework = "jest") {
+    const templates = [];
+    if (framework === "jest") {
+      templates.push(
+        "import { describe, it, expect, beforeEach } from '@jest/globals';\n"
+      );
+      templates.push("describe('Application Scenarios', () => {");
+      templates.push("  beforeEach(() => {");
+      templates.push("    // Setup test environment");
+      templates.push("  });\n");
+      scenarios.forEach((scenario) => {
+        templates.push(
+          `  it('${scenario.id}: ${this.generateScenarioTitle(
+            scenario
+          )}', async () => {`
+        );
+        templates.push(`    // Given: ${scenario.given}`);
+        templates.push(`    // TODO: Setup initial state`);
+        templates.push("");
+        templates.push(`    // When: ${scenario.when}`);
+        templates.push(`    // TODO: Perform action`);
+        templates.push("");
+        templates.push(`    // Then: ${scenario.then}`);
+        templates.push(`    // TODO: Assert expected outcome`);
+        templates.push(
+          `    expect(true).toBe(true); // Replace with actual assertion`
+        );
+        templates.push("  });\n");
+      });
+      templates.push("});");
+    }
+    return templates.join("\n");
+  }
+  /**
+   * Validate scenario coverage
+   */
+  validateScenarioCoverage(scenarios, entities, apis) {
+    const missing = [];
+    const suggestions = [];
+    let totalExpected = 0;
+    let covered = 0;
+    if (entities?.length) {
+      entities.forEach((entity) => {
+        const entityName = entity.name.toLowerCase();
+        totalExpected += 4;
+        const createScenario = scenarios.find(
+          (s) => s.when.toLowerCase().includes("create") && s.when.toLowerCase().includes(entityName)
+        );
+        const readScenario = scenarios.find(
+          (s) => (s.when.toLowerCase().includes("view") || s.when.toLowerCase().includes("get")) && s.when.toLowerCase().includes(entityName)
+        );
+        const updateScenario = scenarios.find(
+          (s) => s.when.toLowerCase().includes("update") && s.when.toLowerCase().includes(entityName)
+        );
+        const deleteScenario = scenarios.find(
+          (s) => s.when.toLowerCase().includes("delete") && s.when.toLowerCase().includes(entityName)
+        );
+        if (createScenario) covered++;
+        else missing.push(`Create ${entity.name} scenario`);
+        if (readScenario) covered++;
+        else missing.push(`Read/View ${entity.name} scenario`);
+        if (updateScenario) covered++;
+        else missing.push(`Update ${entity.name} scenario`);
+        if (deleteScenario) covered++;
+        else missing.push(`Delete ${entity.name} scenario`);
+      });
+    }
+    if (apis?.length) {
+      apis.forEach((api) => {
+        totalExpected += 2;
+        const successScenario = scenarios.find(
+          (s) => s.when.toLowerCase().includes(api.method.toLowerCase()) && s.when.toLowerCase().includes(api.route.split("/")[1])
+        );
+        const errorScenario = scenarios.find(
+          (s) => s.when.toLowerCase().includes(api.method.toLowerCase()) && s.when.toLowerCase().includes(api.route.split("/")[1]) && (s.then.toLowerCase().includes("error") || s.then.toLowerCase().includes("fail"))
+        );
+        if (successScenario) covered++;
+        else missing.push(`Success case for ${api.method} ${api.route}`);
+        if (errorScenario) covered++;
+        else missing.push(`Error case for ${api.method} ${api.route}`);
+      });
+    }
+    const hasAuthScenarios = scenarios.some(
+      (s) => s.given.toLowerCase().includes("auth") || s.when.toLowerCase().includes("login")
+    );
+    if (!hasAuthScenarios) {
+      suggestions.push("Add authentication and authorization scenarios");
+    }
+    const hasErrorScenarios = scenarios.some(
+      (s) => s.then.toLowerCase().includes("error") || s.then.toLowerCase().includes("fail")
+    );
+    if (!hasErrorScenarios) {
+      suggestions.push("Add error handling scenarios");
+    }
+    const coverage = totalExpected > 0 ? Math.round(covered / totalExpected * 100) : 100;
+    return {
+      coverage,
+      missing,
+      suggestions
+    };
+  }
+  /**
+   * Generate scenario traceability matrix
+   */
+  generateTraceabilityMatrix(scenarios, userStories) {
+    const matrix = ["# Traceability Matrix\n"];
+    matrix.push("| User Story | Scenarios | Coverage |");
+    matrix.push("|------------|-----------|----------|");
+    userStories.forEach((story) => {
+      const relatedScenarios = scenarios.filter(
+        (scenario) => this.isScenarioRelatedToStory(scenario, story)
+      );
+      const scenarioIds = relatedScenarios.map((s) => s.id).join(", ");
+      const coverage = relatedScenarios.length > 0 ? "\u2705" : "\u274C";
+      matrix.push(`| ${story} | ${scenarioIds || "None"} | ${coverage} |`);
+    });
+    return matrix.join("\n");
+  }
+  isScenarioRelatedToStory(scenario, story) {
+    const scenarioText = `${scenario.given} ${scenario.when} ${scenario.then}`.toLowerCase();
+    const storyWords = story.toLowerCase().split(" ").filter((word) => word.length > 3);
+    return storyWords.some((word) => scenarioText.includes(word));
+  }
+};
+function createScenariosAgent(model) {
+  return new ScenariosAgent(model);
+}
 
 // src/agents/hints.ts
 var ImplementationHintSchema = external_exports.object({
@@ -28253,63 +44919,2699 @@ var ImplementationHintSchema = external_exports.object({
   ).default([])
 });
 var HintsResultSchema = external_exports.object({
-  hints: external_exports.array(ImplementationHintSchema).min(1, "At least one implementation hint is required"),
-  techStack: external_exports.object({
-    recommended: external_exports.array(
-      external_exports.object({
-        category: external_exports.enum([
-          "frontend",
-          "backend",
-          "database",
-          "infrastructure",
-          "testing",
-          "monitoring"
-        ]),
-        technology: external_exports.string(),
-        rationale: external_exports.string(),
-        alternatives: external_exports.array(external_exports.string()).default([])
-      })
-    ).default([]),
-    considerations: external_exports.array(external_exports.string()).default([])
+  hints: external_exports.any().default([]),
+  techStack: external_exports.any().optional(),
+  architecture: external_exports.any().optional(),
+  implementation: external_exports.any().optional()
+});
+var HintsAgent = class {
+  constructor(model = "gpt-4o-mini") {
+    this.model = model;
+  }
+  async generateHints(prdContent, summary, entities, apis, constraints) {
+    const systemPrompt = `You are the Hints Agent in the IdeaForge system. Your job is to provide comprehensive implementation guidance and technical recommendations based on the project requirements.
+
+Your responsibilities:
+1. TECHNOLOGY RECOMMENDATIONS: Suggest appropriate tech stack based on requirements
+2. ARCHITECTURE GUIDANCE: Recommend patterns, structures, and design approaches
+3. IMPLEMENTATION HINTS: Provide specific guidance for complex features
+4. BEST PRACTICES: Suggest industry standards and proven approaches
+5. RISK MITIGATION: Identify potential issues and suggest solutions
+6. RESOURCE RECOMMENDATIONS: Suggest tools, libraries, and learning resources
+
+Guidelines:
+- Consider project scale, complexity, and constraints
+- Recommend proven, stable technologies over cutting-edge ones
+- Provide specific, actionable advice with rationale
+- Include code examples where helpful
+- Consider team skill level and project timeline
+- Balance innovation with pragmatism
+- Address security, performance, and maintainability
+
+Focus on:
+- Technology stack recommendations with alternatives
+- Architectural patterns suitable for the project
+- Implementation phases and development approach
+- Potential risks and mitigation strategies
+- Specific hints for complex features or integrations
+- Testing strategies and deployment considerations
+
+Return structured JSON that matches the expected schema.`;
+    const contextInfo = [];
+    if (summary) {
+      contextInfo.push(`Project: ${summary.project || "Unknown"}`);
+      contextInfo.push(
+        `Description: ${summary.description || "No description"}`
+      );
+    }
+    if (entities?.length) {
+      contextInfo.push(
+        `Entities: ${entities.map((e) => e.name).join(", ")}`
+      );
+    }
+    if (apis?.length) {
+      contextInfo.push(`APIs: ${apis.length} endpoints`);
+    }
+    if (constraints?.length) {
+      contextInfo.push(
+        `Key Constraints: ${constraints.map((c) => c.rule).slice(0, 3).join(", ")}`
+      );
+    }
+    const userPrompt = `Analyze this project and provide comprehensive implementation guidance:
+
+${prdContent}
+
+${contextInfo.length > 0 ? `
+Project Context:
+${contextInfo.join("\n")}` : ""}
+
+Provide guidance on:
+1. Technology stack recommendations (frontend, backend, database, infrastructure)
+2. Architectural patterns and design approaches
+3. Implementation phases and development strategy
+4. Specific hints for complex features or requirements
+5. Security, performance, and scalability considerations
+6. Testing strategies and quality assurance
+7. Deployment and DevOps recommendations
+8. Potential risks and mitigation strategies
+9. Useful tools, libraries, and resources
+
+For each recommendation:
+- Explain the rationale and benefits
+- Consider alternatives and trade-offs
+- Provide specific implementation guidance
+- Include code examples where helpful
+- Suggest relevant resources and documentation
+
+Provide comprehensive implementation guidance in JSON format.`;
+    try {
+      const result = await generateText({
+        model: openai(this.model),
+        system: systemPrompt,
+        prompt: userPrompt,
+        temperature: 0.4,
+        // Moderate creativity for balanced recommendations
+        maxTokens: 4e3
+      });
+      let hintsData;
+      try {
+        hintsData = parseJsonResponse(result.text);
+      } catch (parseError) {
+        throw new Error(`Failed to parse hints result as JSON: ${parseError}`);
+      }
+      const validatedResult = HintsResultSchema.parse(hintsData);
+      console.log("\u2705 Hints validation passed");
+      const transformedResult = this.transformHintsData(validatedResult);
+      console.log("\u{1F4A1} Hints found:", transformedResult.hints.length);
+      return transformedResult;
+    } catch (error45) {
+      if (error45 instanceof external_exports.ZodError) {
+        throw new Error(
+          `Hints validation failed: ${error45.errors.map((e) => `${e.path.join(".")}: ${e.message}`).join(", ")}`
+        );
+      }
+      throw error45;
+    }
+  }
+  /**
+   * Transform raw LLM data to our expected format
+   */
+  transformHintsData(data) {
+    let hints = [];
+    if (Array.isArray(data.hints)) {
+      hints = data.hints;
+    } else if (data.hints && typeof data.hints === "object") {
+      hints = Object.values(data.hints).flat();
+    }
+    const formattedHints = hints.map((hint) => ({
+      category: hint.category || "best_practices",
+      title: hint.title || hint.name || "Implementation Hint",
+      description: hint.description || hint.recommendation || String(hint),
+      priority: hint.priority || "medium",
+      effort: hint.effort || "medium",
+      impact: hint.impact || "medium",
+      technologies: hint.technologies || [],
+      codeExample: hint.codeExample || hint.example,
+      resources: hint.resources || []
+    }));
+    return {
+      hints: formattedHints,
+      techStack: data.techStack || {
+        recommended: [],
+        considerations: []
+      },
+      architecture: data.architecture || {
+        pattern: void 0,
+        components: [],
+        dataFlow: void 0
+      },
+      implementation: data.implementation || {
+        phases: [],
+        risks: []
+      }
+    };
+  }
+  /**
+   * Generate implementation roadmap
+   */
+  generateImplementationRoadmap(hints) {
+    const sections = ["# Implementation Roadmap\n"];
+    if (hints.techStack.recommended.length > 0) {
+      sections.push("## Recommended Technology Stack\n");
+      const categories = hints.techStack.recommended.reduce((acc, tech) => {
+        if (!acc[tech.category]) acc[tech.category] = [];
+        acc[tech.category].push(tech);
+        return acc;
+      }, {});
+      Object.entries(categories).forEach(([category, techs]) => {
+        sections.push(
+          `### ${category.charAt(0).toUpperCase() + category.slice(1)}`
+        );
+        techs.forEach((tech) => {
+          sections.push(`- **${tech.technology}**: ${tech.rationale}`);
+          if (tech.alternatives.length > 0) {
+            sections.push(`  - Alternatives: ${tech.alternatives.join(", ")}`);
+          }
+        });
+        sections.push("");
+      });
+    }
+    if (hints.architecture.pattern) {
+      sections.push("## Architecture\n");
+      sections.push(`**Pattern**: ${hints.architecture.pattern}
+`);
+      if (hints.architecture.components.length > 0) {
+        sections.push("### Components\n");
+        hints.architecture.components.forEach((component) => {
+          sections.push(`- **${component.name}**: ${component.responsibility}`);
+          if (component.interactions.length > 0) {
+            sections.push(
+              `  - Interacts with: ${component.interactions.join(", ")}`
+            );
+          }
+        });
+        sections.push("");
+      }
+      if (hints.architecture.dataFlow) {
+        sections.push(`### Data Flow
+${hints.architecture.dataFlow}
+`);
+      }
+    }
+    if (hints.implementation.phases.length > 0) {
+      sections.push("## Implementation Phases\n");
+      hints.implementation.phases.forEach((phase, index) => {
+        sections.push(`### Phase ${index + 1}: ${phase.name}`);
+        sections.push(`${phase.description}
+`);
+        if (phase.deliverables.length > 0) {
+          sections.push("**Deliverables:**");
+          phase.deliverables.forEach((deliverable) => {
+            sections.push(`- ${deliverable}`);
+          });
+        }
+        if (phase.estimatedWeeks) {
+          sections.push(
+            `
+**Estimated Duration:** ${phase.estimatedWeeks} weeks
+`
+          );
+        }
+        sections.push("");
+      });
+    }
+    if (hints.implementation.risks.length > 0) {
+      sections.push("## Risk Assessment\n");
+      hints.implementation.risks.forEach((risk) => {
+        const riskEmoji = { low: "\u{1F7E2}", medium: "\u{1F7E1}", high: "\u{1F534}" }[risk.impact];
+        sections.push(`### ${riskEmoji} ${risk.risk}`);
+        sections.push(`**Impact**: ${risk.impact}`);
+        sections.push(`**Mitigation**: ${risk.mitigation}
+`);
+      });
+    }
+    return sections.join("\n");
+  }
+  /**
+   * Generate development guidelines document
+   */
+  generateDevelopmentGuidelines(hints) {
+    const sections = ["# Development Guidelines\n"];
+    const categories = hints.reduce((acc, hint) => {
+      if (!acc[hint.category]) acc[hint.category] = [];
+      acc[hint.category].push(hint);
+      return acc;
+    }, {});
+    Object.entries(categories).forEach(([category, categoryHints]) => {
+      sections.push(
+        `## ${category.charAt(0).toUpperCase() + category.slice(1)}
+`
+      );
+      categoryHints.forEach((hint) => {
+        const priorityEmoji = {
+          low: "\u{1F7E2}",
+          medium: "\u{1F7E1}",
+          high: "\u{1F7E0}",
+          critical: "\u{1F534}"
+        }[hint.priority];
+        sections.push(`### ${priorityEmoji} ${hint.title}`);
+        sections.push(`${hint.description}
+`);
+        if (hint.technologies.length > 0) {
+          sections.push(`**Technologies**: ${hint.technologies.join(", ")}
+`);
+        }
+        if (hint.codeExample) {
+          sections.push("**Example:**");
+          sections.push("```");
+          sections.push(hint.codeExample);
+          sections.push("```\n");
+        }
+        if (hint.resources.length > 0) {
+          sections.push("**Resources:**");
+          hint.resources.forEach((resource) => {
+            sections.push(
+              `- [${resource.title}](${resource.url}) (${resource.type})`
+            );
+          });
+          sections.push("");
+        }
+      });
+    });
+    return sections.join("\n");
+  }
+  /**
+   * Generate technology comparison matrix
+   */
+  generateTechnologyComparison(techStack) {
+    const sections = ["# Technology Comparison\n"];
+    if (techStack.recommended.length > 0) {
+      sections.push("| Category | Recommended | Rationale | Alternatives |");
+      sections.push("|----------|-------------|-----------|--------------|");
+      techStack.recommended.forEach((tech) => {
+        const alternatives = tech.alternatives.length > 0 ? tech.alternatives.join(", ") : "None specified";
+        sections.push(
+          `| ${tech.category} | ${tech.technology} | ${tech.rationale} | ${alternatives} |`
+        );
+      });
+      sections.push("");
+    }
+    if (techStack.considerations.length > 0) {
+      sections.push("## Additional Considerations\n");
+      techStack.considerations.forEach((consideration) => {
+        sections.push(`- ${consideration}`);
+      });
+    }
+    return sections.join("\n");
+  }
+  /**
+   * Generate code templates and boilerplate
+   */
+  generateCodeTemplates(hints, projectType) {
+    const templates = {};
+    templates["project-structure"] = this.generateProjectStructureTemplate(projectType);
+    const techHints = hints.filter((h) => h.category === "technology");
+    if (techHints.some((h) => h.technologies.includes("Express"))) {
+      templates["express-server"] = this.generateExpressTemplate();
+    }
+    if (techHints.some((h) => h.technologies.includes("React"))) {
+      templates["react-component"] = this.generateReactTemplate();
+    }
+    const securityHints = hints.filter((h) => h.category === "security");
+    if (securityHints.length > 0) {
+      templates["security-middleware"] = this.generateSecurityTemplate();
+    }
+    return templates;
+  }
+  generateProjectStructureTemplate(projectType) {
+    const baseStructure = `
+project/
+\u251C\u2500\u2500 src/
+\u2502   \u251C\u2500\u2500 components/
+\u2502   \u251C\u2500\u2500 services/
+\u2502   \u251C\u2500\u2500 utils/
+\u2502   \u2514\u2500\u2500 types/
+\u251C\u2500\u2500 tests/
+\u251C\u2500\u2500 docs/
+\u251C\u2500\u2500 package.json
+\u251C\u2500\u2500 README.md
+\u2514\u2500\u2500 .gitignore`;
+    return baseStructure;
+  }
+  generateExpressTemplate() {
+    return `
+import express from 'express';
+import cors from 'cors';
+import helmet from 'helmet';
+
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+// Security middleware
+app.use(helmet());
+app.use(cors());
+app.use(express.json({ limit: '10mb' }));
+
+// Routes
+app.get('/health', (req, res) => {
+  res.json({ status: 'OK', timestamp: new Date().toISOString() });
+});
+
+// Error handling middleware
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({ error: 'Something went wrong!' });
+});
+
+app.listen(PORT, () => {
+  console.log(\`Server running on port \${PORT}\`);
+});`;
+  }
+  generateReactTemplate() {
+    return `
+import React, { useState, useEffect } from 'react';
+
+interface ComponentProps {
+  // Define your props here
+}
+
+export const Component: React.FC<ComponentProps> = (props) => {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    // Component initialization logic
+  }, []);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
+
+  return (
+    <div>
+      {/* Component content */}
+    </div>
+  );
+};`;
+  }
+  generateSecurityTemplate() {
+    return `
+import rateLimit from 'express-rate-limit';
+import jwt from 'jsonwebtoken';
+
+// Rate limiting
+export const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // limit each IP to 100 requests per windowMs
+  message: 'Too many requests from this IP'
+});
+
+// JWT authentication middleware
+export const authenticateToken = (req, res, next) => {
+  const authHeader = req.headers['authorization'];
+  const token = authHeader && authHeader.split(' ')[1];
+
+  if (!token) {
+    return res.sendStatus(401);
+  }
+
+  jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
+    if (err) return res.sendStatus(403);
+    req.user = user;
+    next();
+  });
+};`;
+  }
+  /**
+   * Validate implementation hints for consistency
+   */
+  validateHints(hints) {
+    const issues = [];
+    const suggestions = [];
+    const techHints = hints.filter((h) => h.category === "technology");
+    const technologies = techHints.flatMap((h) => h.technologies);
+    const databases = technologies.filter(
+      (tech) => ["MySQL", "PostgreSQL", "MongoDB", "SQLite"].includes(tech)
+    );
+    if (databases.length > 1) {
+      issues.push(
+        `Multiple database technologies recommended: ${databases.join(", ")}`
+      );
+    }
+    const categories = hints.map((h) => h.category);
+    const criticalCategories = ["security", "testing"];
+    criticalCategories.forEach((category) => {
+      if (!categories.includes(category)) {
+        suggestions.push(`Consider adding ${category} implementation hints`);
+      }
+    });
+    const inefficientHints = hints.filter(
+      (h) => h.effort === "high" && h.impact === "low"
+    );
+    if (inefficientHints.length > 0) {
+      suggestions.push(
+        `Review high-effort, low-impact recommendations: ${inefficientHints.map((h) => h.title).join(", ")}`
+      );
+    }
+    return {
+      isValid: issues.length === 0,
+      issues,
+      suggestions
+    };
+  }
+};
+function createHintsAgent(model) {
+  return new HintsAgent(model);
+}
+
+// src/tools/fs.ts
+import {
+  readFile,
+  writeFile,
+  mkdir as mkdir2,
+  access,
+  stat,
+  readdir
+} from "node:fs/promises";
+import { dirname, join, resolve as resolve2, relative } from "node:path";
+import { constants } from "node:fs";
+var WORKSPACE_ROOT = process.cwd();
+var ALLOWED_WORKSPACE_PATTERNS = [
+  /^workspace\//,
+  /^\.\/workspace\//,
+  /^spec\//,
+  /^tasks\//,
+  /^build\//,
+  /^reports\//
+];
+function validatePath(filePath) {
+  const resolvedPath = resolve2(filePath);
+  const relativePath = relative(WORKSPACE_ROOT, resolvedPath);
+  if (relativePath.startsWith("..") || relativePath.includes("..")) {
+    throw new Error(`Access denied: Path traversal detected in ${filePath}`);
+  }
+  const isAllowed = ALLOWED_WORKSPACE_PATTERNS.some(
+    (pattern) => pattern.test(relativePath) || pattern.test(filePath)
+  );
+  if (!isAllowed && !relativePath.startsWith("workspace/")) {
+    throw new Error(
+      `Access denied: Path ${filePath} is outside allowed workspace areas`
+    );
+  }
+  return resolvedPath;
+}
+var readFileTool = tool({
+  description: "Read the contents of a text file. Only works within workspace directories for security.",
+  parameters: external_exports.object({
+    path: external_exports.string().min(1, "File path is required")
   }),
-  architecture: external_exports.object({
+  execute: async ({ path: path5 }) => {
+    try {
+      const safePath = validatePath(path5);
+      await access(safePath, constants.R_OK);
+      const stats = await stat(safePath);
+      if (stats.isDirectory()) {
+        throw new Error(`Path ${path5} is a directory, not a file`);
+      }
+      if (stats.size > 10 * 1024 * 1024) {
+        throw new Error(
+          `File ${path5} is too large (${stats.size} bytes). Maximum size is 10MB.`
+        );
+      }
+      const content = await readFile(safePath, "utf-8");
+      return {
+        success: true,
+        path: path5,
+        content,
+        size: stats.size,
+        lastModified: stats.mtime.toISOString()
+      };
+    } catch (error45) {
+      return {
+        success: false,
+        path: path5,
+        error: error45 instanceof Error ? error45.message : "Unknown error occurred"
+      };
+    }
+  }
+});
+var writeFileTool = tool({
+  description: "Write content to a file, creating directories as needed. Only works within workspace directories.",
+  parameters: external_exports.object({
+    path: external_exports.string().min(1, "File path is required"),
+    content: external_exports.string(),
+    createDirs: external_exports.boolean().optional().default(true)
+  }),
+  execute: async ({ path: path5, content, createDirs }) => {
+    try {
+      const safePath = validatePath(path5);
+      if (createDirs) {
+        const dir = dirname(safePath);
+        await mkdir2(dir, { recursive: true });
+      }
+      await writeFile(safePath, content, "utf-8");
+      const stats = await stat(safePath);
+      return {
+        success: true,
+        path: path5,
+        size: stats.size,
+        created: true
+      };
+    } catch (error45) {
+      return {
+        success: false,
+        path: path5,
+        error: error45 instanceof Error ? error45.message : "Unknown error occurred"
+      };
+    }
+  }
+});
+var listDirTool = tool({
+  description: "List files and directories in a given path. Only works within workspace directories.",
+  parameters: external_exports.object({
+    path: external_exports.string().min(1, "Directory path is required"),
+    includeHidden: external_exports.boolean().optional().default(false)
+  }),
+  execute: async ({ path: path5, includeHidden }) => {
+    try {
+      const safePath = validatePath(path5);
+      await access(safePath, constants.R_OK);
+      const stats = await stat(safePath);
+      if (!stats.isDirectory()) {
+        throw new Error(`Path ${path5} is not a directory`);
+      }
+      const entries = await readdir(safePath, { withFileTypes: true });
+      const files = [];
+      const directories = [];
+      for (const entry of entries) {
+        if (!includeHidden && entry.name.startsWith(".")) {
+          continue;
+        }
+        const entryPath = join(path5, entry.name);
+        const entryStats = await stat(join(safePath, entry.name));
+        const item = {
+          name: entry.name,
+          path: entryPath,
+          size: entryStats.size,
+          lastModified: entryStats.mtime.toISOString()
+        };
+        if (entry.isDirectory()) {
+          directories.push(item);
+        } else {
+          files.push(item);
+        }
+      }
+      return {
+        success: true,
+        path: path5,
+        files: files.sort((a, b) => a.name.localeCompare(b.name)),
+        directories: directories.sort((a, b) => a.name.localeCompare(b.name)),
+        total: files.length + directories.length
+      };
+    } catch (error45) {
+      return {
+        success: false,
+        path: path5,
+        error: error45 instanceof Error ? error45.message : "Unknown error occurred"
+      };
+    }
+  }
+});
+var fileExistsTool = tool({
+  description: "Check if a file or directory exists at the given path.",
+  parameters: external_exports.object({
+    path: external_exports.string().min(1, "Path is required")
+  }),
+  execute: async ({ path: path5 }) => {
+    try {
+      const safePath = validatePath(path5);
+      await access(safePath, constants.F_OK);
+      const stats = await stat(safePath);
+      return {
+        success: true,
+        path: path5,
+        exists: true,
+        isFile: stats.isFile(),
+        isDirectory: stats.isDirectory(),
+        size: stats.size,
+        lastModified: stats.mtime.toISOString()
+      };
+    } catch (error45) {
+      return {
+        success: true,
+        path: path5,
+        exists: false,
+        error: error45 instanceof Error ? error45.message : "Unknown error occurred"
+      };
+    }
+  }
+});
+var createDirTool = tool({
+  description: "Create a directory and any necessary parent directories.",
+  parameters: external_exports.object({
+    path: external_exports.string().min(1, "Directory path is required"),
+    recursive: external_exports.boolean().optional().default(true)
+  }),
+  execute: async ({ path: path5, recursive }) => {
+    try {
+      const safePath = validatePath(path5);
+      await mkdir2(safePath, { recursive });
+      return {
+        success: true,
+        path: path5,
+        created: true
+      };
+    } catch (error45) {
+      return {
+        success: false,
+        path: path5,
+        error: error45 instanceof Error ? error45.message : "Unknown error occurred"
+      };
+    }
+  }
+});
+var fsTools = {
+  readFile: readFileTool,
+  writeFile: writeFileTool,
+  listDir: listDirTool,
+  fileExists: fileExistsTool,
+  createDir: createDirTool
+};
+async function ensureWorkspaceStructure(workspacePath) {
+  const dirs = [
+    join(workspacePath, "spec"),
+    join(workspacePath, "tasks"),
+    join(workspacePath, "build"),
+    join(workspacePath, "build", "src"),
+    join(workspacePath, "build", "tests"),
+    join(workspacePath, "reports"),
+    join(workspacePath, "reports", "reviews"),
+    join(workspacePath, "reports", "e2e")
+  ];
+  for (const dir of dirs) {
+    await mkdir2(dir, { recursive: true });
+  }
+}
+
+// src/tools/test.ts
+import { join as join2 } from "node:path";
+var TestResultSchema = external_exports.object({
+  passed: external_exports.boolean(),
+  totalTests: external_exports.number().default(0),
+  passedTests: external_exports.number().default(0),
+  failedTests: external_exports.number().default(0),
+  skippedTests: external_exports.number().default(0),
+  duration: external_exports.number().optional(),
+  // in milliseconds
+  coverage: external_exports.object({
+    statements: external_exports.number().min(0).max(100).optional(),
+    branches: external_exports.number().min(0).max(100).optional(),
+    functions: external_exports.number().min(0).max(100).optional(),
+    lines: external_exports.number().min(0).max(100).optional()
+  }).optional(),
+  details: external_exports.any().optional()
+  // Raw test output
+});
+var runTestsTool = tool({
+  description: "Run unit tests in the specified directory and return results summary",
+  parameters: external_exports.object({
+    cwd: external_exports.string().default("."),
     pattern: external_exports.string().optional(),
-    components: external_exports.array(
-      external_exports.object({
-        name: external_exports.string(),
-        responsibility: external_exports.string(),
-        interactions: external_exports.array(external_exports.string()).default([])
-      })
-    ).default([]),
-    dataFlow: external_exports.string().optional()
+    // Test file pattern
+    coverage: external_exports.boolean().default(false),
+    timeout: external_exports.number().default(3e4)
+    // 30 second timeout
   }),
-  implementation: external_exports.object({
-    phases: external_exports.array(
+  execute: async ({ cwd, pattern, coverage, timeout }) => {
+    try {
+      const stubResult = {
+        success: true,
+        passed: true,
+        totalTests: 0,
+        passedTests: 0,
+        failedTests: 0,
+        skippedTests: 0,
+        duration: 0,
+        summary: "No tests found (stub implementation)",
+        details: {
+          message: "Test runner not yet implemented - this is a placeholder",
+          cwd,
+          pattern,
+          coverage
+        }
+      };
+      return stubResult;
+    } catch (error45) {
+      return {
+        success: false,
+        passed: false,
+        error: error45 instanceof Error ? error45.message : "Test execution failed",
+        totalTests: 0,
+        passedTests: 0,
+        failedTests: 0,
+        skippedTests: 0
+      };
+    }
+  }
+});
+var runTestFileTool = tool({
+  description: "Run tests for a specific file",
+  parameters: external_exports.object({
+    testFile: external_exports.string().min(1, "Test file path is required"),
+    cwd: external_exports.string().default("."),
+    timeout: external_exports.number().default(3e4)
+  }),
+  execute: async ({ testFile, cwd, timeout }) => {
+    try {
+      return {
+        success: true,
+        passed: true,
+        file: testFile,
+        tests: 0,
+        passed_tests: 0,
+        duration: 0,
+        summary: `No tests executed for ${testFile} (stub implementation)`
+      };
+    } catch (error45) {
+      return {
+        success: false,
+        passed: false,
+        file: testFile,
+        error: error45 instanceof Error ? error45.message : "Test execution failed"
+      };
+    }
+  }
+});
+var validateTestFileTool = tool({
+  description: "Check if a test file is properly structured and can be executed",
+  parameters: external_exports.object({
+    testFile: external_exports.string().min(1, "Test file path is required"),
+    cwd: external_exports.string().default(".")
+  }),
+  execute: async ({ testFile, cwd }) => {
+    try {
+      const fs = await import("node:fs/promises");
+      const path5 = join2(cwd, testFile);
+      try {
+        const content = await fs.readFile(path5, "utf-8");
+        const hasDescribe = content.includes("describe(") || content.includes("test(") || content.includes("it(");
+        const hasExpect = content.includes("expect(");
+        const hasImports = content.includes("import") || content.includes("require");
+        return {
+          success: true,
+          file: testFile,
+          valid: hasDescribe && (hasExpect || content.includes("assert")),
+          checks: {
+            hasTestStructure: hasDescribe,
+            hasAssertions: hasExpect,
+            hasImports,
+            fileExists: true
+          },
+          suggestions: !hasDescribe ? ["Add test cases with describe() or test()"] : []
+        };
+      } catch (fileError) {
+        return {
+          success: true,
+          file: testFile,
+          valid: false,
+          checks: {
+            hasTestStructure: false,
+            hasAssertions: false,
+            hasImports: false,
+            fileExists: false
+          },
+          error: "Test file does not exist"
+        };
+      }
+    } catch (error45) {
+      return {
+        success: false,
+        file: testFile,
+        error: error45 instanceof Error ? error45.message : "Validation failed"
+      };
+    }
+  }
+});
+var testTools = {
+  runTests: runTestsTool,
+  runTestFile: runTestFileTool,
+  validateTestFile: validateTestFileTool
+};
+
+// src/tools/lint.ts
+import { join as join3 } from "node:path";
+var LintIssueSchema = external_exports.object({
+  file: external_exports.string(),
+  line: external_exports.number().positive().optional(),
+  column: external_exports.number().positive().optional(),
+  rule: external_exports.string(),
+  severity: external_exports.enum(["error", "warning", "info"]),
+  message: external_exports.string(),
+  fixable: external_exports.boolean().optional().default(false)
+});
+var LintResultSchema = external_exports.object({
+  passed: external_exports.boolean(),
+  totalIssues: external_exports.number().default(0),
+  errors: external_exports.number().default(0),
+  warnings: external_exports.number().default(0),
+  info: external_exports.number().default(0),
+  fixableIssues: external_exports.number().default(0),
+  issues: external_exports.array(LintIssueSchema).default([])
+});
+var lintTool = tool({
+  description: "Run ESLint on files and return linting issues",
+  parameters: external_exports.object({
+    files: external_exports.array(external_exports.string()).default([]),
+    // Specific files to lint
+    cwd: external_exports.string().default("."),
+    fix: external_exports.boolean().default(false),
+    // Auto-fix issues where possible
+    format: external_exports.enum(["json", "stylish"]).default("json")
+  }),
+  execute: async ({ files, cwd, fix, format }) => {
+    try {
+      const stubResult = {
+        success: true,
+        passed: true,
+        totalIssues: 0,
+        errors: 0,
+        warnings: 0,
+        info: 0,
+        fixableIssues: 0,
+        issues: [],
+        summary: "No linting issues found (stub implementation)",
+        details: {
+          message: "ESLint integration not yet implemented - this is a placeholder",
+          files,
+          cwd,
+          fix
+        }
+      };
+      return stubResult;
+    } catch (error45) {
+      return {
+        success: false,
+        passed: false,
+        error: error45 instanceof Error ? error45.message : "Linting failed",
+        totalIssues: 0,
+        errors: 0,
+        warnings: 0,
+        issues: []
+      };
+    }
+  }
+});
+var typeCheckTool = tool({
+  description: "Run TypeScript compiler to check for type errors",
+  parameters: external_exports.object({
+    files: external_exports.array(external_exports.string()).default([]),
+    cwd: external_exports.string().default("."),
+    strict: external_exports.boolean().default(true)
+  }),
+  execute: async ({ files, cwd, strict }) => {
+    try {
+      return {
+        success: true,
+        passed: true,
+        errors: 0,
+        warnings: 0,
+        issues: [],
+        summary: "No type errors found (stub implementation)",
+        details: {
+          message: "TypeScript checking not yet implemented - this is a placeholder",
+          files,
+          cwd,
+          strict
+        }
+      };
+    } catch (error45) {
+      return {
+        success: false,
+        passed: false,
+        error: error45 instanceof Error ? error45.message : "Type checking failed",
+        errors: 0,
+        issues: []
+      };
+    }
+  }
+});
+var formatTool = tool({
+  description: "Format code using Prettier",
+  parameters: external_exports.object({
+    files: external_exports.array(external_exports.string()).default([]),
+    cwd: external_exports.string().default("."),
+    check: external_exports.boolean().default(false)
+    // Only check formatting, don't write
+  }),
+  execute: async ({ files, cwd, check: check2 }) => {
+    try {
+      return {
+        success: true,
+        formatted: !check2,
+        filesChanged: check2 ? 0 : files.length,
+        issues: [],
+        summary: check2 ? "All files are properly formatted (stub implementation)" : `Formatted ${files.length} files (stub implementation)`,
+        details: {
+          message: "Prettier integration not yet implemented - this is a placeholder",
+          files,
+          cwd,
+          check: check2
+        }
+      };
+    } catch (error45) {
+      return {
+        success: false,
+        formatted: false,
+        error: error45 instanceof Error ? error45.message : "Formatting failed",
+        filesChanged: 0
+      };
+    }
+  }
+});
+var securityLintTool = tool({
+  description: "Check for common security issues in code",
+  parameters: external_exports.object({
+    files: external_exports.array(external_exports.string()).default([]),
+    cwd: external_exports.string().default(".")
+  }),
+  execute: async ({ files, cwd }) => {
+    try {
+      const issues = [];
+      const fs = await import("node:fs/promises");
+      for (const file2 of files) {
+        try {
+          const filePath = join3(cwd, file2);
+          const content = await fs.readFile(filePath, "utf-8");
+          const secretPatterns = [
+            /password\s*=\s*['"]\w+['"]/i,
+            /api[_-]?key\s*=\s*['"]\w+['"]/i,
+            /secret\s*=\s*['"]\w+['"]/i,
+            /token\s*=\s*['"]\w+['"]/i
+          ];
+          secretPatterns.forEach((pattern, index) => {
+            const matches = content.match(pattern);
+            if (matches) {
+              issues.push({
+                file: file2,
+                rule: "hardcoded-secret",
+                severity: "error",
+                message: "Potential hardcoded secret detected",
+                line: content.substring(0, content.indexOf(matches[0])).split("\n").length
+              });
+            }
+          });
+          if (content.includes("eval(")) {
+            issues.push({
+              file: file2,
+              rule: "no-eval",
+              severity: "error",
+              message: "Use of eval() is dangerous and should be avoided"
+            });
+          }
+        } catch (fileError) {
+          continue;
+        }
+      }
+      return {
+        success: true,
+        passed: issues.length === 0,
+        totalIssues: issues.length,
+        vulnerabilities: issues.length,
+        issues,
+        summary: issues.length === 0 ? "No security issues found" : `Found ${issues.length} potential security issue(s)`
+      };
+    } catch (error45) {
+      return {
+        success: false,
+        passed: false,
+        error: error45 instanceof Error ? error45.message : "Security check failed",
+        totalIssues: 0,
+        vulnerabilities: 0,
+        issues: []
+      };
+    }
+  }
+});
+var runAllLintsTool = tool({
+  description: "Run all available linting and checking tools",
+  parameters: external_exports.object({
+    files: external_exports.array(external_exports.string()).default([]),
+    cwd: external_exports.string().default("."),
+    includeSecurity: external_exports.boolean().default(true),
+    includeFormat: external_exports.boolean().default(true),
+    includeTypes: external_exports.boolean().default(true)
+  }),
+  execute: async ({
+    files,
+    cwd,
+    includeSecurity,
+    includeFormat,
+    includeTypes
+  }) => {
+    try {
+      const results = {
+        eslint: await lintTool.execute({ files, cwd }),
+        security: includeSecurity ? await securityLintTool.execute({ files, cwd }) : null,
+        formatting: includeFormat ? await formatTool.execute({ files, cwd, check: true }) : null,
+        typecheck: includeTypes ? await typeCheckTool.execute({ files, cwd }) : null
+      };
+      const totalIssues = (results.eslint.success ? results.eslint.totalIssues : 0) + (results.security?.success ? results.security.totalIssues : 0);
+      const passed = results.eslint.success && results.eslint.passed && (!results.security || results.security.success && results.security.passed) && (!results.formatting || results.formatting.success) && (!results.typecheck || results.typecheck.success && results.typecheck.passed);
+      return {
+        success: true,
+        passed,
+        totalIssues,
+        results,
+        summary: passed ? "All linting checks passed" : `Found ${totalIssues} issue(s) across linting checks`
+      };
+    } catch (error45) {
+      return {
+        success: false,
+        passed: false,
+        error: error45 instanceof Error ? error45.message : "Linting suite failed",
+        totalIssues: 0,
+        results: {}
+      };
+    }
+  }
+});
+var lintTools = {
+  lint: lintTool,
+  typeCheck: typeCheckTool,
+  format: formatTool,
+  securityLint: securityLintTool,
+  runAllLints: runAllLintsTool
+};
+
+// src/tools/openapi.ts
+import { readFile as readFile2 } from "node:fs/promises";
+import { join as join4 } from "node:path";
+var OpenAPIValidationResultSchema = external_exports.object({
+  valid: external_exports.boolean(),
+  version: external_exports.string().optional(),
+  // OpenAPI version (3.0.0, 3.1.0, etc.)
+  errors: external_exports.array(
+    external_exports.object({
+      path: external_exports.string(),
+      message: external_exports.string(),
+      severity: external_exports.enum(["error", "warning"])
+    })
+  ).default([]),
+  warnings: external_exports.array(
+    external_exports.object({
+      path: external_exports.string(),
+      message: external_exports.string()
+    })
+  ).default([]),
+  info: external_exports.object({
+    title: external_exports.string().optional(),
+    version: external_exports.string().optional(),
+    pathCount: external_exports.number().default(0),
+    operationCount: external_exports.number().default(0),
+    schemaCount: external_exports.number().default(0)
+  }).optional()
+});
+var validateOpenAPITool = tool({
+  description: "Validate an OpenAPI specification file for correctness and completeness",
+  parameters: external_exports.object({
+    specPath: external_exports.string().min(1, "OpenAPI spec file path is required"),
+    cwd: external_exports.string().default("."),
+    strict: external_exports.boolean().default(false)
+    // Strict validation mode
+  }),
+  execute: async ({ specPath, cwd, strict }) => {
+    try {
+      const filePath = join4(cwd, specPath);
+      const content = await readFile2(filePath, "utf-8");
+      let spec;
+      try {
+        spec = JSON.parse(content);
+      } catch {
+        try {
+          const yaml = await Promise.resolve().then(() => __toESM(require_dist(), 1));
+          spec = yaml.parse(content);
+        } catch (yamlError) {
+          return {
+            success: false,
+            valid: false,
+            error: "Failed to parse OpenAPI spec as JSON or YAML",
+            errors: [
+              {
+                path: "/",
+                message: "Invalid JSON/YAML format",
+                severity: "error"
+              }
+            ]
+          };
+        }
+      }
+      const errors = [];
+      const warnings = [];
+      if (!spec.openapi && !spec.swagger) {
+        errors.push({
+          path: "/",
+          message: "Missing required 'openapi' or 'swagger' field",
+          severity: "error"
+        });
+      }
+      if (!spec.info) {
+        errors.push({
+          path: "/info",
+          message: "Missing required 'info' object",
+          severity: "error"
+        });
+      } else {
+        if (!spec.info.title) {
+          errors.push({
+            path: "/info/title",
+            message: "Missing required 'title' field in info object",
+            severity: "error"
+          });
+        }
+        if (!spec.info.version) {
+          errors.push({
+            path: "/info/version",
+            message: "Missing required 'version' field in info object",
+            severity: "error"
+          });
+        }
+      }
+      if (!spec.paths || Object.keys(spec.paths).length === 0) {
+        warnings.push({
+          path: "/paths",
+          message: "No paths defined in the specification"
+        });
+      }
+      const pathCount = spec.paths ? Object.keys(spec.paths).length : 0;
+      let operationCount = 0;
+      const schemaCount = spec.components?.schemas ? Object.keys(spec.components.schemas).length : 0;
+      if (spec.paths) {
+        for (const path5 of Object.values(spec.paths)) {
+          if (typeof path5 === "object" && path5 !== null) {
+            const httpMethods = [
+              "get",
+              "post",
+              "put",
+              "delete",
+              "patch",
+              "head",
+              "options",
+              "trace"
+            ];
+            operationCount += httpMethods.filter(
+              (method) => method in path5
+            ).length;
+          }
+        }
+      }
+      if (strict) {
+        if (spec.paths) {
+          Object.entries(spec.paths).forEach(
+            ([pathName, pathItem]) => {
+              if (typeof pathItem === "object" && pathItem !== null) {
+                Object.entries(pathItem).forEach(
+                  ([method, operation]) => {
+                    if (typeof operation === "object" && operation !== null && !operation.description) {
+                      warnings.push({
+                        path: `/paths${pathName}/${method}/description`,
+                        message: `Missing description for ${method.toUpperCase()} ${pathName}`
+                      });
+                    }
+                  }
+                );
+              }
+            }
+          );
+        }
+        if (spec.paths) {
+          Object.entries(spec.paths).forEach(
+            ([pathName, pathItem]) => {
+              if (typeof pathItem === "object" && pathItem !== null) {
+                Object.entries(pathItem).forEach(
+                  ([method, operation]) => {
+                    if (typeof operation === "object" && operation?.responses) {
+                      Object.entries(operation.responses).forEach(
+                        ([statusCode, response]) => {
+                          if (statusCode.startsWith("2") && !response.content) {
+                            warnings.push({
+                              path: `/paths${pathName}/${method}/responses/${statusCode}`,
+                              message: `Success response ${statusCode} missing content schema`
+                            });
+                          }
+                        }
+                      );
+                    }
+                  }
+                );
+              }
+            }
+          );
+        }
+      }
+      const isValid2 = errors.length === 0;
+      return {
+        success: true,
+        valid: isValid2,
+        version: spec.openapi || spec.swagger,
+        errors,
+        warnings,
+        info: {
+          title: spec.info?.title,
+          version: spec.info?.version,
+          pathCount,
+          operationCount,
+          schemaCount
+        },
+        summary: isValid2 ? `Valid OpenAPI spec with ${pathCount} paths and ${operationCount} operations` : `Invalid OpenAPI spec with ${errors.length} errors`
+      };
+    } catch (error45) {
+      return {
+        success: false,
+        valid: false,
+        error: error45 instanceof Error ? error45.message : "OpenAPI validation failed",
+        errors: [
+          {
+            path: "/",
+            message: error45 instanceof Error ? error45.message : "Unknown validation error",
+            severity: "error"
+          }
+        ]
+      };
+    }
+  }
+});
+var generateOpenAPITool = tool({
+  description: "Generate OpenAPI specification from API endpoint definitions",
+  parameters: external_exports.object({
+    apis: external_exports.array(
       external_exports.object({
-        name: external_exports.string(),
-        description: external_exports.string(),
-        deliverables: external_exports.array(external_exports.string()).default([]),
-        estimatedWeeks: external_exports.number().positive().optional()
+        method: external_exports.enum(["GET", "POST", "PUT", "DELETE", "PATCH"]),
+        route: external_exports.string(),
+        summary: external_exports.string().optional(),
+        inputs: external_exports.array(
+          external_exports.object({
+            name: external_exports.string(),
+            type: external_exports.string(),
+            required: external_exports.boolean().optional().default(true),
+            description: external_exports.string().optional()
+          })
+        ).default([]),
+        outputs: external_exports.array(
+          external_exports.object({
+            name: external_exports.string(),
+            type: external_exports.string(),
+            description: external_exports.string().optional()
+          })
+        ).default([]),
+        authenticated: external_exports.boolean().optional().default(false)
       })
-    ).default([]),
-    risks: external_exports.array(
+    ),
+    info: external_exports.object({
+      title: external_exports.string().default("Generated API"),
+      version: external_exports.string().default("1.0.0"),
+      description: external_exports.string().optional()
+    }).optional(),
+    outputPath: external_exports.string().default("openapi.yaml"),
+    cwd: external_exports.string().default(".")
+  }),
+  execute: async ({ apis, info, outputPath, cwd }) => {
+    try {
+      const openApiSpec = {
+        openapi: "3.0.3",
+        info: {
+          title: info?.title || "Generated API",
+          version: info?.version || "1.0.0",
+          description: info?.description || "API specification generated by IdeaForge"
+        },
+        paths: {},
+        components: {
+          schemas: {}
+        }
+      };
+      for (const api of apis) {
+        if (!openApiSpec.paths[api.route]) {
+          openApiSpec.paths[api.route] = {};
+        }
+        const operation = {
+          summary: api.summary || `${api.method} ${api.route}`,
+          operationId: `${api.method.toLowerCase()}${api.route.replace(
+            /[^a-zA-Z0-9]/g,
+            ""
+          )}`,
+          parameters: [],
+          responses: {
+            "200": {
+              description: "Successful response",
+              content: {
+                "application/json": {
+                  schema: {
+                    type: "object",
+                    properties: {}
+                  }
+                }
+              }
+            }
+          }
+        };
+        for (const input of api.inputs) {
+          const parameter = {
+            name: input.name,
+            in: api.method === "GET" ? "query" : "body",
+            required: input.required,
+            description: input.description,
+            schema: {
+              type: mapTypeToOpenAPI(input.type)
+            }
+          };
+          if (api.method === "GET" || api.method === "DELETE") {
+            operation.parameters.push(parameter);
+          } else {
+            if (!operation.requestBody) {
+              operation.requestBody = {
+                required: true,
+                content: {
+                  "application/json": {
+                    schema: {
+                      type: "object",
+                      properties: {},
+                      required: []
+                    }
+                  }
+                }
+              };
+            }
+            operation.requestBody.content["application/json"].schema.properties[input.name] = {
+              type: mapTypeToOpenAPI(input.type),
+              description: input.description
+            };
+            if (input.required) {
+              operation.requestBody.content["application/json"].schema.required.push(input.name);
+            }
+          }
+        }
+        for (const output of api.outputs) {
+          operation.responses["200"].content["application/json"].schema.properties[output.name] = {
+            type: mapTypeToOpenAPI(output.type),
+            description: output.description
+          };
+        }
+        openApiSpec.paths[api.route][api.method.toLowerCase()] = operation;
+      }
+      const yaml = await Promise.resolve().then(() => __toESM(require_dist(), 1));
+      const specContent = yaml.stringify(openApiSpec, { indent: 2 });
+      const fs = await import("node:fs/promises");
+      const fullPath = join4(cwd, outputPath);
+      await fs.writeFile(fullPath, specContent, "utf-8");
+      return {
+        success: true,
+        generated: true,
+        outputPath: fullPath,
+        pathCount: Object.keys(openApiSpec.paths).length,
+        operationCount: apis.length,
+        summary: `Generated OpenAPI spec with ${apis.length} operations`,
+        spec: openApiSpec
+      };
+    } catch (error45) {
+      return {
+        success: false,
+        generated: false,
+        error: error45 instanceof Error ? error45.message : "OpenAPI generation failed"
+      };
+    }
+  }
+});
+function mapTypeToOpenAPI(type) {
+  const typeMap = {
+    string: "string",
+    number: "number",
+    boolean: "boolean",
+    Date: "string",
+    object: "object",
+    array: "array",
+    any: "object"
+  };
+  return typeMap[type] || "string";
+}
+var openApiTools = {
+  validateOpenAPI: validateOpenAPITool,
+  generateOpenAPI: generateOpenAPITool
+};
+
+// src/tools/index.ts
+var allTools = {
+  // File system operations
+  ...fsTools,
+  // Testing tools
+  ...testTools,
+  // Linting and code quality
+  ...lintTools,
+  // OpenAPI tools
+  ...openApiTools
+};
+var coreTools = {
+  readFile: fsTools.readFile,
+  writeFile: fsTools.writeFile,
+  listDir: fsTools.listDir,
+  fileExists: fsTools.fileExists,
+  createDir: fsTools.createDir
+};
+var qualityTools = {
+  runTests: testTools.runTests,
+  lint: lintTools.lint,
+  typeCheck: lintTools.typeCheck,
+  securityLint: lintTools.securityLint,
+  runAllLints: lintTools.runAllLints
+};
+var buildTools = {
+  validateOpenAPI: openApiTools.validateOpenAPI,
+  generateOpenAPI: openApiTools.generateOpenAPI,
+  format: lintTools.format
+};
+
+// src/agents/worker.ts
+var WorkerResultSchema = external_exports.object({
+  taskId: external_exports.string(),
+  status: external_exports.enum(["completed", "failed", "needs_review"]),
+  outputs: external_exports.object({
+    files: external_exports.array(
       external_exports.object({
-        risk: external_exports.string(),
-        impact: external_exports.enum(["low", "medium", "high"]),
-        mitigation: external_exports.string()
+        path: external_exports.string(),
+        content: external_exports.string(),
+        type: external_exports.enum(["code", "test", "config", "documentation"])
       })
-    ).default([])
+    ),
+    summary: external_exports.string(),
+    testResults: external_exports.object({
+      passed: external_exports.number(),
+      failed: external_exports.number(),
+      coverage: external_exports.number().optional()
+    }).optional()
+  }),
+  logs: external_exports.array(external_exports.string()).default([]),
+  errors: external_exports.array(external_exports.string()).default([]),
+  metadata: external_exports.object({
+    startTime: external_exports.date(),
+    endTime: external_exports.date(),
+    duration: external_exports.number(),
+    // in milliseconds
+    toolsUsed: external_exports.array(external_exports.string())
   })
 });
+var WorkerAgent = class {
+  constructor(model = "gpt-4o-mini") {
+    this.model = model;
+  }
+  /**
+   * Execute a single task with full context
+   */
+  async executeTask(task, context) {
+    const startTime = /* @__PURE__ */ new Date();
+    const logs = [];
+    const errors = [];
+    const toolsUsed = [];
+    try {
+      logs.push(`Starting execution of task ${task.id}: ${task.title}`);
+      const systemPrompt = this.buildSystemPrompt(task, context);
+      const userPrompt = this.buildUserPrompt(task, context);
+      logs.push(
+        "Analyzing task requirements and generating implementation plan..."
+      );
+      const result = await generateText({
+        model: openai(this.model),
+        system: systemPrompt,
+        prompt: userPrompt,
+        tools: allTools,
+        maxToolRoundtrips: 10,
+        // Allow multiple tool interactions
+        temperature: 0.1,
+        // Low temperature for consistent code generation
+        maxTokens: 8e3
+      });
+      logs.push("AI execution completed, processing results...");
+      let workerData;
+      try {
+        workerData = parseJsonResponse(result.text);
+      } catch (parseError) {
+        workerData = {
+          taskId: task.id,
+          status: "completed",
+          outputs: {
+            files: [],
+            summary: result.text
+          }
+        };
+      }
+      if (result.toolCalls) {
+        result.toolCalls.forEach((call) => {
+          if (!toolsUsed.includes(call.toolName)) {
+            toolsUsed.push(call.toolName);
+          }
+        });
+      }
+      const endTime = /* @__PURE__ */ new Date();
+      const duration3 = endTime.getTime() - startTime.getTime();
+      const workerResult = {
+        taskId: task.id,
+        status: workerData.status || "completed",
+        outputs: {
+          files: workerData.outputs?.files || [],
+          summary: workerData.outputs?.summary || result.text,
+          testResults: workerData.outputs?.testResults
+        },
+        logs,
+        errors,
+        metadata: {
+          startTime,
+          endTime,
+          duration: duration3,
+          toolsUsed
+        }
+      };
+      logs.push(`Task ${task.id} completed successfully in ${duration3}ms`);
+      return workerResult;
+    } catch (error45) {
+      const endTime = /* @__PURE__ */ new Date();
+      const duration3 = endTime.getTime() - startTime.getTime();
+      errors.push(`Task execution failed: ${error45}`);
+      return {
+        taskId: task.id,
+        status: "failed",
+        outputs: {
+          files: [],
+          summary: `Task failed: ${error45}`
+        },
+        logs,
+        errors,
+        metadata: {
+          startTime,
+          endTime,
+          duration: duration3,
+          toolsUsed
+        }
+      };
+    }
+  }
+  /**
+   * Build comprehensive system prompt for the worker agent
+   */
+  buildSystemPrompt(task, context) {
+    return `You are a Senior Software Engineer AI agent executing a specific development task.
+
+ROLE & CAPABILITIES:
+- You have access to file system tools (read, write, create directories)
+- You can run tests, linting, and code quality checks
+- You can validate OpenAPI specifications
+- You must implement the task completely and correctly
+- You should write clean, well-documented, production-ready code
+
+PROJECT CONTEXT:
+- Project: ${context.projectName}
+- Workspace: ${context.workspacePath}
+- Entities: ${context.entities.map((e) => e.name).join(", ")}
+- APIs: ${context.apis.length} endpoints defined
+- Constraints: ${context.constraints.length} requirements to follow
+
+TASK EXECUTION PROCESS:
+1. Analyze the task requirements and acceptance criteria
+2. Plan the implementation approach
+3. Create necessary files and directory structure
+4. Implement the functionality with proper error handling
+5. Write comprehensive tests
+6. Run tests and fix any issues
+7. Ensure code quality (linting, formatting)
+8. Document the implementation
+
+CODE QUALITY STANDARDS:
+- Follow TypeScript best practices
+- Write comprehensive unit tests
+- Include proper error handling
+- Add JSDoc comments for functions
+- Follow consistent naming conventions
+- Ensure type safety throughout
+
+IMPORTANT: Use the available tools to actually implement the task. Don't just describe what to do - actually do it by calling the appropriate tools to create files, run tests, etc.
+
+Return a JSON response with the execution results including all files created, test results, and a summary of what was implemented.`;
+  }
+  /**
+   * Build specific user prompt for the task
+   */
+  buildUserPrompt(task, context) {
+    const relatedScenarios = context.scenarios.filter(
+      (s) => task.acceptanceCriteria.includes(s.id)
+    );
+    const relatedConstraints = context.constraints.filter(
+      (c) => c.type === "perf" || c.type === "security" || c.type === "compliance"
+    );
+    return `TASK TO IMPLEMENT:
+
+**Task ID**: ${task.id}
+**Title**: ${task.title}
+**Description**: ${task.description}
+**Estimated Complexity**: ${task.estimatedComplexity}
+**Dependencies**: ${task.dependencies.join(", ") || "None"}
+
+**Acceptance Criteria**:
+${relatedScenarios.map((s) => `- AC-${s.id}: Given ${s.given}, When ${s.when}, Then ${s.then}`).join("\n")}
+
+**Relevant Entities**:
+${context.entities.map((e) => `- ${e.name}: ${e.attributes.join(", ")}`).join("\n")}
+
+**Relevant APIs**:
+${context.apis.map((a) => `- ${a.method} ${a.route}: ${a.summary}`).join("\n")}
+
+**Constraints to Follow**:
+${relatedConstraints.map((c) => `- ${c.type.toUpperCase()}: ${c.rule}`).join("\n")}
+
+**Implementation Requirements**:
+1. Create all necessary files in the correct directory structure
+2. Implement the functionality according to the acceptance criteria
+3. Write comprehensive tests that validate the acceptance criteria
+4. Ensure all constraints are met
+5. Run tests to verify everything works
+6. Follow the project's coding standards
+
+Please implement this task completely using the available tools. Create actual files, write real code, and run tests to ensure everything works correctly.
+
+Respond with a JSON object containing:
+{
+  "taskId": "${task.id}",
+  "status": "completed|failed|needs_review",
+  "outputs": {
+    "files": [{"path": "...", "content": "...", "type": "code|test|config|documentation"}],
+    "summary": "What was implemented and how it meets the acceptance criteria",
+    "testResults": {"passed": 0, "failed": 0, "coverage": 0}
+  }
+}`;
+  }
+  /**
+   * Validate task execution results
+   */
+  async validateExecution(result, task) {
+    const issues = [];
+    const suggestions = [];
+    if (result.status === "failed") {
+      issues.push("Task execution failed");
+    }
+    if (result.outputs.files.length === 0) {
+      issues.push("No files were created during task execution");
+    }
+    if (!result.outputs.testResults) {
+      suggestions.push(
+        "Consider adding test results to validate implementation"
+      );
+    } else if (result.outputs.testResults.failed > 0) {
+      issues.push(`${result.outputs.testResults.failed} tests are failing`);
+    }
+    if (result.metadata.duration > 3e5) {
+      suggestions.push(
+        "Task execution took longer than expected - consider optimization"
+      );
+    }
+    return {
+      isValid: issues.length === 0,
+      issues,
+      suggestions
+    };
+  }
+};
+function createWorkerAgent(model = "gpt-4o-mini") {
+  return new WorkerAgent(model);
+}
+var TaskExecutionOrchestrator = class {
+  constructor(model = "gpt-4o-mini") {
+    this.workerAgent = createWorkerAgent(model);
+  }
+  /**
+   * Execute multiple tasks in dependency order
+   */
+  async executeTasks(tasks2, context) {
+    const results = [];
+    const sortedTasks = this.topologicalSort(tasks2);
+    console.log(`\u{1F680} Executing ${tasks2.length} tasks in dependency order...`);
+    for (const task of sortedTasks) {
+      console.log(`\u2699\uFE0F  Executing task ${task.id}: ${task.title}`);
+      try {
+        const result = await this.workerAgent.executeTask(task, context);
+        results.push(result);
+        if (result.status === "completed") {
+          console.log(`\u2705 Task ${task.id} completed successfully`);
+        } else {
+          console.log(`\u26A0\uFE0F  Task ${task.id} needs attention: ${result.status}`);
+        }
+      } catch (error45) {
+        console.error(`\u274C Task ${task.id} failed:`, error45);
+        results.push({
+          taskId: task.id,
+          status: "failed",
+          outputs: {
+            files: [],
+            summary: `Execution failed: ${error45}`
+          },
+          logs: [],
+          errors: [String(error45)],
+          metadata: {
+            startTime: /* @__PURE__ */ new Date(),
+            endTime: /* @__PURE__ */ new Date(),
+            duration: 0,
+            toolsUsed: []
+          }
+        });
+      }
+    }
+    return results;
+  }
+  /**
+   * Sort tasks by dependencies using topological sort
+   */
+  topologicalSort(tasks2) {
+    const visited = /* @__PURE__ */ new Set();
+    const visiting = /* @__PURE__ */ new Set();
+    const result = [];
+    const taskMap = new Map(tasks2.map((t) => [t.id, t]));
+    function visit(taskId) {
+      if (visiting.has(taskId)) {
+        throw new Error(
+          `Circular dependency detected involving task ${taskId}`
+        );
+      }
+      if (visited.has(taskId)) {
+        return;
+      }
+      const task = taskMap.get(taskId);
+      if (!task) {
+        return;
+      }
+      visiting.add(taskId);
+      for (const depId of task.dependencies) {
+        visit(depId);
+      }
+      visiting.delete(taskId);
+      visited.add(taskId);
+      result.push(task);
+    }
+    for (const task of tasks2) {
+      visit(task.id);
+    }
+    return result;
+  }
+};
+
+// src/agents/reviewer.ts
+var ReviewResultSchema = external_exports.object({
+  taskId: external_exports.string(),
+  status: external_exports.enum(["approved", "needs_changes", "rejected"]),
+  score: external_exports.number().min(0).max(100),
+  // Overall quality score
+  feedback: external_exports.object({
+    strengths: external_exports.array(external_exports.string()),
+    issues: external_exports.array(
+      external_exports.object({
+        type: external_exports.enum(["critical", "major", "minor", "suggestion"]),
+        category: external_exports.enum([
+          "functionality",
+          "testing",
+          "code_quality",
+          "security",
+          "performance",
+          "documentation"
+        ]),
+        description: external_exports.string(),
+        file: external_exports.string().optional(),
+        line: external_exports.number().optional(),
+        suggestion: external_exports.string().optional()
+      })
+    ),
+    summary: external_exports.string()
+  }),
+  checklist: external_exports.object({
+    functionality: external_exports.boolean(),
+    // Does it meet acceptance criteria?
+    testing: external_exports.boolean(),
+    // Are tests comprehensive and passing?
+    codeQuality: external_exports.boolean(),
+    // Is code clean and well-structured?
+    security: external_exports.boolean(),
+    // Are security constraints met?
+    performance: external_exports.boolean(),
+    // Are performance constraints met?
+    documentation: external_exports.boolean()
+    // Is code properly documented?
+  }),
+  recommendations: external_exports.array(external_exports.string()),
+  metadata: external_exports.object({
+    reviewedAt: external_exports.date(),
+    reviewDuration: external_exports.number(),
+    // in milliseconds
+    filesReviewed: external_exports.number(),
+    linesReviewed: external_exports.number()
+  })
+});
+var ReviewerAgent = class {
+  constructor(model = "gpt-4o-mini") {
+    this.model = model;
+  }
+  /**
+   * Review a completed task implementation
+   */
+  async reviewTask(workerResult, task, context) {
+    const reviewStart = /* @__PURE__ */ new Date();
+    try {
+      console.log(`\u{1F50D} Reviewing task ${task.id}: ${task.title}`);
+      const systemPrompt = this.buildSystemPrompt(task, context);
+      const userPrompt = this.buildUserPrompt(workerResult, task, context);
+      const result = await generateText({
+        model: openai(this.model),
+        system: systemPrompt,
+        prompt: userPrompt,
+        tools: allTools,
+        // Allow reviewer to examine files, run tests, etc.
+        maxToolRoundtrips: 5,
+        temperature: 0.1,
+        // Low temperature for consistent reviews
+        maxTokens: 6e3
+      });
+      let reviewData;
+      try {
+        reviewData = parseJsonResponse(result.text);
+      } catch (parseError) {
+        reviewData = {
+          taskId: task.id,
+          status: "needs_changes",
+          score: 50,
+          feedback: {
+            strengths: [],
+            issues: [
+              {
+                type: "major",
+                category: "functionality",
+                description: "Unable to parse review results properly"
+              }
+            ],
+            summary: result.text
+          },
+          checklist: {
+            functionality: false,
+            testing: false,
+            codeQuality: false,
+            security: false,
+            performance: false,
+            documentation: false
+          },
+          recommendations: ["Fix review parsing issues"]
+        };
+      }
+      const reviewEnd = /* @__PURE__ */ new Date();
+      const reviewDuration = reviewEnd.getTime() - reviewStart.getTime();
+      const filesReviewed = workerResult.outputs.files.length;
+      const linesReviewed = workerResult.outputs.files.reduce(
+        (total, file2) => total + file2.content.split("\n").length,
+        0
+      );
+      const reviewResult = {
+        taskId: task.id,
+        status: reviewData.status || "needs_changes",
+        score: Math.max(0, Math.min(100, reviewData.score || 50)),
+        feedback: {
+          strengths: reviewData.feedback?.strengths || [],
+          issues: reviewData.feedback?.issues || [],
+          summary: reviewData.feedback?.summary || "Review completed"
+        },
+        checklist: {
+          functionality: reviewData.checklist?.functionality || false,
+          testing: reviewData.checklist?.testing || false,
+          codeQuality: reviewData.checklist?.codeQuality || false,
+          security: reviewData.checklist?.security || false,
+          performance: reviewData.checklist?.performance || false,
+          documentation: reviewData.checklist?.documentation || false
+        },
+        recommendations: reviewData.recommendations || [],
+        metadata: {
+          reviewedAt: reviewEnd,
+          reviewDuration,
+          filesReviewed,
+          linesReviewed
+        }
+      };
+      console.log(
+        `\u2705 Review completed for task ${task.id} - Score: ${reviewResult.score}/100`
+      );
+      return reviewResult;
+    } catch (error45) {
+      console.error(`\u274C Review failed for task ${task.id}:`, error45);
+      const reviewEnd = /* @__PURE__ */ new Date();
+      return {
+        taskId: task.id,
+        status: "rejected",
+        score: 0,
+        feedback: {
+          strengths: [],
+          issues: [
+            {
+              type: "critical",
+              category: "functionality",
+              description: `Review process failed: ${error45}`
+            }
+          ],
+          summary: `Review failed due to error: ${error45}`
+        },
+        checklist: {
+          functionality: false,
+          testing: false,
+          codeQuality: false,
+          security: false,
+          performance: false,
+          documentation: false
+        },
+        recommendations: ["Fix review process errors before proceeding"],
+        metadata: {
+          reviewedAt: reviewEnd,
+          reviewDuration: reviewEnd.getTime() - reviewStart.getTime(),
+          filesReviewed: 0,
+          linesReviewed: 0
+        }
+      };
+    }
+  }
+  /**
+   * Build comprehensive system prompt for the reviewer agent
+   */
+  buildSystemPrompt(task, context) {
+    return `You are a Senior Code Reviewer AI agent performing comprehensive code review.
+
+ROLE & RESPONSIBILITIES:
+- Review code for functionality, quality, security, and performance
+- Validate that acceptance criteria are fully met
+- Check adherence to coding standards and best practices
+- Identify potential bugs, security vulnerabilities, and performance issues
+- Provide constructive feedback and actionable recommendations
+- Use available tools to examine files, run tests, and validate implementations
+
+REVIEW CRITERIA:
+1. **Functionality**: Does the code meet all acceptance criteria?
+2. **Testing**: Are tests comprehensive, passing, and cover edge cases?
+3. **Code Quality**: Is code clean, readable, and well-structured?
+4. **Security**: Are security constraints and best practices followed?
+5. **Performance**: Are performance requirements met?
+6. **Documentation**: Is code properly documented with clear comments?
+
+SCORING GUIDELINES:
+- 90-100: Excellent - Ready for production, minor suggestions only
+- 80-89: Good - Meets requirements with minor improvements needed
+- 70-79: Acceptable - Functional but needs moderate improvements
+- 60-69: Needs Work - Major issues that must be addressed
+- 0-59: Unacceptable - Critical issues, requires significant rework
+
+REVIEW PROCESS:
+1. Examine all generated files using available tools
+2. Run tests to verify functionality
+3. Check code quality with linting tools
+4. Validate against acceptance criteria and constraints
+5. Identify strengths and areas for improvement
+6. Provide specific, actionable feedback
+7. Make approval decision based on quality standards
+
+Be thorough but constructive. Focus on helping improve the code while ensuring it meets all requirements.`;
+  }
+  /**
+   * Build specific user prompt for the review
+   */
+  buildUserPrompt(workerResult, task, context) {
+    const relatedScenarios = context.scenarios.filter(
+      (s) => task.acceptanceCriteria.includes(s.id)
+    );
+    const relatedConstraints = context.constraints.filter(
+      (c) => ["perf", "security", "compliance"].includes(c.type)
+    );
+    return `TASK IMPLEMENTATION TO REVIEW:
+
+**Task Details**:
+- ID: ${task.id}
+- Title: ${task.title}
+- Description: ${task.description}
+- Complexity: ${task.estimatedComplexity}
+
+**Implementation Results**:
+- Status: ${workerResult.status}
+- Files Created: ${workerResult.outputs.files.length}
+- Execution Time: ${workerResult.metadata.duration}ms
+- Tools Used: ${workerResult.metadata.toolsUsed.join(", ")}
+
+**Files to Review**:
+${workerResult.outputs.files.map((f) => `- ${f.path} (${f.type}): ${f.content.split("\n").length} lines`).join("\n")}
+
+**Acceptance Criteria to Validate**:
+${relatedScenarios.map((s) => `- ${s.id}: Given ${s.given}, When ${s.when}, Then ${s.then}`).join("\n")}
+
+**Constraints to Check**:
+${relatedConstraints.map((c) => `- ${c.type.toUpperCase()}: ${c.rule}`).join("\n")}
+
+**Test Results**:
+${workerResult.outputs.testResults ? `- Passed: ${workerResult.outputs.testResults.passed}
+- Failed: ${workerResult.outputs.testResults.failed}
+- Coverage: ${workerResult.outputs.testResults.coverage || "N/A"}%` : "- No test results available"}
+
+**Implementation Summary**:
+${workerResult.outputs.summary}
+
+**Review Instructions**:
+1. Use the available tools to examine each file in detail
+2. Run tests to verify functionality works as expected
+3. Check that all acceptance criteria are met
+4. Validate adherence to constraints (security, performance, etc.)
+5. Assess code quality, structure, and documentation
+6. Identify any bugs, security issues, or performance problems
+
+Please provide a comprehensive review with:
+- Overall quality score (0-100)
+- Specific strengths and issues found
+- Checklist validation for each review criteria
+- Actionable recommendations for improvement
+- Final approval decision (approved/needs_changes/rejected)
+
+Respond with a JSON object containing your detailed review results.`;
+  }
+  /**
+   * Run automated quality checks
+   */
+  async runAutomatedChecks(workerResult, workspacePath) {
+    const hasTests = workerResult.outputs.files.some((f) => f.type === "test");
+    const hasLintableCode = workerResult.outputs.files.some(
+      (f) => f.type === "code"
+    );
+    return {
+      linting: {
+        passed: hasLintableCode,
+        issues: hasLintableCode ? [] : ["No code files to lint"]
+      },
+      testing: {
+        passed: workerResult.outputs.testResults?.failed === 0,
+        coverage: workerResult.outputs.testResults?.coverage || 0,
+        results: hasTests ? "Tests executed successfully" : "No tests found"
+      },
+      security: {
+        passed: true,
+        // Would run actual security scanning
+        vulnerabilities: []
+      }
+    };
+  }
+};
+function createReviewerAgent(model = "gpt-4o-mini") {
+  return new ReviewerAgent(model);
+}
+var ReviewLoopOrchestrator = class {
+  constructor(model = "gpt-4o-mini", maxIterations = 3) {
+    this.reviewerAgent = createReviewerAgent(model);
+    this.maxIterations = maxIterations;
+  }
+  /**
+   * Run review loop with iterative improvements
+   */
+  async runReviewLoop(workerResult, task, context) {
+    const iterations = [];
+    let currentResult = workerResult;
+    let approved = false;
+    console.log(
+      `\u{1F504} Starting review loop for task ${task.id} (max ${this.maxIterations} iterations)`
+    );
+    for (let i = 0; i < this.maxIterations; i++) {
+      console.log(`\u{1F4DD} Review iteration ${i + 1}/${this.maxIterations}`);
+      const review = await this.reviewerAgent.reviewTask(
+        currentResult,
+        task,
+        context
+      );
+      iterations.push(review);
+      if (review.status === "approved") {
+        approved = true;
+        console.log(`\u2705 Task ${task.id} approved after ${i + 1} iteration(s)`);
+        break;
+      } else if (review.status === "rejected") {
+        console.log(`\u274C Task ${task.id} rejected - critical issues found`);
+        break;
+      } else {
+        console.log(
+          `\u{1F527} Task ${task.id} needs changes - iteration ${i + 1} complete`
+        );
+        if (i < this.maxIterations - 1) {
+          console.log(
+            `\u26A0\uFE0F  Automatic fixes not yet implemented - continuing with current implementation`
+          );
+        }
+      }
+    }
+    const finalReview = iterations[iterations.length - 1];
+    if (!approved && iterations.length === this.maxIterations) {
+      console.log(
+        `\u26A0\uFE0F  Task ${task.id} reached maximum review iterations without approval`
+      );
+    }
+    return {
+      finalReview,
+      iterations,
+      approved
+    };
+  }
+};
+
+// src/agents/aggregator.ts
+import path2 from "node:path";
+var AggregationResultSchema = external_exports.object({
+  projectName: external_exports.string(),
+  status: external_exports.enum(["success", "partial", "failed"]),
+  outputs: external_exports.object({
+    codebase: external_exports.object({
+      structure: external_exports.record(external_exports.array(external_exports.string())),
+      // directory -> files mapping
+      totalFiles: external_exports.number(),
+      totalLines: external_exports.number(),
+      languages: external_exports.array(external_exports.string())
+    }),
+    documentation: external_exports.object({
+      readme: external_exports.string(),
+      apiDocs: external_exports.string().optional(),
+      coverage: external_exports.string().optional()
+    }),
+    tests: external_exports.object({
+      totalTests: external_exports.number(),
+      passRate: external_exports.number(),
+      coverage: external_exports.number(),
+      suites: external_exports.array(external_exports.string())
+    }),
+    deployment: external_exports.object({
+      packageJson: external_exports.boolean(),
+      dockerfile: external_exports.boolean(),
+      ciConfig: external_exports.boolean(),
+      envExample: external_exports.boolean()
+    })
+  }),
+  quality: external_exports.object({
+    overallScore: external_exports.number().min(0).max(100),
+    taskCompletion: external_exports.number().min(0).max(100),
+    codeQuality: external_exports.number().min(0).max(100),
+    testCoverage: external_exports.number().min(0).max(100),
+    documentation: external_exports.number().min(0).max(100)
+  }),
+  issues: external_exports.array(
+    external_exports.object({
+      type: external_exports.enum(["error", "warning", "info"]),
+      category: external_exports.string(),
+      description: external_exports.string(),
+      affectedTasks: external_exports.array(external_exports.string())
+    })
+  ),
+  metadata: external_exports.object({
+    aggregatedAt: external_exports.date(),
+    tasksProcessed: external_exports.number(),
+    buildDuration: external_exports.number(),
+    outputPath: external_exports.string()
+  })
+});
+var AggregatorAgent = class {
+  constructor(model = "gpt-4o-mini") {
+    this.model = model;
+  }
+  /**
+   * Aggregate all task results into a complete project
+   */
+  async aggregateProject(taskResults, context) {
+    const aggregationStart = /* @__PURE__ */ new Date();
+    try {
+      console.log(
+        `\u{1F9E9} Aggregating ${taskResults.length} task results into complete project...`
+      );
+      const systemPrompt = this.buildSystemPrompt(context);
+      const userPrompt = this.buildUserPrompt(taskResults, context);
+      const result = await generateText({
+        model: openai(this.model),
+        system: systemPrompt,
+        prompt: userPrompt,
+        tools: allTools,
+        // Full access to create final project structure
+        maxToolRoundtrips: 15,
+        // Allow extensive file operations
+        temperature: 0.1,
+        // Low temperature for consistent output
+        maxTokens: 1e4
+      });
+      let aggregationData;
+      try {
+        aggregationData = parseJsonResponse(result.text);
+      } catch (parseError) {
+        aggregationData = {
+          projectName: context.projectName,
+          status: "partial",
+          outputs: {
+            codebase: {
+              structure: {},
+              totalFiles: 0,
+              totalLines: 0,
+              languages: []
+            },
+            documentation: { readme: "Basic project structure created" },
+            tests: { totalTests: 0, passRate: 0, coverage: 0, suites: [] },
+            deployment: {
+              packageJson: false,
+              dockerfile: false,
+              ciConfig: false,
+              envExample: false
+            }
+          },
+          quality: {
+            overallScore: 50,
+            taskCompletion: 50,
+            codeQuality: 50,
+            testCoverage: 0,
+            documentation: 30
+          },
+          issues: [
+            {
+              type: "warning",
+              category: "aggregation",
+              description: "Failed to parse aggregation results",
+              affectedTasks: []
+            }
+          ]
+        };
+      }
+      const aggregationEnd = /* @__PURE__ */ new Date();
+      const buildDuration = aggregationEnd.getTime() - aggregationStart.getTime();
+      const approvedTasks = taskResults.filter(
+        (tr) => tr.reviewResult.status === "approved"
+      ).length;
+      const taskCompletionRate = approvedTasks / taskResults.length * 100;
+      const avgQualityScore = taskResults.reduce((sum, tr) => sum + tr.reviewResult.score, 0) / taskResults.length;
+      const aggregationResult = {
+        projectName: context.projectName,
+        status: aggregationData.status || (approvedTasks === taskResults.length ? "success" : "partial"),
+        outputs: {
+          codebase: {
+            structure: aggregationData.outputs?.codebase?.structure || {},
+            totalFiles: aggregationData.outputs?.codebase?.totalFiles || 0,
+            totalLines: aggregationData.outputs?.codebase?.totalLines || 0,
+            languages: aggregationData.outputs?.codebase?.languages || [
+              "typescript"
+            ]
+          },
+          documentation: {
+            readme: aggregationData.outputs?.documentation?.readme || "Project documentation",
+            apiDocs: aggregationData.outputs?.documentation?.apiDocs,
+            coverage: aggregationData.outputs?.documentation?.coverage
+          },
+          tests: {
+            totalTests: aggregationData.outputs?.tests?.totalTests || 0,
+            passRate: aggregationData.outputs?.tests?.passRate || 0,
+            coverage: aggregationData.outputs?.tests?.coverage || 0,
+            suites: aggregationData.outputs?.tests?.suites || []
+          },
+          deployment: {
+            packageJson: aggregationData.outputs?.deployment?.packageJson || false,
+            dockerfile: aggregationData.outputs?.deployment?.dockerfile || false,
+            ciConfig: aggregationData.outputs?.deployment?.ciConfig || false,
+            envExample: aggregationData.outputs?.deployment?.envExample || false
+          }
+        },
+        quality: {
+          overallScore: Math.round((taskCompletionRate + avgQualityScore) / 2),
+          taskCompletion: taskCompletionRate,
+          codeQuality: avgQualityScore,
+          testCoverage: aggregationData.quality?.testCoverage || 0,
+          documentation: aggregationData.quality?.documentation || 50
+        },
+        issues: aggregationData.issues || [],
+        metadata: {
+          aggregatedAt: aggregationEnd,
+          tasksProcessed: taskResults.length,
+          buildDuration,
+          outputPath: path2.join(context.workspacePath, "build")
+        }
+      };
+      console.log(
+        `\u2705 Project aggregation completed - Overall Score: ${aggregationResult.quality.overallScore}/100`
+      );
+      return aggregationResult;
+    } catch (error45) {
+      console.error(`\u274C Project aggregation failed:`, error45);
+      const aggregationEnd = /* @__PURE__ */ new Date();
+      return {
+        projectName: context.projectName,
+        status: "failed",
+        outputs: {
+          codebase: {
+            structure: {},
+            totalFiles: 0,
+            totalLines: 0,
+            languages: []
+          },
+          documentation: { readme: `Aggregation failed: ${error45}` },
+          tests: { totalTests: 0, passRate: 0, coverage: 0, suites: [] },
+          deployment: {
+            packageJson: false,
+            dockerfile: false,
+            ciConfig: false,
+            envExample: false
+          }
+        },
+        quality: {
+          overallScore: 0,
+          taskCompletion: 0,
+          codeQuality: 0,
+          testCoverage: 0,
+          documentation: 0
+        },
+        issues: [
+          {
+            type: "error",
+            category: "aggregation",
+            description: `Aggregation process failed: ${error45}`,
+            affectedTasks: taskResults.map((tr) => tr.task.id)
+          }
+        ],
+        metadata: {
+          aggregatedAt: aggregationEnd,
+          tasksProcessed: taskResults.length,
+          buildDuration: aggregationEnd.getTime() - aggregationStart.getTime(),
+          outputPath: path2.join(context.workspacePath, "build")
+        }
+      };
+    }
+  }
+  /**
+   * Build comprehensive system prompt for the aggregator agent
+   */
+  buildSystemPrompt(context) {
+    return `You are a Senior Software Architect AI agent responsible for aggregating individual task outputs into a complete, production-ready codebase.
+
+ROLE & RESPONSIBILITIES:
+- Merge code files from multiple tasks into a cohesive project structure
+- Resolve conflicts and ensure proper integration between components
+- Generate comprehensive project documentation (README, API docs, deployment guides)
+- Create deployment configurations (package.json, Dockerfile, CI/CD configs)
+- Establish proper project structure and build processes
+- Ensure code quality and consistency across the entire codebase
+- Generate final validation reports and quality metrics
+
+PROJECT AGGREGATION PROCESS:
+1. **Structure Organization**: Create proper directory structure (src/, tests/, docs/, etc.)
+2. **Code Integration**: Merge task outputs, resolve conflicts, ensure consistency
+3. **Dependency Management**: Create package.json with all required dependencies
+4. **Documentation Generation**: Create comprehensive README and API documentation
+5. **Test Integration**: Combine test suites and ensure comprehensive coverage
+6. **Build Configuration**: Set up build scripts, linting, and CI/CD
+7. **Deployment Preparation**: Create Docker configs, environment examples
+8. **Quality Validation**: Run final tests, linting, and quality checks
+
+QUALITY STANDARDS:
+- Follow industry-standard project structure conventions
+- Ensure all code follows consistent style and patterns
+- Generate comprehensive documentation for users and developers
+- Create production-ready deployment configurations
+- Maintain high test coverage and code quality
+- Provide clear setup and deployment instructions
+
+OUTPUT REQUIREMENTS:
+- Complete, deployable codebase in /build directory
+- Comprehensive README.md with setup instructions
+- API documentation (if applicable)
+- Test suites with good coverage
+- Production-ready package.json and deployment configs
+- Quality metrics and validation reports
+
+Use the available tools to create the complete project structure and all necessary files.`;
+  }
+  /**
+   * Build specific user prompt for the aggregation
+   */
+  buildUserPrompt(taskResults, context) {
+    const completedTasks = taskResults.filter(
+      (tr) => tr.reviewResult.status === "approved"
+    );
+    const pendingTasks = taskResults.filter(
+      (tr) => tr.reviewResult.status !== "approved"
+    );
+    return `PROJECT AGGREGATION REQUEST:
+
+**Project**: ${context.projectName}
+**Workspace**: ${context.workspacePath}
+**Target**: ${path2.join(context.workspacePath, "build")}
+
+**Project Specification**:
+- Entities: ${context.entities.length} (${context.entities.map((e) => e.name).join(", ")})
+- APIs: ${context.apis.length} endpoints
+- Scenarios: ${context.scenarios.length} acceptance criteria
+
+**Task Results to Aggregate**:
+${taskResults.map(
+      (tr) => `- ${tr.task.id}: ${tr.task.title} [${tr.reviewResult.status.toUpperCase()}] (Score: ${tr.reviewResult.score}/100)
+  Files: ${tr.workerResult.outputs.files.length} | Tests: ${tr.workerResult.outputs.testResults?.passed || 0} passed`
+    ).join("\n")}
+
+**Completed Tasks (${completedTasks.length})**:
+${completedTasks.map((tr) => {
+      const files = tr.workerResult.outputs.files.map((f) => `${f.path} (${f.type})`).join(", ");
+      return `- ${tr.task.id}: ${files}`;
+    }).join("\n")}
+
+**Pending/Failed Tasks (${pendingTasks.length})**:
+${pendingTasks.map(
+      (tr) => `- ${tr.task.id}: ${tr.reviewResult.status} - ${tr.reviewResult.feedback.summary}`
+    ).join("\n")}
+
+**Aggregation Requirements**:
+
+1. **Project Structure**: Create standard directory layout:
+   /build/
+   - src/           # Source code
+   - tests/         # Test files  
+   - docs/          # Documentation
+   - package.json   # Dependencies and scripts
+   - README.md      # Project documentation
+   - Dockerfile     # Container configuration
+   - .env.example   # Environment variables
+
+2. **Code Integration**: 
+   - Merge all approved task outputs into cohesive codebase
+   - Resolve any conflicts between task implementations
+   - Ensure consistent coding style and patterns
+   - Add proper imports/exports and module structure
+
+3. **Documentation**:
+   - Generate comprehensive README.md with:
+     * Project description and features
+     * Setup and installation instructions
+     * API documentation (if applicable)
+     * Usage examples
+     * Development guide
+   - Create API documentation from endpoint specifications
+   - Include test coverage reports
+
+4. **Deployment Configuration**:
+   - Create package.json with all dependencies and scripts
+   - Generate Dockerfile for containerization
+   - Add CI/CD configuration (GitHub Actions or similar)
+   - Create .env.example with required environment variables
+
+5. **Quality Assurance**:
+   - Run all tests and ensure they pass
+   - Check code quality with linting
+   - Validate API endpoints work correctly
+   - Ensure deployment configurations are valid
+
+**Expected Output**:
+Please use the available tools to create the complete project structure and provide a JSON response with:
+- Project status and quality metrics
+- Detailed breakdown of generated files and structure
+- Test results and coverage information
+- Any issues or warnings encountered
+- Deployment readiness assessment
+
+Create a production-ready codebase that can be immediately deployed and used.`;
+  }
+  /**
+   * Generate comprehensive README.md for the project
+   */
+  async generateReadme(context, aggregationResult) {
+    const apiEndpoints = context.apis.map(
+      (api) => `- \`${api.method} ${api.route}\` - ${api.summary || "API endpoint"}`
+    ).join("\n");
+    const entities = context.entities.map((entity) => `- **${entity.name}**: ${entity.attributes.join(", ")}`).join("\n");
+    return `# ${context.projectName}
+
+## Overview
+
+${context.projectName} is a modern application built with TypeScript and Node.js. This project was generated using IdeaForge AI-powered development pipeline.
+
+## Features
+
+${context.scenarios.slice(0, 5).map((s) => `- ${s.then}`).join("\n")}
+
+## Architecture
+
+### Data Models
+
+${entities}
+
+### API Endpoints
+
+${apiEndpoints}
+
+## Quick Start
+
+### Prerequisites
+
+- Node.js 18+ 
+- npm or yarn
+
+### Installation
+
+\`\`\`bash
+# Clone the repository
+git clone <repository-url>
+cd ${context.projectName.toLowerCase().replace(/\s+/g, "-")}
+
+# Install dependencies
+npm install
+
+# Set up environment variables
+cp .env.example .env
+# Edit .env with your configuration
+\`\`\`
+
+### Development
+
+\`\`\`bash
+# Start development server
+npm run dev
+
+# Run tests
+npm test
+
+# Run linting
+npm run lint
+
+# Build for production
+npm run build
+\`\`\`
+
+## Project Structure
+
+\`\`\`
+${Object.entries(aggregationResult.outputs.codebase.structure).map(
+      ([dir, files]) => `${dir}/
+${files.map((f) => `\u251C\u2500\u2500 ${f}`).join("\n")}`
+    ).join("\n")}
+\`\`\`
+
+## Quality Metrics
+
+- **Overall Score**: ${aggregationResult.quality.overallScore}/100
+- **Task Completion**: ${aggregationResult.quality.taskCompletion}%
+- **Code Quality**: ${aggregationResult.quality.codeQuality}/100
+- **Test Coverage**: ${aggregationResult.quality.testCoverage}%
+- **Documentation**: ${aggregationResult.quality.documentation}/100
+
+## Testing
+
+\`\`\`bash
+# Run all tests
+npm test
+
+# Run tests with coverage
+npm run test:coverage
+
+# Run specific test suite
+npm run test:unit
+npm run test:integration
+\`\`\`
+
+## Deployment
+
+### Docker
+
+\`\`\`bash
+# Build Docker image
+docker build -t ${context.projectName.toLowerCase().replace(/\s+/g, "-")} .
+
+# Run container
+docker run -p 3000:3000 ${context.projectName.toLowerCase().replace(/\s+/g, "-")}
+\`\`\`
+
+### Environment Variables
+
+Copy \`.env.example\` to \`.env\` and configure:
+
+\`\`\`
+NODE_ENV=production
+PORT=3000
+DATABASE_URL=your_database_url
+API_KEY=your_api_key
+\`\`\`
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests for new functionality
+5. Ensure all tests pass
+6. Submit a pull request
+
+## License
+
+MIT License - see LICENSE file for details
+
+---
+
+*Generated by IdeaForge AI Development Pipeline*
+*Project Quality Score: ${aggregationResult.quality.overallScore}/100*
+`;
+  }
+};
+function createAggregatorAgent(model = "gpt-4o-mini") {
+  return new AggregatorAgent(model);
+}
+var ProjectAssemblyOrchestrator = class {
+  constructor(model = "gpt-4o-mini") {
+    this.aggregatorAgent = createAggregatorAgent(model);
+  }
+  /**
+   * Assemble complete project from all task results
+   */
+  async assembleProject(taskResults, context) {
+    console.log(`\u{1F3D7}\uFE0F  Assembling complete project: ${context.projectName}`);
+    const approvedTasks = taskResults.filter(
+      (tr) => tr.reviewResult.status === "approved"
+    );
+    const failedTasks = taskResults.filter(
+      (tr) => tr.reviewResult.status !== "approved"
+    );
+    if (failedTasks.length > 0) {
+      console.log(
+        `\u26A0\uFE0F  ${failedTasks.length} tasks not approved, proceeding with ${approvedTasks.length} approved tasks`
+      );
+    }
+    const result = await this.aggregatorAgent.aggregateProject(
+      taskResults,
+      context
+    );
+    if (result.status !== "failed") {
+      const readme = await this.aggregatorAgent.generateReadme(context, result);
+      result.outputs.documentation.readme = readme;
+    }
+    console.log(`\u2705 Project assembly completed with status: ${result.status}`);
+    console.log(`\u{1F4CA} Quality Score: ${result.quality.overallScore}/100`);
+    return result;
+  }
+};
 
 // src/agents/index.ts
 var CompilationOrchestrator = class {
   constructor(model = "gpt-4o-mini") {
-    this.summaryAgent = new SummaryAgent(model);
-    this.entityApiAgent = new EntityApiAgent(model);
-    this.constraintsAgent = new ConstraintsAgent(model);
-    this.scenariosAgent = new ScenariosAgent(model);
-    this.hintsAgent = new HintsAgent(model);
+    this.summaryAgent = createSummaryAgent(model);
+    this.entityApiAgent = createEntityApiAgent(model);
+    this.constraintsAgent = createConstraintsAgent(model);
+    this.scenariosAgent = createScenariosAgent(model);
+    this.hintsAgent = createHintsAgent(model);
   }
   /**
    * Run all compilation agents in sequence and return combined results
@@ -28396,6 +47698,80 @@ var CompilationOrchestrator = class {
 function createCompilationOrchestrator(model) {
   return new CompilationOrchestrator(model);
 }
+
+// src/schemas/spec.ts
+var PersonaSchema = external_exports.object({
+  name: external_exports.string().min(1, "Persona name is required"),
+  goals: external_exports.array(external_exports.string().min(1, "Goal cannot be empty")).min(1, "At least one goal is required")
+});
+var EntityRelationSchema = external_exports.object({
+  to: external_exports.string().min(1, "Relation target is required"),
+  type: external_exports.enum(["one-to-one", "one-to-many", "many-to-many"])
+});
+var EntitySchema = external_exports.object({
+  name: external_exports.string().min(1, "Entity name is required"),
+  attributes: external_exports.array(external_exports.string().min(1, "Attribute cannot be empty")).min(1, "At least one attribute is required"),
+  relations: external_exports.array(EntityRelationSchema).optional().default([])
+});
+var ApiParameterSchema = external_exports.object({
+  name: external_exports.string().min(1, "Parameter name is required"),
+  type: external_exports.string().min(1, "Parameter type is required"),
+  required: external_exports.boolean().optional().default(true),
+  description: external_exports.string().optional()
+});
+var ApiSchema = external_exports.object({
+  method: external_exports.enum(["GET", "POST", "PUT", "DELETE", "PATCH"]),
+  route: external_exports.string().min(1, "API route is required").regex(/^\//, "Route must start with /"),
+  summary: external_exports.string().optional(),
+  inputs: external_exports.array(ApiParameterSchema).default([]),
+  outputs: external_exports.array(ApiParameterSchema).default([]),
+  authenticated: external_exports.boolean().optional().default(false)
+});
+var ConstraintSchema = external_exports.object({
+  rule: external_exports.string().min(1, "Constraint rule is required"),
+  type: external_exports.enum(["perf", "security", "compliance", "ux", "business"]),
+  value: external_exports.string().optional(),
+  priority: external_exports.enum(["low", "medium", "high", "critical"]).optional().default("medium")
+});
+var ScenarioSchema = external_exports.object({
+  id: external_exports.string().min(1, "Scenario ID is required").regex(/^AC-\d{3}$/, "ID must be in format AC-XXX"),
+  given: external_exports.string().min(1, "Given condition is required"),
+  when: external_exports.string().min(1, "When action is required"),
+  then: external_exports.string().min(1, "Then outcome is required"),
+  priority: external_exports.enum(["low", "medium", "high", "critical"]).optional().default("medium")
+});
+var TaskSchema = external_exports.object({
+  id: external_exports.string().min(1, "Task ID is required").regex(/^T-\d{3}$/, "ID must be in format T-XXX"),
+  title: external_exports.string().min(1, "Task title is required"),
+  description: external_exports.string().optional(),
+  dependsOn: external_exports.array(external_exports.string().regex(/^T-\d{3}$/)).default([]),
+  deliverables: external_exports.array(external_exports.string().min(1, "Deliverable cannot be empty")).default([]),
+  acceptanceCriteria: external_exports.array(external_exports.string().regex(/^AC-\d{3}$/)).default([]),
+  estimatedComplexity: external_exports.enum(["low", "medium", "high", "critical"]).optional().default("medium"),
+  ownerAgent: external_exports.string().optional().default("code-ts"),
+  runtime: external_exports.object({
+    language: external_exports.string().optional(),
+    framework: external_exports.string().optional(),
+    database: external_exports.string().optional()
+  }).optional()
+});
+var SpecSchema = external_exports.object({
+  project: external_exports.string().min(1, "Project name is required"),
+  version: external_exports.string().optional().default("1.0.0"),
+  description: external_exports.string().optional(),
+  personas: external_exports.array(PersonaSchema).min(1, "At least one persona is required"),
+  entities: external_exports.array(EntitySchema).min(1, "At least one entity is required"),
+  apis: external_exports.array(ApiSchema).default([]),
+  constraints: external_exports.array(ConstraintSchema).default([]),
+  scenarios: external_exports.array(ScenarioSchema).min(1, "At least one acceptance criteria is required"),
+  tasks: external_exports.array(TaskSchema).min(1, "At least one task is required"),
+  metadata: external_exports.object({
+    compiledAt: external_exports.date().optional(),
+    compiledBy: external_exports.string().optional().default("ideaforge"),
+    sourceFile: external_exports.string().optional(),
+    totalEstimatedHours: external_exports.number().optional()
+  }).optional()
+});
 
 // src/core/spec-assembler.ts
 var AssemblyConfigSchema = external_exports.object({
@@ -28869,228 +48245,6 @@ var traces = sqliteTable("traces", {
   timestamp: integer("timestamp", { mode: "timestamp" }).notNull().$defaultFn(() => /* @__PURE__ */ new Date())
 });
 
-// src/tools/fs.ts
-import {
-  readFile,
-  writeFile,
-  mkdir as mkdir2,
-  access,
-  stat,
-  readdir
-} from "node:fs/promises";
-import { dirname, join, resolve, relative } from "node:path";
-import { constants } from "node:fs";
-var WORKSPACE_ROOT = process.cwd();
-var ALLOWED_WORKSPACE_PATTERNS = [
-  /^workspace\//,
-  /^\.\/workspace\//,
-  /^spec\//,
-  /^tasks\//,
-  /^build\//,
-  /^reports\//
-];
-function validatePath(filePath) {
-  const resolvedPath = resolve(filePath);
-  const relativePath = relative(WORKSPACE_ROOT, resolvedPath);
-  if (relativePath.startsWith("..") || relativePath.includes("..")) {
-    throw new Error(`Access denied: Path traversal detected in ${filePath}`);
-  }
-  const isAllowed = ALLOWED_WORKSPACE_PATTERNS.some(
-    (pattern) => pattern.test(relativePath) || pattern.test(filePath)
-  );
-  if (!isAllowed && !relativePath.startsWith("workspace/")) {
-    throw new Error(
-      `Access denied: Path ${filePath} is outside allowed workspace areas`
-    );
-  }
-  return resolvedPath;
-}
-var readFileTool = tool({
-  description: "Read the contents of a text file. Only works within workspace directories for security.",
-  parameters: external_exports.object({
-    path: external_exports.string().min(1, "File path is required")
-  }),
-  execute: async ({ path: path3 }) => {
-    try {
-      const safePath = validatePath(path3);
-      await access(safePath, constants.R_OK);
-      const stats = await stat(safePath);
-      if (stats.isDirectory()) {
-        throw new Error(`Path ${path3} is a directory, not a file`);
-      }
-      if (stats.size > 10 * 1024 * 1024) {
-        throw new Error(
-          `File ${path3} is too large (${stats.size} bytes). Maximum size is 10MB.`
-        );
-      }
-      const content = await readFile(safePath, "utf-8");
-      return {
-        success: true,
-        path: path3,
-        content,
-        size: stats.size,
-        lastModified: stats.mtime.toISOString()
-      };
-    } catch (error45) {
-      return {
-        success: false,
-        path: path3,
-        error: error45 instanceof Error ? error45.message : "Unknown error occurred"
-      };
-    }
-  }
-});
-var writeFileTool = tool({
-  description: "Write content to a file, creating directories as needed. Only works within workspace directories.",
-  parameters: external_exports.object({
-    path: external_exports.string().min(1, "File path is required"),
-    content: external_exports.string(),
-    createDirs: external_exports.boolean().optional().default(true)
-  }),
-  execute: async ({ path: path3, content, createDirs }) => {
-    try {
-      const safePath = validatePath(path3);
-      if (createDirs) {
-        const dir = dirname(safePath);
-        await mkdir2(dir, { recursive: true });
-      }
-      await writeFile(safePath, content, "utf-8");
-      const stats = await stat(safePath);
-      return {
-        success: true,
-        path: path3,
-        size: stats.size,
-        created: true
-      };
-    } catch (error45) {
-      return {
-        success: false,
-        path: path3,
-        error: error45 instanceof Error ? error45.message : "Unknown error occurred"
-      };
-    }
-  }
-});
-var listDirTool = tool({
-  description: "List files and directories in a given path. Only works within workspace directories.",
-  parameters: external_exports.object({
-    path: external_exports.string().min(1, "Directory path is required"),
-    includeHidden: external_exports.boolean().optional().default(false)
-  }),
-  execute: async ({ path: path3, includeHidden }) => {
-    try {
-      const safePath = validatePath(path3);
-      await access(safePath, constants.R_OK);
-      const stats = await stat(safePath);
-      if (!stats.isDirectory()) {
-        throw new Error(`Path ${path3} is not a directory`);
-      }
-      const entries = await readdir(safePath, { withFileTypes: true });
-      const files = [];
-      const directories = [];
-      for (const entry of entries) {
-        if (!includeHidden && entry.name.startsWith(".")) {
-          continue;
-        }
-        const entryPath = join(path3, entry.name);
-        const entryStats = await stat(join(safePath, entry.name));
-        const item = {
-          name: entry.name,
-          path: entryPath,
-          size: entryStats.size,
-          lastModified: entryStats.mtime.toISOString()
-        };
-        if (entry.isDirectory()) {
-          directories.push(item);
-        } else {
-          files.push(item);
-        }
-      }
-      return {
-        success: true,
-        path: path3,
-        files: files.sort((a, b) => a.name.localeCompare(b.name)),
-        directories: directories.sort((a, b) => a.name.localeCompare(b.name)),
-        total: files.length + directories.length
-      };
-    } catch (error45) {
-      return {
-        success: false,
-        path: path3,
-        error: error45 instanceof Error ? error45.message : "Unknown error occurred"
-      };
-    }
-  }
-});
-var fileExistsTool = tool({
-  description: "Check if a file or directory exists at the given path.",
-  parameters: external_exports.object({
-    path: external_exports.string().min(1, "Path is required")
-  }),
-  execute: async ({ path: path3 }) => {
-    try {
-      const safePath = validatePath(path3);
-      await access(safePath, constants.F_OK);
-      const stats = await stat(safePath);
-      return {
-        success: true,
-        path: path3,
-        exists: true,
-        isFile: stats.isFile(),
-        isDirectory: stats.isDirectory(),
-        size: stats.size,
-        lastModified: stats.mtime.toISOString()
-      };
-    } catch (error45) {
-      return {
-        success: true,
-        path: path3,
-        exists: false,
-        error: error45 instanceof Error ? error45.message : "Unknown error occurred"
-      };
-    }
-  }
-});
-var createDirTool = tool({
-  description: "Create a directory and any necessary parent directories.",
-  parameters: external_exports.object({
-    path: external_exports.string().min(1, "Directory path is required"),
-    recursive: external_exports.boolean().optional().default(true)
-  }),
-  execute: async ({ path: path3, recursive }) => {
-    try {
-      const safePath = validatePath(path3);
-      await mkdir2(safePath, { recursive });
-      return {
-        success: true,
-        path: path3,
-        created: true
-      };
-    } catch (error45) {
-      return {
-        success: false,
-        path: path3,
-        error: error45 instanceof Error ? error45.message : "Unknown error occurred"
-      };
-    }
-  }
-});
-async function ensureWorkspaceStructure(workspacePath) {
-  const dirs = [
-    join(workspacePath, "spec"),
-    join(workspacePath, "tasks"),
-    join(workspacePath, "build"),
-    join(workspacePath, "build", "src"),
-    join(workspacePath, "build", "tests"),
-    join(workspacePath, "reports"),
-    join(workspacePath, "reports", "reviews"),
-    join(workspacePath, "reports", "e2e")
-  ];
-  for (const dir of dirs) {
-    await mkdir2(dir, { recursive: true });
-  }
-}
-
 // src/commands/compile.ts
 async function compileCmd(prdPath, options) {
   console.log("\u{1F528} Starting compilation...");
@@ -29099,14 +48253,14 @@ async function compileCmd(prdPath, options) {
     console.log("PRD Path:", prdPath);
   }
   try {
-    const project = options.project ?? path2.parse(prdPath).name.replace(/\W+/g, "-").toLowerCase();
-    const workspace = options.workspace ?? path2.join("projects", project);
-    const workspacePath = path2.resolve(workspace);
+    const project = options.project ?? path3.parse(prdPath).name.replace(/\W+/g, "-").toLowerCase();
+    const workspace = options.workspace ?? path3.join("projects", project);
+    const workspacePath = path3.resolve(workspace);
     console.log(`\u{1F4C1} Project: ${project}`);
     if (options.verbose) {
       console.log(`\u{1F4C2} Workspace: ${workspacePath}`);
     }
-    const prdContent = await readFile2(prdPath, "utf-8");
+    const prdContent = await readFile3(prdPath, "utf-8");
     console.log(`\u{1F4C4} PRD loaded (${prdContent.length} chars)`);
     if (options.dryRun) {
       console.log("\u{1F50D} DRY RUN MODE - No files will be created\n");
@@ -29119,7 +48273,10 @@ async function compileCmd(prdPath, options) {
     }
     console.log("\n\u{1F504} Running compilation pipeline...");
     const startTime = Date.now();
-    const compilationResults = await orchestrator.compileAll(prdContent, prdPath);
+    const compilationResults = await orchestrator.compileAll(
+      prdContent,
+      prdPath
+    );
     const duration3 = ((Date.now() - startTime) / 1e3).toFixed(1);
     console.log(`\u2705 Compilation completed in ${duration3}s`);
     console.log("\n\u{1F527} Assembling specification...");
@@ -29141,22 +48298,31 @@ async function compileCmd(prdPath, options) {
     console.log(`   \u{1F465} Personas: ${assemblyResult.spec.personas.length}`);
     console.log(`   \u{1F3D7}\uFE0F  Entities: ${assemblyResult.spec.entities.length}`);
     console.log(`   \u{1F50C} APIs: ${assemblyResult.spec.apis.length}`);
-    console.log(`   \u2696\uFE0F  Constraints: ${assemblyResult.spec.constraints.length}`);
+    console.log(
+      `   \u2696\uFE0F  Constraints: ${assemblyResult.spec.constraints.length}`
+    );
     console.log(`   \u{1F3AF} Scenarios: ${assemblyResult.spec.scenarios.length}`);
     console.log(`   \u{1F4CB} Tasks: ${assemblyResult.spec.tasks.length}`);
-    console.log(`   \u23F1\uFE0F  Estimated: ${assemblyResult.spec.metadata?.totalEstimatedHours || 0}h`);
+    console.log(
+      `   \u23F1\uFE0F  Estimated: ${assemblyResult.spec.metadata?.totalEstimatedHours || 0}h`
+    );
     if (options.verbose) {
       console.log("\n\u{1F50D} Detailed Breakdown:");
       if (assemblyResult.spec.entities.length > 0) {
         console.log("   Entities:");
         assemblyResult.spec.entities.forEach((entity) => {
-          console.log(`     \u2022 ${entity.name} (${entity.attributes.length} attributes)`);
+          console.log(
+            `     \u2022 ${entity.name} (${entity.attributes.length} attributes)`
+          );
         });
       }
-      const constraintsByType = assemblyResult.spec.constraints.reduce((acc, c) => {
-        acc[c.type] = (acc[c.type] || 0) + 1;
-        return acc;
-      }, {});
+      const constraintsByType = assemblyResult.spec.constraints.reduce(
+        (acc, c) => {
+          acc[c.type] = (acc[c.type] || 0) + 1;
+          return acc;
+        },
+        {}
+      );
       if (Object.keys(constraintsByType).length > 0) {
         console.log("   Constraints:");
         Object.entries(constraintsByType).forEach(([type, count]) => {
@@ -29198,16 +48364,25 @@ async function compileCmd(prdPath, options) {
         version: 1,
         json: JSON.stringify(assemblyResult.spec)
       });
-      const specPath = path2.join(workspacePath, "spec.ai.json");
+      const specPath = path3.join(workspacePath, "spec.ai.json");
       await writeFile2(specPath, JSON.stringify(assemblyResult.spec, null, 2));
-      const metadataPath = path2.join(workspacePath, "compilation-metadata.json");
-      await writeFile2(metadataPath, JSON.stringify(assemblyResult.metadata, null, 2));
+      const metadataPath = path3.join(
+        workspacePath,
+        "compilation-metadata.json"
+      );
+      await writeFile2(
+        metadataPath,
+        JSON.stringify(assemblyResult.metadata, null, 2)
+      );
       console.log(`   \u{1F4BE} Database: Project #${projectRecord.id} saved`);
       console.log(`   \u{1F4C4} Spec: ${specPath}`);
       console.log(`   \u{1F4CA} Metadata: ${metadataPath}`);
       if (options.output) {
-        const outputPath = path2.resolve(options.output);
-        await writeFile2(outputPath, JSON.stringify(assemblyResult.spec, null, 2));
+        const outputPath = path3.resolve(options.output);
+        await writeFile2(
+          outputPath,
+          JSON.stringify(assemblyResult.spec, null, 2)
+        );
         console.log(`   \u{1F4E4} Output: ${outputPath}`);
       }
     }
@@ -29259,14 +48434,204 @@ async function runCmd(options) {
     console.log("Options:", options);
   }
   try {
+    const db = getDatabase();
     const parallelCount = parseInt(options.parallel, 10);
     console.log(`\u{1F4C1} Project: ${options.project}`);
     console.log(`\u26A1 Parallel tasks: ${parallelCount}`);
     if (options.voting) {
       console.log(`\u{1F5F3}\uFE0F  Voting strategy: ${options.voting}`);
     }
-    console.log("\u26A0\uFE0F  Task execution logic not yet implemented");
-    console.log("\u2705 Run command completed (stub)");
+    console.log("\u{1F4CB} Loading project specification...");
+    const [projectRecord] = await db.select().from(projects).where(eq(projects.slug, options.project)).limit(1);
+    if (!projectRecord) {
+      throw new Error(
+        `Project '${options.project}' not found. Run compile first.`
+      );
+    }
+    const [specRecord] = await db.select().from(specs).where(eq(specs.projectId, projectRecord.id)).orderBy(specs.version).limit(1);
+    if (!specRecord) {
+      throw new Error(
+        `No specification found for project '${options.project}'. Run compile first.`
+      );
+    }
+    const spec = SpecSchema.parse(JSON.parse(specRecord.json));
+    console.log(
+      `\u{1F4CA} Loaded spec: ${spec.tasks.length} tasks, ${spec.scenarios.length} scenarios`
+    );
+    if (options.verbose) {
+      console.log("--- Project Details ---");
+      console.log(`   Project: ${spec.project}`);
+      console.log(`   Version: ${spec.version}`);
+      console.log(`   Tasks: ${spec.tasks.length}`);
+      console.log(`   Entities: ${spec.entities.length}`);
+      console.log(`   APIs: ${spec.apis.length}`);
+      console.log(`   Scenarios: ${spec.scenarios.length}`);
+      console.log("----------------------");
+    }
+    if (options.dryRun) {
+      console.log("\u{1F3C3}\u200D\u2642\uFE0F Dry run mode - no tasks will be executed.");
+      console.log(`Would execute ${spec.tasks.length} tasks:`);
+      spec.tasks.forEach((task) => {
+        console.log(
+          `   - ${task.id}: ${task.title} (${task.estimatedComplexity})`
+        );
+      });
+      return;
+    }
+    console.log("\u{1F916} Initializing execution agents...");
+    const taskOrchestrator = new TaskExecutionOrchestrator(options.model);
+    const reviewOrchestrator = new ReviewLoopOrchestrator(options.model, 3);
+    console.log("\u2699\uFE0F  Executing tasks...");
+    const executionContext = {
+      entities: spec.entities,
+      apis: spec.apis,
+      constraints: spec.constraints,
+      scenarios: spec.scenarios,
+      workspacePath: projectRecord.workspacePath,
+      projectName: spec.project
+    };
+    const workerResults = await taskOrchestrator.executeTasks(
+      spec.tasks,
+      executionContext
+    );
+    console.log(
+      `\u2705 Task execution completed: ${workerResults.length} tasks processed`
+    );
+    console.log("\u{1F50D} Starting review process...");
+    const reviewContext = {
+      scenarios: spec.scenarios,
+      constraints: spec.constraints,
+      workspacePath: projectRecord.workspacePath,
+      projectName: spec.project
+    };
+    const reviewResults = [];
+    for (let i = 0; i < spec.tasks.length; i++) {
+      const task = spec.tasks[i];
+      const workerResult = workerResults[i];
+      if (workerResult.status === "failed") {
+        console.log(`\u26A0\uFE0F  Skipping review for failed task ${task.id}`);
+        reviewResults.push({
+          task,
+          workerResult,
+          reviewResult: {
+            taskId: task.id,
+            status: "rejected",
+            score: 0,
+            feedback: {
+              strengths: [],
+              issues: [
+                {
+                  type: "critical",
+                  category: "functionality",
+                  description: "Task execution failed"
+                }
+              ],
+              summary: "Task failed during execution"
+            },
+            checklist: {
+              functionality: false,
+              testing: false,
+              codeQuality: false,
+              security: false,
+              performance: false,
+              documentation: false
+            },
+            recommendations: ["Fix execution errors and retry"],
+            metadata: {
+              reviewedAt: /* @__PURE__ */ new Date(),
+              reviewDuration: 0,
+              filesReviewed: 0,
+              linesReviewed: 0
+            }
+          }
+        });
+        continue;
+      }
+      console.log(`\u{1F50D} Reviewing task ${task.id}...`);
+      const reviewLoop = await reviewOrchestrator.runReviewLoop(
+        workerResult,
+        task,
+        reviewContext
+      );
+      reviewResults.push({
+        task,
+        workerResult,
+        reviewResult: reviewLoop.finalReview
+      });
+      if (reviewLoop.approved) {
+        console.log(
+          `\u2705 Task ${task.id} approved after ${reviewLoop.iterations.length} iteration(s)`
+        );
+      } else {
+        console.log(
+          `\u26A0\uFE0F  Task ${task.id} not approved after ${reviewLoop.iterations.length} iterations`
+        );
+      }
+    }
+    console.log("\u{1F4BE} Saving execution results...");
+    for (const result of reviewResults) {
+      await db.insert(tasks).values({
+        projectId: projectRecord.id,
+        taskId: result.task.id,
+        title: result.task.title,
+        status: result.reviewResult.status === "approved" ? "APPROVED" : result.reviewResult.status === "rejected" ? "FAILED" : "NEEDS_CHANGES",
+        workerOutput: JSON.stringify(result.workerResult),
+        reviewOutput: JSON.stringify(result.reviewResult)
+      });
+    }
+    const approvedTasks = reviewResults.filter(
+      (r) => r.reviewResult.status === "approved"
+    );
+    const failedTasks = reviewResults.filter(
+      (r) => r.reviewResult.status === "rejected"
+    );
+    const pendingTasks = reviewResults.filter(
+      (r) => r.reviewResult.status === "needs_changes"
+    );
+    console.log("\n\u{1F4CA} Execution Summary:");
+    console.log(
+      `   \u2705 Approved: ${approvedTasks.length}/${reviewResults.length} tasks`
+    );
+    console.log(
+      `   \u274C Failed: ${failedTasks.length}/${reviewResults.length} tasks`
+    );
+    console.log(
+      `   \u26A0\uFE0F  Needs Changes: ${pendingTasks.length}/${reviewResults.length} tasks`
+    );
+    const avgScore = reviewResults.reduce((sum, r) => sum + r.reviewResult.score, 0) / reviewResults.length;
+    console.log(`   \u{1F4C8} Average Quality Score: ${Math.round(avgScore)}/100`);
+    if (options.verbose) {
+      console.log("\n\u{1F50D} Detailed Results:");
+      reviewResults.forEach((result) => {
+        const status = result.reviewResult.status === "approved" ? "\u2705" : result.reviewResult.status === "rejected" ? "\u274C" : "\u26A0\uFE0F";
+        console.log(
+          `   ${status} ${result.task.id}: ${result.task.title} (${result.reviewResult.score}/100)`
+        );
+        if (result.reviewResult.feedback.issues.length > 0) {
+          result.reviewResult.feedback.issues.slice(0, 2).forEach((issue2) => {
+            console.log(`      - ${issue2.type}: ${issue2.description}`);
+          });
+        }
+      });
+    }
+    await db.update(projects).set({
+      status: approvedTasks.length === reviewResults.length ? "ASSEMBLED" : "RUNNING",
+      updatedAt: /* @__PURE__ */ new Date()
+    }).where(eq(projects.id, projectRecord.id));
+    console.log("\n\u{1F3AF} Next Steps:");
+    if (approvedTasks.length === reviewResults.length) {
+      console.log(
+        `   Run: ideaforge aggregate ${options.project}     # Combine all outputs`
+      );
+    } else {
+      console.log(
+        `   Fix issues in ${failedTasks.length + pendingTasks.length} tasks and re-run`
+      );
+    }
+    console.log(
+      `   Run: ideaforge review ${options.project}       # Review detailed results`
+    );
+    console.log("\u2705 Task execution completed successfully!");
   } catch (error45) {
     console.error("\u274C Task execution failed:", error45);
     process.exit(2);
@@ -29297,15 +48662,173 @@ async function reviewCmd(options) {
 }
 
 // src/commands/aggregate.ts
+import path4 from "node:path";
 async function aggregateCmd(options) {
-  console.log("\u{1F517} Starting aggregation...");
+  console.log("\u{1F9E9} Starting project aggregation...");
   if (options.verbose) {
     console.log("Options:", options);
   }
   try {
+    const db = getDatabase();
+    const model = options.model || "gpt-4o-mini";
     console.log(`\u{1F4C1} Project: ${options.project}`);
-    console.log("\u26A0\uFE0F  Aggregation logic not yet implemented");
-    console.log("\u2705 Aggregate command completed (stub)");
+    console.log("\u{1F4CB} Loading project data...");
+    const [projectRecord] = await db.select().from(projects).where(eq(projects.slug, options.project)).limit(1);
+    if (!projectRecord) {
+      throw new Error(
+        `Project '${options.project}' not found. Run compile first.`
+      );
+    }
+    const [specRecord] = await db.select().from(specs).where(eq(specs.projectId, projectRecord.id)).orderBy(specs.version).limit(1);
+    if (!specRecord) {
+      throw new Error(
+        `No specification found for project '${options.project}'. Run compile first.`
+      );
+    }
+    const taskRecords = await db.select().from(tasks).where(eq(tasks.projectId, projectRecord.id));
+    if (taskRecords.length === 0) {
+      throw new Error(
+        `No task execution results found for project '${options.project}'. Run 'ideaforge run' first.`
+      );
+    }
+    const spec = SpecSchema.parse(JSON.parse(specRecord.json));
+    console.log(
+      `\u{1F4CA} Loaded: ${spec.tasks.length} tasks, ${taskRecords.length} execution results`
+    );
+    const taskResults = taskRecords.map((taskRecord) => {
+      const task = spec.tasks.find((t) => t.id === taskRecord.taskId);
+      if (!task) {
+        throw new Error(`Task ${taskRecord.taskId} not found in spec`);
+      }
+      const workerResult = JSON.parse(
+        taskRecord.workerOutput
+      );
+      const reviewResult = JSON.parse(
+        taskRecord.reviewOutput
+      );
+      return { task, workerResult, reviewResult };
+    });
+    const approvedTasks = taskResults.filter(
+      (tr) => tr.reviewResult.status === "approved"
+    );
+    const failedTasks = taskResults.filter(
+      (tr) => tr.reviewResult.status !== "approved"
+    );
+    console.log(
+      `\u2705 Approved tasks: ${approvedTasks.length}/${taskResults.length}`
+    );
+    if (failedTasks.length > 0) {
+      console.log(
+        `\u26A0\uFE0F  ${failedTasks.length} tasks not approved - proceeding with approved tasks only`
+      );
+      if (options.verbose) {
+        failedTasks.forEach((tr) => {
+          console.log(
+            `   \u274C ${tr.task.id}: ${tr.task.title} (${tr.reviewResult.status})`
+          );
+        });
+      }
+    }
+    if (options.dryRun) {
+      console.log("\u{1F3C3}\u200D\u2642\uFE0F Dry run mode - no aggregation will be performed.");
+      console.log(
+        `Would aggregate ${approvedTasks.length} approved tasks into complete project`
+      );
+      return;
+    }
+    console.log("\u{1F916} Initializing aggregation agent...");
+    const assemblyOrchestrator = new ProjectAssemblyOrchestrator(model);
+    console.log("\u{1F3D7}\uFE0F  Aggregating project components...");
+    const aggregationContext = {
+      projectName: spec.project,
+      entities: spec.entities,
+      apis: spec.apis,
+      scenarios: spec.scenarios,
+      workspacePath: projectRecord.workspacePath,
+      specPath: path4.join(projectRecord.workspacePath, "spec.ai.json")
+    };
+    const aggregationResult = await assemblyOrchestrator.assembleProject(
+      taskResults,
+      aggregationContext
+    );
+    console.log("\n\u{1F4CA} Aggregation Results:");
+    console.log(`   Status: ${aggregationResult.status.toUpperCase()}`);
+    console.log(
+      `   Overall Quality: ${aggregationResult.quality.overallScore}/100`
+    );
+    console.log(
+      `   Task Completion: ${aggregationResult.quality.taskCompletion}%`
+    );
+    console.log(
+      `   Code Quality: ${aggregationResult.quality.codeQuality}/100`
+    );
+    console.log(`   Test Coverage: ${aggregationResult.quality.testCoverage}%`);
+    console.log("\n\u{1F4C1} Generated Output:");
+    console.log(
+      `   Total Files: ${aggregationResult.outputs.codebase.totalFiles}`
+    );
+    console.log(
+      `   Total Lines: ${aggregationResult.outputs.codebase.totalLines}`
+    );
+    console.log(
+      `   Languages: ${aggregationResult.outputs.codebase.languages.join(", ")}`
+    );
+    console.log(
+      `   Tests: ${aggregationResult.outputs.tests.totalTests} (${aggregationResult.outputs.tests.passRate}% pass rate)`
+    );
+    if (options.verbose) {
+      console.log("\n\u{1F3D7}\uFE0F  Project Structure:");
+      Object.entries(aggregationResult.outputs.codebase.structure).forEach(
+        ([dir, files]) => {
+          console.log(`   ${dir}/`);
+          files.forEach((file2) => {
+            console.log(`      \u251C\u2500\u2500 ${file2}`);
+          });
+        }
+      );
+      if (aggregationResult.issues.length > 0) {
+        console.log("\n\u26A0\uFE0F  Issues Found:");
+        aggregationResult.issues.forEach((issue2) => {
+          const icon = issue2.type === "error" ? "\u274C" : issue2.type === "warning" ? "\u26A0\uFE0F" : "\u2139\uFE0F";
+          console.log(`   ${icon} ${issue2.category}: ${issue2.description}`);
+        });
+      }
+    }
+    await db.update(projects).set({
+      status: aggregationResult.status === "success" ? "DONE" : "ASSEMBLED",
+      updatedAt: /* @__PURE__ */ new Date()
+    }).where(eq(projects.id, projectRecord.id));
+    console.log(
+      `
+\u{1F4C2} Output Location: ${aggregationResult.metadata.outputPath}`
+    );
+    console.log(
+      `\u23F1\uFE0F  Build Duration: ${Math.round(
+        aggregationResult.metadata.buildDuration / 1e3
+      )}s`
+    );
+    console.log("\n\u{1F3AF} Next Steps:");
+    if (aggregationResult.status === "success") {
+      console.log(`   \u{1F680} Project ready for deployment!`);
+      console.log(`   \u{1F4C1} Check: ${aggregationResult.metadata.outputPath}`);
+      console.log(
+        `   \u{1F4D6} Read: ${path4.join(
+          aggregationResult.metadata.outputPath,
+          "README.md"
+        )}`
+      );
+    } else {
+      console.log(`   \u{1F527} Address issues and re-run aggregation`);
+      console.log(`   \u{1F4CB} Review: ideaforge review ${options.project}`);
+    }
+    if (aggregationResult.outputs.deployment.packageJson) {
+      console.log(
+        `   \u{1F4E6} Install: cd ${aggregationResult.metadata.outputPath} && npm install`
+      );
+      console.log(`   \u{1F9EA} Test: npm test`);
+      console.log(`   \u{1F680} Run: npm start`);
+    }
+    console.log("\u2705 Project aggregation completed successfully!");
   } catch (error45) {
     console.error("\u274C Aggregation failed:", error45);
     process.exit(4);

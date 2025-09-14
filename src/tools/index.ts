@@ -1,9 +1,18 @@
 // Central export file for all tools used by agents
 
-export { fsTools, ensureWorkspaceStructure } from "./fs.js";
-export { testTools } from "./test.js";
-export { lintTools } from "./lint.js";
-export { openApiTools } from "./openapi.js";
+import { fsTools, ensureWorkspaceStructure } from "./fs.js";
+import { testTools } from "./test.js";
+import { lintTools } from "./lint.js";
+import { openApiTools } from "./openapi.js";
+
+// Re-export individual tool collections
+export {
+  fsTools,
+  ensureWorkspaceStructure,
+  testTools,
+  lintTools,
+  openApiTools,
+};
 
 // Combined tool collection for easy import by agents
 export const allTools = {

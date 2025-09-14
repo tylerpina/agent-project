@@ -176,3 +176,23 @@ export function createCompilationOrchestrator(
 ): CompilationOrchestrator {
   return new CompilationOrchestrator(model);
 }
+
+// Export execution agents
+export {
+  WorkerAgent,
+  createWorkerAgent,
+  TaskExecutionOrchestrator,
+  type WorkerResult,
+} from "./worker.js";
+export {
+  ReviewerAgent,
+  createReviewerAgent,
+  ReviewLoopOrchestrator,
+  type ReviewResult,
+} from "./reviewer.js";
+export {
+  AggregatorAgent,
+  createAggregatorAgent,
+  ProjectAssemblyOrchestrator,
+  type AggregationResult,
+} from "./aggregator.js";
